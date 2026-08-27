@@ -1,7 +1,7 @@
 # Graph Report - .  (2026-08-27)
 
 ## Corpus Check
-- 1733 files · ~3,019,872 words
+- 1733 files · ~3,020,101 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,6 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Community Hubs (Navigation)
+- install.sh - install.sh
 - .migration-ai9/parity (3)
 - .migration-ai9/tools - browser.js
 - Frontend Pages / pages - catalogs.ts
@@ -439,7 +440,6 @@
 - frontend/src - vite-env.d.ts
 - tsconfig.json - compilerOptions
 - tsconfig.node.json - compilerOptions
-- install.sh - install.sh
 - patch_sidebar.js - patch_sidebar.js
 - install_pgvector.sh - install_pgvector.sh
 - setup.sh - setup.sh
@@ -2003,6 +2003,10 @@
 
 ## Communities (2067 total, 337 thin omitted)
 
+### Community 597 - "install.sh - install.sh"
+Cohesion: 0.40
+Nodes (4): install.sh script, GEM_HOME, GEM_PATH, PATH
+
 ### Community 138 - ".migration-ai9/parity (3)"
 Cohesion: 0.09
 Nodes (22): Phase 4 — paridade verificada: **auth-users · engines · console-admin**, O que foi executado, O núcleo: a matriz e a hierarquia, provadas nos dois sentidos, O de-para de papel deixou de ser inferência, Onde a tela foi provada, Defeitos achados, Duas correções de artefato envelhecido, O que NÃO deu para verificar, e por quê (+14 more)
@@ -3310,10 +3314,6 @@ Nodes (19): compilerOptions, target, useDefineForClassFields, lib, module, skipL
 ### Community 424 - "tsconfig.node.json - compilerOptions"
 Cohesion: 0.22
 Nodes (8): compilerOptions, composite, skipLibCheck, module, moduleResolution, allowSyntheticDefaultImports, strict, include
-
-### Community 597 - "install.sh - install.sh"
-Cohesion: 0.40
-Nodes (4): install.sh script, GEM_HOME, GEM_PATH, PATH
 
 ### Community 750 - "patch_sidebar.js - patch_sidebar.js"
 Cohesion: 0.50
@@ -8514,7 +8514,7 @@ Nodes (8): English i18n Catalogue, Brazilian Portuguese i18n Catalogue, Landing-
   tsc_errors.txt · relation: conceptually_related_to
 
 ## Knowledge Gaps
-- **7136 isolated node(s):** `O que foi executado`, `O núcleo: a matriz e a hierarquia, provadas nos dois sentidos`, `O de-para de papel deixou de ser inferência`, `Onde a tela foi provada`, `Defeitos achados` (+7131 more)
+- **7136 isolated node(s):** `install.sh script`, `GEM_HOME`, `GEM_PATH`, `PATH`, `O que foi executado` (+7131 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **337 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -8527,11 +8527,11 @@ _Questions this graph is uniquely positioned to answer:_
   _Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low._
 - **Why does `User` connect `Backend Models - User` to `Auth Request Specs`, `Backend Services / authorization - PermissionResolver`, `Backend Services / auth - MagicLoginService`, `backend/app/lib/sfg - attachments.rb`?**
   _High betweenness centrality (0.000) - this node is a cross-community bridge._
+- **Why does `DefaultMemberJob` connect `Backend Models - User` to `Backend Services - Project`, `Backend Services / availability`?**
+  _High betweenness centrality (0.000) - this node is a cross-community bridge._
 - **Why does `Project` connect `Backend Services - Project` to `Backend Models`, `backend/app/lib/sfg - attachments.rb`, `Backend Services / availability`?**
   _High betweenness centrality (0.000) - this node is a cross-community bridge._
-- **Why does `UserType` connect `Backend Models - User` to `Backend Services / authorization - permissions_service.rb`, `User Model & Code Validation`?**
-  _High betweenness centrality (0.000) - this node is a cross-community bridge._
-- **What connects `O que foi executado`, `O núcleo: a matriz e a hierarquia, provadas nos dois sentidos`, `O de-para de papel deixou de ser inferência` to the rest of the system?**
+- **What connects `install.sh script`, `GEM_HOME`, `GEM_PATH` to the rest of the system?**
   _7161 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `.migration-ai9/parity (3)` be split into smaller, more focused modules?**
   _Cohesion score 0.08695652173913043 - nodes in this community are weakly interconnected._

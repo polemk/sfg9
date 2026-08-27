@@ -107,10 +107,37 @@ if [ -f backend/.env ]; then
   echo "🔍 Arquivo .env detectado. Preservando chaves de segurança antigas..."
   EXISTING_JWT=$(grep '^JWT_SECRET_KEY=' backend/.env | cut -d '=' -f 2)
   EXISTING_SECRET=$(grep '^SECRET_KEY_BASE=' backend/.env | cut -d '=' -f 2)
+  EXISTING_ENC_PRIMARY=$(grep '^ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY=' backend/.env | cut -d '=' -f 2)
+  EXISTING_ENC_DETERMINISTIC=$(grep '^ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY=' backend/.env | cut -d '=' -f 2)
+  EXISTING_ENC_SALT=$(grep '^ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT=' backend/.env | cut -d '=' -f 2)
 fi
 
 JWT_SECRET_KEY=${EXISTING_JWT:-$(openssl rand -hex 64)}
 RAILS_MASTER_KEY=${EXISTING_SECRET:-$(openssl rand -hex 16)}
+
+# ----------------------------------------------------
+# Chaves do Active Record Encryption.
+#
+# **Elas eram commitadas e deixaram de ser** — chave de cifra versionada é cifra
+# decorativa: quem tem o repositório decifra o banco. Desde o DEC-61 isso pesa
+# mais, porque as chaves de terceiro (ReceitaWS, Google Maps) vivem no model
+# `Credential`, cujo `api_key` é protegido exatamente por estas três.
+#
+# Em produção não há default: `config/initializers/required_env.rb` reprova o
+# boot sem elas, e o `fetch` de `active_record_encryption.rb:24` é a segunda
+# trava. Este script nunca as gerou — o efeito era o deploy morrer no
+# `db:migrate` com `KeyError: key not found`, sem dizer o que fazer.
+#
+# **`:-` e não `=`, e isso é o ponto:** uma vez gravadas, elas são PRESERVADAS
+# entre execuções. Gerar de novo torna ilegível o que já estiver cifrado no
+# banco — os segredos de integração viram lixo silenciosamente, e o erro só
+# aparece na primeira vez que alguém usar a integração.
+#
+# 32 caracteres é o que o Rails espera (`bin/rails db:encryption:init` gera
+# nesse tamanho); `rand -hex 16` dá exatamente 32.
+ENC_PRIMARY_KEY=${EXISTING_ENC_PRIMARY:-$(openssl rand -hex 16)}
+ENC_DETERMINISTIC_KEY=${EXISTING_ENC_DETERMINISTIC:-$(openssl rand -hex 16)}
+ENC_KEY_DERIVATION_SALT=${EXISTING_ENC_SALT:-$(openssl rand -hex 16)}
 
 cat <<EOF > backend/.env
 # Backend Environment Variables
@@ -191,6 +218,19 @@ MAILER_FROM=${MAILER_FROM}
 
 APP_HOST=${PRIMARY_DOMAIN}
 API_HOST=${API_DOMAIN}
+
+# Action Cable — a URL que o navegador usa para abrir o WebSocket.
+#
+# Obrigatória em produção (`required_env.rb`). Faltava aqui, e sem ela o boot
+# reprova antes de qualquer requisição. `wss`, não `ws`: a página é servida por
+# HTTPS e o navegador recusa WebSocket inseguro numa origem segura.
+ACTION_CABLE_URL=wss://${API_DOMAIN}/cable
+
+# Cifra do Active Record — ver o bloco de geração acima para o porquê de estas
+# três serem PRESERVADAS entre execuções.
+ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY=${ENC_PRIMARY_KEY}
+ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY=${ENC_DETERMINISTIC_KEY}
+ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT=${ENC_KEY_DERIVATION_SALT}
 EOF
 
 cat <<EOF > frontend/.env
