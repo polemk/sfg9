@@ -68,27 +68,25 @@ if _bad:
 # graphify's own hook template exports PYTHONHASHSEED but not PYTHONUTF8. Without UTF-8
 # mode the extractor reads .md with the locale encoding and accented Portuguese headings
 # become mojibake node ids, so every hook rebuild churns the graph. Add it if missing.
-ENV_ANCHOR = "export PYTHONHASHSEED=0
+ENV_ANCHOR = "export PYTHONHASHSEED=0\n"
 
-# ai9: a reconstrucao roda em segundo plano DENTRO do repositorio e os comandos
-# git que ela faz pegam o lock do indice oportunisticamente (o refresh de
-# `git status`/`git diff`). Medido: o `.git/index.lock` aparece ~55s depois do
-# commit e some sozinho — mas um `git add` que caia nessa janela falha com
-# "Another git process seems to be running", e um lock de 0 byte fica para tras
-# se o processo morre ali dentro. Aconteceu tres vezes em uma manha.
-#
-# `GIT_OPTIONAL_LOCKS=0` e a variavel do proprio git para isto: o comando le o
-# indice sem tentar reescreve-lo. Nao desliga nada de que a reconstrucao precise
-# — ela so LE o repositorio.
-export GIT_OPTIONAL_LOCKS=0
-"
-ENV_ADD = ("export PYTHONHASHSEED=0
-
-"
-           "# ai9: force UTF-8 so accented markdown headings do not become corrupt node ids.
-"
-           "export PYTHONUTF8=1
-")
+# O que e ACRESCENTADO ao hook, na ancora acima. Uma linha por string, com o
+# `\n` ESCAPADO: quebra de linha crua dentro de "..." e erro de sintaxe, e foi
+# exatamente o que deixou este script sem rodar nenhuma vez.
+ENV_ADD = (
+    "export PYTHONHASHSEED=0\n"
+    "# ai9: force UTF-8 so accented markdown headings do not become corrupt node ids.\n"
+    "export PYTHONUTF8=1\n"
+    "# ai9: the background rebuild runs INSIDE the repo, and the git commands it\n"
+    "# makes take the index lock opportunistically (the refresh that git status\n"
+    "# and git diff do). Measured: .git/index.lock shows up ~55s after the commit\n"
+    "# and clears itself - but a git add landing in that window fails with\n"
+    "# 'Another git process seems to be running', and a 0-byte lock is left\n"
+    "# behind when the process dies in there. This is git's own switch for it:\n"
+    "# the command reads the index without trying to rewrite it, and the rebuild\n"
+    "# only READS the repository.\n"
+    "export GIT_OPTIONAL_LOCKS=0\n"
+)
 
 patched, skipped, missing = [], [], []
 for name in ('post-commit', 'post-checkout'):
@@ -106,7 +104,7 @@ for name in ('post-commit', 'post-checkout'):
         print('    patch it by hand, or the curated graph will be reverted on every commit')
         continue
     text = text.replace(anchor, anchor + INSERT, 1)
-    if 'PYTHONUTF8' not in text and ENV_ANCHOR in text:
+    if ('PYTHONUTF8' not in text or 'GIT_OPTIONAL_LOCKS' not in text) and ENV_ANCHOR in text:
         text = text.replace(ENV_ANCHOR, ENV_ADD, 1)
     hook.write_text(text, encoding='utf-8')
     patched.append(name)
