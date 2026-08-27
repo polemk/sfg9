@@ -18,10 +18,13 @@ read -p "Dominio Backend/API (ex: api.tru.com.br): " API_DOMAIN
 
 echo ""
 echo "Configuração de Portas:"
-read -p "Porta do Backend (Padrão: 3000): " RAILS_PORT
-RAILS_PORT=${RAILS_PORT:-3000}
-read -p "Porta do Frontend (Padrão: 5173): " VITE_PORT
-VITE_PORT=${VITE_PORT:-5173}
+# Os padrões são os MESMOS do `bin/dev` deste repositório (3026/5185), e não os
+# 3000/5173 genéricos do ai9 — o Safegold divide a bancada com outros apps, e
+# repetir a porta do vizinho é o defeito que essa escolha evita.
+read -p "Porta do Backend (Padrão: 3026): " RAILS_PORT
+RAILS_PORT=${RAILS_PORT:-3026}
+read -p "Porta do Frontend (Padrão: 5185): " VITE_PORT
+VITE_PORT=${VITE_PORT:-5185}
 
 # Redis compartilhado com segurança — isolamento via prefixo APP_NAME nas filas do Sidekiq
 REDIS_URL="redis://localhost:6379/0"
@@ -66,6 +69,18 @@ read -p "SMTP Password: " SMTP_PASSWORD
 
 echo ""
 read -p "Google API Key (Frontend): " GOOGLE_API_KEY
+
+echo ""
+echo "Base de dados inicial:"
+echo "  Os catálogos de REFERÊNCIA (tipos de recebível, carteiras, tipos de"
+echo "  movimentação, fontes de recurso…) entram sempre — a aplicação não abre"
+echo "  sem eles, e a tarefa é idempotente."
+echo ""
+echo "  A base de DEMONSTRAÇÃO é o conteúdo da apresentação: projetos, empresas,"
+echo "  portadores, borderôs, operações e indicadores FICTÍCIOS. Nenhum dado real"
+echo "  de cliente entra por aqui — a carga de produção é o ETL, noutro passo."
+read -p "Semear a base de demonstração? [S/n]: " SEED_DEMO
+SEED_DEMO=${SEED_DEMO:-S}
 
 echo ""
 echo "Configuração do Banco de Dados PostgreSQL da Aplicação:"
@@ -272,9 +287,47 @@ echo -e "\n📦 Preparando o Backend Rails..."
   echo "📦 Instalando dependências do Ruby (bundle install)..."
   RAILS_ENV=production bundle install
 
-  echo "🚀 Executando rails db:migrate e db:seed..."
+  # ------------------------------------------------------------------
+  # ESQUEMA E SEMENTES — três passos, e não um
+  # ------------------------------------------------------------------
+  # Rodar só `db:seed` deixava a apresentação abrindo num sistema VAZIO. Esse
+  # é o seed da base ai9 (contas, client application, instância do WhatsApp);
+  # ele não conhece o Safegold.
+  #
+  #   1. db:migrate       — o esquema.
+  #   2. db:seed          — a base ai9: contas e configuração da plataforma.
+  #   3. reference:seed   — os catálogos que a aplicação EXIGE para abrir
+  #                         (tipos de recebível, carteiras, tipos de
+  #                         movimentação, fontes de recurso). Idempotente, e
+  #                         semeia com o MESMO `legacy_id` que o ETL usa como
+  #                         chave natural: rodar isto antes da carga faz o ETL
+  #                         ATUALIZAR em vez de duplicar.
+  #   4. demo:seed        — o conteúdo da apresentação, se pedido.
+  #
+  # A carga de produção NÃO está aqui: ela é `rake sfg_etl:load`, roda no
+  # servidor com o dump do cliente e tem runbook próprio.
+  echo "🚀 [1/3] Esquema e base da plataforma (db:migrate + db:seed)..."
   RAILS_ENV=production bundle exec rails db:migrate db:seed
-) || echo "⚠️ Aviso: Falha ao rodar bundle/db:migrate/seed, verifique as logs."
+
+  echo "🚀 [2/3] Catálogos de referência (reference:seed)..."
+  RAILS_ENV=production bundle exec rake reference:seed
+
+  if [[ "${SEED_DEMO^^}" != "N" ]]; then
+    echo "🚀 [3/3] Base de demonstração (demo:seed)..."
+    RAILS_ENV=production bundle exec rake demo:seed
+  else
+    echo "⏭️  [3/3] Base de demonstração PULADA por escolha na instalação."
+  fi
+)
+# **Sem `|| echo aviso`, e de propósito.** A versão anterior engolia a falha:
+# migração quebrada ou seed que estourou viravam uma linha amarela, o script
+# seguia, o systemd subia e a apresentação abria num banco vazio — com o
+# instalador dizendo que deu tudo certo. Com `set -e` no topo, falhar aqui
+# INTERROMPE a instalação, que é o comportamento útil.
+#
+# É a mesma razão pela qual `demo:seed` aborta quando um escritor falha (ver
+# `lib/tasks/demo.rake`): seed que imprime "FALHOU" e sai com 0 é seed que
+# passa despercebido num script de deploy.
 
 # ----------------------------------------------------
 # 4. CRIAR E ATIVAR SYSTEMD SERVICE
