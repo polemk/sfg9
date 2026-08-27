@@ -96,7 +96,7 @@ read -p "  Prefixo dos bancos [sfg9]: " PREFIXO;      PREFIXO="${PREFIXO:-sfg9}"
 read -p "  Usuário do Postgres [${PREFIXO}_user]: " DB_USER; DB_USER="${DB_USER:-${PREFIXO}_user}"
 read -sp "  Senha para esse usuário [dev]: " DB_PASS;  echo "";  DB_PASS="${DB_PASS:-dev}"
 read -p "  Porta do backend [3026]: " PORTA_API;      PORTA_API="${PORTA_API:-3026}"
-read -p "  Porta do frontend [5185]: " PORTA_WEB;     PORTA_WEB="${PORTA_WEB:-5185}"
+read -p "  Porta do frontend [5186]: " PORTA_WEB;     PORTA_WEB="${PORTA_WEB:-5186}"
 
 DB_DEV="${PREFIXO}_dev"
 DB_TEST="${PREFIXO}_test"

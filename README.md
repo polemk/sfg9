@@ -62,7 +62,7 @@ ele desativar um padrão de disponibilidade responde 202 e a tela fica esperando
 
 | | |
 |---|---|
-| frontend | http://localhost:5185 |
+| frontend | http://localhost:5186 |
 | backend | http://localhost:3026 |
 
 **O código de acesso do login aparece no LOG do backend**, não no e-mail: em

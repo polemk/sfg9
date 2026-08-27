@@ -55,8 +55,8 @@ export function buildCsp(options: CspOptions): string {
   if (wsOrigin) connect.add(wsOrigin)
   if (isDev) {
     // HMR do Vite. Sem isto a pagina carrega e para de atualizar sozinha.
-    connect.add('ws://localhost:5185')
-    connect.add('ws://127.0.0.1:5185')
+    connect.add('ws://localhost:5186')
+    connect.add('ws://127.0.0.1:5186')
   }
 
   // Os scripts do build saem de /assets (mesma origem). Em dev o

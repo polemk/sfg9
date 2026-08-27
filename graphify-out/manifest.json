@@ -2170,8 +2170,8 @@
     "semantic_hash": ""
   },
   "bin/prod": {
-    "mtime": 1787866282.9450657,
-    "ast_hash": "35c8fcccee76183b5111cee272e2fa05",
+    "mtime": 1787867522.4807527,
+    "ast_hash": "02fc52a49b321b6fef5c030f29b963f2",
     "semantic_hash": ""
   },
   "bin/switch_env": {

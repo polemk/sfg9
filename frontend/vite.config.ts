@@ -63,7 +63,7 @@ export default defineConfig(({ mode }) => ({
     },
   },
   server: {
-    port: 5185,
+    port: 5186,
     // Hosts aceitos pelo dev server. So os CURINGAS de tunel — o subdominio
     // que o ngrok sorteia muda a cada execucao, entao dominio escrito na mao
     // aqui nasce vencido (havia dois, ambos ja mortos). `.ngrok-free.app`

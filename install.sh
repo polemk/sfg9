@@ -18,13 +18,13 @@ read -p "Dominio Backend/API (ex: api.tru.com.br): " API_DOMAIN
 
 echo ""
 echo "Configuração de Portas:"
-# Os padrões são os MESMOS do `bin/dev` deste repositório (3026/5185), e não os
+# Os padrões são os MESMOS do `bin/dev` deste repositório (3026/5186), e não os
 # 3000/5173 genéricos do ai9 — o Safegold divide a bancada com outros apps, e
 # repetir a porta do vizinho é o defeito que essa escolha evita.
 read -p "Porta do Backend (Padrão: 3026): " RAILS_PORT
 RAILS_PORT=${RAILS_PORT:-3026}
-read -p "Porta do Frontend (Padrão: 5185): " VITE_PORT
-VITE_PORT=${VITE_PORT:-5185}
+read -p "Porta do Frontend (Padrão: 5186): " VITE_PORT
+VITE_PORT=${VITE_PORT:-5186}
 
 # Redis compartilhado com segurança — isolamento via prefixo APP_NAME nas filas do Sidekiq
 REDIS_URL="redis://localhost:6379/0"

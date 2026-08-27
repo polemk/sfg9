@@ -3,7 +3,13 @@ set -Eeuo pipefail
 
 # Configurações padrão (personalizáveis via env)
 RAILS_PORT="${RAILS_PORT:-3026}"
-VITE_PORT="${VITE_PORT:-5185}"
+# 5186, e nao 5185: a 5185 e do app `tru` (`/var/www/apps/tru/frontend`) no
+# servidor compartilhado. O padrao la e backend 30xx com frontend 51xx em
+# paralelo — apl9 3010/5180, mnr9 3011/5181, joy-v2 3012/5182, facil
+# 3013/5183, brsw 3014/5184, tru 3025/5185. O sfg9 fica com 3026/5186.
+#
+# O backend NAO mudou: 3026 ja era nosso e nao colide com ninguem.
+VITE_PORT="${VITE_PORT:-5186}"
 SKIP_INSTALL="${SKIP_INSTALL:-0}"  # defina 1 para pular installs
 
 pids=()
