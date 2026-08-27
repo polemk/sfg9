@@ -50,7 +50,30 @@ if [ -f "${CADEADO}" ]; then
   rm -f "${CADEADO}"
 fi
 
-# ------------------------------------------------------- 2. emitir / renovar
+# ------------------------------------------- 2. em que estado o Nginx esta
+#
+# **Isto decide o modo do desafio, e e o que tira do impasse.**
+#
+# `--webroot` precisa do Nginx NO AR para servir
+# `/.well-known/acme-challenge/`. Mas o caso classico de conserto e justamente o
+# Nginx caido — porque a configuracao dele aponta para um certificado que nunca
+# saiu. Ai fecha o circulo: Nginx caido -> certbot nao valida -> certificado nao
+# sai -> configuracao segue invalida -> Nginx segue caido.
+#
+# `--standalone` sobe um servidor proprio na porta 80 e quebra o circulo. So
+# funciona com a porta LIVRE, que e exatamente a situacao de um Nginx parado.
+NGINX_ATIVO=0
+if command -v nginx >/dev/null 2>&1; then
+  systemctl is-active --quiet nginx && NGINX_ATIVO=1
+fi
+
+if [ "${NGINX_ATIVO}" = "1" ]; then
+  ok "nginx no ar — desafio por webroot"
+else
+  aviso "nginx PARADO — o desafio vai por standalone (porta 80 livre)"
+fi
+
+# ------------------------------------------------------- 3. emitir / renovar
 WEBROOT="${WEBROOT:-/var/www/html}"
 
 if [ "$#" -eq 0 ]; then
@@ -64,23 +87,34 @@ if [ "$#" -eq 0 ]; then
     morre "certbot renew falhou. Detalhe em /var/log/letsencrypt/letsencrypt.log"
   fi
 else
-  [ -d "${WEBROOT}" ] || morre "Webroot inexistente: ${WEBROOT}  (defina com WEBROOT=/caminho)"
-
   ARGS=()
   for dominio in "$@"; do ARGS+=(-d "${dominio}"); done
 
+  if [ "${NGINX_ATIVO}" = "1" ]; then
+    [ -d "${WEBROOT}" ] || morre "Webroot inexistente: ${WEBROOT}  (defina com WEBROOT=/caminho)"
+    MODO=(--webroot -w "${WEBROOT}")
+    DESCRICAO="webroot ${WEBROOT}"
+  else
+    MODO=(--standalone)
+    DESCRICAO="standalone (o certbot sobe na porta 80)"
+  fi
+
   echo ""
   echo "  Emitindo para: $*"
-  echo "  Webroot: ${WEBROOT}"
+  echo "  Modo: ${DESCRICAO}"
   echo ""
-  if certbot certonly --webroot -w "${WEBROOT}" "${ARGS[@]}"; then
+  if certbot certonly "${MODO[@]}" "${ARGS[@]}"; then
     ok "certificado emitido"
   else
     echo ""
     echo "  Causas comuns, na ordem em que costumam ser:"
     echo "    • o DNS do domínio ainda não aponta para este servidor"
-    echo "    • a porta 80 não está aberta (o desafio HTTP-01 passa por ela)"
-    echo "    • o Nginx não serve ${WEBROOT} em /.well-known/acme-challenge/"
+    echo "    • a porta 80 está fechada no firewall (o desafio HTTP-01 passa por ela)"
+    if [ "${NGINX_ATIVO}" = "1" ]; then
+      echo "    • o Nginx não serve ${WEBROOT} em /.well-known/acme-challenge/"
+    else
+      echo "    • algum outro processo já ocupa a porta 80 (veja: ss -lntp | grep :80)"
+    fi
     morre "certbot certonly falhou."
   fi
 
@@ -97,13 +131,17 @@ if command -v nginx >/dev/null 2>&1; then
   echo ""
   echo "  Conferindo a configuração do Nginx…"
   if nginx -t; then
-    if systemctl reload nginx; then
-      ok "nginx recarregado"
+    # `reload` num Nginx PARADO falha. Com o certificado agora no lugar, o que
+    # este caso pede é `start` — é o passo que fecha o conserto.
+    if [ "${NGINX_ATIVO}" = "1" ]; then
+      systemctl reload nginx && ok "nginx recarregado" \
+        || morre "O teste passou mas o reload falhou. Veja:  systemctl status nginx"
     else
-      morre "O teste passou mas o reload falhou. Veja:  systemctl status nginx"
+      systemctl start nginx && ok "nginx SUBIU (estava parado)" \
+        || morre "O teste passou mas o nginx não subiu. Veja:  systemctl status nginx"
     fi
   else
-    morre "A configuração do Nginx NÃO passou. O reload NÃO foi feito, de propósito — recarregar com configuração inválida derruba os outros aplicativos deste servidor."
+    morre "A configuração do Nginx NÃO passou no teste. Não mexi no serviço, de propósito — subir ou recarregar com configuração inválida derruba os outros aplicativos deste servidor. Rode  nginx -t  para ver a linha exata."
   fi
 fi
 

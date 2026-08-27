@@ -2170,8 +2170,8 @@
     "semantic_hash": ""
   },
   "bin/prod": {
-    "mtime": 1787598508.4343462,
-    "ast_hash": "146a783cfa201e2ecb430033b4ef628c",
+    "mtime": 1787866282.9450657,
+    "ast_hash": "35c8fcccee76183b5111cee272e2fa05",
     "semantic_hash": ""
   },
   "bin/switch_env": {
@@ -2200,8 +2200,8 @@
     "semantic_hash": ""
   },
   "install.sh": {
-    "mtime": 1787864185.6600344,
-    "ast_hash": "51d622159c5290b6b215ee183d04d867",
+    "mtime": 1787866207.1903875,
+    "ast_hash": "87868624c1ec5b445b2add722fb54193",
     "semantic_hash": ""
   },
   "patch_sidebar.js": {
@@ -4905,8 +4905,8 @@
     "semantic_hash": ""
   },
   "backend/db/seeds/demo/writers/carrier_connections.rb": {
-    "mtime": 1787690695.213851,
-    "ast_hash": "f656be2e96632f3a792a9b8206633d06",
+    "mtime": 1787865673.7824216,
+    "ast_hash": "8f17ae0973d0d05a1fcdbdd84b893f48",
     "semantic_hash": ""
   },
   "backend/db/seeds/demo/writers/carriers.rb": {
@@ -4915,8 +4915,8 @@
     "semantic_hash": ""
   },
   "backend/db/seeds/demo/writers/companies.rb": {
-    "mtime": 1787690686.3569307,
-    "ast_hash": "38c965cecc8e9316cc3a9e9ec17b86a7",
+    "mtime": 1787865528.0029736,
+    "ast_hash": "2ff8dc9e2b402ee9e2772c6de41251d8",
     "semantic_hash": ""
   },
   "backend/db/seeds/demo/writers/guarantee_types.rb": {
@@ -4940,8 +4940,8 @@
     "semantic_hash": ""
   },
   "backend/db/seeds/demo/writers/projects.rb": {
-    "mtime": 1787718845.1218767,
-    "ast_hash": "6869fe99534d638954759d095d596335",
+    "mtime": 1787865673.7824216,
+    "ast_hash": "e1ba324e9bbc65e616ab5329e82fcdd4",
     "semantic_hash": ""
   },
   "backend/db/seeds/demo/writers/receivable_entries.rb": {
@@ -9270,8 +9270,13 @@
     "semantic_hash": ""
   },
   "tools/varre_crase_heredoc.py": {
-    "mtime": 1787864270.810627,
-    "ast_hash": "2fb98fa73a0fc939bb8a0d8c141ec01f",
+    "mtime": 1787866367.610562,
+    "ast_hash": "416357c9dcd3f32f5a0feb910835c9f4",
+    "semantic_hash": ""
+  },
+  "renew_cert.sh": {
+    "mtime": 1787866353.021881,
+    "ast_hash": "0f65d561e0eef60a5732935749190681",
     "semantic_hash": ""
   }
 }
