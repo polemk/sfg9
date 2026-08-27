@@ -2200,8 +2200,8 @@
     "semantic_hash": ""
   },
   "install.sh": {
-    "mtime": 1787866207.1903875,
-    "ast_hash": "87868624c1ec5b445b2add722fb54193",
+    "mtime": 1787866858.0237179,
+    "ast_hash": "a4f70e825bd1b7cc696a587dfcfcc9a5",
     "semantic_hash": ""
   },
   "patch_sidebar.js": {
@@ -9275,8 +9275,8 @@
     "semantic_hash": ""
   },
   "renew_cert.sh": {
-    "mtime": 1787866490.430469,
-    "ast_hash": "b2d8c62d5c5e140e7e845eb96f8ada94",
+    "mtime": 1787866819.3302698,
+    "ast_hash": "ce83a7db5985b0374151ea6a9a17899c",
     "semantic_hash": ""
   }
 }

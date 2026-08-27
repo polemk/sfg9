@@ -10,9 +10,14 @@ set -euo pipefail
 #     sudo ./renew_cert.sh                                  # renova o que existe
 #     sudo ./renew_cert.sh sfg9.exemplo.com api-sfg9.exemplo.com   # emite para estes
 #
-# Sem argumento ele roda `certbot renew`, que renova todo certificado perto de
-# vencer e não faz nada com os demais — é o modo do agendamento. Com domínios,
-# ele EMITE (`certonly`), que é o caminho da primeira vez e o do conserto.
+# Sem argumento ele renova **apenas o certificado DESTE app**, cujos domínios ele
+# lê de `backend/.env` (`APP_HOST` e `API_HOST`). Com domínios, ele EMITE
+# (`certonly`) — o caminho da primeira vez e o do conserto.
+#
+# ⚠ **Nunca `certbot renew` sem escopo.** Esse comando mexe em TODOS os
+# certificados do servidor, inclusive os dos outros sistemas que moram aqui.
+# Renovar o certificado alheio já dispara o `deploy-hook` alheio, e um problema
+# neste app vira problema de todo mundo. O escopo vem de `--cert-name`.
 #
 # ## Por que existe, em vez de chamar o certbot direto
 #
@@ -77,14 +82,38 @@ fi
 WEBROOT="${WEBROOT:-/var/www/html}"
 
 if [ "$#" -eq 0 ]; then
+  # **O domínio vem do `.env` DESTE app**, e vira `--cert-name`.
+  #
+  # Sem isso, `certbot renew` varre o servidor inteiro. Num servidor com vários
+  # sistemas — que é o caso — isso significa mexer no certificado dos outros.
+  ENV_APP="$(dirname "$0")/backend/.env"
+  [ -f "${ENV_APP}" ] || morre "Não achei ${ENV_APP}. Informe os domínios:  sudo ./renew_cert.sh dominio.com api.dominio.com"
+
+  APP_HOST="$(grep -m1 '^APP_HOST=' "${ENV_APP}" | cut -d= -f2- | tr -d '\r\n \"')"
+  [ -n "${APP_HOST}" ] || morre "APP_HOST vazio em ${ENV_APP}. Informe os domínios na linha de comando."
+
+  # O nome do certificado é o do PRIMEIRO domínio pedido na emissão. Se o
+  # diretório não existir com esse nome, o certificado ou não foi emitido ou
+  # ganhou sufixo (`-0001`) — em ambos os casos, adivinhar seria pior.
+  if [ ! -d "/etc/letsencrypt/live/${APP_HOST}" ]; then
+    echo ""
+    echo "  Não há certificado com o nome '${APP_HOST}'. Os que existem:"
+    certbot certificates 2>/dev/null | grep "Certificate Name:" | sed 's/^/    /'
+    echo ""
+    morre "Para EMITIR pela primeira vez:  sudo ./renew_cert.sh ${APP_HOST} <dominio-da-api>"
+  fi
+
   echo ""
-  echo "  Renovando o que estiver perto de vencer…"
-  # `--deploy-hook` só dispara quando ALGO foi de fato renovado — é o que evita
-  # recarregar o Nginx à toa nas execuções diárias do agendamento.
-  if certbot renew --deploy-hook "systemctl reload nginx"; then
-    ok "certbot renew concluído"
+  echo "  Renovando SOMENTE o certificado deste app: ${APP_HOST}"
+  echo "  (os certificados dos outros sistemas deste servidor não são tocados)"
+  echo ""
+
+  # `--deploy-hook` só dispara quando algo foi de fato renovado — evita
+  # recarregar o Nginx à toa. Com `--cert-name`, o gancho também fica escopado.
+  if certbot renew --cert-name "${APP_HOST}" --deploy-hook "systemctl reload nginx"; then
+    ok "renovação concluída para ${APP_HOST}"
   else
-    morre "certbot renew falhou. Detalhe em /var/log/letsencrypt/letsencrypt.log"
+    morre "A renovação falhou. Detalhe em /var/log/letsencrypt/letsencrypt.log"
   fi
 else
   ARGS=()
@@ -182,7 +211,11 @@ fi
 
 # ------------------------------------------------------------- 4. o resultado
 echo ""
-certbot certificates 2>/dev/null | grep -E "Certificate Name|Domains|Expiry Date" || true
+# Só o certificado deste app. `certbot certificates` sem filtro lista os dos
+# outros sistemas, e essa informação não é nossa para despejar na tela.
+NOME_CERT="${APP_HOST:-$1}"
+certbot certificates --cert-name "${NOME_CERT}" 2>/dev/null \
+  | grep -E "Certificate Name|Domains|Expiry Date" || true
 
 printf "\n%s==========================================================%s\n" "${VERDE}" "${FIM}"
 printf "%s  Pronto.%s\n" "${VERDE}" "${FIM}"
