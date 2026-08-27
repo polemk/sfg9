@@ -51,13 +51,31 @@ module Risk
     class << self
       include ApiResponseHandler
 
+      # **BE-275 / DEC-137 — sem `is_pre?`, GRAVA a saída e não gera par.**
+      #
+      # O cabeçalho acima já dizia isto ("Lançar 'Valor Transferido' a partir da
+      # antecipação grava o movimento e **não** gera contrapartida nenhuma.
+      # Replicado"), e o código fazia o oposto: recusava com 422. A prosa
+      # descrevia o legado e a linha logo abaixo o contrariava — foi assim que a
+      # divergência passou pela revisão.
+      #
+      # No legado a condição está no `after_create` do movimento
+      # (`risk_movement.rb:46`): ela decide se a CONTRAPARTIDA nasce, nunca se a
+      # saída pode ser lançada. Recusar era transformar uma regra sobre o par
+      # numa trava sobre o lançamento.
       def call(operation:, attrs:, actor: nil)
-        return { status: 422, error: NOT_PRE } unless operation.is_pre?
+        saida = build(operation, RiskMovementType.transfer_out, attrs, actor)
+
+        unless operation.is_pre?
+          return unprocessable(saida) unless saida.valid?
+
+          saida.save!
+          return { status: 201, data: saida.reload }
+        end
 
         par = operation.pair_operation
         return { status: 422, error: NO_PAIR } if par.nil?
 
-        saida = build(operation, RiskMovementType.transfer_out, attrs, actor)
         entrada = build(par, RiskMovementType.transfer_in, attrs, actor)
 
         # Validação das DUAS antes de gravar qualquer uma.

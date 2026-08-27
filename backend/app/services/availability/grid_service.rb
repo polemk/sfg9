@@ -105,8 +105,20 @@ module Availability
 
         base = ativos.where(parent_template_id: nil).in_tree_order.to_a
         base_por_id = base.index_by(&:id)
+        # **BE-148 / DEC-137 — itera LANÇAMENTOS, não padrões.**
+        #
+        # O legado faz `base_entries.each` (`project.rb:412`): a lista tem uma
+        # entrada por LANÇAMENTO existente no período. O ai9 iterava os padrões
+        # base e devolvia um cartão por padrão, inclusive os sem lançamento —
+        # com total zero. Duas listas de tamanhos diferentes para o mesmo dia, e
+        # um zero que significa "não há lançamento" ocupando o lugar de um zero
+        # que significaria "lançaram zero".
+        #
+        # A ordem continua a da árvore (`in_tree_order`), que é o que a tela
+        # espera; o legado a herdava da ordem física da tabela.
         base_lancamentos = lancamentos.where(availability_template_id: base.map(&:id))
                                       .index_by(&:availability_template_id)
+        base_com_lancamento = base.select { |padrao| base_lancamentos.key?(padrao.id) }
 
         {
           status: 200,
@@ -114,10 +126,13 @@ module Availability
             dates: datas,
             count: contagem_de_folhas(project, ativos, lancamentos),
             company: empresa,
-            by_entry: base.map do |padrao|
-              entrada = base_lancamentos[padrao.id]
-              { id: padrao.id, name: padrao.title,
-                total: entrada&.virtual_value || 0,
+            by_entry: base_com_lancamento.map do |padrao|
+              entrada = base_lancamentos.fetch(padrao.id)
+              # `name` vem do LANÇAMENTO (`be.title`), não do padrão: o título é
+              # copiado na gravação e é a foto do nome no dia. Renomear o padrão
+              # não reescreve o passado — no legado tampouco reescrevia.
+              { id: padrao.id, name: entrada.title.presence || padrao.title,
+                total: entrada.virtual_value,
                 operation_type: padrao.operation_type,
                 position_path: padrao.position_path }
             end,

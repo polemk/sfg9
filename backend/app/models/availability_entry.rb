@@ -65,7 +65,18 @@ class AvailabilityEntry < Entry
   belongs_to :company, optional: true
   belongs_to :availability_template, class_name: 'ProjectAvailabilityTemplate',
                                      inverse_of: :entries
-  belongs_to :author, class_name: 'User', foreign_key: :user_id, optional: true, inverse_of: false
+  # **BE-131 / DEC-137 — o autor é OBRIGATÓRIO, como no legado**
+  # (`availability_entry.rb:7`, `validates :user_id, presence: true`). O ai9
+  # tinha afrouxado para `optional: true` sem decisão registrada.
+  #
+  # Não é formalidade num lançamento de disponibilidade: o valor é digitado à
+  # mão numa grade e vira base de decisão de crédito. "Quem lançou isto?" sem
+  # resposta é o tipo de buraco que só incomoda quando o número está errado.
+  #
+  # Medido antes de apertar, nos dois lados: **23.674 de 23.674 linhas têm
+  # autor**, na origem e no destino já carregado. A regra não recusa nada do que
+  # existe — ela impede o que ainda não aconteceu.
+  belongs_to :author, class_name: 'User', foreign_key: :user_id, inverse_of: false
 
   validates :date, presence: true
   validates :value, presence: true, numericality: true

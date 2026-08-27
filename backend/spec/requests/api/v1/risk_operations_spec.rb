@@ -487,10 +487,23 @@ RSpec.describe 'API V1 Risk operations', type: :request do
         .not_to include(RiskMovementType::RELEASE_KEY)
     end
 
-    it 'BE-271 — mode=transfer só existe em operação de subtipo pré' do
+    # **BE-275 / DEC-137 — este exemplo travava o comportamento ERRADO.**
+    #
+    # Ele exigia 422 quando a operação não é de subtipo pré. No legado a
+    # condição `is_pre?` mora no `after_create` do movimento
+    # (`risk_movement.rb:46`) e decide se a CONTRAPARTIDA nasce — nunca se a
+    # transferência pode ser lançada. Recusar era transformar uma regra sobre o
+    # par numa trava sobre o lançamento, e o cabeçalho do `TransferService` já
+    # descrevia o comportamento certo enquanto a linha de baixo o contrariava.
+    it 'BE-275 — mode=transfer abre também fora da pré; o que muda é a contrapartida' do
       get "/api/v1/risk_operations/#{op_a.id}/movements/options", params: { mode: 'transfer' },
                                                                   headers: auth_headers(gerente, project: projeto_a)
-      expect(response).to have_http_status(422)
+
+      expect(response).to have_http_status(200)
+      corpo = JSON.parse(response.body)
+      expect(corpo['mode']).to eq('transfer')
+      # O tipo continua fixado: transferência é sempre "Valor Transferido".
+      expect(corpo['movement_type_locked']).to be(true)
     end
 
     it 'BE-273 — excluir renumera o sequence dos restantes' do

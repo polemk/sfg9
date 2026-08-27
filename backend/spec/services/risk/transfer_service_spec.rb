@@ -89,16 +89,24 @@ RSpec.describe Risk::TransferService do
   end
 
   describe 'Q-R11 — o sentido é UM só, e isso é REPLICADO' do
-    it 'transferir A PARTIR da antecipação não gera contrapartida' do
-      # `risk_movement.rb:46` exige `self.risk_operation.is_pre?`. Parece
-      # esquecimento e é o comportamento: o fluxo do produto é pré →
-      # antecipação. O default registrado no `proposal.md` é "replicar".
+    # **BE-275 / DEC-137 — o nome dizia uma coisa e o corpo exigia outra.**
+    #
+    # O exemplo se chamava "não gera contrapartida" e afirmava `422` — ou seja,
+    # que nada era gravado. São coisas diferentes, e a diferença é o item
+    # inteiro: `risk_movement.rb:46` exige `is_pre?` para criar a CONTRAPARTIDA,
+    # e o movimento de saída é gravado de qualquer forma.
+    #
+    # Agora o exemplo mede o que o nome dele sempre prometeu.
+    it 'transferir A PARTIR da antecipação grava a saída e não gera contrapartida' do
       resultado = described_class.call(operation: antecipacao,
                                        attrs: { date: Date.new(2026, 4, 10), movement_value: 5_000.00 },
                                        actor: autor)
 
-      expect(resultado[:status]).to eq(422)
-      expect(resultado[:error]).to eq(described_class::NOT_PRE)
+      expect(resultado[:status]).to eq(201)
+      # UMA linha, e é a de saída — nenhuma "Transferência Recebida" do outro lado.
+      expect(RiskMovement.count).to eq(1)
+      expect(RiskMovement.first.movement_type_id).to eq(RiskMovementType.transfer_out.id)
+      expect(RiskMovement.first.pair_id).to be_nil
     end
 
     it 'pelo MovementService, o lançamento direto do tipo de transferência cai aqui' do

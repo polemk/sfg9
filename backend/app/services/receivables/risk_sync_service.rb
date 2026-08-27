@@ -73,11 +73,27 @@ module Receivables
       # ("operação estática ausente falha com erro em vez de silêncio"), e o
       # critério é o do DEC-30 exceção 1: silêncio aqui produz exposição errada
       # num banco novo, não preserva um número existente.
+      # **BE-183 / DEC-137 — a busca NÃO filtra por `is_static`.**
+      #
+      # O legado casa a quíntupla e mais nada
+      # (`receivable_entry.rb:128-132`); o ai9 tinha acrescentado
+      # `is_static: true` sem decisão registrada. O efeito não é de desempenho:
+      # numa base em que uma operação **não** estática case a mesma quíntupla, o
+      # legado lança a liberação nela e o ai9 não achava nada — e, com o
+      # levantamento abaixo, **recusava o borderô com 422**. Mesmo dado,
+      # resultado oposto.
+      #
+      # ⚠ O `raise` abaixo CONTINUA, e é outra divergência — essa **declarada**:
+      # o legado fazia `unless static_op.nil?` e seguia em silêncio, gravando o
+      # borderô sem liberar recurso. A tarefa 2.25 pede o erro explícito, pelo
+      # critério da exceção 1 da DEC-30 (silêncio aqui produz exposição errada
+      # num banco novo, não preserva um número existente). Uma coisa é o que se
+      # PROCURA; outra é o que se faz quando não se acha.
       def release_on_static_operation!(entry, subtype)
         static_op = RiskOperation.where(
           project_id: entry.project_id, company_id: entry.company_id,
           carrier_id: entry.carrier_id, operation_type_id: entry.risk_operation_type_id,
-          operation_subtype_id: subtype.id, is_static: true
+          operation_subtype_id: subtype.id
         ).first
 
         if static_op.nil?

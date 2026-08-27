@@ -46,6 +46,8 @@ require 'rails_helper'
 # Cada exemplo afetado está marcado com `NUNCA EXECUTADO EM PRODUÇÃO`.
 RSpec.describe AvailabilityEntry do
   let(:project) { create(:project) }
+  # BE-131 — o lancamento exige autor; o endpoint real passa .
+  let(:autor) { create(:user) }
   let(:company) { create(:company, project: project) }
   let(:outra_empresa) { create(:company, project: project) }
   let(:data) { Date.new(2026, 8, 14) } # 10 de 21 dias úteis decorridos
@@ -57,7 +59,9 @@ RSpec.describe AvailabilityEntry do
   def lancar(template, valor, empresa: company, em: data)
     resultado = Availability::EntryService.create(
       project: project,
-      attrs: { availability_template_id: template.id, company_id: empresa.id, date: em, value: valor }
+      attrs: { availability_template_id: template.id, company_id: empresa.id, date: em, value: valor },
+      # BE-131 / DEC-137 — o autor voltou a ser obrigatorio, como no legado.
+      actor: autor
     )
     raise "falhou: #{resultado[:error]}" unless resultado[:status] == 201
 

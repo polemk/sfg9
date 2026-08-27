@@ -65,8 +65,15 @@ module Risk
         return not_found_operation if operation.nil?
 
         if mode.to_s == 'transfer'
-          return { status: 422, error: Risk::TransferService::NOT_PRE } unless operation.is_pre?
-
+          # **BE-275 / DEC-137 — o formulário abre mesmo fora da pré.**
+          #
+          # Recusava com 422 aqui e no `TransferService`. No legado a condição
+          # `is_pre?` decide se a CONTRAPARTIDA nasce, não se a transferência
+          # pode ser lançada — recusar era transformar uma regra sobre o par
+          # numa trava sobre o lançamento.
+          #
+          # `pair_operation` vem no payload para a tela poder dizer o que vai
+          # acontecer: com par, saem duas linhas; sem par, sai só a saída.
           tipo = RiskMovementType.transfer_out
           return { status: 200,
                    data: { mode: 'transfer', movement_type_id: tipo.id, movement_type_locked: true,

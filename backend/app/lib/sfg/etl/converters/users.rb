@@ -119,6 +119,17 @@ module Sfg
             #
             # Nao ha `cnpj` a mapear: a coluna nao existe em `user_infos`.
             cpf_cnpj: info['cpf'].presence,
+            # **DB-012 / DEC-139 — o rastreio de acesso do Devise.**
+            #
+            # Estava travado porque as colunas não existiam no destino; a
+            # migration `20260827160000` as criou. Medido no dump: 86 contas com
+            # data de último acesso, 6.134 acessos somados.
+            #
+            # O contador é histórico do login por SENHA — mecanismo que o ai9
+            # não tem. Ele não soma com a entrada por link mágico, e o comentário
+            # da coluna diz isso a quem for ler o número depois.
+            sign_in_count: row['sign_in_count'].to_i,
+            last_sign_in_at: Values.to_utc(row['last_sign_in_at']).value,
             manager_id: ref('livetat_auth_users', row['manager_id']),
             is_default_member: Values.to_boolean(row['is_default_member']).value,
             kind: row['kind'],

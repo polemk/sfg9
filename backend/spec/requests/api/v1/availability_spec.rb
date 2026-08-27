@@ -99,7 +99,9 @@ RSpec.describe 'Api::V1 disponibilidade — escopo e autenticação', type: :req
       alheio = Availability::EntryService.create(
         project: projeto_b,
         attrs: { availability_template_id: padrao_b.id, company_id: empresa_b.id,
-                 date: '2026-08-14', value: 500 }
+                 date: '2026-08-14', value: 500 },
+        # BE-131 — o autor e obrigatorio, e o endpoint real sempre o passou.
+        actor: outro_gerente
       ).fetch(:data)
 
       put "/api/v1/availability_entries/#{alheio.id}", params: { value: 1 },
@@ -283,7 +285,8 @@ RSpec.describe 'Api::V1 disponibilidade — escopo e autenticação', type: :req
       entrada = Availability::EntryService.create(
         project: projeto_a,
         attrs: { availability_template_id: padrao_a.id, company_id: empresa_a.id,
-                 date: '2026-08-14', value: 100 }
+                 date: '2026-08-14', value: 100 },
+        actor: gerente
       ).fetch(:data)
       espelho = AvailabilityEntry.find_by(availability_template_id: padrao_a.id, company_id: nil)
 
@@ -299,7 +302,8 @@ RSpec.describe 'Api::V1 disponibilidade — escopo e autenticação', type: :req
       Availability::EntryService.create(
         project: projeto_a,
         attrs: { availability_template_id: filho.id, company_id: empresa_a.id,
-                 date: '2026-08-14', value: 100 }
+                 date: '2026-08-14', value: 100 },
+        actor: gerente
       )
       pai_entry = AvailabilityEntry.find_by(availability_template_id: padrao_a.id, company_id: empresa_a.id)
 

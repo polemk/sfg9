@@ -38,7 +38,9 @@ RSpec.describe 'Jobs de padrão de disponibilidade' do
   def lancar(template, valor, em: Date.new(2026, 8, 14))
     Availability::EntryService.create(
       project: project,
-      attrs: { availability_template_id: template.id, company_id: company.id, date: em, value: valor }
+      attrs: { availability_template_id: template.id, company_id: company.id, date: em, value: valor },
+      # BE-131 / DEC-137 — o autor voltou a ser obrigatorio, como no legado.
+      actor: actor
     ).fetch(:data)
   end
 

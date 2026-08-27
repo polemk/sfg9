@@ -57,11 +57,24 @@ class RenegotiationService < ProjectScopedService
       scope
     end
 
-    # `order_mode=dash` — atualização ascendente, busca ignorada. Comportamento do
-    # legado, preservado.
+    # **`order_mode=dash` — BE-194 / DEC-137.**
+    #
+    # Ordenação por atualização ascendente e busca ignorada, como no legado. O
+    # que MUDOU aqui: o dash passa pelo `filter`, e não mais por `base_scope`
+    # cru.
+    #
+    # No legado o `case params[:state]` roda **antes** do ramo do dash
+    # (`renegotiations_controller.rb:22-36`): o modo troca a ordenação e pula a
+    # busca por nome, e não descarta os filtros. O ai9 fazia early-return no
+    # `base_scope` e devolvia o projeto inteiro — quem pedisse o resumo filtrado
+    # por "Em aberto" recebia também os fechados, com o mesmo 200 e sem aviso.
+    #
+    # O `q` continua ignorado, e isso é do legado: o ramo do dash não aplica a
+    # busca por `provider_name`.
     def index(project:, params: {})
       if params[:order_mode].to_s == 'dash'
-        return { status: 200, data: base_scope(project).order(updated_at: :asc) }
+        escopo = filter(base_scope(project), params.except(:q))
+        return { status: 200, data: escopo.order(updated_at: :asc) }
       end
 
       super

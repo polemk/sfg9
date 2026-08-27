@@ -286,6 +286,19 @@ do_not_migrate:
       CONTA as linhas antes de fechar o descarte (ENG-auth_omni19).
   - table: user_themes
     reason: DEC-55/56 — `UserTheme` descartado.
+  - table: livetat_auth_client_applications
+    reason: >-
+      DEC-138 — DECISAO DO USUARIO: descartada, coerente com a trilha. Medido no dump
+      de 31/05/2025: as **3 linhas sao exatamente o seed do engine**
+      (`auth19/db/seeds.rb:179-181`) — iOS, Android e Joker, criadas no mesmo segundo
+      em 27/02/2022 e nunca atualizadas. Nao ha app iOS nem Android; nao e integracao
+      de cliente.
+      Elas autenticam por token+agente, e o UNICO consumidor no legado inteiro e o
+      `Api::V1::TrackingsController`; nenhum outro controller herda de
+      `ApiApplicationController`. Essa trilha ja foi descartada nesta migracao —
+      BE-430, BE-431, BE-433 e BE-434 estao `dropped` no razao. A tabela ficou orfa
+      quando a trilha saiu.
+      O ETL ainda CONTA as 3 linhas antes de fechar o descarte.
   - table: resource_kinds
     reason: >-
       S6, medido no dump de 31/05/2025: a tabela tem **0 linhas** e **0 de 28.131**
