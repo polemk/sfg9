@@ -19,6 +19,7 @@ import { FloatingPanel } from '@/components/ui/FloatingPanel'
 import { Switch } from '@/components/ui/switch'
 import { Tooltip } from '@/components/ui/Tooltip'
 import { UserAvatar } from '@/components/ui/UserAvatar'
+import { rotuloDeVerificacao } from '@/features/auth/identityLabels'
 import { Logo } from '@/components/brand/Logo'
 import { ImpersonateSelector } from '@/components/ImpersonateSelector'
 import { SidebarModeToggle } from '@/components/SidebarModeToggle'
@@ -177,6 +178,10 @@ export function Sidebar() {
     const navigate = useNavigate()
     const location = useLocation()
     const { user, logout } = useAuthStore()
+    // FE-396 — o mesmo rótulo que `/profile` e o detalhe da conta usam, da
+    // mesma fonte. Três telas escrevendo "Verificação" de três jeitos seria o
+    // começo de três vocabulários.
+    const nivelDeVerificacao = rotuloDeVerificacao((user as { confiability_level?: string })?.confiability_level)
     const { theme, setTheme } = useTheme()
     const { isOpen, toggleChat } = useChat()
     const { isOg, canImpersonate } = useRole()
@@ -434,6 +439,18 @@ export function Sidebar() {
                             <p className="truncate text-xs uppercase tracking-wider text-muted-foreground">
                                 {user?.user_type || 'Membro'}
                             </p>
+                            {/* **FE-396 — o nível de verificação, aqui também.**
+                                A DEC-74 manda replicar o indicador, e ele só
+                                existia em `/profile` e no detalhe da conta: o
+                                lugar onde a pessoa passa o dia todo não o
+                                mostrava. É o que diz se ela consegue receber um
+                                código de acesso — descobrir isso na hora de
+                                entrar é tarde. */}
+                            {nivelDeVerificacao && (
+                                <p className="truncate text-[0.65rem] text-muted-foreground">
+                                    Verificação: {nivelDeVerificacao}
+                                </p>
+                            )}
                         </div>
                     </button>
 
@@ -490,6 +507,47 @@ export function Sidebar() {
                         </button>
                     </FloatingPanel>
                 </div>
+
+                {/*
+                  **FE-335 / FE-395 — o rodapé do menu.**
+
+                  O legado fechava a barra com a descrição do produto e os dois
+                  links de contrato. Nada disso existia no console: `grep -rn
+                  'termos-de-uso' src` não achava um consumidor, e o que havia
+                  era só o construtor da URL no backend.
+
+                  Não é enfeite. Os dois contratos são os que o usuário aceita
+                  para usar o sistema (DEC-66, e a aba "Contratos e aceites" do
+                  perfil registra o aceite): sem um caminho para RELER o que se
+                  aceitou, o aceite fica sem lastro. O rodapé é o lugar onde
+                  todo produto o coloca, e é onde o legado o tinha.
+
+                  Some quando a barra está recolhida — texto de 11px espremido
+                  em 64px vira ruído, e o link continua alcançável abrindo a
+                  barra.
+                */}
+                {!collapsed && (
+                    <div className="border-t border-border px-3 py-2.5">
+                        <p className="mb-1.5 text-[0.65rem] leading-snug text-muted-foreground">
+                            Gestão de crédito, risco e recebíveis.
+                        </p>
+                        <nav aria-label="Contratos" className="flex flex-wrap gap-x-2 gap-y-0.5">
+                            <Link
+                                to="/contract/termos-de-uso"
+                                className="text-[0.65rem] text-muted-foreground underline-offset-2 transition-colors hover:text-foreground hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                            >
+                                Termos de uso
+                            </Link>
+                            <span aria-hidden className="text-[0.65rem] text-muted-foreground">·</span>
+                            <Link
+                                to="/contract/politicas-de-privacidade"
+                                className="text-[0.65rem] text-muted-foreground underline-offset-2 transition-colors hover:text-foreground hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                            >
+                                Políticas de privacidade
+                            </Link>
+                        </nav>
+                    </div>
+                )}
             </aside>
 
             {/* Abrir o menu em mobile */}

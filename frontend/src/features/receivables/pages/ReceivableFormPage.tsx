@@ -467,8 +467,27 @@ export function ReceivableFormPage() {
       <Card className="space-y-4 p-4">
         <h3 className="font-title text-sm font-semibold text-foreground">Identificação</h3>
         <div className="grid gap-4 sm:grid-cols-2">
+          {/*
+            **FE-177 — a restrição mútua das duas datas.**
+
+            Regra do legado, lida linha a linha em
+            `receivables/new/_body.js.erb:74-106`: escolher a data do borderô
+            define o `minDate` do seletor de CRÉDITO, e escolher a de crédito
+            define o `maxDate` do seletor do BORDERÔ. Ou seja **o crédito nunca
+            é anterior ao borderô**, e a trava vale nos dois sentidos.
+
+            A migração trouxe os dois campos sem `min` nem `max` — o componente
+            aceita os dois e ninguém passava. Sem isso, um crédito anterior ao
+            borderô entra: nenhum dos dois lados valida a combinação, nem o
+            legado validava. A defesa sempre foi só a tela, e ela tinha sumido.
+          */}
           <Campo id="date" rotulo="Data do borderô" ajuda={textoDeAjuda('date')}>
-            <DatePicker id="date" value={valores.date} onChange={(d) => set('date', d)} />
+            <DatePicker
+              id="date"
+              value={valores.date}
+              max={valores.data_credito}
+              onChange={(d) => set('date', d)}
+            />
           </Campo>
           <Campo
             id="nro_bordero"
@@ -487,6 +506,7 @@ export function ReceivableFormPage() {
             <DatePicker
               id="data_credito"
               value={valores.data_credito}
+              min={valores.date}
               clearable
               onChange={(d) => set('data_credito', d)}
             />
