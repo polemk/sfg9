@@ -25,6 +25,27 @@ module Seeds
 
       module_function
 
+      # **Busca por nome SEM diferenciar maiúscula de minúscula.**
+      #
+      # Este é o conserto de um seed que se anunciava idempotente e não era. A
+      # validação do model é `uniqueness: { case_sensitive: false }`, mas as
+      # buscas aqui eram `find_by(name:)` e `where(name:)`, que no Postgres
+      # diferenciam. Numa base com `OG` gravado, procurar `og` não achava nada, o
+      # `UserType.new` seguia adiante e o `save!` levava as DUAS mensagens de
+      # uma vez:
+      #
+      #     Registro inválido: Name já está em uso, Hierarchy level já está em uso
+      #
+      # As duas juntas são a assinatura exata deste defeito: o nome bate pela
+      # validação insensível, e o nível bate porque a linha que já o ocupa é a
+      # mesma que a busca não encontrou.
+      #
+      # Não é hipótese — o próprio model já convivia com isso: `og?` compara
+      # `name.to_s.downcase`, ou seja, sempre soube que a caixa varia.
+      def por_nome(nomes)
+        UserType.where('LOWER(name) IN (?)', Array(nomes).map(&:downcase))
+      end
+
       def call!(io: nil)
         ActiveRecord::Base.transaction do
           park_removed_levels!
@@ -32,21 +53,26 @@ module Seeds
           reassign_users_of_removed_types!(io)
           drop_removed_types!
         end
-        UserType.where(name: UserType::SAFEGOLD_HIERARCHY.keys).ordered_by_hierarchy
+        por_nome(UserType::SAFEGOLD_HIERARCHY.keys).ordered_by_hierarchy
       end
 
       # Os níveis 2 e 4 podem estar ocupados por `client`/`free` numa base
       # antiga, e `hierarchy_level` é único. Estacionar fora da faixa útil
       # libera o insert sem apagar nada antes da hora.
       def park_removed_levels!
-        UserType.where(name: REMOVED).find_each.with_index do |type, i|
+        por_nome(REMOVED).find_each.with_index do |type, i|
           type.update_columns(hierarchy_level: 9000 + i, updated_at: Time.current)
         end
       end
 
       def upsert_roles!
         UserType::SAFEGOLD_HIERARCHY.each do |name, level|
-          type = UserType.find_by(name: name) || UserType.new(name: name)
+          type = por_nome(name).first || UserType.new
+          # A caixa é NORMALIZADA de propósito: uma base que tinha `OG` sai
+          # daqui com `og`. Deixar como estava manteria o sistema funcionando
+          # (as comparações do model são em minúsculas) e manteria também a
+          # armadilha, para a próxima pessoa que escrevesse um `find_by`.
+          type.name = name
           type.description = DESCRIPTIONS.fetch(name)
           type.hierarchy_level = level
           type.save!
@@ -54,7 +80,7 @@ module Seeds
       end
 
       def reassign_users_of_removed_types!(io = nil)
-        removed_ids = UserType.where(name: REMOVED).pluck(:id)
+        removed_ids = por_nome(REMOVED).pluck(:id)
         return if removed_ids.empty?
 
         fallback = UserType.colaborador
@@ -66,7 +92,7 @@ module Seeds
       end
 
       def drop_removed_types!
-        UserType.where(name: REMOVED).delete_all
+        por_nome(REMOVED).delete_all
       end
     end
   end

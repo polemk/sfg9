@@ -6,6 +6,33 @@ require 'rails_helper'
 # não duplica nem reescreve papel já atribuído.
 RSpec.describe 'Seeds de referência' do
   describe Seeds::Reference::UserTypes do
+    # **O seed dizia ser idempotente e não era — numa base com a caixa diferente.**
+    #
+    # Aconteceu num deploy de produção em 27/08/2026:
+    #
+    #     Registro inválido: Name já está em uso, Hierarchy level já está em uso
+    #
+    # A validação do model é `uniqueness: { case_sensitive: false }`, mas as
+    # buscas do seed eram `find_by(name:)` e `where(name:)`, que no Postgres
+    # diferenciam. Com `OG` gravado, procurar `og` não achava nada, o
+    # `UserType.new` seguia adiante, e o `save!` levava as DUAS mensagens: o nome
+    # colide pela validação insensível, e o nível colide porque quem o ocupa é a
+    # própria linha que a busca não encontrou.
+    #
+    # As duas mensagens juntas são a assinatura do defeito. Este exemplo as
+    # reproduz — sem ele, um `find_by(name:)` distraído traz tudo de volta.
+    it 'é idempotente mesmo com o nome gravado em OUTRA CAIXA' do
+      described_class.call!
+      original = UserType.find_by!(hierarchy_level: 1)
+      original.update_columns(name: original.name.upcase)
+
+      expect { described_class.call! }.not_to raise_error
+
+      # E normaliza: a base sai com o nome canônico, em minúsculas.
+      expect(UserType.find_by!(hierarchy_level: 1).name).to eq(UserType::OG)
+      expect(UserType.where('LOWER(name) = ?', UserType::OG).count).to eq(1)
+    end
+
     it 'semeia exatamente os 4 papéis do Safegold na escala do ai9' do
       described_class.call!
       expect(UserType.pluck(:name, :hierarchy_level).sort_by(&:last))

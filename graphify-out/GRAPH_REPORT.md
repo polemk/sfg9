@@ -10,13 +10,21 @@
 - Token cost: 0 input · 0 output
 
 ## Community Hubs (Navigation)
+- .migration-ai9/tools - browser.js
+- Frontend Pages / pages - catalogs.ts
+- dev - dev
+- prod - prod
+- switch_env - switch_env
+- create_dev_db.sh - create_dev_db.sh
 - install.sh - install.sh
 - install_dev.sh - install_dev.sh
+- install_pgvector.sh - install_pgvector.sh
+- setup.sh - setup.sh
+- tools/graphify - install-hook.sh
+- tools/graphify - rebuild.sh
 - varre_crase_heredoc.py - varre_crase_heredoc.py
 - README.md
 - .migration-ai9/parity (3)
-- .migration-ai9/tools - browser.js
-- Frontend Pages / pages - catalogs.ts
 - .migration-ai9/tools - cdp.js
 - .migration-ai9/wip-auth-backup - defaults.rb
 - Auth Request Specs
@@ -372,10 +380,6 @@
 - Backend Specs / lib/sfg - values_precision_spec.rb
 - Backend Specs / requests/api - meta_spec.rb
 - Backend Specs / support - RiskScenarios
-- dev - dev
-- prod - prod
-- switch_env - switch_env
-- create_dev_db.sh - create_dev_db.sh
 - frontend - csp.config.ts
 - package.json - scripts
 - Frontend NPM Dependencies
@@ -440,12 +444,8 @@
 - tsconfig.json - compilerOptions
 - tsconfig.node.json - compilerOptions
 - patch_sidebar.js - patch_sidebar.js
-- install_pgvector.sh - install_pgvector.sh
-- setup.sh - setup.sh
-- tools/graphify - install-hook.sh
 - tools/graphify/lib - RubyFile
 - tools/graphify/lib - tsindex.py
-- tools/graphify - rebuild.sh
 - tools/graphify/steps - 01_inject_semantic.py
 - tools/graphify/steps - 02_prune.py
 - tools/graphify/steps - 03_add_ruby_calls.py
@@ -1992,6 +1992,26 @@
 
 ## Communities (2058 total, 335 thin omitted)
 
+### Community 387 - ".migration-ai9/tools - browser.js"
+Cohesion: 0.22
+Nodes (8): path, fs, { execFileSync }, { chromium }, CHROME, CONTAS, codigoDe(), login()
+
+### Community 3 - "Frontend Pages / pages - catalogs.ts"
+Cohesion: 0.04
+Nodes (96): flag(), AvailabilityTemplatesPage(), CarrierGroupsPage(), CarriersPage(), Campo(), CampoTexto(), CampoAtivo(), CatalogScreen() (+88 more)
+
+### Community 317 - "dev - dev"
+Cohesion: 0.38
+Nodes (11): dev script, log(), err(), cleanup(), check_cmd(), preflight(), start_backend(), start_sidekiq() (+3 more)
+
+### Community 179 - "prod - prod"
+Cohesion: 0.21
+Nodes (18): prod script, HOME, GEM_HOME, GEM_PATH, PATH, NVM_DIR, log(), err() (+10 more)
+
+### Community 462 - "switch_env - switch_env"
+Cohesion: 0.46
+Nodes (7): switch_env script, write_frontend_local(), write_backend_local(), write_frontend_ngrok(), write_backend_ngrok(), write_frontend_prod(), write_backend_prod()
+
 ### Community 597 - "install.sh - install.sh"
 Cohesion: 0.40
 Nodes (4): install.sh script, GEM_HOME, GEM_PATH, PATH
@@ -2000,6 +2020,14 @@ Nodes (4): install.sh script, GEM_HOME, GEM_PATH, PATH
 Cohesion: 0.50
 Nodes (8): install_dev.sh script, titulo(), ok(), aviso(), morre(), resolver_psql_admin(), psql_admin(), escrever_arquivo()
 
+### Community 344 - "setup.sh - setup.sh"
+Cohesion: 0.44
+Nodes (11): setup.sh script, normalize_scripts(), log_info(), log_warn(), log_error(), check_prerequisites(), setup_backend(), setup_frontend() (+3 more)
+
+### Community 729 - "tools/graphify - rebuild.sh"
+Cohesion: 0.50
+Nodes (3): rebuild.sh script, PYTHONHASHSEED, PYTHONUTF8
+
 ### Community 86 - "README.md"
 Cohesion: 0.06
 Nodes (30): Rails 8 API + React TypeScript, 🚀 Tecnologias, Backend (Rails 8 API), Frontend (React + TypeScript), 📋 Pré-requisitos, 🔧 Instalação, Na sua máquina (desenvolvimento), No servidor (produção) (+22 more)
@@ -2007,14 +2035,6 @@ Nodes (30): Rails 8 API + React TypeScript, 🚀 Tecnologias, Backend (Rails 8 A
 ### Community 140 - ".migration-ai9/parity (3)"
 Cohesion: 0.09
 Nodes (22): Phase 4 — paridade verificada: **auth-users · engines · console-admin**, O que foi executado, O núcleo: a matriz e a hierarquia, provadas nos dois sentidos, O de-para de papel deixou de ser inferência, Onde a tela foi provada, Defeitos achados, Duas correções de artefato envelhecido, O que NÃO deu para verificar, e por quê (+14 more)
-
-### Community 387 - ".migration-ai9/tools - browser.js"
-Cohesion: 0.22
-Nodes (8): path, fs, { execFileSync }, { chromium }, CHROME, CONTAS, codigoDe(), login()
-
-### Community 3 - "Frontend Pages / pages - catalogs.ts"
-Cohesion: 0.04
-Nodes (96): flag(), AvailabilityTemplatesPage(), CarrierGroupsPage(), CarriersPage(), Campo(), CampoTexto(), CampoAtivo(), CatalogScreen() (+88 more)
 
 ### Community 388 - ".migration-ai9/tools - cdp.js"
 Cohesion: 0.24
@@ -3080,18 +3100,6 @@ Nodes (3): Demo, Writers, StructuredOperations
 Cohesion: 0.70
 Nodes (4): cast_sql(), cast_do_banco(), cast_float_do_banco(), sobrevive_ao_transporte?()
 
-### Community 317 - "dev - dev"
-Cohesion: 0.38
-Nodes (11): dev script, log(), err(), cleanup(), check_cmd(), preflight(), start_backend(), start_sidekiq() (+3 more)
-
-### Community 179 - "prod - prod"
-Cohesion: 0.21
-Nodes (18): prod script, HOME, GEM_HOME, GEM_PATH, PATH, NVM_DIR, log(), err() (+10 more)
-
-### Community 462 - "switch_env - switch_env"
-Cohesion: 0.46
-Nodes (7): switch_env script, write_frontend_local(), write_backend_local(), write_frontend_ngrok(), write_backend_ngrok(), write_frontend_prod(), write_backend_prod()
-
 ### Community 476 - "frontend - csp.config.ts"
 Cohesion: 0.43
 Nodes (5): CspOptions, toOrigin(), buildCsp(), BACKEND_WS, securityHeadersPlugin()
@@ -3312,10 +3320,6 @@ Nodes (8): compilerOptions, composite, skipLibCheck, module, moduleResolution, a
 Cohesion: 0.50
 Nodes (3): fs, content, newContent
 
-### Community 344 - "setup.sh - setup.sh"
-Cohesion: 0.44
-Nodes (11): setup.sh script, normalize_scripts(), log_info(), log_warn(), log_error(), check_prerequisites(), setup_backend(), setup_frontend() (+3 more)
-
 ### Community 346 - "tools/graphify/lib - RubyFile"
 Cohesion: 0.21
 Nodes (4): _block_end(), RubyFile, load_all(), Ruby source model: class/module nesting, method ranges, constant index (Zeitwerk
@@ -3323,10 +3327,6 @@ Nodes (4): _block_end(), RubyFile, load_all(), Ruby source model: class/module n
 ### Community 373 - "tools/graphify/lib - tsindex.py"
 Cohesion: 0.25
 Nodes (7): resolve_module(), parse_clause(), TsFile, load_all(), TypeScript source model: imports (with @/ alias + extension resolution), top-lev, Return a repo-relative file path, or None for a package/unresolvable import., Return list of locally-bound names from an import clause.
-
-### Community 729 - "tools/graphify - rebuild.sh"
-Cohesion: 0.50
-Nodes (3): rebuild.sh script, PYTHONHASHSEED, PYTHONUTF8
 
 ### Community 420 - "tools/graphify/steps - 02_prune.py"
 Cohesion: 0.25
@@ -8467,7 +8467,7 @@ Nodes (8): English i18n Catalogue, Brazilian Portuguese i18n Catalogue, Landing-
   tsc_errors.txt · relation: conceptually_related_to
 
 ## Knowledge Gaps
-- **7137 isolated node(s):** `install.sh script`, `GEM_HOME`, `GEM_PATH`, `PATH`, `Backend (Rails 8 API)` (+7132 more)
+- **7137 isolated node(s):** `path`, `fs`, `{ execFileSync }`, `{ chromium }`, `CHROME` (+7132 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **335 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -8480,11 +8480,11 @@ _Questions this graph is uniquely positioned to answer:_
   _Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low._
 - **Why does `User` connect `Backend Models - User` to `Auth Request Specs`, `backend/app - Project`, `Backend Services / authorization - PermissionResolver`, `Backend Models - LoginCode`, `backend/app/lib/sfg - attachments.rb`, `backend/app - UserType`?**
   _High betweenness centrality (0.000) - this node is a cross-community bridge._
-- **Why does `SessionsService` connect `Auth Request Specs` to `Backend Models - User`, `Auth Services & Entities`, `Backend Services`?**
+- **Why does `RiskControl` connect `Backend Models - RiskOperation` to `Backend Models - BlockingDependents`, `Backend Models`?**
   _High betweenness centrality (0.000) - this node is a cross-community bridge._
-- **What connects `install.sh script`, `GEM_HOME`, `GEM_PATH` to the rest of the system?**
+- **Why does `DefaultMemberJob` connect `backend/app - Project` to `Backend Services / availability`?**
+  _High betweenness centrality (0.000) - this node is a cross-community bridge._
+- **What connects `path`, `fs`, `{ execFileSync }` to the rest of the system?**
   _7163 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `README.md` be split into smaller, more focused modules?**
-  _Cohesion score 0.06451612903225806 - nodes in this community are weakly interconnected._
-- **Should `.migration-ai9/parity (3)` be split into smaller, more focused modules?**
-  _Cohesion score 0.08695652173913043 - nodes in this community are weakly interconnected._
+- **Should `Frontend Pages / pages - catalogs.ts` be split into smaller, more focused modules?**
+  _Cohesion score 0.03639056384216651 - nodes in this community are weakly interconnected._
