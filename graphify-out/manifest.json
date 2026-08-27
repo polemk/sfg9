@@ -190,8 +190,8 @@
     "semantic_hash": ""
   },
   "backend/app/controllers/api/v1/users.rb": {
-    "mtime": 1787759777.7172554,
-    "ast_hash": "1a24094d36251b895d5502c8cf6a9048",
+    "mtime": 1787858611.100589,
+    "ast_hash": "0fc01bc6f0074fb86fcd9285b0c2902b",
     "semantic_hash": ""
   },
   "backend/app/controllers/api/whats/v1/base.rb": {
@@ -510,8 +510,8 @@
     "semantic_hash": ""
   },
   "backend/app/services/users_service.rb": {
-    "mtime": 1787705768.5673118,
-    "ast_hash": "960febcac66539e38f7446ef368042fb",
+    "mtime": 1787858856.2853277,
+    "ast_hash": "b18ee6e3f6487214d9aa75fc0e684805",
     "semantic_hash": ""
   },
   "backend/app/services/whats_app_webhook_service.rb": {
@@ -1095,8 +1095,8 @@
     "semantic_hash": ""
   },
   "backend/spec/requests/api/v1/users_spec.rb": {
-    "mtime": 1787760471.244804,
-    "ast_hash": "680ae17439389e2319298f4ec9908988",
+    "mtime": 1787858856.2853277,
+    "ast_hash": "fa0424e638a663670e5908e27d04c3f4",
     "semantic_hash": ""
   },
   "backend/spec/requests/auth/registration_spec.rb": {
@@ -1360,8 +1360,8 @@
     "semantic_hash": ""
   },
   "frontend/src/app/pages/UsersPage.tsx": {
-    "mtime": 1787857303.0695164,
-    "ast_hash": "d7dcda8b1a70ee2936cd54f2434c15ec",
+    "mtime": 1787858981.4349902,
+    "ast_hash": "a8002ebbdf12b127fd8cf6945da674e0",
     "semantic_hash": ""
   },
   "frontend/src/app/pages/WhatsappPage.tsx": {
@@ -3240,8 +3240,8 @@
     "semantic_hash": ""
   },
   ".migration-ai9/parity-ledger.md": {
-    "mtime": 1787858465.896709,
-    "ast_hash": "72726972acb1e6fdb9077a8392b8a074",
+    "mtime": 1787859627.1613982,
+    "ast_hash": "5a0813f1be668d9a8ca9c7ef9fccaeac",
     "semantic_hash": ""
   },
   ".migration-ai9/project-options.md": {
@@ -5070,8 +5070,8 @@
     "semantic_hash": ""
   },
   "frontend/src/app/pages/__tests__/UsersPage.dados-reais.test.tsx": {
-    "mtime": 1787727154.0948293,
-    "ast_hash": "77ed906c15dc17bfc8f4a66e73da5405",
+    "mtime": 1787858931.6002562,
+    "ast_hash": "7b2917eb3a049069803c0fbc988c14f4",
     "semantic_hash": ""
   },
   "frontend/src/app/pages/admin/AuditTrailPage.tsx": {

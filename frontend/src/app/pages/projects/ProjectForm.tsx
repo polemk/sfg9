@@ -119,6 +119,15 @@ export function ProjectForm({
 }) {
   const [termoResponsavel, setTermoResponsavel] = useState('')
 
+  /**
+   * **FE-086** — está-se TROCANDO o responsável de um projeto que já tem um.
+   *
+   * O legado separava os dois casos (`projects/new/_body.html.erb:132,167`):
+   * projeto novo **ou sem responsável** mostrava os três modos; projeto que já
+   * tinha responsável mostrava um select só, para trocar.
+   */
+  const trocandoResponsavel = !!editing?.responsible_id
+
   const set = <K extends keyof ProjectFormValues>(campo: K, valor: ProjectFormValues[K]) =>
     onChange({ ...values, [campo]: valor })
 
@@ -137,7 +146,9 @@ export function ProjectForm({
   const candidatos = useQuery({
     queryKey: ['responsible-candidates', termoResponsavel],
     queryFn: () => projectsApi.responsibleCandidates(termoResponsavel || undefined),
-    enabled: values.responsible_mode === 'existing',
+    // Também ao TROCAR: ali o modo já vem em `existing` pelo `toForm`, mas o
+    // gatilho é o projeto ter responsável, não a pessoa ter clicado no modo.
+    enabled: values.responsible_mode === 'existing' || trocandoResponsavel,
   })
 
   return (
@@ -268,30 +279,50 @@ export function ProjectForm({
         />
       </Campo>
 
-      {!editing && (
-        <fieldset className="space-y-3 rounded-md border border-border p-3">
+      {/* **FE-086 — o responsável sumia da EDIÇÃO.**
+
+          O `fieldset` inteiro estava embrulhado em `{!editing && …}`: quem
+          editasse um projeto não tinha controle nenhum de responsável na tela,
+          e a troca só era possível pela API — apesar de o `toForm` já mapear o
+          modo e o id, e de o payload já enviá-los quando editando.
+
+          A forma do legado é replicada: com responsável definido, só a troca.
+
+          O que muda é a LISTA. Lá as opções eram `@project.users`, apenas quem
+          já era membro; aqui é a lista de candidatos filtrada pela hierarquia,
+          que é mais larga. É coerente, e não descuido: `ProjectService.update`
+          já garante a participação de quem for escolhido (BE-089), então
+          restringir a membros seria mais estreito do que o servidor aceita. */}
+      <fieldset className="space-y-3 rounded-md border border-border p-3">
           <legend className="px-1 text-xs font-semibold uppercase tracking-[0.05em] text-muted-foreground">
             Responsável
           </legend>
 
-          <div className="flex flex-wrap gap-2">
-            {MODOS.map((m) => (
-              <Button
-                key={m.value}
-                type="button"
-                variant={values.responsible_mode === m.value ? 'primary' : 'secondary'}
-                size="sm"
-                onClick={() => set('responsible_mode', m.value)}
-              >
-                {m.label}
-              </Button>
-            ))}
-          </div>
-          <p className="text-xs text-muted-foreground">
-            {MODOS.find((m) => m.value === values.responsible_mode)?.description}
-          </p>
+          {/* Com responsável definido o legado não oferecia os modos, e aqui
+              também não: "sem responsável" é outra ação, e oferecê-la no meio
+              da troca faria um clique errado desfazer o vínculo sem aviso. */}
+          {!trocandoResponsavel && (
+            <>
+              <div className="flex flex-wrap gap-2">
+                {MODOS.map((m) => (
+                  <Button
+                    key={m.value}
+                    type="button"
+                    variant={values.responsible_mode === m.value ? 'primary' : 'secondary'}
+                    size="sm"
+                    onClick={() => set('responsible_mode', m.value)}
+                  >
+                    {m.label}
+                  </Button>
+                ))}
+              </div>
+              <p className="text-xs text-muted-foreground">
+                {MODOS.find((m) => m.value === values.responsible_mode)?.description}
+              </p>
+            </>
+          )}
 
-          {values.responsible_mode === 'existing' && (
+          {(values.responsible_mode === 'existing' || trocandoResponsavel) && (
             <Campo
               id="responsible_user_id"
               label="Quem responde pelo projeto"
@@ -310,7 +341,7 @@ export function ProjectForm({
             </Campo>
           )}
 
-          {values.responsible_mode === 'new' && (
+          {values.responsible_mode === 'new' && !trocandoResponsavel && (
             <>
               <CampoTexto id="responsible_name" label="Nome" value={values.responsible_name} onChange={(v) => set('responsible_name', v)} />
               <CampoTexto
@@ -323,14 +354,13 @@ export function ProjectForm({
             </>
           )}
 
-          {values.responsible_mode === 'none' && (
+          {values.responsible_mode === 'none' && !trocandoResponsavel && (
             <div className="grid gap-3 sm:grid-cols-2">
               <CampoTexto id="responsible_name" label="Nome (referência)" value={values.responsible_name} onChange={(v) => set('responsible_name', v)} />
               <CampoTexto id="responsible_email" label="E-mail (referência)" value={values.responsible_email} onChange={(v) => set('responsible_email', v)} />
             </div>
           )}
-        </fieldset>
-      )}
+      </fieldset>
 
       <div className="space-y-1.5">
         <Label htmlFor="availability_note">Observação · Disponibilidade</Label>
