@@ -1,0 +1,40 @@
+{
+  "runs": [
+    {
+      "date": "2026-08-22T04:37:20.525864+00:00",
+      "input_tokens": 111151,
+      "output_tokens": 0,
+      "files": 1271
+    },
+    {
+      "date": "2026-08-22T05:25:17.136943+00:00",
+      "input_tokens": 82139,
+      "output_tokens": 0,
+      "files": 11,
+      "note": "hyperedge recovery pass"
+    },
+    {
+      "date": "2026-08-22T05:36:00.830873+00:00",
+      "input_tokens": 97743,
+      "output_tokens": 0,
+      "files": 6,
+      "note": "tracking docs re-extraction"
+    },
+    {
+      "date": "2026-08-22T05:56:17.618514+00:00",
+      "input_tokens": 216424,
+      "output_tokens": 0,
+      "files": 25,
+      "note": "base-repo doc extraction (2 chunks) + noise prune"
+    },
+    {
+      "date": "2026-08-22T06:02:10.920413+00:00",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "files": 841,
+      "note": "ruby call-edge recall recovery (deterministic, no LLM)"
+    }
+  ],
+  "total_input_tokens": 507457,
+  "total_output_tokens": 0
+}

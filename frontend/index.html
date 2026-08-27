@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR" prefix="og: https://ogp.me/ns#">
+
+<head>
+  <meta charset="UTF-8" />
+  <!-- `viewport-fit=cover` é o que faz `env(safe-area-inset-*)` valer no iPhone:
+       sem ele os insets são ZERO, e a barra de abas fica sob a faixa inicial.
+       `interactive-widget=resizes-content` SAIU: é o valor PADRÃO da especificação
+       (não muda nada onde é suportado) e é chave desconhecida para o Safari — e
+       viewport com token que o parser não entende é candidato a ser ignorado
+       INTEIRO, o que joga a página para a largura de desktop (~980 px). Nessa
+       largura o `md:hidden` esconde a barra de abas e a tabela deixa de virar
+       cartão: um token cosmético derrubaria o layout mobile inteiro. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+  <!-- Marca Safegold. O título é a linha que o buscador exibe e a que o
+       WhatsApp mostra em negrito no preview: nome + o que o produto faz. -->
+  <title>Safegold — gestão de risco, recebíveis e operações estruturadas</title>
+  <meta name="description"
+    content="Plataforma de gestão de risco de crédito: borderô e recebíveis, operações estruturadas, renegociações, limites por portador e indicadores de carteira em um lugar só." />
+  <meta name="keywords"
+    content="gestão de risco de crédito, recebíveis, borderô, operação estruturada, renegociação, limite por portador, indicadores de carteira, Safegold" />
+  <meta name="author" content="Safegold" />
+  <meta name="application-name" content="Safegold" />
+
+  <!-- Cor do cromo do navegador por modo: mesmo grafite/branco dos tokens
+       `--background` de `src/styles/globals.css`. -->
+  <meta name="theme-color" content="#FAFAF9" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#181817" media="(prefers-color-scheme: dark)" />
+
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/brand/safegold-icon-32.png" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+
+  <!-- PWA mínimo (DEC-21.3 / NEW-003): manifest + ícones, instalável. SEM service
+       worker, sem offline, sem cache — por decisão. Consequência aceita: a família
+       Chromium condiciona o prompt automático de instalação a um service worker,
+       então a instalação é pelo menu do navegador ("Instalar aplicativo") e, no
+       iOS, por "Adicionar à Tela de Início". Isso é escopo, não defeito.
+
+       O iOS lê o ícone da tag abaixo, não do array `icons` do manifest — e compõe
+       ícone transparente sobre PRETO, onde a metade grafite (#2D2D2A) da marca
+       sumiria. Por isso este arquivo tem fundo cheio próprio, pelo mesmo motivo do
+       `maskable` do Android; o conjunto transparente `safegold-icon-{32,180,192,512}`
+       continua transparente. -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/brand/safegold-icon-apple-touch-180.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Safegold" />
+  <meta name="mobile-web-app-capable" content="yes" />
+
+  <!-- Open Graph / WhatsApp. As URLs são relativas de propósito: o host
+       público do Safegold vem do deploy (ENV `alias` no legado) e cravar um
+       domínio aqui produziria preview quebrado no ambiente errado. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Safegold" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:title" content="Safegold — gestão de risco, recebíveis e operações estruturadas" />
+  <meta property="og:description"
+    content="Borderô e recebíveis, operações estruturadas, renegociações, limites por portador e indicadores de carteira em um lugar só." />
+  <meta property="og:image" content="/og-safegold.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Safegold" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Safegold — gestão de risco, recebíveis e operações estruturadas" />
+  <meta name="twitter:description"
+    content="Borderô e recebíveis, operações estruturadas, renegociações, limites por portador e indicadores de carteira em um lugar só." />
+  <meta name="twitter:image" content="/og-safegold.png" />
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
+</html>

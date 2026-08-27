@@ -1,0 +1,12 @@
+Você virou observador
+
+Olá <%= @observer.name %>, o administrador <%= @admin&.name %> te adicionou como
+observador no <%= @app_name %>. Você será notificado por e-mail sempre que houver
+mensagem em aberto nos contextos que você acompanha.
+
+Contextos: <%= @observer.contexts.map { |c| AdminMessage::CONTEXTS[c] }.join(', ') %>
+
+Para sair da lista, fale com <%= @admin&.name %> em <%= @admin&.email %>.
+
+--
+<%= @app_name %>

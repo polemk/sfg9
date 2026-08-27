@@ -1,0 +1,22 @@
+{
+  "_comment": "English bundle is not loaded (see lib/i18n.ts: only pt-BR is registered). Kept as a placeholder mirroring the pt-BR key layout.",
+  "app": {
+    "name": "Safegold",
+    "tagline": "Credit risk, receivables and structured operations"
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "delete": "Delete",
+    "edit": "Edit",
+    "back": "Back",
+    "search": "Search",
+    "loading": "Loading...",
+    "empty": "Nothing here yet"
+  },
+  "seo": {
+    "title": "Safegold — credit risk, receivables and structured operations",
+    "description": "Bordereau and receivables, structured operations, renegotiations, holder limits and portfolio indicators in one place."
+  }
+}

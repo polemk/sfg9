@@ -1,0 +1,720 @@
+/* Fontes da marca Safegold — as mesmas do legado (`app/frontend/css/pub/font.scss`):
+   Work Sans para texto e título, Fira Mono para número.
+   O `--font-numeric` é o que dá coluna alinhada em tabela de valor e KPI: use
+   `font-numeric`/`tabular-nums` em qualquer célula monetária. */
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================================
+   TOKENS SEMÂNTICOS — MARCA SAFEGOLD
+   ----------------------------------------------------------------------------
+   Fonte canônica da marca: `../sfg/app/definitions/SFG/theme.rb`.
+     ink (COLOR__PRIMARY)  #2D2D2A  → confirmado contra o logo (#292C28)
+     gold (COLOR__ACCENT)  #FFC107  → o ouro do logo é #EB9600 (usado como
+                                      `--brand-gold-deep`: hover/pressed e ouro
+                                      sobre fundo claro quando precisa contraste)
+     steel (ACCENT_AUX)    #607D8B
+     positivo #217B55 · negativo #7D1F1E · red #F8333C · green #31D86C
+     blue #3454D1 · yellow #FFBE0B
+
+   REGRA PARA TODO MUNDO: nunca escreva cor literal em componente (`#hex`,
+   `bg-blue-500`, `text-slate-400`). Use SEMPRE o token semântico. Trocar a
+   marca deve ser trocar este arquivo, e mais nada.
+
+   Os dois modos são definidos por inteiro. `:root` = claro, `.dark` = escuro.
+   Nenhum token existe só em um dos dois.
+   ============================================================================ */
+
+:root {
+  color-scheme: light;
+
+  /* — Cores literais da marca (idênticas nos dois modos; são a marca, não o tema) — */
+  --brand-gold: 45 100% 51%;        /* #FFC107 — o ouro declarado no theme.rb  */
+  --brand-gold-deep: 38 100% 46%;   /* #EB9600 — o ouro do arquivo do logo     */
+  --brand-ink: 60 3% 17%;           /* #2D2D2A — o grafite da marca            */
+  --brand-ink-strong: 60 4% 11%;    /* grafite mais fundo, p/ texto sobre ouro */
+  --brand-ink-foreground: 0 0% 98%;
+  --brand-steel: 200 18% 46%;       /* #607D8B — auxiliar frio do legado       */
+
+  /* — Superfícies — */
+  --background: 60 9% 98%;          /* #FAFAF9 — o #FAFAFA do legado, morno    */
+  --foreground: 60 3% 17%;
+  --card: 0 0% 100%;
+  --card-foreground: 60 3% 17%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 60 3% 17%;
+
+  /* — Ação — */
+  --primary: 45 100% 51%;
+  --primary-foreground: 60 4% 11%;  /* grafite sobre ouro: ~10:1              */
+  --secondary: 60 6% 94%;
+  --secondary-foreground: 60 3% 17%;
+
+  /* — Os tokens `-text`: a MESMA cor semântica, mas legível COMO TEXTO —
+     ---------------------------------------------------------------------
+     Uma cor de estado é usada de dois jeitos opostos, e um valor só não
+     serve aos dois. `bg-primary` quer o ouro **cheio** da marca, com grafite
+     por cima (10,4:1). `text-primary` quer a mesma ideia escrita em letra de
+     12px — e ouro #FFC107 sobre branco dá **1,63:1**, que não é "meio
+     fraquinho": é ilegível, e reprova AA por três vezes o limite.
+
+     Os dois puxam para lados contrários: clarear o ouro melhora o texto e
+     estraga o botão. Por isso são dois tokens, não um. `--primary` continua
+     sendo exatamente o ouro Safegold medido no logo (DEC-68) — a marca não
+     se mexe. `--primary-text` é o mesmo matiz 45 rebaixado até passar AA
+     sobre `--card` e sobre `--background`.
+
+     **Quem escolhe entre os dois é o Tailwind, não a tela.** O
+     `tailwind.config.js` mapeia `textColor.primary` para `--primary-text` e
+     deixa `backgroundColor`, `borderColor` e `ringColor` no `--primary`. Ou
+     seja: nenhuma das 125 chamadas de `text-primary` precisou mudar, e a
+     próxima também não precisa. Escreva `text-primary` e sai legível.
+
+     Cuidado ao mexer: o par tem que ser conferido nos DOIS modos. No escuro
+     o ouro cheio sobre o card dá 10:1 e `--primary-text` volta a ser o
+     próprio ouro; foi o claro que sempre foi o problema.
+
+     Para peça que É a marca (faixa, selo, o próprio logo) continue usando
+     `text-brand-gold` — esse não é rebaixado, porque ali a cor é o assunto,
+     não o texto. */
+  --primary-text: 45 100% 28%;      /* #8F6B00 — 4,92:1 no card, 4,71:1 no bg */
+  --warning-text: 38 100% 31%;      /* #9E6400 — âmbar queimado, 4,91:1       */
+  --destructive-text: 357 72% 45%;  /* já passa como texto (5,82:1)           */
+  --success-text: 155 58% 31%;      /* já passa (5,08:1)                      */
+  --info-text: 228 63% 45%;         /* já passa (7,73:1)                      */
+  --negative-text: 1 61% 30%;       /* já passa (10,21:1)                     */
+
+  /* — Superfície neutra e hover (`hover:bg-accent` dos primitivos) — */
+  --muted: 60 6% 95%;
+  --muted-foreground: 60 4% 38%;
+  --accent: 60 6% 92%;
+  --accent-foreground: 60 3% 17%;
+
+  /* — Estado — */
+  --destructive: 357 72% 45%;
+  --destructive-foreground: 0 0% 100%;
+  --success: 155 58% 31%;           /* #217B55 — indicador positivo do legado  */
+  --success-foreground: 0 0% 100%;
+  --warning: 45 100% 45%;
+  --warning-foreground: 60 4% 11%;
+  --info: 228 63% 45%;              /* #3454D1 escurecido p/ texto branco      */
+  --info-foreground: 0 0% 100%;
+  --negative: 1 61% 30%;            /* #7D1F1E — indicador negativo do legado  */
+  --negative-foreground: 0 0% 100%;
+
+
+  /* — Chapa do QR — deliberadamente IGUAL nos dois modos —
+     O PNG que a Evolution devolve NÃO é preto-no-branco: é um campo branco
+     opaco com os módulos VAZADOS em transparência (medido no navegador:
+     55,8% branco opaco, 44,2% alfa zero, e nenhum pixel escuro). Ou seja, a
+     cor dos módulos é a cor do que estiver ATRÁS da imagem. Sobre o antigo
+     `bg-muted` o código saía branco-sobre-cinza-claro — visível na tela, mas
+     perto de ilegível para a câmera; sobre branco ele some por completo.
+
+     Daí os dois tokens: `--qr-plate` é a chapa clara (a zona de silêncio, o
+     cartão) e `--qr-module` é o que aparece pelos vazados — ou seja, a cor
+     dos módulos. Os dois são IGUAIS no claro e no escuro de propósito: um QR
+     que inverte com o tema do app é um QR que para de ser lido. É a exceção
+     que a regra dos tokens admite, e precisa estar escrita aqui como token
+     para ninguém "consertar" com `bg-white` depois.
+
+     Se algum dia a Evolution passar a mandar PNG opaco preto-no-branco, nada
+     quebra: a imagem opaca simplesmente cobre o `--qr-module`. */
+  --qr-plate: 0 0% 100%;
+  --qr-plate-foreground: 60 4% 11%;
+  --qr-module: 60 4% 11%;
+
+  /* — Traço, foco, raio — */
+  --border: 60 6% 87%;
+  --input: 60 6% 85%;
+  --ring: 38 100% 46%;              /* ouro fundo: anel visível sobre claro    */
+  --radius: 0.75rem;
+
+  /* — Elevação (use `shadow-e1..e3` do Tailwind, não sombra literal) — */
+  --elevation-1: 0 1px 2px hsl(60 3% 17% / 0.06), 0 1px 1px hsl(60 3% 17% / 0.04);
+  --elevation-2: 0 2px 6px hsl(60 3% 17% / 0.08), 0 1px 2px hsl(60 3% 17% / 0.05);
+  --elevation-3: 0 8px 24px hsl(60 3% 17% / 0.10), 0 2px 6px hsl(60 3% 17% / 0.06);
+  /* Sombra LATERAL da coluna congelada de uma tabela que rola na horizontal. É
+     direcional de propósito: ela diz "o conteúdo passa por baixo daqui". As três
+     elevações acima são verticais e não serviriam. */
+  --elevation-sticky-col: 8px 0 10px -8px hsl(60 3% 17% / 0.28);
+  /* A mesma sombra, espelhada: a borda direita de uma tabela que ainda tem
+     conteúdo depois dela. */
+  --elevation-scroll-edge: -8px 0 10px -8px hsl(60 3% 17% / 0.28);
+
+  /* — Cromo do shell — */
+  --scrollbar: 60 4% 38%;
+  --topbar-h: 94px;
+  --header-card-w: 360px;
+  --brand-strip: 1.25rem;
+
+  /* — Tipografia — */
+  --font-title: 'Work Sans', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Noto Sans', 'Helvetica Neue', Arial, sans-serif;
+  --font-text: 'Work Sans', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Noto Sans', 'Helvetica Neue', Arial, sans-serif;
+  --font-numeric: 'Fira Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.dark {
+  color-scheme: dark;
+
+  /* O escuro do Safegold é desenho novo (o legado não tem dark — ver
+     `brand-and-metadata.md`). Ele é derivado do grafite da marca: todas as
+     superfícies têm o mesmo matiz 60 do #2D2D2A, então o escuro é "o grafite
+     Safegold", não um cinza-azulado genérico. O ouro é o mesmo nos dois modos:
+     um botão primary é o MESMO botão em claro e em escuro. */
+  --brand-gold: 45 100% 51%;
+  --brand-gold-deep: 38 100% 46%;
+  --brand-ink: 60 4% 11%;
+  --brand-ink-strong: 60 4% 7%;
+  --brand-ink-foreground: 0 0% 98%;
+  --brand-steel: 200 20% 62%;
+
+  --background: 60 4% 9%;
+  --foreground: 60 8% 95%;
+  --card: 60 4% 12%;
+  --card-foreground: 60 8% 95%;
+  --popover: 60 4% 18%;
+  --popover-foreground: 60 8% 95%;
+
+  --primary: 45 100% 51%;
+  --primary-foreground: 60 4% 11%;
+  --secondary: 60 4% 18%;
+  --secondary-foreground: 60 8% 95%;
+
+  /* Os tokens `-text` (ver a explicação longa no `:root`). No escuro o ouro
+     cheio já dá 10:1 sobre o card, então `--primary-text` volta a ser o
+     próprio ouro — quem precisa de ajuste aqui são os vermelhos e o verde,
+     que como TEXTO ficam baixos justamente sobre o `--popover` (18%), a
+     superfície mais clara do escuro. */
+  --primary-text: 45 100% 51%;      /* 10,02:1 no card · 8,13:1 no popover    */
+  --warning-text: 45 100% 51%;
+  --destructive-text: 357 74% 72%;  /* #EC8388 — 5,15:1 no popover            */
+  --success-text: 152 55% 46%;      /* #35B67A — 5,13:1 no popover            */
+  --info-text: 228 72% 73%;         /* #899CEC — 5,07:1 no popover            */
+  --negative-text: 357 60% 71%;     /* #E1898D — 5,15:1 no popover            */
+
+  --muted: 60 4% 17%;
+  --muted-foreground: 60 6% 66%;
+  --accent: 60 4% 21%;
+  --accent-foreground: 60 8% 95%;
+
+  /* Era 55%, e o `--destructive-foreground` branco por cima dava 4,36:1 —
+     reprovava AA no próprio botão de apagar. 53% devolve 4,55:1 sem mudar a
+     leitura da cor. */
+  --destructive: 357 74% 53%;
+  --destructive-foreground: 0 0% 100%;
+  --success: 152 55% 42%;
+  --success-foreground: 60 4% 9%;
+  --warning: 45 100% 51%;
+  --warning-foreground: 60 4% 11%;
+  --info: 228 72% 68%;
+  --info-foreground: 60 4% 9%;
+  --negative: 357 60% 52%;
+  --negative-foreground: 0 0% 100%;
+
+
+  /* — Chapa do QR — deliberadamente IGUAL nos dois modos —
+     O PNG que a Evolution devolve NÃO é preto-no-branco: é um campo branco
+     opaco com os módulos VAZADOS em transparência (medido no navegador:
+     55,8% branco opaco, 44,2% alfa zero, e nenhum pixel escuro). Ou seja, a
+     cor dos módulos é a cor do que estiver ATRÁS da imagem. Sobre o antigo
+     `bg-muted` o código saía branco-sobre-cinza-claro — visível na tela, mas
+     perto de ilegível para a câmera; sobre branco ele some por completo.
+
+     Daí os dois tokens: `--qr-plate` é a chapa clara (a zona de silêncio, o
+     cartão) e `--qr-module` é o que aparece pelos vazados — ou seja, a cor
+     dos módulos. Os dois são IGUAIS no claro e no escuro de propósito: um QR
+     que inverte com o tema do app é um QR que para de ser lido. É a exceção
+     que a regra dos tokens admite, e precisa estar escrita aqui como token
+     para ninguém "consertar" com `bg-white` depois.
+
+     Se algum dia a Evolution passar a mandar PNG opaco preto-no-branco, nada
+     quebra: a imagem opaca simplesmente cobre o `--qr-module`. */
+  --qr-plate: 0 0% 100%;
+  --qr-plate-foreground: 60 4% 11%;
+  --qr-module: 60 4% 11%;
+
+  --border: 60 4% 22%;
+  --input: 60 4% 24%;
+  --ring: 45 100% 51%;
+
+  --elevation-1: 0 1px 2px hsl(0 0% 0% / 0.40);
+  --elevation-2: 0 2px 8px hsl(0 0% 0% / 0.45);
+  --elevation-3: 0 10px 28px hsl(0 0% 0% / 0.55);
+  --elevation-sticky-col: 8px 0 10px -8px hsl(0 0% 0% / 0.60);
+  --elevation-scroll-edge: -8px 0 10px -8px hsl(0 0% 0% / 0.60);
+
+  --scrollbar: 60 6% 40%;
+}
+
+/* Força a paleta escura DENTRO de um bloco mesmo no tema claro (hero, faixa de
+   marca, painel de login). Espelha `.dark` — se um token entrar lá, entra aqui. */
+.surface-dark {
+  color-scheme: dark;
+  --brand-ink: 60 4% 11%;
+  --brand-ink-strong: 60 4% 7%;
+  --brand-ink-foreground: 0 0% 98%;
+  --brand-steel: 200 20% 62%;
+
+  --background: 60 4% 9%;
+  --foreground: 60 8% 95%;
+  --card: 60 4% 12%;
+  --card-foreground: 60 8% 95%;
+  --popover: 60 4% 18%;
+  --popover-foreground: 60 8% 95%;
+
+  --primary: 45 100% 51%;
+  --primary-foreground: 60 4% 11%;
+  --secondary: 60 4% 18%;
+  --secondary-foreground: 60 8% 95%;
+
+  /* Os tokens `-text` (ver a explicação longa no `:root`). No escuro o ouro
+     cheio já dá 10:1 sobre o card, então `--primary-text` volta a ser o
+     próprio ouro — quem precisa de ajuste aqui são os vermelhos e o verde,
+     que como TEXTO ficam baixos justamente sobre o `--popover` (18%), a
+     superfície mais clara do escuro. */
+  --primary-text: 45 100% 51%;      /* 10,02:1 no card · 8,13:1 no popover    */
+  --warning-text: 45 100% 51%;
+  --destructive-text: 357 74% 72%;  /* #EC8388 — 5,15:1 no popover            */
+  --success-text: 152 55% 46%;      /* #35B67A — 5,13:1 no popover            */
+  --info-text: 228 72% 73%;         /* #899CEC — 5,07:1 no popover            */
+  --negative-text: 357 60% 71%;     /* #E1898D — 5,15:1 no popover            */
+
+  --muted: 60 4% 17%;
+  --muted-foreground: 60 6% 66%;
+  --accent: 60 4% 21%;
+  --accent-foreground: 60 8% 95%;
+
+  /* Era 55%, e o `--destructive-foreground` branco por cima dava 4,36:1 —
+     reprovava AA no próprio botão de apagar. 53% devolve 4,55:1 sem mudar a
+     leitura da cor. */
+  --destructive: 357 74% 53%;
+  --destructive-foreground: 0 0% 100%;
+  --success: 152 55% 42%;
+  --success-foreground: 60 4% 9%;
+  --warning: 45 100% 51%;
+  --warning-foreground: 60 4% 11%;
+  --info: 228 72% 68%;
+  --info-foreground: 60 4% 9%;
+  --negative: 357 60% 52%;
+  --negative-foreground: 0 0% 100%;
+
+
+  /* — Chapa do QR — deliberadamente IGUAL nos dois modos —
+     O PNG que a Evolution devolve NÃO é preto-no-branco: é um campo branco
+     opaco com os módulos VAZADOS em transparência (medido no navegador:
+     55,8% branco opaco, 44,2% alfa zero, e nenhum pixel escuro). Ou seja, a
+     cor dos módulos é a cor do que estiver ATRÁS da imagem. Sobre o antigo
+     `bg-muted` o código saía branco-sobre-cinza-claro — visível na tela, mas
+     perto de ilegível para a câmera; sobre branco ele some por completo.
+
+     Daí os dois tokens: `--qr-plate` é a chapa clara (a zona de silêncio, o
+     cartão) e `--qr-module` é o que aparece pelos vazados — ou seja, a cor
+     dos módulos. Os dois são IGUAIS no claro e no escuro de propósito: um QR
+     que inverte com o tema do app é um QR que para de ser lido. É a exceção
+     que a regra dos tokens admite, e precisa estar escrita aqui como token
+     para ninguém "consertar" com `bg-white` depois.
+
+     Se algum dia a Evolution passar a mandar PNG opaco preto-no-branco, nada
+     quebra: a imagem opaca simplesmente cobre o `--qr-module`. */
+  --qr-plate: 0 0% 100%;
+  --qr-plate-foreground: 60 4% 11%;
+  --qr-module: 60 4% 11%;
+
+  --border: 60 4% 22%;
+  --input: 60 4% 24%;
+  --ring: 45 100% 51%;
+
+  color: hsl(var(--foreground));
+  background-color: hsl(var(--background));
+  border-color: hsl(var(--border));
+}
+
+.surface-dark * {
+  border-color: hsl(var(--border));
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-text);
+    font-weight: 400;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-title);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: hsl(var(--foreground));
+  }
+}
+
+/* Select nativo: `<option>` não herda `color-scheme`, então o dropdown abriria
+   branco no escuro. Resolvido pelo token, não por cor literal. */
+select {
+  color: inherit;
+  background-color: inherit;
+}
+
+.dark select,
+.dark select option,
+.surface-dark select,
+.surface-dark select option {
+  background-color: hsl(var(--popover));
+  color: hsl(var(--popover-foreground));
+}
+
+/* ── Logo ──────────────────────────────────────────────────────────────
+   As duas variantes do logo ficam no DOM e o CSS escolhe. Sem JS, sem piscar
+   ao trocar de tema. Ver `components/brand/Logo.tsx`. */
+.brand-logo-light { display: block; }
+.brand-logo-dark { display: none; }
+
+.dark .brand-logo-light,
+.surface-dark .brand-logo-light { display: none; }
+
+.dark .brand-logo-dark,
+.surface-dark .brand-logo-dark { display: block; }
+
+/* ── Utilitários de tipografia ─────────────────────────────────────────── */
+
+.font-title {
+  font-family: var(--font-title);
+}
+
+/* Número em coluna: dígito de largura fixa, é o que faz valor bater com valor
+   em tabela de borderô, recebível e indicador. */
+.font-numeric,
+.tabular {
+  font-family: var(--font-numeric);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+}
+
+/* As mensagens do chat herdam o corpo da bolha. */
+.chat-bubble p {
+  font-size: inherit;
+}
+
+/* ── Rolagem ───────────────────────────────────────────────────────────── */
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-color: transparent transparent;
+  scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(var(--scrollbar));
+}
+
+/**
+ * Barra de rolagem que NÃO reserva espaço — para a trilha de ícones.
+ *
+ * A `.custom-scrollbar` promete 4 px, mas o que o navegador reserva de fato,
+ * medido no `nav` recolhido, são **15 px**: a regra `::-webkit-scrollbar` estiliza
+ * a barra, e o *gutter* continua sendo descontado da largura de conteúdo.
+ *
+ * Numa barra lateral de 72 px isso desloca o `items-center` em **7,5 px para a
+ * esquerda** — e foi exatamente o que o usuário viu: "a sidebar fechada está toda
+ * torta". Todos os ícones, sempre o mesmo desvio.
+ *
+ * Aqui a barra some por completo. Numa trilha só de ícones ela era ruído, a
+ * rolagem por roda e por toque continua funcionando, e o centro volta a ser o
+ * centro.
+ */
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--border));
+  border-radius: 9999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(var(--muted-foreground));
+}
+
+/**
+ * **Rolagem horizontal de TABELA — a barra volta a existir, e o fim avisa.**
+ *
+ * Contexto: a regra `*::-webkit-scrollbar { height: 0 }` logo acima apaga a barra
+ * de TODO container do app. Num menu isso é acerto; numa tabela larga é o defeito
+ * que o usuário achou em `/renegotiations` — a última coluna aparecia cortada no
+ * meio de um valor (`R$ 2…`), as seguintes não existiam, e **nada** na tela dizia
+ * que dava para rolar. `overflow-auto` invisível é o mesmo que não ter rolagem.
+ *
+ * `.table-scroll-x` devolve uma barra de 8 px — larga o bastante para ser vista e
+ * arrastada, estreita o bastante para não virar faixa atravessando a tela. Os dois
+ * dialetos são obrigatórios: `::-webkit-scrollbar` para Chrome/Safari e
+ * `scrollbar-width`/`scrollbar-color` para Firefox, onde o `scrollbar-color:
+ * transparent` declarado no `html` é herdado e apagaria o polegar.
+ */
+/**
+ * **`scrollbar-width` e `scrollbar-color` são HERDADAS** — e é isso que fazia a barra
+ * não aparecer, apesar das regras `::-webkit-scrollbar` abaixo estarem corretas.
+ *
+ * O `html` desta base declara `scrollbar-width: none` (linha ~417), então **todo**
+ * elemento do app herda `none`. E o Chrome, desde que passou a suportar a propriedade
+ * padrão, dá precedência a ela e **ignora o pseudo-elemento `::-webkit-scrollbar`**.
+ * Resultado: a regra de 8 px existia, tinha especificidade de sobra sobre o
+ * `*::-webkit-scrollbar { height: 0 }` — e mesmo assim não pintava nada, porque quem
+ * decidia era o `none` herdado, que ninguém tinha desfeito neste elemento.
+ *
+ * A versão anterior punha estas duas linhas atrás de um `@supports not
+ * selector(::-webkit-scrollbar)`, que **só o Firefox satisfaz**. Ou seja: no Chrome e
+ * no Safari o único remédio para a herança ficava desligado, e o usuário perguntou
+ * "cadê minha barra de rolagem". Elas voltam a valer **sempre**.
+ *
+ * `thin` com trilho transparente é o efeito flutuante do `apl9` (`.custom-scrollbar`,
+ * 4 px, polegar translúcido sobre trilho invisível): o que se vê é só o polegar
+ * correndo por cima do conteúdo.
+ *
+ * O `::-webkit-scrollbar` abaixo continua, e não é redundante: ele é quem atende
+ * navegador antigo, onde a propriedade padrão ainda não existe e a herança de `none`
+ * não tem efeito nenhum.
+ */
+.table-scroll-x {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--border)) transparent;
+}
+
+.table-scroll-x::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.table-scroll-x::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.table-scroll-x::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--border));
+  border-radius: 9999px;
+}
+
+.table-scroll-x::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(var(--muted-foreground));
+}
+
+/**
+ * **Arrastar a tabela para rolar** — a afordância que sobrevive à barra ausente.
+ *
+ * A barra acima resolve o desktop com mouse. Ela **não** resolve o iOS, onde a
+ * barra é overlay do sistema e some sozinha, nem o Chromium headless, que
+ * reserva 0 px e não pinta nada — motivo pelo qual a afordância da DS-01 não é
+ * comprovável renderizando. Arrastar o conteúdo não depende de o sistema
+ * desenhar coisa alguma. É o tratamento do `apl9` que o usuário aprovou.
+ *
+ * O cursor parado (`cursor-grab`) fica no container, em utilitário do Tailwind.
+ * Só o cursor de "agarrado" precisa desta regra: a linha clicável declara
+ * `cursor-pointer` na própria célula e ganharia do container. Enquanto o gesto
+ * acontece, o ponteiro tem de ser o mesmo sobre a tabela inteira — inclusive
+ * sobre o texto e sobre a coluna congelada.
+ */
+[data-table-dragging],
+[data-table-dragging] * {
+  cursor: grabbing !important;
+}
+
+/**
+ * **Nenhuma célula cortada no meio, do lado esquerdo** — metade do ponto 2.
+ *
+ * `scroll-snap-align: start` faz a borda ESQUERDA de uma coluna parar colada no
+ * começo da área útil. Com a coluna congelada, "começo da área útil" não é x=0: é
+ * logo depois dela, e é para isso que o `DataTable` escreve o `scroll-padding-left`
+ * com a largura medida da primeira coluna. Sem isso a coluna seguinte pararia
+ * metade escondida por baixo da congelada — e `2.500,00` visto pela metade vira
+ * `500,00`, que é um número plausível e errado.
+ *
+ * `scrollLeft: 0` é, por construção, uma dessas posições: a segunda coluna começa
+ * exatamente em `scroll-padding-left`. Nenhum salto ao abrir a tela.
+ *
+ * `:not(:first-child)` de propósito: a primeira coluna é `sticky` e a posição que
+ * ela ocupa acompanha a rolagem — como área de encaixe ela criaria um ponto de
+ * encaixe móvel, que é jitter garantido. Ela também não precisa: está sempre visível.
+ *
+ * O lado DIREITO não se resolve com encaixe (na posição 0 a borda direita cai no
+ * meio de alguma coluna, sempre). Quem resolve é a cortina opaca do `DataTable`,
+ * do tamanho exato do que sobrou.
+ */
+/**
+ * **O encaixe (`scroll-snap`) SAIU em 26/08/2026.** Ficou aqui como aviso, porque a
+ * ideia parece boa e alguém vai querer recolocá-la.
+ *
+ * Ele era `scroll-snap-align: start` em toda coluna a partir da segunda, com
+ * `scroll-padding-left` igual à largura da coluna congelada — a intenção era nenhuma
+ * coluna parar metade escondida sob ela. **Medido no app, fazia o oposto:** com o
+ * encaixe obrigatório (`x mandatory`), a rolagem parava numa posição em que a coluna
+ * FORNECEDOR ficava **exatamente sob** a coluna congelada, que é opaca. A coluna
+ * inteira desaparecia da tela, e como o encaixe é obrigatório o usuário **não tinha
+ * como parar noutro lugar** para vê-la. Uma coluna de dado inalcançável é bem pior
+ * que uma coluna cortada pela metade.
+ *
+ * Sem encaixe a rolagem é livre, e quem resolve a leitura é o que o usuário aprovou
+ * no `apl9`: barra fina flutuante e arrastar para rolar.
+ */
+
+/**
+ * **A cor da coluna congelada é MEDIDA, não cravada.**
+ *
+ * A célula fixa tem de ser opaca — conteúdo rolado que se lê por baixo dela é o
+ * defeito que ela existe para evitar. Mas `bg-card` cravado erraria: quase toda
+ * listagem põe a tabela num cartão, e a de operações de risco a põe direto na
+ * página. No modo escuro `--card` (12%) e `--background` (9%) são cinzas
+ * diferentes, e a diferença aparece como um bloco de cor errada.
+ *
+ * O `DataTable` mede a primeira superfície opaca acima da tabela e a publica em
+ * `--table-surface`. O `--card` aqui é só o destino de quem não achou nada.
+ *
+ * Especificidade de propósito baixa (uma classe + um atributo): o realce de linha
+ * do hover é `.group\/row:hover .group-hover\/row\:bg-muted`, três classes, e
+ * precisa continuar vencendo — senão a célula fixa fica de outra cor no hover.
+ */
+.table-scroll-x [data-sticky-col] {
+  background-color: var(--table-surface, hsl(var(--card)));
+}
+
+/* ── Superfícies compartilhadas ────────────────────────────────────────── */
+
+/* Painel translúcido. Tokenizado: no claro fica branco leitoso sobre o fundo
+   morno, no escuro fica grafite. Antes era `rgba(255,255,255,.95)` fixo — o
+   que dava painel branco sobre fundo branco no claro. */
+.glass-panel {
+  @apply backdrop-blur-xl border shadow-e2;
+  background-color: hsl(var(--card) / 0.88);
+  border-color: hsl(var(--border) / 0.8);
+}
+
+.glass-panel-heavy {
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid hsl(var(--border) / 0.8);
+  box-shadow: var(--elevation-3);
+  background-color: hsl(var(--card) / 0.82);
+}
+
+.glass-table {
+  @apply glass-panel rounded-lg;
+}
+
+/* `.glass-select` foi removida (FE-417). Ela tematizava só a CAIXA FECHADA do
+   `<select>` nativo — a lista de `<option>` continuava sendo desenhada pelo
+   sistema, branca, ignorando a marca inteira no tema escuro. Quem precisa de
+   escolha entre opções usa `components/ui/Select.tsx`, cujo painel é do app e
+   nasce conferido nos dois modos. */
+
+/* Card em destaque: contorno de marca sólido, sem gradiente animado. */
+.card-highlight {
+  border: 1px solid hsl(var(--primary));
+  box-shadow: 0 0 0 3px hsl(var(--primary) / 0.14);
+}
+
+/* ── Tabela ────────────────────────────────────────────────────────────── */
+
+table tr {
+  transition: background-color 150ms ease-in-out;
+}
+
+table tbody tr:hover {
+  background-color: hsl(var(--accent) / 0.6);
+}
+
+/* ── Movimento ─────────────────────────────────────────────────────────── */
+
+.card-enter {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.card-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 300ms ease both;
+}
+
+/* Aura sutil atrás do KPI em destaque — "sinal de vida" do painel ao vivo. */
+@keyframes dashAura {
+  0%, 100% { opacity: 0.30; transform: scale(1); }
+  50%      { opacity: 0.50; transform: scale(1.05); }
+}
+
+.dash-aura {
+  animation: dashAura 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-in,
+  .dash-aura {
+    animation: none;
+  }
+
+  .dash-aura {
+    opacity: 0.4;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+[data-helper] .helper-fab {
+  position: absolute !important;
+}

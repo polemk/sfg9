@@ -1,0 +1,175 @@
+# Agendamento de jobs — a ÚNICA fonte de verdade dos crons desta aplicação.
+#
+# Por que este arquivo existe (upstream-flags.md #13): até 25/08/2026 o agendamento
+# da base ai9 não existia em código nenhum — só em chaves `cron_job:*` do Redis,
+# cadastradas pela Web UI do Sidekiq (`source: dynamic`). Duas consequências, as duas
+# silenciosas:
+#   1. o único cron legítimo (`cleanup_login_codes`) só rodava porque uma chave
+#      sobreviveu no Redis. Redis limpo / deploy novo / ambiente novo = o cron some
+#      sem erro e a limpeza de códigos de login para de acontecer;
+#   2. apagar a classe do job não desagenda nada — o trim do Phase 1b deixou 8 crons
+#      órfãos re-enfileirando classes inexistentes, 916 jobs em retry com `NameError`.
+#
+# Correção: o `sidekiq-cron` carrega este arquivo no startup do servidor Sidekiq com
+# `Sidekiq::Cron::Job.load_from_hash!(schedule, source: "schedule")`, que também
+# **remove** todo cron marcado como `schedule` que não esteja declarado aqui.
+# `config/initializers/sidekiq_cron.rb` aponta o caminho absoluto do arquivo e roda
+# o portão que reprova o boot se alguma classe agendada não existir.
+#
+# REGRA: nenhum cron desta aplicação é cadastrado pela Web UI do Sidekiq. Cron novo
+# entra aqui, em revisão de código.
+#
+# ⚠ ARMADILHA REGISTRADA: este Redis é compartilhado com o app `apl9`
+# (`cron_job:apl9:data_cleanup` e um `cron_job:default:data_cleanup` que enfileira na
+# fila `apl9_default`). As filas da ai9 são prefixadas por `APP_NAME`
+# (`config/sidekiq.yml`), mas o namespace de cron NÃO é. `FLUSHDB`, `Job.destroy_all`
+# ou qualquer limpeza que não filtre derruba o cron do outro app. O `load_from_hash!`
+# só apaga jobs com `source == "schedule"` — os do `apl9` são `dynamic` e por isso
+# sobrevivem. Não troque essa remoção seletiva por uma varredura.
+#
+# Fuso: o Sidekiq avalia a expressão cron em UTC quando não há sufixo de zona. As
+# entradas abaixo declaram `America/Sao_Paulo` explicitamente para que "3h da manhã"
+# signifique 3h da manhã aqui.
+#
+# ⚠ **DECLARE `queue:` SEMPRE, e SEM o prefixo do APP_NAME.** Esta orientação
+# substitui a anterior ("não declare `queue:`"), que estava invertida e que custou
+# **1159 jobs presos numa fila que ninguém consome**. O que foi medido, no
+# `sidekiq-cron` 2.4.0 desta base:
+#
+#   - Entrada SEM `queue:` → o gem lê a fila da classe (`CleanupLoginCodesJob
+#     .queue_name`), que o ActiveJob **já devolve prefixada**: `"ai9_default"`.
+#     Ele então chama `klass.set(queue: "ai9_default").perform_later`, e o
+#     `queue_name_prefix` do `config/application.rb` é aplicado **de novo**.
+#     Resultado: `ai9_ai9_default` — fila que não está em `config/sidekiq.yml` e que
+#     worker nenhum consome.
+#   - Entrada COM `queue: default` → `set(queue: "default")` → prefixo aplicado uma
+#     vez → `ai9_default`. **Conferido enfileirando de verdade**, com o Sidekiq
+#     rodando: o job cai em `ai9_default` e é consumido na hora.
+#
+# O estrago que isso já tinha feito, contado em 25/08/2026 na fila `ai9_ai9_default`:
+# 441 `DriveIngestionJob`, 441 `PublishScheduledDraftsJob`, 221
+# `BlogIntakeSessionExpiryJob` (as três apagadas pelo trim) e **56
+# `CleanupLoginCodesJob`** — ou seja, a limpeza de códigos de login **nunca rodou**,
+# nem pelo cron dinâmico antigo nem pelo schedule versionado. O cron disparava, o job
+# era enfileirado, e ninguém o executava. Falha totalmente silenciosa: o painel do
+# Sidekiq não acusa fila não declarada, e o portão de boot só confere se a CLASSE
+# existe — e ela existe.
+#
+# **Regra que sai daqui:** a fila declarada abaixo é sempre a fila SEM prefixo, e ela
+# precisa existir em `config/sidekiq.yml` com o prefixo. O spec
+# `spec/config/schedule_spec.rb` reprova quem esquecer.
+
+# Limpeza de códigos de login expirados/usados.
+# Este é o cron que existia SÓ no Redis. Ele precisa estar declarado aqui: o
+# `load_from_hash!` remove o que não está no arquivo, então omiti-lo mataria o único
+# cron legítimo que a base tem hoje.
+cleanup_login_codes:
+  class: CleanupLoginCodesJob
+  queue: default
+  cron: "0 * * * * America/Sao_Paulo"
+  description: "Remove login_codes expirados e usados há mais de 24h (de hora em hora)."
+
+# DEC-60 — `login_attempts` retém 90 dias.
+# A tabela é da base ai9 (schema.rb:451), com `ip_address` `inet` `null: false`,
+# `user_agent` e NENHUM expurgo. Passivo de LGPD adotado, não herdado do legado.
+purge_login_attempts:
+  class: PurgeLoginAttemptsJob
+  queue: low_priority
+  cron: "20 3 * * * America/Sao_Paulo"
+  description: "DEC-60: apaga tentativas de login com mais de LOGIN_ATTEMPTS_RETENTION_DAYS (90) dias."
+
+# DEC-90 — o log de e-mail guarda só metadados e retém 180 dias.
+# A tabela `email_logs` é criada por outra fatia; o job é tolerante à ausência dela
+# (ver PurgeEmailLogsJob) para que este agendamento possa nascer junto com o do
+# DEC-60, que é o mesmo mecanismo e era para ser uma tarefa só.
+purge_email_logs:
+  class: PurgeEmailLogsJob
+  queue: low_priority
+  cron: "40 3 * * * America/Sao_Paulo"
+  description: "DEC-90: apaga metadados de e-mail com mais de EMAIL_LOGS_RETENTION_DAYS (180) dias."
+
+# DEC-59 / DEC-78 — retenção da trilha de auditoria do paper_trail.
+# O job é da fatia S0, que deixou o agendamento explicitamente para cá (ver o comentário
+# em `app/jobs/purge_audit_versions_job.rb`): o arquivo de schedule é desta fatia, e job
+# de expurgo sem linha aqui é job que nunca roda. Prazo maior que os outros dois porque é
+# auditoria financeira e de acesso — 5 anos, o tempo em que uma operação de crédito ainda
+# pode ser questionada.
+purge_audit_versions:
+  class: PurgeAuditVersionsJob
+  queue: low_priority
+  cron: "50 3 * * * America/Sao_Paulo"
+  description: "DEC-59: apaga versões do paper_trail com mais de AUDIT_VERSIONS_RETENTION_DAYS (1825) dias."
+
+# S10 / OPS-313 — purga dos indicadores DESCARTADOS (exclusão lógica, D-66).
+# Prazo longo de propósito: a única razão de apagar é higiene, e o custo de errar é
+# perda de cadastro. O job NUNCA apaga indicador que ainda tenha lançamento ou
+# conexão de projeto — apagá-lo levaria a série histórica junto, que é exatamente o
+# defeito que a exclusão lógica veio fechar. Ver o cabeçalho da classe.
+purge_discarded_indicators:
+  class: PurgeDiscardedIndicatorsJob
+  queue: low_priority
+  cron: "10 4 * * * America/Sao_Paulo"
+  description: "OPS-313: apaga indicadores descartados há mais de INDICATORS_RETENTION_DAYS (365) dias e SEM vínculo."
+
+# ---------------------------------------------------------------------------
+# S9 / OPS-190, OPS-191 — **a renegociação NÃO tem cron, e isso é a entrega.**
+# ---------------------------------------------------------------------------
+# Não há entrada abaixo de propósito. Está escrito aqui porque este é o arquivo
+# onde alguém vai procurar antes de recriar o que foi removido.
+#
+# **O que existia no legado.** Um único cron, em `config/schedule.prod.rb` e
+# `config/schedule.dev.rb` (dois arquivos, o mesmo conteúdo, mais um terceiro
+# `schedule.rb` que só setava o log):
+#
+#     every :day, at: '00:01 am' do
+#       runner "CRONFacade.update_renegotiations_counters"
+#     end
+#
+# e o corpo dele (`lib/cron_facade.rb`) era:
+#
+#     Renegotiation.where.not(state: STATE__CLOSED).each { |r| r.update_values! }
+#
+# Quatro defeitos numa rotina de três linhas:
+#
+#  1. **`overdue_installments` ficava até 24 h desatualizada** (D-54). A tela
+#     mostrava a contagem de ontem, e ninguém sabia disso olhando a tela.
+#  2. **A renegociação liquidada era excluída pelo `where.not`** — então uma que
+#     voltasse a ter saldo (parcela editada, pagamento removido) **nunca mais era
+#     reprocessada**.
+#  3. **`update_values!` grava com `save` SEM bang** (D-79): qualquer registro que
+#     falhasse na validação era pulado **em silêncio**, e o cron reportava sucesso.
+#  4. **Sem trava de concorrência.** `whenever` instala o crontab por HOST: dois
+#     hosts de aplicação = a rotina inteira rodando duas vezes, sobre os mesmos
+#     registros.
+#
+# **O que substitui.** Nada periódico — porque a pergunta deixou de precisar de
+# resposta periódica (D-B6):
+#
+#  - `Renegotiations::AggregateService.recalculate!` roda em **toda** alteração de
+#    parcela ou pagamento, dentro da transação, com `save!`, e emite o broadcast do
+#    `RenegotiationChannel` depois do COMMIT;
+#  - `AggregateService.live_overdue_for` apura as vencidas **na consulta** da
+#    leitura, numa consulta só para a página inteira (`RenegotiationInstallment
+#    .overdue`, a definição única).
+#
+# O número não mudou; mudou **quando** ele fica correto. Se você veio recriar o
+# cron diário: o que quer que ele fosse consertar, já está consertado — e recriá-lo
+# reintroduz a janela de 24 h junto.
+
+# ---------------------------------------------------------------------------
+# S13 / tarefa 3.8 — watchdog do BLOQUEIO de padrão de disponibilidade.
+# ---------------------------------------------------------------------------
+# `Availability::TemplateLock.around` desbloqueia num `ensure`, o que cobre
+# **exceção**. Não cobre o processo morrer sem rodar `ensure` nenhum: `SIGKILL`
+# do OOM killer, container reciclado no meio do deploy, máquina caída. Nesses
+# casos o padrão fica `is_locked` com `job_state = 'running'` para sempre — o
+# mesmo estado terminal do legado (D-05), chegando por outra porta.
+#
+# De 10 em 10 minutos porque a varredura é uma consulta indexada por
+# `is_locked`, e o prazo de tolerância (60 min, `AVAILABILITY_LOCK_TIMEOUT_MINUTES`)
+# é o que evita destravar operação ainda em andamento.
+unlock_stale_templates:
+  class: UnlockStaleTemplatesJob
+  queue: low_priority
+  cron: "*/10 * * * * America/Sao_Paulo"
+  description: "S13 3.8: libera padrão de disponibilidade bloqueado há mais de AVAILABILITY_LOCK_TIMEOUT_MINUTES (60) min."

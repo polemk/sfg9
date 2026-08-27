@@ -1,0 +1,26 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  pool: 10
+  host: localhost
+  username: ai9_user
+  password: '***'
+  database: ai9_dev
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  pool: 10
+  host: localhost
+  username: ai9_user
+  password: '***'
+  database: ai9_test
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  pool: 10
+  host: localhost
+  username: ai9_user
+  password: '***'
+  database: ai9_prod

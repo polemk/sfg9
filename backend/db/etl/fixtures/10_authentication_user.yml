@@ -1,0 +1,8 @@
+# A tabela do sistema Django ANTERIOR. So existe no dump pre-2021, e e por ela
+# que se descobre o Q-16: `legacy/u.rb:33` fazia
+# `is_staff ? MANAGER : is_superuser ? ADMIN : COLAB` — EQUIPE tem precedencia
+# sobre SUPERUSUARIO, e quem era os dois virou Gerente em vez de Admin.
+table: authentication_user
+rows:
+  - { id: 90, email: 'etl-fixture-q16@safegold.invalid', is_staff: true, is_superuser: true,  is_active: true, first_name: 'Fixture', last_name: 'Q16', password: 'pbkdf2_sha256$fixture', date_of_birth: '1994-06-06' }
+  - { id: 91, email: 'etl-fixture-og@safegold.invalid',  is_staff: false, is_superuser: true, is_active: true, first_name: 'Fixture', last_name: 'OG',  password: 'pbkdf2_sha256$fixture', date_of_birth: '1980-01-01' }

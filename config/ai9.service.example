@@ -1,0 +1,40 @@
+[Unit]
+Description=AI9 Production Application (Rails + React + Sidekiq)
+After=network.target postgresql.service redis.service
+
+[Service]
+# User and Group to run the application
+# CHANGE THESE to the actual user/group on the server
+User=deploy
+Group=deploy
+
+# Working Directory
+# CHANGE THIS to the absolute path where the repo is cloned
+WorkingDirectory=/var/www/ai9
+
+# Environment Variables
+# It is recommended to load these from a file or specify here
+Environment=RAILS_ENV=production
+Environment=PORT=3000
+# IMPORTANT: Systemd has a restricted PATH. You MUST add the path to your ruby/node.
+# Run 'echo $PATH' in your terminal and paste it here:
+# Environment="PATH=/status/bin:/usr/local/bin:/usr/bin:/bin"
+
+# ExecStart points to the bin/prod script
+# CHANGE THIS to the absolute path of bin/prod
+ExecStart=/var/www/ai9/bin/prod
+
+# Restart configuration
+Restart=always
+RestartSec=5
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=ai9-prod
+
+# Resource limits (optional - adjust as needed)
+# LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target

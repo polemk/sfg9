@@ -1,0 +1,179 @@
+# Catálogo de anexos do Safegold — CFG-02.
+#
+# **Este arquivo é a única fonte dos limites de anexo.** Nenhum model, endpoint ou
+# tela declara "5 MB" ou "4 arquivos" por conta própria: todos leem daqui, via
+# `Sfg::Attachments`. A regra veio do descarte da família de galeria polimórfica
+# (OPS-496 e cia.), onde o legado decidia o limite por **introspecção de método**
+# (`respond_to?`) e a checagem de dimensão testava duas vezes a largura e nunca a
+# altura — limite que ninguém consegue ler é limite que ninguém consegue conferir.
+#
+# **Motor único (DEC-91 / DEC-47, C-04, D-82).** Anexo do Safegold é ActiveStorage
+# declarado **direto no model dono**. Nunca passou pelo model `Medium` — cuja tabela
+# não tinha dono nem escopo, então qualquer autenticado alcançaria o anexo de qualquer
+# outro — e o `Medium` foi **removido** na DEC-109/DEC-113, junto com a galeria que era
+# o único consumidor dele. Também não passa por `public/uploads` + `AssetsProxyController`
+# (servido sem autenticação — é o D-82 do legado voltando por outro nome).
+# **Paperclip não é portado**: as 44 colunas (4 por anexo × 11 anexos) não são
+# recriadas; o ETL de S14 copia o binário e reanexa.
+#
+# **Como declarar um anexo novo** (é o caminho que S9, S17, S3 e S4 usam):
+#
+#     class Renegotiation < ApplicationRecord
+#       include Attachable
+#       sfg_attachment :files
+#     end
+#
+# `sfg_attachment` levanta na carga da classe se a chave não existir aqui. É de
+# propósito: quem for anexar alguma coisa precisa passar por este arquivo, e a
+# revisão de código vê o limite mudando.
+#
+# **Campos de cada anexo**
+#   multiple        — `has_many_attached` em vez de `has_one_attached`.
+#   max_files       — teto de arquivos (só faz sentido com `multiple`). Validado NO
+#                     SERVIDOR: o número do cliente é conveniência, não limite.
+#   max_size_bytes  — teto por arquivo.
+#   content_types   — allowlist. O `active_storage_validations` (3.x) confere o
+#                     conteúdo **real** do arquivo (Marcel/magic bytes), não o
+#                     `Content-Type` que o cliente declarou. É o que fecha o F-09
+#                     dentro do Safegold: `api/v1/uploads.rb:31` confia no declarado.
+#   policy          — quem pode LER o binário. Ver `Sfg::Attachments::POLICIES`.
+#                     Não existe default: anexo sem política declarada não sobe.
+#   variants        — derivados nomeados. `resize` é o lado maior em px e equivale ao
+#                     `'80>'` do Paperclip (só reduz, nunca amplia).
+#
+# ⚠ Onde os binários ficam é `config/storage.yml` (Q-07 / DEC-76): `Disk` na demo,
+# provedor de produção é item obrigatório do runbook de cutover.
+
+defaults:
+  # Prazo da URL assinada emitida por `GET /api/v1/attachments/:signed_id`. Curto de
+  # propósito: a URL é um portador: quem a tiver, abre o arquivo. 5 minutos dá para
+  # a tela renderizar e não dá para virar link compartilhável.
+  url_expires_in_seconds: 300
+
+  # Prazo das URLs de IMAGEM (avatar, logo, derivados). Mais longo de propósito e
+  # declarado aqui em vez de improvisado no model: uma imagem entra num `<img>` de
+  # uma tela que pode ficar aberta, e um avatar que vira quadrado quebrado depois de
+  # 5 minutos é um defeito visual que ninguém associa a prazo de assinatura.
+  # **Documento continua com o prazo curto acima** — é o que não pode virar link.
+  image_url_expires_in_seconds: 3600
+
+attachments:
+  # ---------------------------------------------------------------- OPS-493
+  # `User#avatar` — sai de `public/uploads/avatars/` (gravação crua, servida
+  # estática e sem autenticação) para ActiveStorage.
+  user:
+    avatar:
+      max_size_bytes: 3145728          # 3 MB — `auth19/.../user.rb:61`
+      content_types: [png, jpg, jpeg, webp, gif]
+      policy: authenticated            # avatar aparece em lista de usuários e trilha
+      variants:
+        thumb:    { resize: 80,   format: jpeg, quality: 100 }
+        preview:  { resize: 250,  format: jpeg, quality: 70 }
+        large:    { resize: 1500, format: jpeg, quality: 50 }
+
+  # ---------------------------------------------------------------- OPS-494
+  project:
+    avatar:
+      max_size_bytes: 5242880          # 5 MB — `project.rb:127`
+      content_types: [png, jpg, jpeg, webp, gif]
+      policy: project_member           # C1: só quem participa do projeto vê
+      variants:
+        thumb:    { resize: 80,   format: jpeg, quality: 100 }
+        preview:  { resize: 250,  format: jpeg, quality: 70 }
+        large:    { resize: 1500, format: jpeg, quality: 70 }
+
+  # ---------------------------------------------------------------- OPS-497
+  # Fornecedor. O limite de 1 MB do legado é PRESERVADO de propósito: é o único
+  # anexo com teto apertado, e ele existe porque logo entra em relatório.
+  provider:
+    logo:
+      max_size_bytes: 1048576          # 1 MB — `provider.rb:29`
+      content_types: [png, jpg, jpeg, webp, svg]
+      policy: project_member
+      variants:
+        thumb:    { resize: 80,   format: png, quality: 100 }
+        preview:  { resize: 250,  format: png, quality: 100 }
+        medium:   { resize: 500,  format: png, quality: 100 }
+        large:    { resize: 1200, format: png, quality: 100 }
+        retina:   { resize: 1500, format: png, quality: 100 }
+
+  # ---------------------------------------------------------------- OPS-498
+  # Portador — DEC-47 religou este anexo (estava morto por metade no legado:
+  # upload e exibição comentados, model completo). `Company` continua SEM anexo.
+  carrier:
+    logo:
+      max_size_bytes: 1048576          # 1 MB — `carrier.rb:33`
+      content_types: [png, jpg, jpeg, webp, svg]
+      policy: project_member
+      variants:
+        thumb:    { resize: 80,   format: png, quality: 100 }
+        preview:  { resize: 250,  format: png, quality: 100 }
+        medium:   { resize: 500,  format: png, quality: 100 }
+        large:    { resize: 1200, format: png, quality: 100 }
+        retina:   { resize: 1500, format: png, quality: 100 }
+
+  # ---------------------------------------------------------------- OPS-499
+  # Tema — **removido, e o motivo importa mais que a remoção.**
+  #
+  # Eram 4 anexos (`symbol_logo`, `full_logo`, `text_logo`, `login_bkg_image`) do
+  # `AppTheme`. **DEC-55: a área de temas não é portada** — não há tabela
+  # `app_themes`, não há model, não há tela e não há upload. Anexo catalogado para
+  # um dono que não existe é convite para alguém construir o dono.
+  #
+  # A marca do Safegold **não é upload**: é token em `frontend/src/styles/globals.css`
+  # e arquivo versionado em `frontend/public/images/brand/`, servido pelo componente
+  # `components/brand/Logo.tsx`. O custo dessa escolha está registrado no DEC-55 —
+  # **trocar o logo exige deploy** —, e o usuário optou por ele.
+  #
+  # O que NÃO se perde com a remoção: a regra de que **falta de imagem de marca não
+  # pode derrubar envio de e-mail** (uma das duas quebras do BE-485, onde o legado
+  # fazia `File.new(...)` no arquivo do tema dentro do mailer). Ela continua valendo,
+  # e agora vale por construção: o layout de e-mail não abre arquivo nenhum.
+
+  # ---------------------------------------------------------------- OPS-495
+  # Renegociação — o anexo que motivou a antecipação desta fatia (DEC-63/P-100).
+  #
+  # É **documento**, não imagem: por isso `has_many_attached` DIRETO no model. O antigo
+  # `Medium` restringia `media_type` a `image`/`video` (C-13/D-O) e nunca serviria aqui;
+  # ele saiu do repo na DEC-113.
+  #
+  # Os dois números vêm de `SFG::Metadata` (`MAX_FILES_PER_RENEGOTIATION = 4`,
+  # `MAX_FILE_SIZE = 5.megabytes`) e no legado só existiam no JavaScript da tela:
+  # o servidor aceitava qualquer coisa. Aqui eles são validados **no servidor**, e a
+  # tela lê estes mesmos números por `GET /api/v1/attachments/limits`.
+  #
+  # `policy: project_member` é o que fecha o D-82 para documento financeiro: no
+  # legado o arquivo ficava em `public/system/...`, URL adivinhável e servida sem
+  # autenticação nenhuma.
+  # ⚠ **A chave mudou de `renegotiation.files` para `renegotiation_attachment.file`
+  # quando a S9 entregou o domínio, e o motivo é a REGRA, não a arrumação.**
+  #
+  # O anexo de renegociação precisa de dois dados que o blob do ActiveStorage não
+  # tem: **`title`**, que o usuário edita (DEC-53 manda consertar o "renomear
+  # anexo", que no legado levantava `NameError` garantido), e **`user_id`**, o
+  # autor, porque só ele exclui (BE-229) — no legado essa regra era só visual.
+  # Com `has_many_attached :files` no `Renegotiation` os dois teriam de morar em
+  # `blob.metadata`, sem tipo, sem índice e sem FK. Então cada arquivo é uma linha
+  # de `renegotiation_attachments`, com UM binário, e é essa linha que o ETL da
+  # S14 já declara em `Sfg::Etl::Attachments::MAP` e o que dá sentido ao contador
+  # `renegotiations.attachments_count` (DB-195).
+  #
+  # `multiple: false` com `max_files: 4` **não é contradição**: `multiple` diz
+  # quantos binários cabem NA LINHA (um), `max_files` é o teto por RENEGOCIAÇÃO,
+  # contado em linhas irmãs por `Renegotiations::AttachmentService`. O número
+  # continua num lugar só — aqui —, e é o mesmo que a tela lê por
+  # `GET /api/v1/attachments/limits`.
+  renegotiation_attachment:
+    file:
+      multiple: false
+      max_files: 4                     # teto por RENEGOCIAÇÃO (SFG::Metadata::MAX_FILES_PER_RENEGOTIATION)
+      max_size_bytes: 5242880          # 5 MB por arquivo (SFG::Metadata::MAX_FILE_SIZE)
+      content_types: [pdf, png, jpg, jpeg, webp, doc, docx, xls, xlsx, csv, txt, zip]
+      policy: project_member
+      # Miniatura de VARIANTE, nunca do arquivo original (FE-208). O legado
+      # renderizava o arquivo inteiro num `<img>` de 80 px e ainda chamava DOIS
+      # processos externos por imagem a cada renderização, só para descobrir a
+      # dimensão — e derrubava o detalhe com 500 quando o arquivo sumia.
+      variants:
+        thumb:   { resize: 120, format: jpeg, quality: 80 }
+        preview: { resize: 600, format: jpeg, quality: 70 }

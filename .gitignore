@@ -1,0 +1,141 @@
+# Monorepo Gitignore — Backend (Rails) + Frontend (React/Vite)
+
+## Credenciais e segredos
+.env
+.env.secrets
+bin/.env.secrets
+# Service account do Google Calendar (credencial — nunca commitar)
+backend/config/goat-calendar.json
+backend/.env
+backend/.env.production
+# `backend/Gemfile` estava AQUI, ignorado — o mesmo defeito do legado, que tinha
+# tres Gemfiles com o principal no .gitignore (OPS-614). Sem Gemfile versionado nao
+# existe ambiente reproduzivel, e o contrato C2 depende de existir um.
+frontend/.env
+frontend/.env.production
+
+# Rails credentials/secrets (backend)
+backend/config/master.key
+backend/config/credentials.yml.enc
+backend/config/credentials/*.enc
+backend/config/credentials/*.key
+backend/config/secrets.yml
+
+# Configuração de banco (não versionar credenciais)
+backend/config/database.yml
+backend/db/schema.rb
+## Temporários e logs
+backend/tmp/
+backend/log/
+backend/storage/*
+!backend/storage/.keep
+
+## Assets e uploads gerados
+backend/public/assets/
+backend/public/system/
+
+## Ruby/Bundler
+backend/vendor/bundle/
+backend/.bundle/
+backend/*.gem
+# `backend/Gemfile.lock` estava AQUI. Lock ignorado significa que duas maquinas
+# resolvem versoes diferentes das mesmas gems e ninguem sabe qual rodou — e o
+# `pnpm-lock.yaml` do front ja e versionado, entao os dois lados divergiam na
+# mesma arvore. OPS-614.
+.bundle/config
+.ruby-version
+
+## Node/JS — dependências e build
+**/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/.eslintcache
+frontend/.tsbuildinfo
+
+## Logs/locks de gerenciadores de pacotes
+yarn.lock
+yarn-error.log*
+.yarn-integrity
+npm-debug.log*
+pnpm-debug.log*
+
+## IDE/Editor
+.vscode/
+.idea/
+*.code-workspace
+
+## Sistema Operacional
+**/.DS_Store
+**/Thumbs.db
+
+## Packs do Rails (webpacker legado)
+public/packs
+public/packs-test
+
+## Diversos existentes
+.rakeTasks
+.generators
+.byebug_history
+public/assets/*
+public/system/*
+public/.DS_Store
+config/.DS_Store
+app/.DS_Store
+db/.DS_Store
+engines/.DS_Store
+
+## Credenciais no root (legado, se existirem)
+/config/credentials/development.key
+/config/credentials/development.yml.enc
+/config/credentials/production.key
+/config/credentials/production.yml.enc
+config/credentials.yml.enc
+config/credentials
+/config/master.key
+
+## Arquivos diversos não versionáveis
+.gitattributes
+deploy_production.sh
+CLAUDE.md
+claude.md
+image (1).png
+image (2).png
+scratch.html
+DEV.session.sql
+
+.figma/*
+backend/db/schema.rb
+backend/config/database.yml
+backend/public/uploads/*
+frontend/dist/*
+.agent/rules/*
+.agent/skills/*.docx
+.agent/skills/*.pdf
+.agent/skills/*.pptx
+.agent/skills/*.xlsx
+tmp/
+.claude/
+.trae/documents/transferencia_design_comandae_ai9.md
+.trae/specs/abr26/here.txt
+backend/coverage/
+frontend/dist/index.html
+frontend/dist/index.html
+
+*Zone.Identifier
+*:Zone.Identifier
+
+# graphify: AST cache regenerates itself; do not version 24MB of hashes
+graphify-out/cache/
+__pycache__/
+*.pyc
+
+# graphify: auto-backup the hook writes on every rebuild; not a deliverable
+graphify-out/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/
+
+# Arquivo fantasma criado por engano numa sessão de migração: o nome contém
+# U+F03A (área privada, parecido com ":"), que o Windows não consegue acessar.
+Nota*
+
+# Dado REAL de cliente, extraido do dump de producao. Fica na maquina de quem
+# tem o dump, para os goldens rodarem — mas NUNCA e versionado (DEC-123).
+backend/spec/fixtures/receivables/producao_*.json

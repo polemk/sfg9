@@ -1,0 +1,14 @@
+Nova mensagem no <%= @app_name %>
+
+Olá <%= @observer.name %>, <%= @message.sender_name %> enviou uma nova mensagem:
+
+  "<%= @message.message %>"
+
+Nome: <%= @message.sender_name %>
+E-mail: <%= @message.sender_email %>
+Situação: <%= @message.state_label %>
+Tipo: <%= @message.context_label %>
+Quando: <%= @message.created_at.strftime('%d/%m/%Y %H:%M') %>
+
+--
+<%= @app_name %>

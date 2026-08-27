@@ -1,0 +1,53 @@
+# Serviços do ActiveStorage — OPS-616 / Q-07.
+#
+# ⚠ **Q-07 está EM ABERTO e esta é a razão de o serviço de produção ser
+# parametrizado, não escolhido.** A pergunta é "qual provedor de storage em produção",
+# e ela não se responde aqui: é decisão de infraestrutura do cliente. O que esta fatia
+# garante é que a escolha seja **uma variável**, não uma edição de código no dia do
+# cutover.
+#
+# O risco concreto, que já derrubou anexo em outros deploys: `Disk` grava em
+# `backend/storage/`, dentro da árvore da aplicação. Em qualquer deploy que troque o
+# diretório (release nova, container novo, máquina nova) **os anexos somem** — e somem
+# em silêncio, porque o registro no banco continua lá apontando para um blob que não
+# existe mais. `Disk` serve para a demo (DEC-16, dado fake); **não** serve para o
+# cutover (F-13).
+#
+# Enquanto Q-07 não for respondida, produção usa `disk_persistent`, apontado para um
+# caminho FORA da árvore da aplicação por `ACTIVE_STORAGE_DISK_ROOT` — que é o mínimo
+# que sobrevive a um redeploy, desde que o caminho seja um volume montado.
+# O runbook marca isto como **bloqueado por dependência externa**, nunca como concluído.
+
+local:
+  service: Disk
+  root: <%= Rails.root.join("storage") %>
+
+test:
+  service: Disk
+  root: <%= Rails.root.join("tmp/storage") %>
+
+# Produção enquanto Q-07 não responde. O default aponta para fora do release de
+# propósito: se a variável não vier, o erro aparece no deploy, não seis meses depois
+# quando alguém for baixar um anexo.
+disk_persistent:
+  service: Disk
+  root: <%= ENV.fetch("ACTIVE_STORAGE_DISK_ROOT", "/var/lib/sfg9/storage") %>
+
+# Alvos prontos para quando Q-07 for respondida — basta apontar
+# `ACTIVE_STORAGE_SERVICE` para um deles e preencher as ENV.
+amazon:
+  service: S3
+  access_key_id: <%= ENV["AWS_ACCESS_KEY_ID"] %>
+  secret_access_key: <%= ENV["AWS_SECRET_ACCESS_KEY"] %>
+  region: <%= ENV.fetch("AWS_REGION", "sa-east-1") %>
+  bucket: <%= ENV["AWS_BUCKET"] %>
+
+# Compatível com S3 (MinIO, Backblaze B2, DigitalOcean Spaces, Cloudflare R2).
+s3_compatible:
+  service: S3
+  access_key_id: <%= ENV["S3_ACCESS_KEY_ID"] %>
+  secret_access_key: <%= ENV["S3_SECRET_ACCESS_KEY"] %>
+  region: <%= ENV.fetch("S3_REGION", "auto") %>
+  bucket: <%= ENV["S3_BUCKET"] %>
+  endpoint: <%= ENV["S3_ENDPOINT"] %>
+  force_path_style: true

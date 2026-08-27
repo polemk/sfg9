@@ -1,0 +1,12 @@
+<%# Cor literal: ver `layouts/mailer.html.erb`. %>
+<h2 style="font-family:'Work Sans',Arial,sans-serif; color:#2D2D2A; font-size:20px; font-weight:600; margin:0 0 16px;">Sua mensagem foi respondida</h2>
+
+<p style="color:#2D2D2A; font-size:15px; line-height:1.5; margin:0 0 16px;">
+  Olá <strong><%= @message.sender_name %></strong>, a equipe do <%= @app_name %> respondeu a sua mensagem
+  <strong style="font-family:'Fira Mono',Consolas,monospace;">#<%= @message.id %></strong>:
+</p>
+
+<div style="background-color:#FAFAF9; border:1px solid #E5E4DF; border-radius:12px; padding:20px; margin:0 0 24px;">
+  <em style="color:#2D2D2A; font-size:15px; line-height:1.6;">“<%= @note.description %>”</em>
+  <div style="font-size:12px; color:#63635C; margin-top:12px;"><%= @note.author_name %> &middot; <%= @note.created_at.strftime('%d/%m/%Y %H:%M') %></div>
+</div>

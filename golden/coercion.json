@@ -1,0 +1,109 @@
+{
+  "_": [
+    "Casos golden de coercao — contrato C2 (OPS-619).",
+    "",
+    "Extraidos EXECUTANDO o `config/initializers/type_casting.rb` do legado sfg em",
+    "25/08/2026 (Ruby 3.4 + ActiveSupport; o initializer nao depende da versao do Rails).",
+    "Este arquivo e lido pelos DOIS lados: `backend/spec/lib/sfg/coercion_spec.rb` e o",
+    "cross-check de `frontend/src/lib/utils/number.ts`. Um conjunto de casos, duas",
+    "implementacoes — porque formatacao divergente entre a tela e a gravacao e o D-09",
+    "por outra porta.",
+    "",
+    "O achado que este arquivo trava, e ele e contra-intuitivo: no legado",
+    "`\"1.234,56\".to_number` devolve **nil**, nao 1234.56. O `numeric?` dele",
+    "(/^(|-)?[0-9]+((\\.|,)[0-9]+)?$/) aceita UM separador so, entao string de moeda",
+    "mascarada nao converte — e `\"1.234\"` vira 1.234, nao 1234. Quem 'consertar' isso",
+    "sem decidir muda valor gravado."
+  ],
+
+  "string_to_bool": {
+    "true": true,
+    "t": true,
+    "yes": true,
+    "y": true,
+    "s": true,
+    "sim": true,
+    "1": true,
+    "TRUE": true,
+    "Sim": true,
+    "false": false,
+    "f": false,
+    "no": false,
+    "n": false,
+    "não": false,
+    "0": false,
+    "FALSE": false,
+    "": false,
+    " ": false
+  },
+
+  "string_to_bool_raises": ["talvez", "2", "0.0", "yes please"],
+
+  "integer_to_bool": { "1": true, "0": false },
+  "integer_to_bool_raises": [2, -1],
+
+  "nil_to_bool": false,
+  "true_to_i": 1,
+  "false_to_i": 0,
+
+  "string_to_number": [
+    { "input": "1.234,56", "legacy": null, "note": "dois separadores: o numeric? do legado recusa" },
+    { "input": "-1.234,56", "legacy": null, "note": "idem, com sinal" },
+    { "input": "1234,56", "legacy": 1234.56 },
+    { "input": "1234.56", "legacy": 1234.56 },
+    { "input": "1234", "legacy": 1234.0 },
+    { "input": "-1234,56", "legacy": -1234.56 },
+    { "input": "0", "legacy": 0.0 },
+    { "input": "0,00", "legacy": 0.0 },
+    { "input": "", "legacy": null },
+    { "input": "abc", "legacy": null },
+    { "input": "1.234", "legacy": 1.234, "note": "ponto e DECIMAL no legado, nao milhar" },
+    { "input": "12,3", "legacy": 12.3 },
+    { "input": "-0,5", "legacy": -0.5 },
+    { "input": "1,", "legacy": null },
+    { "input": "+5", "legacy": null, "note": "sinal de mais nao e aceito" }
+  ],
+
+  "to_currency": [
+    { "input": 1234.56, "legacy": "R$1.234,56" },
+    { "input": -1234.56, "legacy": "R$-1.234,56", "note": "o sinal fica DEPOIS do R$" },
+    { "input": 0, "legacy": "R$0,00" },
+    { "input": 1234567.891, "legacy": "R$1.234.567,89" },
+    { "input": 0.005, "legacy": "R$0,01" },
+    { "input": 0.015, "legacy": "R$0,02" },
+    { "input": 1, "legacy": "R$1,00" },
+    { "input": -1, "legacy": "R$-1,00" },
+    { "input": 999.999, "legacy": "R$1.000,00" },
+    { "input": 1000000, "legacy": "R$1.000.000,00" }
+  ],
+
+  "with_precision_2": [
+    { "input": 1234.56, "legacy": "1234.56" },
+    { "input": 0, "legacy": "0.00" },
+    { "input": 1234567.891, "legacy": "1234567.89" },
+    { "input": 0.005, "legacy": "0.01" },
+    { "input": 0.015, "legacy": "0.02" },
+    { "input": 999.999, "legacy": "1000.00" }
+  ],
+
+  "frontend_divergences": {
+    "_": [
+      "Onde `frontend/src/lib/utils/number.ts` NAO reproduz o legado — e por decisao,",
+      "nao por acidente. O cross-check de node le esta secao e reprova se o front voltar",
+      "a bater com o legado (o que aqui seria a regressao, nao a correcao).",
+      "",
+      "A melhoria: no legado uma string de moeda mascarada virava `nil` em silencio e o",
+      "campo gravava zero ou nada. No front ela parseia, e o que NAO parseia devolve",
+      "aviso legivel em vez de sumir."
+    ],
+    "parse_number_pt_br": [
+      { "input": "1.234,56", "frontend": 1234.56, "legacy": null, "why": "pt-BR canonico: ponto e milhar, virgula e decimal" },
+      { "input": "-1.234,56", "frontend": -1234.56, "legacy": null, "why": "idem, com sinal" },
+      { "input": "1.234", "frontend": 1234, "legacy": 1.234, "why": "3 digitos depois do ponto = milhar; o legado lia como decimal" },
+      { "input": "1234,56", "frontend": 1234.56, "legacy": 1234.56, "why": "concordam" },
+      { "input": "", "frontend": null, "legacy": null, "why": "concordam" },
+      { "input": "abc", "frontend": null, "legacy": null, "why": "concordam no valor; o front ainda devolve aviso" },
+      { "input": "1,", "frontend": 1, "legacy": null, "why": "virgula solta e estado intermediario de digitacao; o campo nao pode zerar o valor enquanto o usuario digita" }
+    ]
+  }
+}

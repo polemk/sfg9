@@ -1,0 +1,3789 @@
+{
+  "name": "goat/v1/router",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## ativações\n- instagram: comentário\n- instagram: dm\n- whats oficial: waba\n- whats não oficial: evoapi\n- chat de teste\n- ai9 chat (website goat)",
+        "height": 2240,
+        "width": 1008,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -720,
+        224
+      ],
+      "typeVersion": 1,
+      "id": "9ea4e681-fe5f-4d02-9921-06c696a562e2",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.query['hub.challenge']}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        -976,
+        1104
+      ],
+      "id": "fb069eb5-f4ae-4b9c-9d36-86357f4369f7",
+      "name": "waba/respond-challenge",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "## validação de webhooks na meta",
+        "height": 1120,
+        "width": 576,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1344,
+        992
+      ],
+      "typeVersion": 1,
+      "id": "3b4be194-8ce6-49b3-b243-fe5d0be2c231",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.query['hub.challenge']}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        -976,
+        1360
+      ],
+      "id": "2b559a00-6dc7-4137-83d5-ceea9f325df8",
+      "name": "facebook/respond-challenge",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "path": "32992bc8-5566-45d7-8540-572681e7060a",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -1264,
+        1360
+      ],
+      "id": "b7da0ee1-b3c7-4ef5-9d21-8ff77be28a3d",
+      "name": "facebook/validate-webhook",
+      "webhookId": "32992bc8-5566-45d7-8540-572681e7060a",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.query['hub.challenge']}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        -976,
+        1632
+      ],
+      "id": "5a169a97-12e6-4e7d-8203-9fcfe22a5e6e",
+      "name": "instagram/respond-challenge",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "goat/v1/router/instagram",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -640,
+        1520
+      ],
+      "id": "0e3c0074-3b2c-4218-8c0f-11522c8d4a8a",
+      "name": "on instagram",
+      "webhookId": "ef549f88-c7ff-483f-80e7-146f6bec4592"
+    },
+    {
+      "parameters": {
+        "graphApiVersion": "v22.0",
+        "node": "=437371295778210",
+        "options": {
+          "fields": {
+            "field": [
+              {
+                "name": "id,name,username"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        -1344,
+        2272
+      ],
+      "id": "fc983c21-547d-4a03-a7d9-c12a15077bc5",
+      "name": "instagram/fetch",
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "I4Rb5SXBQ7XW0cl1",
+          "name": "full insta"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "graphApiVersion": "v19.0",
+        "node": "=me",
+        "options": {
+          "fields": {
+            "field": [
+              {
+                "name": "id, instagram_business_account{id}"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        -1200,
+        2272
+      ],
+      "id": "221e72ab-2c16-4379-b5b7-42cd2fd1500d",
+      "name": "instagram/fetch_id",
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "mjyKuUp6yCR30uA4",
+          "name": "configurações do insta"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpRequestMethod": "POST",
+        "graphApiVersion": "v22.0",
+        "node": "={{ $json.id }}",
+        "edge": "messages",
+        "options": {
+          "queryParametersJson": "={ \n  \"recipient\": {\n    \"id\": \"{{ $('on instagram').item.json.body.entry[0].messaging[0].sender.id }}\"\n  },\n  \"message\": {\n    \"text\": \"pera aí, 1 min\"\n  }\n} "
+        }
+      },
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        -1056,
+        2272
+      ],
+      "id": "c083464e-d1d1-4b13-9c1a-bb63d022f2cd",
+      "name": "instagram/presence",
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "mjyKuUp6yCR30uA4",
+          "name": "configurações do insta"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ !!$json.body.entry[0].messaging[0] && !!$json.body.entry[0].messaging[0].message }}",
+                    "rightValue": "comment",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    },
+                    "id": "a97e7e61-c515-49f3-91fc-9955f0683e37"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "8d04b7a4-d715-40c5-b567-9b93ed8d455b",
+                    "leftValue": "={{ !!$json.body.entry[0].messaging[0] && !!$json.body.entry[0].messaging[0].postback }}",
+                    "rightValue": "message",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "ea9f3fb6-e11c-4c1c-b76b-42b701dd946d",
+                    "leftValue": "={{ !!$json.body.entry[0].messaging[0] && !!$json.body.entry[0].messaging[0].reaction }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "b079e81b-a863-4127-8a73-b3671cb7efe2",
+                    "leftValue": "={{ $json.body.entry[0].changes[0] }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "object",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -240,
+        1488
+      ],
+      "id": "9b217614-2fb1-486c-94ce-118290097642",
+      "name": "instagram/source"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ed2a7344-773c-4991-a018-8da18b589134",
+              "leftValue": "={{ $json.body.object }}",
+              "rightValue": "instagram",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "9c8b64f5-82b4-439e-a359-354761a099d2",
+              "leftValue": "={{ $json.body.entry[0].id }}",
+              "rightValue": "17841450112245233",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -464,
+        1520
+      ],
+      "id": "cc40cb77-07dd-4a6f-a24d-83ef59da28f2",
+      "name": "instagram/rcv"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "75d62fbe-47ae-47c6-afcf-d2a2c05de535",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -1584,
+        560
+      ],
+      "id": "9b4fd54b-f157-4f08-bc29-35cf86684a72",
+      "name": "on manychat",
+      "webhookId": "75d62fbe-47ae-47c6-afcf-d2a2c05de535"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "9c8b64f5-82b4-439e-a359-354761a099d2",
+              "leftValue": "={{ $json.body.page_id }}",
+              "rightValue": "100151666446451",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "eaf3ae51-c10d-488e-ba39-8e3278c72e7e",
+              "leftValue": "={{ $json.body.ig_id }}",
+              "rightValue": 17841450112245232,
+              "operator": {
+                "type": "number",
+                "operation": "notEquals"
+              }
+            },
+            {
+              "id": "fcb58607-3448-49b3-ac4c-a24fc9a2654d",
+              "leftValue": "={{ $json.body.ig_id }}",
+              "rightValue": 2186187571817902,
+              "operator": {
+                "type": "number",
+                "operation": "notEquals"
+              }
+            },
+            {
+              "id": "0d10f48f-4ea5-4e6e-b9f6-d93dd8e78f8a",
+              "leftValue": "={{ $json.body.ig_username }}",
+              "rightValue": "polemk",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -1408,
+        560
+      ],
+      "id": "b44b8764-5087-4b1a-9e8a-94aed052fb27",
+      "name": "manychat/rcv"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "8d04b7a4-d715-40c5-b567-9b93ed8d455b",
+                    "leftValue": "={{ $json.body.ig_id }}",
+                    "rightValue": "message",
+                    "operator": {
+                      "type": "number",
+                      "operation": "notEmpty",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "e111a26c-7d40-4544-be37-006a9b7877a8",
+                    "leftValue": "={{ $json.body.ig_username }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "empty",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -1200,
+        560
+      ],
+      "id": "3627befb-0e40-401a-994b-730bb39fadfa",
+      "name": "manychat/source"
+    },
+    {
+      "parameters": {
+        "path": "3cb74ee6-4cbe-4927-9964-fe39b529e944",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -1264,
+        1904
+      ],
+      "id": "17fda5f5-59b1-4513-8320-49c524a07808",
+      "name": "permissions/validation",
+      "webhookId": "3cb74ee6-4cbe-4927-9964-fe39b529e944",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.query['hub.challenge']}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        -976,
+        1904
+      ],
+      "id": "ffafc205-9170-44eb-a5a2-4985553a510a",
+      "name": "permissions/respond-challenge",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "2e21d99d-bc49-40dd-b7bc-7f039cd733e1",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -1584,
+        800
+      ],
+      "id": "d2bef073-e33b-4099-b75c-c2f59ac02c10",
+      "name": "on permissions",
+      "webhookId": "2e21d99d-bc49-40dd-b7bc-7f039cd733e1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "9c8b64f5-82b4-439e-a359-354761a099d2",
+              "leftValue": "={{ $json.body.page_id }}",
+              "rightValue": "100151666446451",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "eaf3ae51-c10d-488e-ba39-8e3278c72e7e",
+              "leftValue": "={{ $json.body.ig_id }}",
+              "rightValue": 17841450112245232,
+              "operator": {
+                "type": "number",
+                "operation": "notEquals"
+              }
+            },
+            {
+              "id": "fcb58607-3448-49b3-ac4c-a24fc9a2654d",
+              "leftValue": "={{ $json.body.ig_id }}",
+              "rightValue": 2186187571817902,
+              "operator": {
+                "type": "number",
+                "operation": "notEquals"
+              }
+            },
+            {
+              "id": "0d10f48f-4ea5-4e6e-b9f6-d93dd8e78f8a",
+              "leftValue": "={{ $json.body.ig_username }}",
+              "rightValue": "polemk",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -1408,
+        800
+      ],
+      "id": "a6fce00e-1ed6-471b-8676-02211b09ec2d",
+      "name": "permissions/rcv"
+    },
+    {
+      "parameters": {
+        "httpRequestMethod": "POST",
+        "graphApiVersion": "v22.0",
+        "node": "=100151666446451",
+        "edge": "messages",
+        "options": {
+          "queryParametersJson": "={\n  \"recipient\": {\n    \"id\": \"{{ $json.source_id }}\"\n  },\n  \"message\": {\n    \"text\": \"{{ $json.content }}\"\n  }\n} "
+        }
+      },
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        9584,
+        352
+      ],
+      "id": "b0c11513-c6b4-44e9-8216-1f6a5bc11ce7",
+      "name": "instagram/answer",
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "mjyKuUp6yCR30uA4",
+          "name": "configurações do insta"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpRequestMethod": "POST",
+        "graphApiVersion": "v22.0",
+        "node": "={{ $json.content_id }}",
+        "edge": "replies",
+        "options": {
+          "queryParametersJson": "{\n  \"message\": \"valeu pelo comentário! te mandei uma DM — olha em pedidos/solicitações 😉 FINALMENTE MARK\"\n}"
+        }
+      },
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        9584,
+        512
+      ],
+      "id": "5640d69f-49e2-4b37-ada3-a39e27fa24c1",
+      "name": "instagram/reply",
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "fOqwcG5OEJBPKmI8",
+          "name": "system user pica"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "var body = $('on instagram').first().json.body;\nvar comment = body.entry[0].changes[0];\nvar out = {};\n\nout.id = null;\nout.target_id = body.entry[0].id;\nout.source_endpoint = \"comment\";\nout.is_categorized = false;\nout.source_type = \"instagram\";\nout.source_id = comment.value.from.id;\nout.igs_id = comment.value.from.id;\nout.ig_username = comment.value.from.username;\nout.content_type = \"text\";\nout.content = comment.value.text;\nout.content_id = comment.value.id;\n\nreturn [out]"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        112,
+        1696
+      ],
+      "id": "819d0423-1bdf-4194-98e0-f87b5f2e134f",
+      "name": "instagram/comment"
+    },
+    {
+      "parameters": {
+        "jsCode": "var body = $('on instagram').first().json.body;\nvar msg = body.entry[0].messaging[0];\nvar out = {};\nvar content = \"\";\nvar mid = null;\n\nif (!!msg.postback) {\n  content = msg.postback.title;\n  mid = msg.postback.mid;\n} else {\n  content = msg.message.text;\n  mid = msg.message.mid;\n}\n\nout.id = null;\nout.target_id = body.entry[0].id;\nout.source_endpoint = \"message\";\nout.is_categorized = false;\nout.source_type = \"instagram\";\nout.source_id = msg.sender.id;\nout.igs_id = msg.sender.id;\nout.content_type = \"text\";\nout.content = content;\nout.content_id = mid;\n\nreturn [out]"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        112,
+        1472
+      ],
+      "id": "7ba65b0e-6a59-4fba-89c6-0e80303878a1",
+      "name": "instagram/message"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "cc82feb9-e0ec-4537-95a0-bc2c8ce40a53",
+              "leftValue": "={{ $json.source_id }}",
+              "rightValue": "={{ $json.target_id }}",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        992,
+        1216
+      ],
+      "id": "abb52754-daee-46b0-98ad-4940134cb8cb",
+      "name": "joy/not_self"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": " https://unseared-christinia-unbiologically.ngrok-free.dev/api/v1/leads",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "source_type",
+              "value": "={{ $json.source_type }}"
+            },
+            {
+              "name": "source_id",
+              "value": "={{ $json.source_id }}"
+            },
+            {
+              "name": "content",
+              "value": "={{ $json.content }}"
+            },
+            {
+              "name": "content_type",
+              "value": "={{ $json.content_type }}"
+            },
+            {
+              "name": "source_endpoint",
+              "value": "={{ $json.source_endpoint }}"
+            },
+            {
+              "name": "target_id",
+              "value": "={{ $json.target_id }}"
+            },
+            {
+              "name": "igs_id",
+              "value": "={{ $json.igs_id }}"
+            },
+            {
+              "name": "ig_username",
+              "value": "={{ $json.ig_username }}"
+            },
+            {
+              "name": "fb_id",
+              "value": "={{ $json.fb_id }}"
+            },
+            {
+              "name": "fb_username",
+              "value": "={{ $json.fb_username }}"
+            },
+            {
+              "name": "name",
+              "value": "={{ $json.name }}"
+            },
+            {
+              "name": "phone",
+              "value": "={{ $json.phone }}"
+            },
+            {
+              "name": "execution_id",
+              "value": "={{ $execution.id }}"
+            },
+            {
+              "name": "session_uuid",
+              "value": "={{ $json.session_uuid }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1248,
+        1216
+      ],
+      "id": "a24b863d-b44b-4fac-a4e3-8003784d553c",
+      "name": "joy/lead",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "5G8W6ooh47s4e8iv",
+          "name": "bearer goat"
+        },
+        "httpBearerAuth": {
+          "id": "3zk1jGYj5BJMyCnP",
+          "name": "api-goat-local"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://unseared-christinia-unbiologically.ngrok-free.dev/api/v1/operations/validate",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "text",
+              "value": "={{ $json.content }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1952,
+        1376
+      ],
+      "id": "1ce04256-2e28-4a78-9b69-02970faf957f",
+      "name": "joy/operation",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "5G8W6ooh47s4e8iv",
+          "name": "bearer goat"
+        },
+        "httpBearerAuth": {
+          "id": "3zk1jGYj5BJMyCnP",
+          "name": "api-goat-local"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "Ou9Luh1RvbMB3slU",
+          "mode": "id",
+          "cachedResultName": "smart/v2/lma"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "lead": "={{ $('joy/bandaid').item.json }}"
+          },
+          "matchingColumns": [
+            "lead"
+          ],
+          "schema": [
+            {
+              "id": "lead",
+              "displayName": "lead",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "object",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        5952,
+        960
+      ],
+      "id": "16aa0b1a-1519-404b-9f68-465207d13856",
+      "name": "joy/smart"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "adf127a1-61b4-4bcc-a3be-5731f04f2e3c",
+              "leftValue": "={{ $json.is_categorized }}",
+              "rightValue": "true",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1680,
+        1216
+      ],
+      "id": "ddf2e361-39bf-4a48-a906-8073568ca591",
+      "name": "joy/is_categorized"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.operation_key == 'smartv2' || $json.operation_key == 'joyv7' || $json.operation_key == 'smart' }}",
+                    "rightValue": "smartv2",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    },
+                    "id": "8a7cc1d6-5b7b-4145-bdeb-7a0cfd1dfcd1"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "smart"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "781a7af5-888e-41e9-a1cf-4e4d13a2d2ee",
+                    "leftValue": "={{ $json.operation_key == 'tetris' }}",
+                    "rightValue": "=tetris",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "tetris"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "34721053-27ad-4b44-aae7-88af5a35100e",
+                    "leftValue": "={{ $json.operation_key == 'goat' || $json.operation_key == 'g0at' }}",
+                    "rightValue": "goat",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "goat"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "e1cd7b2a-6248-490c-8979-57beaf67f206",
+                    "leftValue": "={{ !!$json.operation_key }}",
+                    "rightValue": "null",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "unknown"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "none",
+          "allMatchingOutputs": false
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        5584,
+        1168
+      ],
+      "id": "76145458-b5c0-4b83-9617-f67f8ef9bddd",
+      "name": "joy/teams",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "alehCP50Yyy2pbqf",
+          "mode": "list",
+          "cachedResultName": "smart/v2/lma"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "lead": "={{ $('joy/bandaid').item.json }}"
+          },
+          "matchingColumns": [
+            "lead"
+          ],
+          "schema": [
+            {
+              "id": "lead",
+              "displayName": "lead",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "object",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        5952,
+        1184
+      ],
+      "id": "6d568d32-c2ed-462a-a41c-b425fdb52d68",
+      "name": "joy/tetris"
+    },
+    {
+      "parameters": {
+        "jsCode": "var out = $input.first().json;\n\nreturn [out]"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        6192,
+        960
+      ],
+      "id": "33c626ec-a369-4819-82a2-e4eac914ecf4",
+      "name": "joy/output__smart"
+    },
+    {
+      "parameters": {
+        "jsCode": "var out = $input.first().json;\n\nreturn [out]"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        6192,
+        1616
+      ],
+      "id": "befca5ea-a284-4b2d-a7d4-b30f4968d76c",
+      "name": "joy/output__onboarding"
+    },
+    {
+      "parameters": {
+        "jsCode": "var out = $input.first().json;\n\nreturn [out]"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        6192,
+        1184
+      ],
+      "id": "5a3f90d3-bf48-4066-8b83-14dee4443274",
+      "name": "joy/output__tetris"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.source_type == \"instagram\" && $json.source_endpoint == 'message' }}",
+                    "rightValue": "=instagram",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    },
+                    "id": "73d1eca1-03ea-47fb-ba35-15d4e08d10ca"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "ig_message"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "b4e5ba63-86b1-4ef9-8440-18588cb57ac4",
+                    "leftValue": "={{ $json.source_type == \"instagram\" && $json.source_endpoint == 'comment' }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "ig_comment"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "d378adbc-369f-4d9b-afdc-77bdcbf32db2",
+                    "leftValue": "={{ $json.source_type == \"facebook\" && $json.source_endpoint == 'message' }}",
+                    "rightValue": "fb_message",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "fb_message"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "fd19d25d-0d45-4430-8abf-7f63b3521b7d",
+                    "leftValue": "={{ $json.source_type == \"facebook\" && $json.source_endpoint == 'comment' }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "fb_comment"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "fb045a50-295b-4449-83a1-f2493e403ca5",
+                    "leftValue": "={{ $json.source_type == \"waba\" }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "waba_message"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "22b0b4d8-b695-4866-884d-49912b62b5a6",
+                    "leftValue": "={{ $json.source_type == \"whats\" }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "whatsapp_message"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "59916a97-59bc-4764-a0ea-4ad75834c74c",
+                    "leftValue": "={{ $json.source_type == \"chat\" }}",
+                    "rightValue": "chat",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "chat"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "api-condition-001",
+                    "leftValue": "={{ $json.source_type == \"api\" }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "api"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        8464,
+        1088
+      ],
+      "id": "5cfbdbef-e26d-425f-ad93-7ba57cfa5bdb",
+      "name": "joy/answer"
+    },
+    {
+      "parameters": {
+        "jsCode": "var i = $('joy/not_self').first().json\n\ni.id = $input.first().json.smart_id\ni.is_categorized = $input.first().json.is_categorized\ni.operation_key = $input.first().json.operation_key\n\nreturn { ...$input.first().json, ...i  };"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1456,
+        1216
+      ],
+      "id": "86cf2a9a-c8b7-47bf-a338-e9e44e4b39f0",
+      "name": "joy/parser"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "8670d688-65a5-4326-a69c-402b397257c5",
+              "leftValue": "={{ $json.matched }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        2176,
+        1376
+      ],
+      "id": "8286be34-6ffc-409a-8e9c-26f9045077f3",
+      "name": "joy/is_related2"
+    },
+    {
+      "parameters": {
+        "httpRequestMethod": "POST",
+        "graphApiVersion": "v22.0",
+        "node": "={{ $json.content_id }}",
+        "edge": "replies",
+        "options": {
+          "queryParametersJson": "{\n  \"text\": \"valeu pelo comentário! te mandei uma DM — olha em pedidos/solicitações 😉\"\n}"
+        }
+      },
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        9584,
+        928
+      ],
+      "id": "9672257a-01c2-40e8-8201-97e4cd6c53fa",
+      "name": "facebook/reply",
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "fOqwcG5OEJBPKmI8",
+          "name": "system user pica"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "var i = $('joy/parser').first().json\n\ni.is_categorized = true\ni.operation_key = $input.first().json.operation.key\ni.operation_id = $input.first().json.operation.id\n\nreturn [i];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2432,
+        1376
+      ],
+      "id": "f2b8420d-9e60-4c2f-9ed5-a35023d7cd57",
+      "name": "joy/categorize"
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        -1008,
+        544
+      ],
+      "id": "5a9f06fe-4270-4034-933f-9447e851bb41",
+      "name": "manychat/answer"
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        -1200,
+        800
+      ],
+      "id": "ba16066f-aef0-4905-a34b-a84aabbf6f05",
+      "name": "permissions/answer"
+    },
+    {
+      "parameters": {
+        "jsCode": "var i = $('joy/output').first().json\nvar lead_data = { \n  \"target_id\": $('update lead').first().json.target_id, \n  \"content_id\": $('update lead').first().json.content_id,\n  \"source_id\": $('update lead').first().json.source_id,\n  \"session_uuid\": $('update lead').first().json.session_uuid,\n  \"source_type\": $('update lead').first().json.source_type,\n  \"source_endpoint\": $('update lead').first().json.source_endpoint,\n  \"delay\": Math.round(Math.random()*2) + 1,\n  \"current_stage\": $('update lead').first().json.current_stage,\n  \"discovery_level\": $('update lead').first().json.discovery_level,\n  \"enchantment_level\":  $('update lead').first().json.enchantment_level,\n  \"name\": $('update lead').first().json.name,\n  \"email\": $('update lead').first().json.email,\n  \"phone\": $('update lead').first().json.phone,\n  \"ig_username\": $('update lead').first().json.ig_username\n}\n\nreturn i.messages.filter(function(p) { return p.sender_role == 'agent' }).map(function(p) { return { ...p, ...lead_data } }).sort(function(a,b) { return a.id >= b.id; });"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        7568,
+        1152
+      ],
+      "id": "0a8e3ca1-1090-4d7f-b595-82dd800a40d8",
+      "name": "joy/answers"
+    },
+    {
+      "parameters": {
+        "httpRequestMethod": "POST",
+        "graphApiVersion": "v22.0",
+        "node": "=100151666446451",
+        "edge": "messages",
+        "options": {
+          "queryParametersJson": "={\n  \"recipient\": {\n    \"id\": \"{{ $json.source_id }}\"\n  },\n  \"message\": {\n    \"text\": \"{{ $json.content }}\"\n  }\n} "
+        }
+      },
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        9584,
+        768
+      ],
+      "id": "aebcd685-4767-439b-bb94-0628bf71bcea",
+      "name": "facebook/answer",
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "mjyKuUp6yCR30uA4",
+          "name": "configurações do insta"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "={{ $json.target_id }}",
+        "recipientPhoneNumber": "={{ $json.phone }}",
+        "textBody": "={{ $json.content }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        9584,
+        1184
+      ],
+      "id": "7ad3c781-da5b-444b-bc8d-773e6c92aebf",
+      "name": "waba/answer",
+      "webhookId": "ccdf0ed6-3149-49c9-87fa-094daa8bd5bb",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "Dw6b8JZZ8O8z0z0e",
+          "name": "waba pro plus max"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://whats.polemk.com/message/sendText/AI9_POLEMK",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "PKevoprod813"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { \"number\": $json.source_id, text: $json.content\n} }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        9584,
+        1424
+      ],
+      "id": "14a2bbcc-a4a0-425d-86f8-0efaaba25e03",
+      "name": "whats/answer"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ed2a7344-773c-4991-a018-8da18b589134",
+              "leftValue": "={{ $json.body.object }}",
+              "rightValue": "whatsapp_business_account",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "9c8b64f5-82b4-439e-a359-354761a099d2",
+              "leftValue": "={{ $json.body.entry[0].changes[0].value.metadata.phone_number_id }}",
+              "rightValue": "788469771006818",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "e8a008e1-0ce0-4527-8e05-bf57310b8b97",
+              "leftValue": "={{ $json.body.entry[0].changes[0].field }}",
+              "rightValue": "messages",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "4936d175-dc11-4b08-9a1b-f6adfb864217",
+              "leftValue": "={{ $json.body.entry[0].changes[0].value.messages[0].type }}",
+              "rightValue": "text",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -464,
+        1216
+      ],
+      "id": "7d985bdf-f9ad-4d57-9095-0b38f5c68ed0",
+      "name": "waba/rcv"
+    },
+    {
+      "parameters": {
+        "jsCode": "var out = {};\nvar data = $('waba/rcv').first().json.body.entry[0].changes[0].value;\n\nout.id = null;\nout.target_id = $('waba/rcv').first().json.body.entry[0].changes[0].value.metadata.phone_number_id;\nout.source_endpoint = \"message\";\nout.is_categorized = false;\nout.source_type = \"waba\";\nout.source_id = data.contacts[0].wa_id;\nout.name = data.contacts[0].profile.name\nout.phone = data.contacts[0].wa_id;\nout.content_type = data.messages[0].type;\nout.content = data.messages[0].text.body;\nout.content_id = data.messages[0].id;\n\nreturn [out]"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        112,
+        1216
+      ],
+      "id": "6756ce1e-c657-457f-80f9-3d1196c76425",
+      "name": "waba/message"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ed2a7344-773c-4991-a018-8da18b589134",
+              "leftValue": "={{ $json.body.object }}",
+              "rightValue": "page",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "9c8b64f5-82b4-439e-a359-354761a099d2",
+              "leftValue": "={{ $json.body.entry[0].id }}",
+              "rightValue": "100151666446451",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -464,
+        784
+      ],
+      "id": "7d5ee907-810b-4a13-b002-844eb06d797f",
+      "name": "facebook/rcv"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ !!$json.body.entry[0].messaging[0] && !!$json.body.entry[0].messaging[0].message }}",
+                    "rightValue": "comment",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    },
+                    "id": "a97e7e61-c515-49f3-91fc-9955f0683e37"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "8d04b7a4-d715-40c5-b567-9b93ed8d455b",
+                    "leftValue": "={{ !!$json.body.entry[0].messaging[0] && !!$json.body.entry[0].messaging[0].postback }}",
+                    "rightValue": "message",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "ea9f3fb6-e11c-4c1c-b76b-42b701dd946d",
+                    "leftValue": "={{ !!$json.body.entry[0].messaging[0] && !!$json.body.entry[0].messaging[0].reaction }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "b079e81b-a863-4127-8a73-b3671cb7efe2",
+                    "leftValue": "={{ $json.body.entry[0].changes[0] }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "object",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -240,
+        752
+      ],
+      "id": "3c0dd91d-3e68-404a-807f-c142938e1eea",
+      "name": "facebook/source"
+    },
+    {
+      "parameters": {
+        "httpRequestMethod": "POST",
+        "graphApiVersion": "v22.0",
+        "node": "100151666446451",
+        "edge": "messages",
+        "options": {
+          "queryParametersJson": "={\n  \"recipient\": {\n    \"id\": \"{{ $json.source_id }}\"\n  },\n  \"sender_action\": \"typing_on\"\n} "
+        }
+      },
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        4576,
+        1536
+      ],
+      "id": "870ba2ec-d82f-4570-ba42-1e21eb3d911b",
+      "name": "facebook/presence",
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "UsIqV7CbDhoUav9R",
+          "name": "messenger api"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "var body = $('on facebook').first().json.body;\nvar msg = body.entry[0].messaging[0];\nvar out = {};\nvar content = \"\";\nvar mid = null;\n\nif (!!msg.postback) {\n  content = body.entry[0].messaging[0].postback.title;\n  mid = body.entry[0].messaging[0].postback.mid;\n} else {\n  content = body.entry[0].messaging[0].message.text;\n  mid = body.entry[0].messaging[0].message.mid;\n}\n\nout.id = null;\nout.target_id = body.entry[0].id;\nout.source_endpoint = \"message\";\nout.is_categorized = false;\nout.source_type = \"facebook\";\nout.source_id = body.entry[0].messaging[0].sender.id;\nout.fb_id = body.entry[0].messaging[0].sender.id;\nout.content_type = \"text\";\nout.content = content;\nout.content_id = mid;\n\nreturn [out]"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        112,
+        736
+      ],
+      "id": "bfec7251-e429-4995-b376-62b7afe9117b",
+      "name": "facebook/message"
+    },
+    {
+      "parameters": {
+        "jsCode": "var body = $('on facebook').first().json.body;\nvar comment = body.entry[0].changes[0];\nvar out = {};\n\nout.id = null;\nout.target_id = body.entry[0].id;\nout.source_endpoint = \"comment\";\nout.is_categorized = false;\nout.source_type = \"instagram\";\nout.source_id = comment.value.from.id;\nout.fb_id = comment.value.from.id;\nout.fb_username = comment.value.from.username;\nout.content_type = \"text\";\nout.content = comment.value.text;\nout.content_id = comment.value.id;\n\nreturn [out]"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        112,
+        976
+      ],
+      "id": "35faeead-96f8-4b90-918a-1213978439dd",
+      "name": "facebook/comment"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "788207ec-44fd-4a85-a7b9-0714bd005495",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -640,
+        784
+      ],
+      "id": "15394621-9a9f-48fa-8d5f-10749f13aa69",
+      "name": "on facebook",
+      "webhookId": "788207ec-44fd-4a85-a7b9-0714bd005495"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ed2a7344-773c-4991-a018-8da18b589134",
+              "leftValue": "={{ $json.body.event }}",
+              "rightValue": "messages.upsert",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "9c8b64f5-82b4-439e-a359-354761a099d2",
+              "leftValue": "={{ $json.body.data.messageType }}",
+              "rightValue": "conversation",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -464,
+        496
+      ],
+      "id": "dcf63470-4e49-423e-bdaf-80807894376e",
+      "name": "whats/rcv"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "4d67dcec-7ba0-476f-8457-6ee06505f883",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -640,
+        496
+      ],
+      "id": "c9ec91aa-b0db-4bcb-87f3-f18290447d74",
+      "name": "on whats",
+      "webhookId": "4d67dcec-7ba0-476f-8457-6ee06505f883"
+    },
+    {
+      "parameters": {
+        "jsCode": "var out = {};\nvar body = $input.first().json.body;\n\nout.id = null;\nout.target_id = body.sender.split(\"@\")[0];\nout.source_endpoint = \"message\";\nout.is_categorized = false;\nout.source_type = \"whats\";\nout.source_id = body.data.key.remoteJid.split(\"@\")[0];\nout.name = body.data.pushName\nout.phone = body.data.key.remoteJid.split(\"@\")[0];\nout.content_type = \"text\";\nout.content = body.data.message.conversation;\nout.content_id = body.data.key.id;\n\nreturn [out]"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        112,
+        496
+      ],
+      "id": "107b38a4-4a15-4dee-854a-ec9346626459",
+      "name": "whats/message"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('joy/categorized').item.json.source_type }}",
+                    "rightValue": "waba",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "7f6fcddd-2f14-478d-95e3-ff70321ddb23"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "waba"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "e3aa719c-76b3-4b06-94db-b3c8126d3888",
+                    "leftValue": "={{ $('joy/categorized').item.json.source_type }}",
+                    "rightValue": "whats",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "whats"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "c38d1040-138e-4f43-837d-96b9187df662",
+                    "leftValue": "={{ $('joy/categorized').item.json.source_type }}",
+                    "rightValue": "instagram",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "instagram"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "1ca515a7-5b32-4cda-9bfd-089311c5b015",
+                    "leftValue": "={{ $('joy/categorized').item.json.source_type }}",
+                    "rightValue": "facebook",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "facebook"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "fa6b4eb0-415a-4230-906c-6aae9bb596df",
+                    "leftValue": "={{ $('joy/categorized').item.json.source_type }}",
+                    "rightValue": "chat",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "api"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        4128,
+        1136
+      ],
+      "id": "fd2057fd-adb7-4e5a-ad0f-885bc20b118a",
+      "name": "joy/presence"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.facebook.com/v22.0/{{ $json.target_id }}/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "messaging_product",
+              "value": "whatsapp"
+            },
+            {
+              "name": "status",
+              "value": "read"
+            },
+            {
+              "name": "message_id",
+              "value": "={{ $json.content_id }}"
+            },
+            {
+              "name": "typing_indicator",
+              "value": "={{ { \"type\": \"text\" } }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4576,
+        864
+      ],
+      "id": "88a92cd1-dc52-44e9-82d6-980e194c3e56",
+      "name": "waba/presence",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "Dw6b8JZZ8O8z0z0e",
+          "name": "waba pro plus max"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://auto.polemk.com/webhook/async-presence",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { \"number\": $json.phone, \"delay\": 20000, \"instance\": \"AI9_POLEMK\" } }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4576,
+        1008
+      ],
+      "id": "8d7cb48f-e249-47a0-a547-3597865dac0b",
+      "name": "whats/presence"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -640,
+        1920
+      ],
+      "id": "639f3f08-955e-4b96-a921-c5fe060fdcc5",
+      "name": "on test",
+      "webhookId": "0175f8b4-141c-4a69-9bd2-62fab8a3d771"
+    },
+    {
+      "parameters": {
+        "content": "## incompleto ou quebrado",
+        "height": 304,
+        "width": 592,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1376,
+        2160
+      ],
+      "typeVersion": 1,
+      "id": "e2f7f5f3-4c14-4987-a0de-e54a0b88eb36",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## manychat\nusei um hat trick com o manychat para fazer o comentário ter resposta automática, até o facebook analisar e aprovar o meu acesso às permissões avançadas.\n\nteremos esse evento ativado, dentro do fluxo do manychat, quando o usuário clica em uma ação na primeira mensagem",
+        "height": 608,
+        "width": 880,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1648,
+        352
+      ],
+      "typeVersion": 1,
+      "id": "48c5355a-9a1c-4d43-926b-72a2fa182e37",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "jsCode": "var out = {};\n\nout.id = null;\nout.target_id = null;\nout.source_endpoint = \"message\";\nout.is_categorized = false;\nout.source_type = \"chat\";\nout.source_id = $input.first().json.sessionId;\nout.session_uuid = $input.first().json.sessionId;\nout.content_type = \"text\";\nout.content = $input.first().json.chatInput;\n\nreturn [out]"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        112,
+        1920
+      ],
+      "id": "24792f0b-f6f9-4954-9746-ebdeaa4b180b",
+      "name": "test/message"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ec246327-46cf-4fdb-bc11-d90acc0f544e",
+              "name": "text",
+              "value": "={{ $json.data.map(function(s) { return s.content; }).join(\"\\n\\n\") }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        9584,
+        1648
+      ],
+      "id": "2b0c0b7b-82b9-454d-8622-55c4574d5978",
+      "name": "test/answer"
+    },
+    {
+      "parameters": {
+        "jsCode": "var s = $('joy/categorized').first().json\n\nreturn [s]"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        5328,
+        1168
+      ],
+      "id": "c950b51e-bb80-45dc-9772-7b5ce767013d",
+      "name": "joy/bandaid"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4576,
+        1184
+      ],
+      "id": "da285cc4-fb46-4fbf-b11c-07dcd504ca83",
+      "name": "instagram/presence1",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4576,
+        1360
+      ],
+      "id": "7296e308-6638-4f18-a989-c98411550c17",
+      "name": "test/presence",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        9376,
+        1648
+      ],
+      "id": "0eff4277-db90-4f3d-851d-4da08cb5be18",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "jsCode": "return $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2768,
+        1200
+      ],
+      "id": "f0dbe374-e65d-40ee-9e1d-a239cda854d1",
+      "name": "joy/categorized"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "goat/v1/router/waba",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -640,
+        1216
+      ],
+      "id": "e0bbb809-b85b-4a67-93b1-1288623f9403",
+      "name": "on waba",
+      "webhookId": "0bdc1b1d-0690-45a0-bd7a-9afecae05c25"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        7952,
+        1152
+      ],
+      "id": "9988e721-ebc2-4877-8c79-8c62cead2956",
+      "name": "joy/each"
+    },
+    {
+      "parameters": {
+        "amount": 3
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        10736,
+        1984
+      ],
+      "id": "76e240bd-235f-4fa7-a626-10e918b2ad68",
+      "name": "joy/wait",
+      "webhookId": "fce79c8d-3102-4ce1-8515-831f4e9fc5a1"
+    },
+    {
+      "parameters": {
+        "url": "=https://unseared-christinia-unbiologically.ngrok-free.dev/api/v1/leads/{{ $json.smart_id }}/executions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "execution_id",
+              "value": "={{ $json.execution_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3056,
+        1200
+      ],
+      "id": "3d37e5fb-cf20-4d1b-8a45-59fd8eed5eaf",
+      "name": "joy/current?",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "5G8W6ooh47s4e8iv",
+          "name": "bearer goat"
+        },
+        "httpBearerAuth": {
+          "id": "3zk1jGYj5BJMyCnP",
+          "name": "api-goat-local"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "url": "=https://unseared-christinia-unbiologically.ngrok-free.dev/api/v1/leads/{{ $('joy/categorized').item.json.smart_id }}/executions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "execution_id",
+              "value": "={{ $('joy/categorized').item.json.execution_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        5072,
+        1184
+      ],
+      "id": "85e5124d-ea00-44a6-ad16-3bfcb4953f67",
+      "name": "joy/current?1",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "5G8W6ooh47s4e8iv",
+          "name": "bearer goat"
+        },
+        "httpBearerAuth": {
+          "id": "3zk1jGYj5BJMyCnP",
+          "name": "api-goat-local"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "url": "=https://api-goat.polemk.com/api/v1/leads/{{ $json.lead.smart_id }}/executions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "execution_id",
+              "value": "={{ $execution.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        6864,
+        1168
+      ],
+      "id": "17ba6d09-65ce-4b0c-8118-0c781cc8f640",
+      "name": "joy/current?2",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "5G8W6ooh47s4e8iv",
+          "name": "bearer goat"
+        },
+        "httpBearerAuth": {
+          "id": "3zk1jGYj5BJMyCnP",
+          "name": "api-goat-local"
+        }
+      },
+      "disabled": true,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "var o = $input.first().json\n\no.lead.execution_id = null;\n\nreturn [o]"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        6624,
+        1168
+      ],
+      "id": "5f2986c1-d279-46e3-a510-7b5cd2e4d682",
+      "name": "joy/output"
+    },
+    {
+      "parameters": {
+        "jsCode": "\nreturn [$('joy/categorized').first().json];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3680,
+        1184
+      ],
+      "id": "a2c47c37-c824-455b-a7ec-0b93443aacea",
+      "name": "joy/bandaid2"
+    },
+    {
+      "parameters": {
+        "path": "goat/v1/router/waba",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -1264,
+        1104
+      ],
+      "id": "cc144ee4-9542-4bca-ada4-e7ab019865e1",
+      "name": "waba/validate-webhook",
+      "webhookId": "ba76ca46-83e7-4f3a-b430-4ab4921cdf76",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "path": "goat/v1/router/instagram",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -1264,
+        1632
+      ],
+      "id": "5851bc20-7f1e-4ba1-9c79-d66cdfc10a0a",
+      "name": "instagram/validate-webhook",
+      "webhookId": "e7a5e50b-662c-4dc8-9446-2a77ec2a449e",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsCode": "var out = {};\nvar body = $input.first().json.body || $input.first().json;\n\nout.id = null;\nout.target_id = null;\nout.source_endpoint = body.source_endpoint;\nout.is_categorized = false;\nout.source_type = body.source_type;\nout.source_id = body.source_id || body.session_uuid;\nout.session_uuid = body.session_uuid || body.session_id || null;\nout.phone = body.lead_info.phone || null;\nout.content_type = body.content_type || 'text';\nout.content = body.content || body.message || body.text || '';\nout.name = body.name || body.lead_info.name || null;\n\nreturn [out];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        112,
+        2224
+      ],
+      "id": "afff6b35-04cd-4663-b98f-70f207b75a4e",
+      "name": "api/message"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "goat-api",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -640,
+        2224
+      ],
+      "id": "d316a078-1ed6-468e-af39-670f52afbfd0",
+      "name": "on api",
+      "webhookId": "4bf70dc0-163b-463f-bc11-ad13e17308ce"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://unseared-christinia-unbiologically.ngrok-free.dev/api/v1/public/chat/callback",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"session_id\": \"{{ $json.source_id }}\",\n  \"action\": \"message\",\n  \"content\": \"{{ $json.content }}\", \n  \"sender_role\": \"{{ $json.sender_role }}\",\n  \"intention\": \"{{ $json.intention }}\",\n  \"instruction\": \"{{ $json.instruction }}\",\n  \"agent_type\": \"{{ $json.agent_type }}\",\n  \"source_id\": \"{{ $json.source_id }}\",\n  \"source_type\": \"{{ $json.source_type }}\",\n  \"source_endpoint\": \"{{ $json.source_endpoint }}\",\n  \"current_stage\": \"{{ $json.current_stage }}\",\n  \"discovery_level\": {{ $json.discovery_level }},\n  \"enchantment_level\": {{ $json.enchantment_level }},\n  \"name\": \"{{ $json.name }}\",\n  \"phone\": \"{{ $json.phone }}\",\n  \"ig_username\": \"{{ $json.ig_username }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        9584,
+        1872
+      ],
+      "id": "5e1e1750-713f-4def-af13-49f7cdfd8119",
+      "name": "api/answer",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "3zk1jGYj5BJMyCnP",
+          "name": "api-goat-local"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://unseared-christinia-unbiologically.ngrok-free.dev/api/v1/public/chat/callback",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "action",
+              "value": "typing_on"
+            },
+            {
+              "name": "session_id",
+              "value": "={{ $json.session_uuid }}"
+            },
+            {
+              "name": "smart_id",
+              "value": "={{ $json.smart_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4576,
+        1712
+      ],
+      "id": "c6b36116-1f02-4872-a8e9-e56ccb3300e7",
+      "name": "api/presence",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "3zk1jGYj5BJMyCnP",
+          "name": "api-goat-local"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "alehCP50Yyy2pbqf",
+          "mode": "list",
+          "cachedResultName": "smart/v2/lma"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "lead": "={{ $('joy/bandaid').item.json }}"
+          },
+          "matchingColumns": [
+            "lead"
+          ],
+          "schema": [
+            {
+              "id": "lead",
+              "displayName": "lead",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "object",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        5952,
+        1616
+      ],
+      "id": "ec41d2a0-2869-4a3e-9e4c-929a3b0d96d5",
+      "name": "joy/onboarding"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "Ou9Luh1RvbMB3slU"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "lead": "={{ $('joy/bandaid').item.json }}"
+          },
+          "matchingColumns": [
+            "lead"
+          ],
+          "schema": [
+            {
+              "id": "lead",
+              "displayName": "lead",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "object",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        5952,
+        1408
+      ],
+      "id": "a1db932d-6ebc-4edf-8f98-7d46485c358d",
+      "name": "joy/goat"
+    },
+    {
+      "parameters": {
+        "jsCode": "var out = $input.first().json;\n\nreturn [out]"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        6192,
+        1408
+      ],
+      "id": "793bde4d-c6af-4035-a4e1-d9e7c22c13cf",
+      "name": "joy/output__goat"
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://unseared-christinia-unbiologically.ngrok-free.dev/api/v1/leads/{{$json.lead.smart_id}}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.lead }}",
+        "options": {}
+      },
+      "id": "5883d790-4172-45d5-9901-42f66d51bffa",
+      "name": "update lead",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        7136,
+        1152
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "4",
+          "name": "Joy Bearer"
+        },
+        "httpBearerAuth": {
+          "id": "3zk1jGYj5BJMyCnP",
+          "name": "api-goat-local"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://unseared-christinia-unbiologically.ngrok-free.dev/api/v1/leads/{{ $json.smart_id }}/messages/bulk",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { \"messages\": $('joy/output').item.json.messages } }}",
+        "options": {}
+      },
+      "id": "7a9daced-1d90-4c0c-b577-7ce07c7a48c8",
+      "name": "update msgs",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        7328,
+        1152
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "4",
+          "name": "Joy Bearer"
+        },
+        "httpBearerAuth": {
+          "id": "3zk1jGYj5BJMyCnP",
+          "name": "api-goat-local"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "on facebook": [
+      {
+        "json": {
+          "headers": {
+            "connection": "upgrade",
+            "host": "auto.polemk.com",
+            "x-real-ip": "69.171.251.7",
+            "x-forwarded-for": "69.171.251.7",
+            "x-forwarded-proto": "https",
+            "content-length": "365",
+            "accept": "*/*",
+            "accept-encoding": "deflate, gzip",
+            "user-agent": "facebookexternalua",
+            "content-type": "application/json",
+            "x-hub-signature": "sha1=2a52ea1a0de4792e223e11811e20bbffbbe05d4c",
+            "x-hub-signature-256": "sha256=8edb0686f00e3058e94eefec2f79ba64d08bb736c26b6518af3fe5b9f405373a",
+            "facebook-api-version": "v23.0"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "object": "page",
+            "entry": [
+              {
+                "time": 1756596900350,
+                "id": "100151666446451",
+                "messaging": [
+                  {
+                    "sender": {
+                      "id": "23965358576405868"
+                    },
+                    "recipient": {
+                      "id": "100151666446451"
+                    },
+                    "timestamp": 1756596899834,
+                    "message": {
+                      "mid": "m_8lSBhVa0HEm51hmaSsZ1dcMY5MsF-wBotdqHHtshiNmxnBcUD2FqvIgToWkLCluFrP6NT_jyQz8nIYNgIqS-tQ",
+                      "text": "tenho sim cara, o palmeiras continua sem ganhar um mundial"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "webhookUrl": "https://auto.polemk.com/webhook/smart/v2/router/facebook",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "facebook/validate-webhook": {
+      "main": [
+        [
+          {
+            "node": "facebook/respond-challenge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "on instagram": {
+      "main": [
+        [
+          {
+            "node": "instagram/rcv",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "instagram/fetch": {
+      "main": [
+        [
+          {
+            "node": "instagram/fetch_id",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "instagram/fetch_id": {
+      "main": [
+        [
+          {
+            "node": "instagram/presence",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "instagram/source": {
+      "main": [
+        [
+          {
+            "node": "instagram/message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "instagram/message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "instagram/comment",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "instagram/rcv": {
+      "main": [
+        [
+          {
+            "node": "instagram/source",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "on manychat": {
+      "main": [
+        [
+          {
+            "node": "manychat/rcv",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "manychat/rcv": {
+      "main": [
+        [
+          {
+            "node": "manychat/source",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "manychat/source": {
+      "main": [
+        [
+          {
+            "node": "manychat/answer",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "manychat/answer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "permissions/validation": {
+      "main": [
+        [
+          {
+            "node": "permissions/respond-challenge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "on permissions": {
+      "main": [
+        [
+          {
+            "node": "permissions/rcv",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "permissions/rcv": {
+      "main": [
+        [
+          {
+            "node": "permissions/answer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "instagram/reply": {
+      "main": [
+        [
+          {
+            "node": "joy/wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "instagram/comment": {
+      "main": [
+        [
+          {
+            "node": "joy/not_self",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "instagram/message": {
+      "main": [
+        [
+          {
+            "node": "joy/not_self",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "joy/not_self": {
+      "main": [
+        [
+          {
+            "node": "joy/lead",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "joy/lead": {
+      "main": [
+        [
+          {
+            "node": "joy/parser",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "joy/operation": {
+      "main": [
+        [
+          {
+            "node": "joy/is_related2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "joy/smart": {
+      "main": [
+        [
+          {
+            "node": "joy/output__smart",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "joy/is_categorized": {
+      "main": [
+        [
+          {
+            "node": "joy/categorized",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "joy/operation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "joy/teams": {
+      "main": [
+        [
+          {
+            "node": "joy/smart",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "joy/tetris",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "joy/goat",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "joy/onboarding",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "joy/tetris": {
+      "main": [
+        [
+          {
+            "node": "joy/output__tetris",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "joy/output__smart": {
+      "main": [
+        [
+          {
+            "node": "joy/output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "joy/output__onboarding": {
+      "main": [
+        [
+          {
+            "node": "joy/output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "joy/output__tetris": {
+      "main": [
+        [
+          {
+            "node": "joy/output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "joy/answer": {
+      "7": [
+        [
+          {
+            "node": "api/aggregate",
+            "type": "0",
+            "index": 0
+          }
+        ]
+      ],
+      "main": [
+        [
+          {
+            "node": "instagram/answer",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "instagram/reply",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "facebook/answer",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "facebook/reply",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "waba/answer",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "whats/answer",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "api/answer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "joy/parser": {
+      "main": [
+        [
+          {
+            "node": "joy/is_categorized",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "joy/is_related2": {
+      "main": [
+        [
+          {
+            "node": "joy/categorize",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "facebook/reply": {
+      "main": [
+        [
+          {
+            "node": "joy/wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "joy/categorize": {
+      "main": [
+        [
+          {
+            "node": "joy/categorized",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "update lead": {
+      "main": [
+        [
+          {
+            "node": "update msgs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "joy/answers": {
+      "main": [
+        [
+          {
+            "node": "joy/each",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "waba/rcv": {
+      "main": [
+        [
+          {
+            "node": "waba/message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "waba/message": {
+      "main": [
+        [
+          {
+            "node": "joy/not_self",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "facebook/rcv": {
+      "main": [
+        [
+          {
+            "node": "facebook/source",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "facebook/source": {
+      "main": [
+        [
+          {
+            "node": "facebook/message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "facebook/comment",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "facebook/presence": {
+      "main": [
+        [
+          {
+            "node": "joy/current?1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "facebook/message": {
+      "main": [
+        [
+          {
+            "node": "joy/not_self",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "facebook/comment": {
+      "main": [
+        [
+          {
+            "node": "joy/not_self",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "on facebook": {
+      "main": [
+        [
+          {
+            "node": "facebook/rcv",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "on whats": {
+      "main": [
+        [
+          {
+            "node": "whats/rcv",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "whats/rcv": {
+      "main": [
+        [
+          {
+            "node": "whats/message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "whats/message": {
+      "main": [
+        [
+          {
+            "node": "joy/not_self",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "joy/presence": {
+      "main": [
+        [
+          {
+            "node": "waba/presence",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "whats/presence",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "instagram/presence1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "facebook/presence",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "api/presence",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "waba/presence": {
+      "main": [
+        [
+          {
+            "node": "joy/current?1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "whats/presence": {
+      "main": [
+        [
+          {
+            "node": "joy/current?1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "on test": {
+      "main": [
+        [
+          {
+            "node": "test/message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "test/message": {
+      "main": [
+        [
+          {
+            "node": "joy/not_self",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "joy/bandaid": {
+      "main": [
+        [
+          {
+            "node": "joy/teams",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "instagram/presence1": {
+      "main": [
+        [
+          {
+            "node": "joy/current?1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "test/presence": {
+      "main": [
+        [
+          {
+            "node": "joy/current?1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "test/answer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "joy/categorized": {
+      "main": [
+        [
+          {
+            "node": "joy/current?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "on waba": {
+      "main": [
+        [
+          {
+            "node": "waba/rcv",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "joy/each": {
+      "main": [
+        [],
+        [
+          {
+            "node": "joy/answer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "instagram/answer": {
+      "main": [
+        [
+          {
+            "node": "joy/wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "facebook/answer": {
+      "main": [
+        [
+          {
+            "node": "joy/wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "waba/answer": {
+      "main": [
+        [
+          {
+            "node": "joy/wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "whats/answer": {
+      "main": [
+        [
+          {
+            "node": "joy/wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "test/answer": {
+      "main": [
+        [
+          {
+            "node": "joy/wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "joy/wait": {
+      "main": [
+        [
+          {
+            "node": "joy/each",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "joy/current?": {
+      "main": [
+        [
+          {
+            "node": "joy/bandaid2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "joy/current?1": {
+      "main": [
+        [
+          {
+            "node": "joy/bandaid",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "joy/current?2": {
+      "main": [
+        [
+          {
+            "node": "update lead",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "joy/bandaid2": {
+      "main": [
+        [
+          {
+            "node": "joy/presence",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "waba/validate-webhook": {
+      "main": [
+        [
+          {
+            "node": "waba/respond-challenge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "instagram/validate-webhook": {
+      "main": [
+        [
+          {
+            "node": "instagram/respond-challenge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "on api": {
+      "main": [
+        [
+          {
+            "node": "api/message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "api/message": {
+      "main": [
+        [
+          {
+            "node": "joy/not_self",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "api/answer": {
+      "main": [
+        [
+          {
+            "node": "joy/wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "api/presence": {
+      "main": [
+        [
+          {
+            "node": "joy/current?1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "joy/onboarding": {
+      "main": [
+        [
+          {
+            "node": "joy/output__onboarding",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "joy/goat": {
+      "main": [
+        [
+          {
+            "node": "joy/output__goat",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "joy/output__goat": {
+      "main": [
+        [
+          {
+            "node": "joy/output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "joy/output": {
+      "main": [
+        [
+          {
+            "node": "joy/current?2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "update msgs": {
+      "main": [
+        [
+          {
+            "node": "joy/answers",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "69378d30-b992-49c5-8b48-b32e9eceee85",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "978cd4bd684454c0b2a491ee913ec913782ef0d532bcd7cccadfa6556cdfbf35"
+  },
+  "id": "wpitrqLj7LL2O3jT",
+  "tags": []
+}

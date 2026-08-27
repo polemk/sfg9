@@ -1,0 +1,257 @@
+diff --git a/backend/app/controllers/api/auth/v1/magic_login.rb b/backend/app/controllers/api/auth/v1/magic_login.rb
+index facb93b6..2ae6f23d 100644
+--- a/backend/app/controllers/api/auth/v1/magic_login.rb
++++ b/backend/app/controllers/api/auth/v1/magic_login.rb
+@@ -38,6 +38,18 @@ module Api
+ 
+               check_brute_force!(identifier, current_ip)
+               check_rate_limit!(identifier, delivery_method)
++              # O cooldown de 30 s é cobrado AQUI, antes de existir usuário nenhum.
++              # Enquanto ele morava no `MagicLoginService` (atrás de
++              # `user.can_request_new_code?`), o segundo pedido devolvia 422 para conta
++              # real e 200 para conta inexistente — a tela de login virava um
++              # verificador de "esta pessoa é cliente do Safegold?" (D-QA-01).
++              check_code_cooldown!(identifier, delivery_method)
++
++              # Armado ANTES do serviço, de propósito: o relógio precisa começar mesmo
++              # quando nada é enviado (destino sem conta, conta bloqueada, falha de
++              # entrega). Se só o caminho de sucesso armasse, a diferença voltaria no
++              # pedido seguinte.
++              start_code_cooldown!(identifier, delivery_method)
+ 
+               result = ::Auth::MagicLoginService.new(
+                 identifier: identifier,
+@@ -110,15 +122,15 @@ module Api
+               identifier = params[:identifier].strip
+               method = params[:method].downcase
+ 
+-              normalized_identifier = LoginCode.normalize_destination_value(identifier)
+-              last_code = LoginCode.where(
+-                destination: normalized_identifier,
+-                method: method,
+-                created_at: 1.minute.ago..Time.current
+-              ).last
+-
+-              can_resend = last_code.nil? || last_code.can_resend?
+-              time_until_resend = last_code&.time_until_resend || 0
++              # Lê o MESMO cooldown do `request_code`, e não a tabela `login_codes`.
++              #
++              # Consultando `LoginCode`, este endpoint era o D-QA-01 por outra porta:
++              # só existe `LoginCode` para quem tem conta, então
++              # `can_resend: false` respondia "esta pessoa é cliente do Safegold" com a
++              # mesma clareza que o 422 do pedido de código. Agora a chave é o destino
++              # digitado, normalizado — armado no pedido, exista conta ou não.
++              time_until_resend = code_cooldown_remaining(identifier, method)
++              can_resend = time_until_resend.zero?
+ 
+               process_service_response({
+                                          status: 200,
+diff --git a/backend/app/controllers/api/auth/v1/security_helpers.rb b/backend/app/controllers/api/auth/v1/security_helpers.rb
+index 83825053..6e1de8a6 100644
+--- a/backend/app/controllers/api/auth/v1/security_helpers.rb
++++ b/backend/app/controllers/api/auth/v1/security_helpers.rb
+@@ -73,6 +73,31 @@ module Api
+         # zerar um mexendo no outro.
+         CODE_REQUEST_KEY_PREFIX = 'auth/code_request'
+ 
++        # ── Cooldown de reenvio, 30 s por DESTINO NORMALIZADO ───────────────────
++        #
++        # Este intervalo já existia, mas morava no `MagicLoginService`, atrás de
++        # `user.can_request_new_code?` — ou seja, era avaliado DEPOIS da busca por
++        # usuário e DEPOIS do `silent_response`. O efeito medido (D-QA-01, alta) era
++        # um oráculo de enumeração de carteira: dois "Entrar" seguidos com o mesmo
++        # e-mail devolviam **422** para quem é cliente do Safegold e **200** para quem
++        # não é. Num produto de crédito isso não é só informação de segurança — é a
++        # lista de clientes, conferível da tela pública em 30 segundos.
++        #
++        # Subiu para cá porque este é o único lugar onde o limite pode ser cobrado
++        # SEM saber se a conta existe: a chave é o destino que a pessoa digitou,
++        # normalizado, não a conta para onde ele aponta (ou não aponta). Os dois casos
++        # passam pelo mesmo `if`, então respondem igual por construção — não por
++        # alguém lembrar de manter dois ramos em sincronia.
++        #
++        # 429 e não 422: é a mesma semântica do `check_rate_limit!` logo acima, e é o
++        # que o próprio endpoint documenta (`magic_login.rb`, `failure [{ code: 429 }]`).
++        # O 422 anterior era um terceiro código para a mesma coisa.
++        #
++        # 30 s é o número que já estava em `User#can_request_new_code?` e em
++        # `LoginCode#can_resend?` — não mexemos na política, só em onde ela é cobrada.
++        CODE_RESEND_COOLDOWN = 30
++        CODE_COOLDOWN_KEY_PREFIX = 'auth/code_cooldown'
++
+         # `LoginAttempt` valida presença de `ip_address`; um nil aqui derrubaria a
+         # gravação da trilha de auditoria — ou seja, a falta de IP apagaria o registro
+         # justamente da tentativa mais estranha. Preferimos gravar com IP desconhecido.
+@@ -135,8 +160,59 @@ module Api
+           too_many_requests!('Muitas solicitações de código. Aguarde alguns minutos antes de tentar novamente')
+         end
+ 
++        # Barra o SEGUNDO pedido dentro da janela de 30 s. Ver o bloco de
++        # `CODE_RESEND_COOLDOWN` para o porquê de isto viver aqui e não no serviço.
++        #
++        # Falha ABERTO se o contador estiver fora, pelo mesmo motivo do
++        # `check_rate_limit!` — e, o que importa mais aqui: falha aberto IGUAL para
++        # conta que existe e conta que não existe, então nem a indisponibilidade do
++        # Redis vira oráculo.
++        def check_code_cooldown!(identifier, delivery_method)
++          return true if code_cooldown_remaining(identifier, delivery_method).zero?
++
++          Rails.logger.info(
++            '[SecurityHelpers] cooldown de reenvio ativo para ' \
++            "#{LoginCode.mask_destination(LoginCode.normalize_destination_value(identifier), delivery_method)}"
++          )
++          too_many_requests!('Aguarde alguns segundos antes de pedir um novo código')
++        end
++
++        # Arma o cooldown. Chamado no endpoint ANTES de o serviço rodar, para que o
++        # relógio comece igual nos dois casos — inclusive quando nenhum código sai.
++        def start_code_cooldown!(identifier, delivery_method)
++          Rack::Attack.cache.write(
++            cooldown_key(identifier, delivery_method),
++            Time.current.to_i.to_s,
++            CODE_RESEND_COOLDOWN
++          )
++          true
++        rescue StandardError => e
++          counter_unavailable("#{e.class}: #{e.message}")
++          false
++        end
++
++        # Segundos que faltam para poder pedir de novo; 0 quando pode.
++        # É também a fonte do `can_resend` — se ele lesse o `LoginCode`, como lia antes,
++        # devolveria a mesma diferença que o D-QA-01 descreve, só por outra porta:
++        # `can_resend: false` só existiria para quem tem conta.
++        def code_cooldown_remaining(identifier, delivery_method)
++          started_at = Rack::Attack.cache.read(cooldown_key(identifier, delivery_method))
++          return 0 if started_at.blank?
++
++          remaining = CODE_RESEND_COOLDOWN - (Time.current.to_i - started_at.to_i)
++          remaining.positive? ? remaining : 0
++        rescue StandardError => e
++          counter_unavailable("#{e.class}: #{e.message}")
++          0
++        end
++
+         private
+ 
++        def cooldown_key(identifier, delivery_method)
++          destination = LoginCode.normalize_destination_value(identifier)
++          "#{CODE_COOLDOWN_KEY_PREFIX}:#{delivery_method}:#{destination}"
++        end
++
+         # Devolve a contagem da janela corrente, ou `nil` quando o contador está
+         # indisponível — `nil` é lido como "libera" por `check_rate_limit!`.
+         #
+diff --git a/backend/app/controllers/api/root.rb b/backend/app/controllers/api/root.rb
+index 4ffb26ed..00cdf1e8 100644
+--- a/backend/app/controllers/api/root.rb
++++ b/backend/app/controllers/api/root.rb
+@@ -94,6 +94,24 @@ module Api
+           payload = nil
+           payload = Warden::JWTAuth::TokenDecoder.new.call(token) if defined?(Warden::JWTAuth::TokenDecoder)
+           payload ||= Auth::TokenService.new(nil).decode_token(token, verify_exp: true)
++
++          # **A revogação é conferida aqui, fora do decodificador.**
++          #
++          # `Warden::JWTAuth::TokenDecoder` NÃO consulta a `jwt_denylist` — o
++          # `token_service.rb:63` já avisava isso por escrito. E ele está sempre
++          # definido, então vencia sempre, e o `||=` que escolheria o decodificador
++          # com a checagem de revogação (`Auth::TokenService#decode_token`) nunca
++          # rodava. Resultado medido (D-QA-02): «Sair» gravava o `jti` na denylist,
++          # `Auth::TokenService.revoked?` respondia `true`, e o gate central seguia
++          # aceitando o mesmo access token até ele expirar — até 15 min de sessão viva
++          # depois de o usuário sair, num computador compartilhado.
++          #
++          # A checagem fica NESTA linha, e não dentro de um dos dois decodificadores,
++          # porque assim ela vale para os dois — inclusive se amanhã a ordem mudar de
++          # novo. É a mesma correção que `ApplicationCable::Connection` já fazia para
++          # o WebSocket.
++          payload = nil if payload && Auth::TokenService.revoked?(payload)
++
+           user = User.find_by(id: payload['sub']) if payload && payload['sub']
+         rescue StandardError
+           user = nil
+diff --git a/backend/app/controllers/api/v1/defaults.rb b/backend/app/controllers/api/v1/defaults.rb
+index 91494003..7af5d660 100644
+--- a/backend/app/controllers/api/v1/defaults.rb
++++ b/backend/app/controllers/api/v1/defaults.rb
+@@ -34,7 +34,14 @@ module Api
+               payload = nil
+               payload = Warden::JWTAuth::TokenDecoder.new.call(token) if defined?(Warden::JWTAuth::TokenDecoder)
+               payload ||= Auth::TokenService.new(nil).decode_token(token)
+-              
++
++              # Mesma correção do gate central (`api/root.rb`): o decodificador do
++              # Warden não consulta a `jwt_denylist`, então sem esta linha um token
++              # já revogado pelo «Sair» continuaria autenticando por aqui — esta é a
++              # segunda porta do mesmo D-QA-02, usada quando o gate central foi
++              # pulado (rota pública) e o endpoint chama `current_user` mesmo assim.
++              payload = nil if payload && Auth::TokenService.revoked?(payload)
++
+               if payload && payload['sub']
+                 @current_user = User.find_by(id: payload['sub'])
+                 env['api.current_user'] = @current_user
+diff --git a/backend/app/services/auth/magic_login_service.rb b/backend/app/services/auth/magic_login_service.rb
+index d09f6c0a..c7746768 100644
+--- a/backend/app/services/auth/magic_login_service.rb
++++ b/backend/app/services/auth/magic_login_service.rb
+@@ -51,7 +51,15 @@ module Auth
+       return no_delivery_channel_response if destination.blank?
+       return validation_error_response('Identificador inválido') unless valid_destination?(destination)
+ 
+-      return rate_limited_response unless can_request_code?(user, destination)
++      # O teto de envio, a trava de força bruta e o cooldown de 30 s NÃO são mais
++      # avaliados aqui. Eles subiram para `Api::Auth::V1::SecurityHelpers`, que é o
++      # único ponto capaz de cobrá-los SEM saber se a conta existe.
++      #
++      # Enquanto o cooldown ficava neste ponto do método — depois do
++      # `User.find_for_identifier` e depois do `silent_response` — ele só alcançava
++      # conta real: dois pedidos seguidos devolviam 422 para cliente do Safegold e 200
++      # para desconhecido (D-QA-01). O `silent_response` logo acima prometia por
++      # escrito o contrário do que o método executava.
+ 
+       Rails.logger.info("[MagicLoginService] Solicitação de código para #{masked(destination)} via #{@method}")
+       create_login_attempt(success: false, user: user)
+@@ -124,11 +132,22 @@ module Auth
+       Rails.logger.info(
+         "[MagicLoginService] pedido para destino sem conta ativa (#{masked(normalized_identifier)}) — resposta silenciosa"
+       )
+-      success_response(
++      payload = {
+         message: "Código enviado para #{@method == 'email' ? 'email' : 'WhatsApp'}",
+         destination: LoginCode.mask_destination(normalized_identifier, @method),
+         method: @method
+-      )
++      }
++      # O eco de desenvolvimento do `sent_payload` também precisa existir aqui, senão
++      # ele sozinho denuncia a conta: em `development` o corpo de sucesso carrega
++      # `code` e o silencioso não carregava — bastava olhar a presença da CHAVE para
++      # saber quem é cliente. E a demonstração roda em `development` (`backend/.env`),
++      # que é exatamente onde o oráculo apareceria.
++      #
++      # O valor é gerado e NÃO é gravado em lugar nenhum: não existe conta, então não
++      # existe código: digitá-lo falha, como tem de falhar. Em produção nenhum dos dois
++      # ramos carrega `code` (DEC-90).
++      payload[:code] = generate_login_code if Rails.env.development?
++      success_response(payload)
+     end
+ 
+     # `SecureRandom`, não `rand`. `Kernel#rand` usa o Mersenne Twister, que não é
+@@ -177,17 +196,6 @@ module Auth
+       end
+     end
+ 
+-    def can_request_code?(user, identifier)
+-      return false if LoginAttempt.suspicious_activity?(identifier, @ip_address)
+-      return false if LoginAttempt.brute_force_detected?(identifier, @ip_address)
+-
+-      user.can_request_new_code?
+-    end
+-
+-    def rate_limited_response
+-      validation_error_response('Limite de solicitação atingido. Aguarde antes de tentar novamente')
+-    end
+-
+     def masked(value)
+       LoginCode.mask_destination(value, @method)
+     end

@@ -1,0 +1,23 @@
+<%# Cor literal: ver a explicação no topo de `layouts/mailer.html.erb`. %>
+<div style="text-align:center;">
+  <h2 style="font-family:'Work Sans',Arial,sans-serif; color:#2D2D2A; font-size:22px; font-weight:600; letter-spacing:-0.01em; margin:0 0 16px;">Seu link de acesso</h2>
+  <p style="color:#2D2D2A; font-size:16px; line-height:1.5; margin:0 0 8px;">Olá <strong><%= @user.name %></strong>,</p>
+  <p style="color:#63635C; font-size:15px; line-height:1.5; margin:0 0 24px;">Clique no botão abaixo para entrar no Safegold:</p>
+
+  <div style="margin:32px 0;">
+    <a href="<%= @magic_url %>"
+       style="display:inline-block; background-color:#FFC107; color:#2D2D2A; font-family:'Work Sans',Arial,sans-serif; font-size:16px; font-weight:600; padding:14px 32px; border-radius:8px; text-decoration:none;">
+      Acessar minha conta
+    </a>
+  </div>
+
+  <div style="background-color:#FAFAF9; border:1px solid #E5E4DF; border-radius:8px; padding:16px; margin:24px 0; text-align:center;">
+    <p style="color:#63635C; font-size:13px; margin:0 0 8px;">Ou copie e cole este link no navegador:</p>
+    <p style="color:#2D2D2A; font-size:13px; word-break:break-all; margin:0;"><%= @magic_url %></p>
+  </div>
+
+  <div style="background-color:#FFF8E4; border:1px solid #FFC107; border-radius:8px; padding:16px; margin:24px 0; display:inline-block; text-align:left;">
+    <strong style="color:#2D2D2A; font-size:14px;">Atenção:</strong>
+    <span style="color:#63635C; font-size:14px;"> este link expira em <strong>24 horas</strong> e só pode ser usado uma vez.</span>
+  </div>
+</div>

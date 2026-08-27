@@ -1,0 +1,14 @@
+{
+ "note": "Hand-verified fixes for edges graphify's extractor resolves to the wrong target. Each one was checked against the call site in source. Applied by steps/02_prune.py so they survive every rebuild - a manual fix that is not encoded here is lost the next time the hook runs.",
+ "retarget": [
+  {
+   "reason": "intake_router_service.rb:75 calls Blog::IntakeConversationService.reask - the class method at intake_conversation_service.rb:35. The extractor matched the underscore variant re_ask at L314, which is a private instance method. Right file, wrong method. The two other inbound edges to re_ask (from choose_edit_field L213 and handle_back L279) are correct and must not be touched.",
+   "when": {
+    "source_file": "backend/app/services/blog/intake_router_service.rb",
+    "relation": "calls",
+    "target": "backend_app_services_blog_intake_conversation_service_intakeconversationservice_re_ask"
+   },
+   "new_target": "backend_app_services_blog_intake_conversation_service_reask"
+  }
+ ]
+}

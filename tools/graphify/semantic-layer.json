@@ -1,0 +1,5546 @@
+{
+ "note": "LLM-extracted semantic layer. Versioned so a clean rebuild does not need to re-run extraction.",
+ "nodes": [
+  {
+   "id": "backend_docs_ga4_setup_ga4_measurement_protocol",
+   "label": "GA4 Measurement Protocol (Server-Side)",
+   "file_type": "rationale",
+   "source_file": "backend/docs/GA4_SETUP.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_ga4_setup_ga4_measurement_id",
+   "label": "GA4_MEASUREMENT_ID (G-XXXXXXXXXX)",
+   "file_type": "concept",
+   "source_file": "backend/docs/GA4_SETUP.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_ga4_setup_ga4_api_secret",
+   "label": "GA4_API_SECRET (Measurement Protocol API secret)",
+   "file_type": "concept",
+   "source_file": "backend/docs/GA4_SETUP.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_ga4_setup_data_stream",
+   "label": "GA4 Web Data Stream",
+   "file_type": "concept",
+   "source_file": "backend/docs/GA4_SETUP.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_ga4_setup_realtime_validation",
+   "label": "GA4 Realtime Report Validation",
+   "file_type": "rationale",
+   "source_file": "backend/docs/GA4_SETUP.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_gtm_setup_hybrid_tracking_architecture",
+   "label": "Hybrid Tracking Architecture (Server-Side + Client-Side)",
+   "file_type": "rationale",
+   "source_file": "backend/docs/GTM_SETUP.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_gtm_setup_gtm_container",
+   "label": "GTM Container Snippet (index.html)",
+   "file_type": "concept",
+   "source_file": "backend/docs/GTM_SETUP.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_gtm_setup_datalayer",
+   "label": "dataLayer (Client-Side Event Bus)",
+   "file_type": "concept",
+   "source_file": "backend/docs/GTM_SETUP.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_gtm_setup_dlv_source",
+   "label": "dataLayer key: source (marketing-site, dashboard)",
+   "file_type": "concept",
+   "source_file": "backend/docs/GTM_SETUP.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_gtm_setup_dlv_event",
+   "label": "dataLayer key: event (event name)",
+   "file_type": "concept",
+   "source_file": "backend/docs/GTM_SETUP.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_gtm_setup_dlv_plan_id",
+   "label": "dataLayer key: plan_id",
+   "file_type": "concept",
+   "source_file": "backend/docs/GTM_SETUP.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_gtm_setup_dlv_price",
+   "label": "dataLayer key: price",
+   "file_type": "concept",
+   "source_file": "backend/docs/GTM_SETUP.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_gtm_setup_dlv_depth",
+   "label": "dataLayer key: depth (scroll 25/50/75/90)",
+   "file_type": "concept",
+   "source_file": "backend/docs/GTM_SETUP.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_gtm_setup_scroll_depth_event",
+   "label": "scroll_depth event",
+   "file_type": "concept",
+   "source_file": "backend/docs/GTM_SETUP.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_gtm_setup_purchase_event",
+   "label": "purchase event",
+   "file_type": "concept",
+   "source_file": "backend/docs/GTM_SETUP.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_gtm_setup_select_plan_event",
+   "label": "select_plan event",
+   "file_type": "concept",
+   "source_file": "backend/docs/GTM_SETUP.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_gtm_setup_custom_event_trigger",
+   "label": "GTM Custom Event Trigger (Evento Personalizado)",
+   "file_type": "concept",
+   "source_file": "backend/docs/GTM_SETUP.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_gtm_setup_meta_pixel_client_tag",
+   "label": "Meta Pixel Client-Side Tag (fbq track Purchase)",
+   "file_type": "concept",
+   "source_file": "backend/docs/GTM_SETUP.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_gtm_setup_gtm_preview_validation",
+   "label": "GTM Preview / Tag Assistant Validation",
+   "file_type": "rationale",
+   "source_file": "backend/docs/GTM_SETUP.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_meta_capi_setup_meta_conversions_api",
+   "label": "Meta Conversions API (Full Server-Side)",
+   "file_type": "rationale",
+   "source_file": "backend/docs/META_CAPI_SETUP.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_meta_capi_setup_facebook_pixel_id",
+   "label": "FACEBOOK_PIXEL_ID",
+   "file_type": "concept",
+   "source_file": "backend/docs/META_CAPI_SETUP.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_meta_capi_setup_facebook_access_token",
+   "label": "FACEBOOK_ACCESS_TOKEN",
+   "file_type": "concept",
+   "source_file": "backend/docs/META_CAPI_SETUP.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_meta_capi_setup_lead_created_event",
+   "label": "lead_created event (trackEvent)",
+   "file_type": "concept",
+   "source_file": "backend/docs/META_CAPI_SETUP.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_meta_capi_setup_sha256_pii_hashing",
+   "label": "SHA256 PII Hashing (email / phone)",
+   "file_type": "rationale",
+   "source_file": "backend/docs/META_CAPI_SETUP.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_meta_capi_setup_event_match_quality",
+   "label": "Event Match Quality",
+   "file_type": "concept",
+   "source_file": "backend/docs/META_CAPI_SETUP.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_meta_capi_setup_client_ip_user_agent_capture",
+   "label": "Server-Side Client IP & User Agent Capture",
+   "file_type": "rationale",
+   "source_file": "backend/docs/META_CAPI_SETUP.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_tracking_guide_hybrid_architecture",
+   "label": "Arquitetura Hibrida de Rastreamento (Tracking Guide)",
+   "file_type": "rationale",
+   "source_file": "backend/docs/TRACKING_GUIDE.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_tracking_guide_adblocker_resilience",
+   "label": "AdBlocker Resilience (First-Party Data Ownership)",
+   "file_type": "rationale",
+   "source_file": "backend/docs/TRACKING_GUIDE.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_tracking_guide_magic_link_lead_id",
+   "label": "Magic Link (?lead_id=) Chatbot Attribution",
+   "file_type": "rationale",
+   "source_file": "backend/docs/TRACKING_GUIDE.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_tracking_guide_lead_id_param",
+   "label": "lead_id parameter / dataLayer key",
+   "file_type": "concept",
+   "source_file": "backend/docs/TRACKING_GUIDE.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_tracking_guide_session_lead_binding",
+   "label": "Session-to-Lead Binding (session hijack)",
+   "file_type": "rationale",
+   "source_file": "backend/docs/TRACKING_GUIDE.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_tracking_guide_page_view_event",
+   "label": "page_view event",
+   "file_type": "concept",
+   "source_file": "backend/docs/TRACKING_GUIDE.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_tracking_guide_utm_term",
+   "label": "utm_term parameter",
+   "file_type": "concept",
+   "source_file": "backend/docs/TRACKING_GUIDE.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_tracking_guide_automatic_utm_capture",
+   "label": "Automatic UTM Capture and Binding",
+   "file_type": "rationale",
+   "source_file": "backend/docs/TRACKING_GUIDE.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_utm_standards_utm_source",
+   "label": "utm_source (instagram, google, newsletter, qrcode_balcao)",
+   "file_type": "concept",
+   "source_file": "backend/docs/UTM_STANDARDS.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_utm_standards_utm_medium",
+   "label": "utm_medium (stories, cpc, email, banner, qrcode)",
+   "file_type": "concept",
+   "source_file": "backend/docs/UTM_STANDARDS.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_utm_standards_utm_campaign",
+   "label": "utm_campaign (lancamento_verao, promo_natal, cardapio_digital)",
+   "file_type": "concept",
+   "source_file": "backend/docs/UTM_STANDARDS.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_utm_standards_utm_content",
+   "label": "utm_content (optional: video_demo, foto_produto, botao_cta)",
+   "file_type": "concept",
+   "source_file": "backend/docs/UTM_STANDARDS.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_utm_standards_analyticsprovider",
+   "label": "AnalyticsProvider",
+   "file_type": "concept",
+   "source_file": "backend/docs/UTM_STANDARDS.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_utm_standards_referrer_capture",
+   "label": "Referrer Capture",
+   "file_type": "concept",
+   "source_file": "backend/docs/UTM_STANDARDS.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_utm_standards_session_scoped_attribution",
+   "label": "Session-Scoped UTM Attribution (Last Touch)",
+   "file_type": "rationale",
+   "source_file": "backend/docs/UTM_STANDARDS.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_utm_standards_naming_conventions",
+   "label": "UTM Naming Conventions (lowercase, no spaces, consistent)",
+   "file_type": "rationale",
+   "source_file": "backend/docs/UTM_STANDARDS.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_utm_standards_live_logs_dashboard",
+   "label": "Dashboard > Live Logs (UTM verification)",
+   "file_type": "concept",
+   "source_file": "backend/docs/UTM_STANDARDS.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_docs_utm_standards_campaign_url_builder",
+   "label": "Google Campaign URL Builder (link generator)",
+   "file_type": "concept",
+   "source_file": "backend/docs/UTM_STANDARDS.md",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_src_app_pages_braziliansoftware_design_brief_brsw_landing",
+   "label": "Brazilian Software Landing (/brsw)",
+   "file_type": "document",
+   "source_file": "frontend/src/app/pages/BrazilianSoftware/DESIGN_BRIEF.md",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_src_app_pages_braziliansoftware_design_brief_stitch_ui_design_template",
+   "label": "stitch-ui-design Screen Template",
+   "file_type": "rationale",
+   "source_file": "frontend/src/app/pages/BrazilianSoftware/DESIGN_BRIEF.md",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_src_app_pages_braziliansoftware_design_brief_brasil_palette",
+   "label": "Paleta Brasil (navy/yellow/green/cyan tokens)",
+   "file_type": "concept",
+   "source_file": "frontend/src/app/pages/BrazilianSoftware/DESIGN_BRIEF.md",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_src_app_pages_braziliansoftware_design_brief_hero_screen",
+   "label": "Tela (0,0) Hero — /brsw",
+   "file_type": "document",
+   "source_file": "frontend/src/app/pages/BrazilianSoftware/DESIGN_BRIEF.md",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_src_app_pages_braziliansoftware_design_brief_produtos_screen",
+   "label": "Tela (1,0) Produtos — /brsw/produtos",
+   "file_type": "document",
+   "source_file": "frontend/src/app/pages/BrazilianSoftware/DESIGN_BRIEF.md",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_src_app_pages_braziliansoftware_design_brief_manifesto_screen",
+   "label": "Tela (2,0) Manifesto — /brsw/manifesto",
+   "file_type": "document",
+   "source_file": "frontend/src/app/pages/BrazilianSoftware/DESIGN_BRIEF.md",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_src_app_pages_braziliansoftware_design_brief_cases_screen",
+   "label": "Tela (3,0) Cases — /brsw/cases",
+   "file_type": "document",
+   "source_file": "frontend/src/app/pages/BrazilianSoftware/DESIGN_BRIEF.md",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_src_app_pages_braziliansoftware_design_brief_contrato_screen",
+   "label": "Tela (4,0) Contrato — /brsw/contrato",
+   "file_type": "document",
+   "source_file": "frontend/src/app/pages/BrazilianSoftware/DESIGN_BRIEF.md",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_src_app_pages_braziliansoftware_design_brief_sobre_screen",
+   "label": "Tela (0,1) Sobre — /brsw/sobre",
+   "file_type": "document",
+   "source_file": "frontend/src/app/pages/BrazilianSoftware/DESIGN_BRIEF.md",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_src_app_pages_braziliansoftware_design_brief_navkit_grid",
+   "label": "NavKit Coordinate Grid + SmartArrow Navigation",
+   "file_type": "rationale",
+   "source_file": "frontend/src/app/pages/BrazilianSoftware/DESIGN_BRIEF.md",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_src_app_pages_braziliansoftware_design_brief_deep_linking_usehistorysync",
+   "label": "Deep-Linking via useHistorySync",
+   "file_type": "rationale",
+   "source_file": "frontend/src/app/pages/BrazilianSoftware/DESIGN_BRIEF.md",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_src_app_pages_braziliansoftware_design_brief_brswlogo_assets",
+   "label": "BrswLogo Component + /public/brsw SVG Variants",
+   "file_type": "concept",
+   "source_file": "frontend/src/app/pages/BrazilianSoftware/DESIGN_BRIEF.md",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_src_app_pages_braziliansoftware_design_brief_brswtimemember_contract",
+   "label": "BrswTimeMember Data Contract",
+   "file_type": "concept",
+   "source_file": "frontend/src/app/pages/BrazilianSoftware/DESIGN_BRIEF.md",
+   "source_location": ""
+  },
+  {
+   "id": "readme_rails8_react_ts_stack",
+   "label": "Rails 8 API + React TypeScript Base Stack",
+   "file_type": "concept",
+   "source_file": "README.md",
+   "source_location": ""
+  },
+  {
+   "id": "readme_jwt_authentication",
+   "label": "JWT Authentication (HS256, 15min access, 7d refresh)",
+   "file_type": "concept",
+   "source_file": "README.md",
+   "source_location": ""
+  },
+  {
+   "id": "readme_client_application_token",
+   "label": "Client Application Lifetime Token",
+   "file_type": "concept",
+   "source_file": "README.md",
+   "source_location": ""
+  },
+  {
+   "id": "readme_magic_login_flow",
+   "label": "Magic Login Flow (pre-register / verify-code / complete-registration)",
+   "file_type": "concept",
+   "source_file": "README.md",
+   "source_location": ""
+  },
+  {
+   "id": "readme_backend_env_contract",
+   "label": "Backend Environment Contract (backend/.env)",
+   "file_type": "concept",
+   "source_file": "README.md",
+   "source_location": ""
+  },
+  {
+   "id": "readme_frontend_env_contract",
+   "label": "Frontend Environment Contract (frontend/.env)",
+   "file_type": "concept",
+   "source_file": "README.md",
+   "source_location": ""
+  },
+  {
+   "id": "readme_root_env_contract",
+   "label": "Root Scripts Environment Contract (.env)",
+   "file_type": "concept",
+   "source_file": "README.md",
+   "source_location": ""
+  },
+  {
+   "id": "readme_switch_env_script",
+   "label": "bin/switch_env Environment Switcher",
+   "file_type": "concept",
+   "source_file": "README.md",
+   "source_location": ""
+  },
+  {
+   "id": "readme_admin_seed_convention",
+   "label": "Admin User Seed Convention (db/seeds.rb)",
+   "file_type": "concept",
+   "source_file": "README.md",
+   "source_location": ""
+  },
+  {
+   "id": "readme_swagger_docs_endpoints",
+   "label": "Swagger Doc and Stoplight Docs Endpoints",
+   "file_type": "concept",
+   "source_file": "README.md",
+   "source_location": ""
+  },
+  {
+   "id": "build_system_project_directory_layout",
+   "label": "Canonical Project Directory Layout",
+   "file_type": "concept",
+   "source_file": "BUILD_SYSTEM.md",
+   "source_location": ""
+  },
+  {
+   "id": "build_system_env_secrets_isolation",
+   "label": "Secret Isolation via .env.secrets",
+   "file_type": "rationale",
+   "source_file": "BUILD_SYSTEM.md",
+   "source_location": ""
+  },
+  {
+   "id": "build_system_setup_sh",
+   "label": "setup.sh Automated Provisioning Script",
+   "file_type": "concept",
+   "source_file": "BUILD_SYSTEM.md",
+   "source_location": ""
+  },
+  {
+   "id": "build_system_docker_multistage_build",
+   "label": "Docker Multi-stage Build (backend-prod / frontend-nginx)",
+   "file_type": "concept",
+   "source_file": "BUILD_SYSTEM.md",
+   "source_location": ""
+  },
+  {
+   "id": "build_system_ci_cd_pipeline",
+   "label": "GitHub Actions CI/CD Pipeline",
+   "file_type": "concept",
+   "source_file": "BUILD_SYSTEM.md",
+   "source_location": ""
+  },
+  {
+   "id": "build_system_backend_quality_gates",
+   "label": "Backend Quality Gates (RuboCop, Brakeman, Bundle Audit, RSpec 90%)",
+   "file_type": "concept",
+   "source_file": "BUILD_SYSTEM.md",
+   "source_location": ""
+  },
+  {
+   "id": "build_system_frontend_quality_gates",
+   "label": "Frontend Quality Gates (ESLint, type-check, Vitest, bundle size)",
+   "file_type": "concept",
+   "source_file": "BUILD_SYSTEM.md",
+   "source_location": ""
+  },
+  {
+   "id": "build_system_security_scanning",
+   "label": "Security Scanning (Trivy + Dependabot)",
+   "file_type": "concept",
+   "source_file": "BUILD_SYSTEM.md",
+   "source_location": ""
+  },
+  {
+   "id": "build_system_integrations",
+   "label": "Configured Integrations (Asaas, Evolution, Action Cable)",
+   "file_type": "concept",
+   "source_file": "BUILD_SYSTEM.md",
+   "source_location": ""
+  },
+  {
+   "id": "bin_prod_bin_prod_script",
+   "label": "bin/prod Production Orchestrator",
+   "file_type": "concept",
+   "source_file": "BIN_PROD.md",
+   "source_location": ""
+  },
+  {
+   "id": "bin_prod_frontend_build_every_restart",
+   "label": "Frontend Build Runs on Every Restart (no skip gate)",
+   "file_type": "rationale",
+   "source_file": "BIN_PROD.md",
+   "source_location": ""
+  },
+  {
+   "id": "bin_prod_puma_over_passenger",
+   "label": "Puma over Passenger Decision",
+   "file_type": "rationale",
+   "source_file": "BIN_PROD.md",
+   "source_location": ""
+  },
+  {
+   "id": "bin_prod_cors_origins_config",
+   "label": "CORS_ORIGINS Configuration",
+   "file_type": "concept",
+   "source_file": "BIN_PROD.md",
+   "source_location": ""
+  },
+  {
+   "id": "bin_prod_nginx_reverse_proxy",
+   "label": "Nginx Reverse Proxy Architecture",
+   "file_type": "concept",
+   "source_file": "BIN_PROD.md",
+   "source_location": ""
+  },
+  {
+   "id": "bin_prod_gzip_compression",
+   "label": "Nginx Gzip Compression Settings",
+   "file_type": "concept",
+   "source_file": "BIN_PROD.md",
+   "source_location": ""
+  },
+  {
+   "id": "bin_prod_certbot_ssl",
+   "label": "Certbot HTTPS Provisioning",
+   "file_type": "concept",
+   "source_file": "BIN_PROD.md",
+   "source_location": ""
+  },
+  {
+   "id": "daemon_systemd_service",
+   "label": "Systemd ai9.service Daemon",
+   "file_type": "concept",
+   "source_file": "DAEMON.md",
+   "source_location": ""
+  },
+  {
+   "id": "daemon_absolute_path_requirement",
+   "label": "Systemd Requires Absolute Paths (no relative paths or user env)",
+   "file_type": "rationale",
+   "source_file": "DAEMON.md",
+   "source_location": ""
+  },
+  {
+   "id": "media_guide_media_identifier_system",
+   "label": "Media Identifier Placement System",
+   "file_type": "concept",
+   "source_file": "MEDIA_GUIDE.md",
+   "source_location": ""
+  },
+  {
+   "id": "media_guide_demo_identifier",
+   "label": "demo Identifier (Hero / MediaShowcase)",
+   "file_type": "concept",
+   "source_file": "MEDIA_GUIDE.md",
+   "source_location": ""
+  },
+  {
+   "id": "media_guide_what_is_it_identifier",
+   "label": "what_is_it Identifier (WhatIsIt section)",
+   "file_type": "concept",
+   "source_file": "MEDIA_GUIDE.md",
+   "source_location": ""
+  },
+  {
+   "id": "media_guide_take_a_closer_look_grid",
+   "label": "Take a Closer Look Bento Grid (fallback bucket)",
+   "file_type": "concept",
+   "source_file": "MEDIA_GUIDE.md",
+   "source_location": ""
+  },
+  {
+   "id": "media_guide_feature_section_identifiers",
+   "label": "feature_section_1..5 Identifiers",
+   "file_type": "concept",
+   "source_file": "MEDIA_GUIDE.md",
+   "source_location": ""
+  },
+  {
+   "id": "media_guide_take_a_closer_look_hidden",
+   "label": "take_a_closer_look_hidden Identifier",
+   "file_type": "concept",
+   "source_file": "MEDIA_GUIDE.md",
+   "source_location": ""
+  },
+  {
+   "id": "media_guide_react_query_cache_note",
+   "label": "React Query Cache on Media Fetches",
+   "file_type": "rationale",
+   "source_file": "MEDIA_GUIDE.md",
+   "source_location": ""
+  },
+  {
+   "id": "project_standardization_grape_module_versioning",
+   "label": "Grape Per-module API Versioning (/auth/v1, /whats/v1, /asaas/v1)",
+   "file_type": "concept",
+   "source_file": "PROJECT_STANDARDIZATION.md",
+   "source_location": ""
+  },
+  {
+   "id": "project_standardization_no_routes_rb_redirects",
+   "label": "No Redirects in routes.rb - Grape Owns Routing",
+   "file_type": "rationale",
+   "source_file": "PROJECT_STANDARDIZATION.md",
+   "source_location": ""
+  },
+  {
+   "id": "project_standardization_swagger_doc_endpoint",
+   "label": "GET /swagger_doc OpenAPI Endpoint",
+   "file_type": "concept",
+   "source_file": "PROJECT_STANDARDIZATION.md",
+   "source_location": ""
+  },
+  {
+   "id": "project_standardization_stoplight_elements_docs",
+   "label": "GET /docs Stoplight Elements Viewer",
+   "file_type": "concept",
+   "source_file": "PROJECT_STANDARDIZATION.md",
+   "source_location": ""
+  },
+  {
+   "id": "project_standardization_swagger_spec_test",
+   "label": "spec/requests/swagger_spec.rb Contract Test",
+   "file_type": "concept",
+   "source_file": "PROJECT_STANDARDIZATION.md",
+   "source_location": ""
+  },
+  {
+   "id": "readme_tracking_lead_id_param",
+   "label": "?lead_id= URL Tracking Parameter",
+   "file_type": "concept",
+   "source_file": "README_TRACKING.md",
+   "source_location": ""
+  },
+  {
+   "id": "readme_tracking_ai9_tracking_script",
+   "label": "AI9 Advanced Tracking Script",
+   "file_type": "concept",
+   "source_file": "README_TRACKING.md",
+   "source_location": ""
+  },
+  {
+   "id": "readme_tracking_manychat_integration",
+   "label": "Manychat lead_id Link Integration",
+   "file_type": "concept",
+   "source_file": "README_TRACKING.md",
+   "source_location": ""
+  },
+  {
+   "id": "readme_tracking_activecampaign_integration",
+   "label": "ActiveCampaign SUBSCRIBERID Integration",
+   "file_type": "concept",
+   "source_file": "README_TRACKING.md",
+   "source_location": ""
+  },
+  {
+   "id": "readme_tracking_homem_dos_dados_agent",
+   "label": "Homem dos Dados Chatbot on /tracking-guide",
+   "file_type": "concept",
+   "source_file": "README_TRACKING.md",
+   "source_location": ""
+  },
+  {
+   "id": "ai9_29_public_posts_security_review",
+   "label": "AI9-29 Security Review of Public Posts/Blog Stack",
+   "file_type": "document",
+   "source_file": "AI9-29.md",
+   "source_location": ""
+  },
+  {
+   "id": "ai9_29_blog_chat_idor",
+   "label": "IDOR in Blog Chatbot (Lead.by_any_id session_id)",
+   "file_type": "concept",
+   "source_file": "AI9-29.md",
+   "source_location": ""
+  },
+  {
+   "id": "ai9_29_public_endpoint_rate_limit",
+   "label": "Missing Rate Limit on Public Chat/Comments Endpoints",
+   "file_type": "concept",
+   "source_file": "AI9-29.md",
+   "source_location": ""
+  },
+  {
+   "id": "ai9_29_comment_email_lgpd_leak",
+   "label": "author_email Exposed by Public Comment Entity (LGPD)",
+   "file_type": "concept",
+   "source_file": "AI9-29.md",
+   "source_location": ""
+  },
+  {
+   "id": "ai9_29_stored_xss_comment",
+   "label": "Stored XSS Risk in Comment Body",
+   "file_type": "concept",
+   "source_file": "AI9-29.md",
+   "source_location": ""
+  },
+  {
+   "id": "ai9_29_rescue_from_all_backtrace_leak",
+   "label": "rescue_from :all Returns Backtrace to Client",
+   "file_type": "concept",
+   "source_file": "AI9-29.md",
+   "source_location": ""
+  },
+  {
+   "id": "ai9_29_og_admin_seed_note",
+   "label": "OG Admin Recreated on Every db:seed",
+   "file_type": "rationale",
+   "source_file": "AI9-29.md",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_data_agent_flow_homem_dos_dados_agent",
+   "label": "Homem dos Dados Agent (data-agent-flow persona)",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/data_agent_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_data_agent_flow_trigger_data_agent",
+   "label": "trigger-data-agent (keywords: rastreamento, pixel, utm, tracking)",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/data_agent_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_data_agent_flow_msg_explain_lead_id",
+   "label": "msg-explain-lead-id Step",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/data_agent_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_data_agent_flow_msg_explain_capi",
+   "label": "msg-explain-capi Step",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/data_agent_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_data_agent_flow_msg_explain_tracking",
+   "label": "msg-explain-tracking Step",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/data_agent_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_data_agent_flow_msg_menu",
+   "label": "msg-menu Step (loop back menu)",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/data_agent_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_data_agent_flow_analytics_provider",
+   "label": "AnalyticsProvider / trackEvent Hook",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/data_agent_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_data_agent_flow_stape_capi_integration",
+   "label": "Stape / Meta Conversions API Integration",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/data_agent_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_laura_flow_laura_agent",
+   "label": "Laura Agent (laura-ai9 solutions specialist persona)",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/laura_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_laura_flow_trigger_laura",
+   "label": "trigger-laura (keywords: oi, preco, plano, ajuda)",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/laura_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_laura_flow_msg_como_funciona",
+   "label": "msg-como-funciona Step (3-step lead capture pitch)",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/laura_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_laura_flow_msg_canais",
+   "label": "msg-canais Step (supported channels)",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/laura_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_laura_flow_msg_preco",
+   "label": "msg-preco Step (pricing qualification)",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/laura_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_laura_flow_msg_capture_demo",
+   "label": "msg-capture-demo Step (name + email capture)",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/laura_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_laura_flow_msg_canal_instagram",
+   "label": "msg-canal-instagram Step",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/laura_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_laura_flow_msg_canal_whatsapp",
+   "label": "msg-canal-whatsapp Step",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/laura_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_laura_flow_msg_canal_ambos",
+   "label": "msg-canal-ambos Step",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/laura_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_laura_flow_msg_fim_sucesso",
+   "label": "msg-fim-sucesso Step",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/laura_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_laura_flow_end_laura",
+   "label": "end-laura Terminal Node",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/laura_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_laura_flow_comment_to_dm_automation",
+   "label": "Instagram Comment-to-DM Automation",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/laura_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_laura_flow_evolution_api_whatsapp",
+   "label": "WhatsApp via Evolution API and WABA",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/laura_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_maya_flow_maya_agent",
+   "label": "Maya Agent (maya-guia-site default persona)",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_maya_flow_node_type_vocabulary",
+   "label": "Flow Node Type Vocabulary (trigger/text/question/redirect/save_to_lead/end)",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_maya_flow_trigger_maya",
+   "label": "trigger-maya (isDefault trigger)",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_maya_flow_msg_sozinho",
+   "label": "msg-sozinho Step (opt-out branch)",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_maya_flow_end_sozinho",
+   "label": "end-sozinho Terminal Node",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_maya_flow_scroll_letter",
+   "label": "scroll-letter Redirect Step (#letter)",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_maya_flow_scroll_showroom",
+   "label": "scroll-showroom Redirect Step (#features)",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_maya_flow_scroll_arsenal",
+   "label": "scroll-arsenal Redirect Step (#why-not-slack)",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_maya_flow_scroll_faq",
+   "label": "scroll-faq Redirect Step (#plans-heading)",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_maya_flow_scroll_demo",
+   "label": "scroll-demo Redirect Step (#media-showcase)",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_maya_flow_scroll_team",
+   "label": "scroll-team Redirect Step (#team-presentation, Polemk)",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_maya_flow_msg_pre_cadastro",
+   "label": "msg-pre-cadastro Step",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_maya_flow_q_nome",
+   "label": "q-nome Question Node (variable: nome)",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_maya_flow_msg_pos_nome",
+   "label": "msg-pos-nome Step",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_maya_flow_q_email",
+   "label": "q-email Question Node (variable: email)",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_maya_flow_msg_pos_email",
+   "label": "msg-pos-email Step",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_maya_flow_q_whatsapp",
+   "label": "q-whatsapp Question Node (variable: whatsapp)",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_maya_flow_save_lead",
+   "label": "save-lead Node (field_mapping name/email/phone)",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_db_seeds_maya_flow_redirect_dashboard",
+   "label": "redirect-dashboard Node (auto_auth visitor access)",
+   "file_type": "concept",
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_results_rspec_suite_run",
+   "label": "RSpec Suite Run (416 examples, 14 failures)",
+   "file_type": "document",
+   "source_file": "backend/results.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_results_expanded_service_spec_failures",
+   "label": "Failing service_expanded Specs (Lead, Plans, Users)",
+   "file_type": "concept",
+   "source_file": "backend/results.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_results_whatsapp_webhook_service_failures",
+   "label": "Failing WhatsAppWebhookService Specs (connection, logout, qrcode)",
+   "file_type": "concept",
+   "source_file": "backend/results.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_results_new_partner_dashboard_run",
+   "label": "Partner Dashboard RSpec Run (3 examples, 0 failures)",
+   "file_type": "document",
+   "source_file": "backend/results_new.json",
+   "source_location": ""
+  },
+  {
+   "id": "backend_results_new_line_coverage_baseline",
+   "label": "Line Coverage Baseline 24.75% (3004/12137)",
+   "file_type": "concept",
+   "source_file": "backend/results_new.json",
+   "source_location": ""
+  },
+  {
+   "id": "docker_compose_local_service_topology",
+   "label": "Local Compose Service Topology",
+   "file_type": "concept",
+   "source_file": "docker-compose.yml",
+   "source_location": ""
+  },
+  {
+   "id": "docker_compose_postgres_service",
+   "label": "postgres service (postgres:14, 5432)",
+   "file_type": "concept",
+   "source_file": "docker-compose.yml",
+   "source_location": ""
+  },
+  {
+   "id": "docker_compose_redis_service",
+   "label": "redis service (redis:7, 6379)",
+   "file_type": "concept",
+   "source_file": "docker-compose.yml",
+   "source_location": ""
+  },
+  {
+   "id": "docker_compose_backend_service",
+   "label": "backend service (Rails, port 3000, target backend-dev)",
+   "file_type": "concept",
+   "source_file": "docker-compose.yml",
+   "source_location": ""
+  },
+  {
+   "id": "docker_compose_frontend_service",
+   "label": "frontend service (Vite, port 5173, target frontend-dev)",
+   "file_type": "concept",
+   "source_file": "docker-compose.yml",
+   "source_location": ""
+  },
+  {
+   "id": "docker_compose_sidekiq_service",
+   "label": "sidekiq worker service (bundle exec sidekiq)",
+   "file_type": "concept",
+   "source_file": "docker-compose.yml",
+   "source_location": ""
+  },
+  {
+   "id": "docker_compose_environment_contract",
+   "label": "Development Environment Variable Contract",
+   "file_type": "concept",
+   "source_file": "docker-compose.yml",
+   "source_location": ""
+  },
+  {
+   "id": "docker_compose_named_volumes",
+   "label": "Named Volumes (postgres_data, redis_data, bundle_cache, node_modules)",
+   "file_type": "concept",
+   "source_file": "docker-compose.yml",
+   "source_location": ""
+  },
+  {
+   "id": "docker_compose_multistage_build_targets",
+   "label": "Single Dockerfile with backend-dev / frontend-dev Targets",
+   "file_type": "rationale",
+   "source_file": "docker-compose.yml",
+   "source_location": ""
+  },
+  {
+   "id": "docker_compose_cors_origin_binding",
+   "label": "CORS_ORIGINS Pinned to the Vite Dev Origin",
+   "file_type": "rationale",
+   "source_file": "docker-compose.yml",
+   "source_location": ""
+  },
+  {
+   "id": "config_goat_robot_goat_v1_router_workflow",
+   "label": "goat/v1/router n8n Workflow",
+   "file_type": "concept",
+   "source_file": "config/goat-robot.json",
+   "source_location": ""
+  },
+  {
+   "id": "config_goat_robot_channel_activation_matrix",
+   "label": "Channel Activation Matrix (IG comment/DM, WABA, EvoAPI, test chat, ai9 site chat)",
+   "file_type": "concept",
+   "source_file": "config/goat-robot.json",
+   "source_location": ""
+  },
+  {
+   "id": "config_goat_robot_instagram_channel",
+   "label": "Instagram Channel Branch (comment, DM, reply)",
+   "file_type": "concept",
+   "source_file": "config/goat-robot.json",
+   "source_location": ""
+  },
+  {
+   "id": "config_goat_robot_facebook_channel",
+   "label": "Facebook Channel Branch (comment, message, reply)",
+   "file_type": "concept",
+   "source_file": "config/goat-robot.json",
+   "source_location": ""
+  },
+  {
+   "id": "config_goat_robot_waba_channel",
+   "label": "WhatsApp Business API (WABA) Channel Branch",
+   "file_type": "concept",
+   "source_file": "config/goat-robot.json",
+   "source_location": ""
+  },
+  {
+   "id": "config_goat_robot_whats_evolution_channel",
+   "label": "Unofficial WhatsApp Channel via Evolution API",
+   "file_type": "concept",
+   "source_file": "config/goat-robot.json",
+   "source_location": ""
+  },
+  {
+   "id": "config_goat_robot_manychat_bridge",
+   "label": "ManyChat Bridge Workaround Pending Meta Permission Approval",
+   "file_type": "rationale",
+   "source_file": "config/goat-robot.json",
+   "source_location": ""
+  },
+  {
+   "id": "config_goat_robot_public_chat_api_channel",
+   "label": "goat-api Webhook Branch for the Website Public Chat",
+   "file_type": "concept",
+   "source_file": "config/goat-robot.json",
+   "source_location": ""
+  },
+  {
+   "id": "config_goat_robot_meta_webhook_challenge_validation",
+   "label": "Meta Webhook Challenge Validation Nodes",
+   "file_type": "concept",
+   "source_file": "config/goat-robot.json",
+   "source_location": ""
+  },
+  {
+   "id": "config_goat_robot_joy_pipeline",
+   "label": "joy/* Reasoning Pipeline (lead, operation, categorize, teams, answer)",
+   "file_type": "concept",
+   "source_file": "config/goat-robot.json",
+   "source_location": ""
+  },
+  {
+   "id": "config_goat_robot_smart_v2_lma_subworkflow",
+   "label": "smart/v2/lma Sub-Workflow Delegation",
+   "file_type": "concept",
+   "source_file": "config/goat-robot.json",
+   "source_location": ""
+  },
+  {
+   "id": "config_goat_robot_rails_api_endpoints",
+   "label": "Rails API Endpoints Called by the Router (leads, operations/validate, executions, messages/bulk)",
+   "file_type": "concept",
+   "source_file": "config/goat-robot.json",
+   "source_location": ""
+  },
+  {
+   "id": "config_goat_robot_presence_typing_indicator",
+   "label": "Per-Channel Presence / Typing Indicator Fan-out",
+   "file_type": "concept",
+   "source_file": "config/goat-robot.json",
+   "source_location": ""
+  },
+  {
+   "id": "config_goat_robot_api_host_drift",
+   "label": "Hardcoded ngrok Tunnel Host Alongside the Production api-goat Host",
+   "file_type": "rationale",
+   "source_file": "config/goat-robot.json",
+   "source_location": ""
+  },
+  {
+   "id": "config_goat_robot_meta_graph_api_v22",
+   "label": "Router Still Calls Meta Graph API v22.0",
+   "file_type": "concept",
+   "source_file": "config/goat-robot.json",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_package_build_script",
+   "label": "build script (tsc && vite build)",
+   "file_type": "concept",
+   "source_file": "frontend/package.json",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_package_dev_script",
+   "label": "dev script (vite)",
+   "file_type": "concept",
+   "source_file": "frontend/package.json",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_package_type_check_script",
+   "label": "type-check script (tsc --noEmit)",
+   "file_type": "concept",
+   "source_file": "frontend/package.json",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_package_lint_script",
+   "label": "lint script (eslint --max-warnings 0)",
+   "file_type": "concept",
+   "source_file": "frontend/package.json",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_package_test_scripts",
+   "label": "Vitest Test Scripts (test, test:ui, test:coverage)",
+   "file_type": "concept",
+   "source_file": "frontend/package.json",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_package_react_vite_stack",
+   "label": "React 18 + Vite 5 + TypeScript 5 Baseline",
+   "file_type": "concept",
+   "source_file": "frontend/package.json",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_package_radix_ui_layer",
+   "label": "Radix UI + Tailwind + CVA Component Layer",
+   "file_type": "concept",
+   "source_file": "frontend/package.json",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_package_data_layer_stack",
+   "label": "Data Layer: Axios + TanStack Query + Zustand",
+   "file_type": "concept",
+   "source_file": "frontend/package.json",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_package_i18n_stack",
+   "label": "i18n Stack: i18next + react-i18next + Language Detector",
+   "file_type": "concept",
+   "source_file": "frontend/package.json",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_package_actioncable_client",
+   "label": "@rails/actioncable Realtime Client",
+   "file_type": "concept",
+   "source_file": "frontend/package.json",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_package_rich_content_stack",
+   "label": "Rich Content Stack (TipTap, Slate, react-markdown, Recharts, three.js)",
+   "file_type": "concept",
+   "source_file": "frontend/package.json",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_package_pnpm_pinned_package_manager",
+   "label": "pnpm 10.32.1 Pinned via packageManager Field",
+   "file_type": "rationale",
+   "source_file": "frontend/package.json",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_serve_static_cache_policy",
+   "label": "Static Serving Cache Policy",
+   "file_type": "concept",
+   "source_file": "frontend/serve.json",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_serve_html_no_cache_rule",
+   "label": "no-cache Default for Every Path",
+   "file_type": "rationale",
+   "source_file": "frontend/serve.json",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_serve_immutable_hashed_assets_rule",
+   "label": "Immutable 1-Year Cache for assets/, locales/ and Media",
+   "file_type": "rationale",
+   "source_file": "frontend/serve.json",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_serve_nosniff_header",
+   "label": "X-Content-Type-Options: nosniff Header",
+   "file_type": "concept",
+   "source_file": "frontend/serve.json",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_tsconfig_strict_mode",
+   "label": "strict: true TypeScript Contract",
+   "file_type": "rationale",
+   "source_file": "frontend/tsconfig.json",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_tsconfig_path_alias_at_src",
+   "label": "@/* Path Alias to ./src/*",
+   "file_type": "concept",
+   "source_file": "frontend/tsconfig.json",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_tsconfig_bundler_module_resolution",
+   "label": "Bundler Mode (moduleResolution bundler, isolatedModules, noEmit)",
+   "file_type": "concept",
+   "source_file": "frontend/tsconfig.json",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_tsconfig_es2020_dom_target",
+   "label": "ES2020 Target with DOM Libs and react-jsx",
+   "file_type": "concept",
+   "source_file": "frontend/tsconfig.json",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_tsconfig_unused_checks_disabled",
+   "label": "noUnusedLocals / noUnusedParameters Deliberately Off",
+   "file_type": "rationale",
+   "source_file": "frontend/tsconfig.json",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_tsconfig_tests_excluded_from_typecheck",
+   "label": "Test Files Excluded from the Type-Check Build",
+   "file_type": "rationale",
+   "source_file": "frontend/tsconfig.json",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_tsconfig_node_composite_project",
+   "label": "Composite tsconfig.node.json for vite.config.ts",
+   "file_type": "concept",
+   "source_file": "frontend/tsconfig.node.json",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_src_locales_en_translation_en_catalogue",
+   "label": "English i18n Catalogue",
+   "file_type": "document",
+   "source_file": "frontend/src/locales/en/translation.json",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_src_locales_pt_br_translation_pt_br_catalogue",
+   "label": "Brazilian Portuguese i18n Catalogue",
+   "file_type": "document",
+   "source_file": "frontend/src/locales/pt-br/translation.json",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_src_locales_en_translation_landing_namespaces",
+   "label": "Landing-Page Namespaces (hero, what_is_it, features_section, showroom, creators, letter)",
+   "file_type": "concept",
+   "source_file": "frontend/src/locales/en/translation.json",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_src_locales_en_translation_commerce_namespaces",
+   "label": "Commerce Namespaces (plans, checkout)",
+   "file_type": "concept",
+   "source_file": "frontend/src/locales/en/translation.json",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_src_locales_en_translation_seo_namespace",
+   "label": "seo Namespace (localized page metadata)",
+   "file_type": "concept",
+   "source_file": "frontend/src/locales/en/translation.json",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_src_locales_en_translation_product_namespaces",
+   "label": "Product Namespaces (reactor, media_showcase, insta_mocks, why_not_slack, topbar, footer)",
+   "file_type": "concept",
+   "source_file": "frontend/src/locales/en/translation.json",
+   "source_location": ""
+  },
+  {
+   "id": "frontend_src_locales_pt_br_translation_locale_parity",
+   "label": "Full Locale Parity (277 keys, 25 namespaces, zero asymmetry)",
+   "file_type": "rationale",
+   "source_file": "frontend/src/locales/pt-br/translation.json",
+   "source_location": ""
+  },
+  {
+   "id": "filters_analytics_events_filters_missing_route",
+   "label": "Missing Route: GET /api/analytics/v1/events/filters",
+   "file_type": "document",
+   "source_file": "filters.json",
+   "source_location": ""
+  },
+  {
+   "id": "filters_rails_middleware_stack",
+   "label": "Rails 8.0.4 / Puma 6.6.1 Middleware Stack (rack-cors, request_store, request_id)",
+   "file_type": "concept",
+   "source_file": "filters.json",
+   "source_location": ""
+  },
+  {
+   "id": "filters2_authorization_header_format_contract",
+   "label": "Authorization Header Format Contract (pt-BR unauthorized payload)",
+   "file_type": "document",
+   "source_file": "filters2.json",
+   "source_location": ""
+  },
+  {
+   "id": "specs_fix_plan_failing_spec_remediation_plan",
+   "label": "Remediation Plan for 31 Failing Specs (11 files)",
+   "file_type": "document",
+   "source_file": "specs_fix_plan.md",
+   "source_location": ""
+  },
+  {
+   "id": "specs_fix_plan_fix_specs_not_code_principle",
+   "label": "Principle: Fix the Specs, Not the Code (failures pre-date the change)",
+   "file_type": "rationale",
+   "source_file": "specs_fix_plan.md",
+   "source_location": ""
+  },
+  {
+   "id": "specs_fix_plan_group1_instagram_api_url_migration",
+   "label": "Group 1: Instagram API URL Migration (graph.facebook v22.0 to graph.instagram v25.0)",
+   "file_type": "concept",
+   "source_file": "specs_fix_plan.md",
+   "source_location": ""
+  },
+  {
+   "id": "specs_fix_plan_group2_comment_automation_operation_refactor",
+   "label": "Group 2: InstagramCommentAutomationService Refactored to Operation",
+   "file_type": "concept",
+   "source_file": "specs_fix_plan.md",
+   "source_location": ""
+  },
+  {
+   "id": "specs_fix_plan_group3_reply_sent_bot_validation",
+   "label": "Group 3: InstagramCommentReplySent bot Validation Mismatch",
+   "file_type": "concept",
+   "source_file": "specs_fix_plan.md",
+   "source_location": ""
+  },
+  {
+   "id": "specs_fix_plan_group4_public_chat_service_n8n_stub",
+   "label": "Group 4: PublicChatService Fails Without the N8N Webhook Stub",
+   "file_type": "concept",
+   "source_file": "specs_fix_plan.md",
+   "source_location": ""
+  },
+  {
+   "id": "specs_fix_plan_group5_public_chat_request_specs",
+   "label": "Group 5: Public Chat API Request Specs (session/lead creation timing)",
+   "file_type": "concept",
+   "source_file": "specs_fix_plan.md",
+   "source_location": ""
+  },
+  {
+   "id": "specs_fix_plan_group6_auth_checkout_mock_signature",
+   "label": "Group 6: Auth Checkout instance_double Signature Drift",
+   "file_type": "concept",
+   "source_file": "specs_fix_plan.md",
+   "source_location": ""
+  },
+  {
+   "id": "specs_fix_plan_group7_partner_dashboard_factories",
+   "label": "Group 7: Partner Dashboard 500s from coupon/purchase Factories",
+   "file_type": "concept",
+   "source_file": "specs_fix_plan.md",
+   "source_location": ""
+  },
+  {
+   "id": "specs_fix_plan_group8_user_delete_fk_constraint",
+   "label": "Group 8: User Delete Blocked by Missing dependent: :destroy",
+   "file_type": "concept",
+   "source_file": "specs_fix_plan.md",
+   "source_location": ""
+  },
+  {
+   "id": "specs_fix_plan_group9_meta_webhook_job_enqueue",
+   "label": "Group 9: Meta Webhook Enqueues ProcessMetaWebhookJob for All Events",
+   "file_type": "concept",
+   "source_file": "specs_fix_plan.md",
+   "source_location": ""
+  },
+  {
+   "id": "specs_fix_plan_n8n_webhook_env_contract",
+   "label": "N8N_WEBHOOK_WEBSITE_CHAT Environment Contract",
+   "file_type": "concept",
+   "source_file": "specs_fix_plan.md",
+   "source_location": ""
+  },
+  {
+   "id": "specs_fix_plan_pt_br_service_messages_convention",
+   "label": "Convention: Service Result Messages Written in Portuguese",
+   "file_type": "rationale",
+   "source_file": "specs_fix_plan.md",
+   "source_location": ""
+  },
+  {
+   "id": "specs_fix_plan_execution_priority_order",
+   "label": "Suggested Fix Ordering (mechanical, then behavioral, then factories)",
+   "file_type": "rationale",
+   "source_file": "specs_fix_plan.md",
+   "source_location": ""
+  },
+  {
+   "id": "tsc_errors_chatwoot_typescript_failures",
+   "label": "Chatwoot Feature TypeScript Failures (12 errors, 4 files)",
+   "file_type": "document",
+   "source_file": "tsc_errors.txt",
+   "source_location": ""
+  },
+  {
+   "id": "tsc_errors_lead_type_missing_fields",
+   "label": "Lead Type Missing lead and instagram Properties",
+   "file_type": "concept",
+   "source_file": "tsc_errors.txt",
+   "source_location": ""
+  },
+  {
+   "id": "tsc_errors_missing_message_export",
+   "label": "api/types Exports No Message Member",
+   "file_type": "concept",
+   "source_file": "tsc_errors.txt",
+   "source_location": ""
+  },
+  {
+   "id": "tsc_errors_leads_endpoint_missing_methods",
+   "label": "leads Endpoint Object Lacks messages / sendMessage",
+   "file_type": "concept",
+   "source_file": "tsc_errors.txt",
+   "source_location": ""
+  },
+  {
+   "id": "tsc_errors_id_type_string_number_drift",
+   "label": "Conversation id Typed as number vs string",
+   "file_type": "concept",
+   "source_file": "tsc_errors.txt",
+   "source_location": ""
+  },
+  {
+   "id": "tsc_errors_implicit_any_parameters",
+   "label": "Implicit any Parameters in Message Map Callback",
+   "file_type": "concept",
+   "source_file": "tsc_errors.txt",
+   "source_location": ""
+  }
+ ],
+ "edges": [
+  {
+   "source": "backend_docs_ga4_setup_ga4_measurement_protocol",
+   "target": "backend_docs_ga4_setup_ga4_measurement_id",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/GA4_SETUP.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_ga4_setup_ga4_measurement_protocol",
+   "target": "backend_docs_ga4_setup_ga4_api_secret",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/GA4_SETUP.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_ga4_setup_data_stream",
+   "target": "backend_docs_ga4_setup_ga4_measurement_id",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/GA4_SETUP.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_ga4_setup_data_stream",
+   "target": "backend_docs_ga4_setup_ga4_api_secret",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/GA4_SETUP.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_ga4_setup_realtime_validation",
+   "target": "backend_docs_ga4_setup_ga4_measurement_protocol",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/GA4_SETUP.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_gtm_setup_hybrid_tracking_architecture",
+   "target": "backend_docs_gtm_setup_datalayer",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/GTM_SETUP.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_gtm_setup_hybrid_tracking_architecture",
+   "target": "backend_docs_ga4_setup_ga4_measurement_protocol",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/GTM_SETUP.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_gtm_setup_gtm_container",
+   "target": "backend_docs_gtm_setup_datalayer",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/GTM_SETUP.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_gtm_setup_gtm_container",
+   "target": "frontend_index_goat_seo_metadata",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.65,
+   "source_file": "backend/docs/GTM_SETUP.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_gtm_setup_datalayer",
+   "target": "backend_docs_gtm_setup_dlv_source",
+   "relation": "shares_data_with",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/GTM_SETUP.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_gtm_setup_datalayer",
+   "target": "backend_docs_gtm_setup_dlv_event",
+   "relation": "shares_data_with",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/GTM_SETUP.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_gtm_setup_datalayer",
+   "target": "backend_docs_gtm_setup_dlv_plan_id",
+   "relation": "shares_data_with",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/GTM_SETUP.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_gtm_setup_datalayer",
+   "target": "backend_docs_gtm_setup_dlv_price",
+   "relation": "shares_data_with",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/GTM_SETUP.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_gtm_setup_datalayer",
+   "target": "backend_docs_gtm_setup_dlv_depth",
+   "relation": "shares_data_with",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/GTM_SETUP.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_gtm_setup_dlv_plan_id",
+   "target": "backend_plans_dump_goat_plan_catalog",
+   "relation": "shares_data_with",
+   "confidence": "INFERRED",
+   "confidence_score": 0.75,
+   "source_file": "backend/docs/GTM_SETUP.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_gtm_setup_scroll_depth_event",
+   "target": "backend_docs_gtm_setup_dlv_depth",
+   "relation": "shares_data_with",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/GTM_SETUP.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_gtm_setup_scroll_depth_event",
+   "target": "backend_docs_gtm_setup_dlv_source",
+   "relation": "shares_data_with",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/GTM_SETUP.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_gtm_setup_purchase_event",
+   "target": "backend_docs_gtm_setup_select_plan_event",
+   "relation": "semantically_similar_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "backend/docs/GTM_SETUP.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_gtm_setup_purchase_event",
+   "target": "frontend_build_log_eventtype_union_drift",
+   "relation": "conceptually_related_to",
+   "confidence": "AMBIGUOUS",
+   "confidence_score": 0.3,
+   "source_file": "backend/docs/GTM_SETUP.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_gtm_setup_select_plan_event",
+   "target": "backend_plans_dump_saas_goat_plan",
+   "relation": "shares_data_with",
+   "confidence": "INFERRED",
+   "confidence_score": 0.65,
+   "source_file": "backend/docs/GTM_SETUP.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_gtm_setup_custom_event_trigger",
+   "target": "backend_docs_gtm_setup_purchase_event",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/GTM_SETUP.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_gtm_setup_custom_event_trigger",
+   "target": "backend_docs_gtm_setup_scroll_depth_event",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/GTM_SETUP.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_gtm_setup_meta_pixel_client_tag",
+   "target": "backend_docs_gtm_setup_custom_event_trigger",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/GTM_SETUP.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_gtm_setup_meta_pixel_client_tag",
+   "target": "backend_docs_gtm_setup_dlv_price",
+   "relation": "shares_data_with",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/GTM_SETUP.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_gtm_setup_meta_pixel_client_tag",
+   "target": "backend_docs_gtm_setup_dlv_plan_id",
+   "relation": "shares_data_with",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/GTM_SETUP.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_gtm_setup_meta_pixel_client_tag",
+   "target": "backend_docs_meta_capi_setup_meta_conversions_api",
+   "relation": "semantically_similar_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "backend/docs/META_CAPI_SETUP.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_gtm_setup_gtm_preview_validation",
+   "target": "backend_docs_gtm_setup_scroll_depth_event",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/GTM_SETUP.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_meta_capi_setup_meta_conversions_api",
+   "target": "backend_docs_meta_capi_setup_facebook_pixel_id",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/META_CAPI_SETUP.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_meta_capi_setup_meta_conversions_api",
+   "target": "backend_docs_meta_capi_setup_facebook_access_token",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/META_CAPI_SETUP.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_meta_capi_setup_meta_conversions_api",
+   "target": "backend_docs_meta_capi_setup_client_ip_user_agent_capture",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/META_CAPI_SETUP.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_meta_capi_setup_lead_created_event",
+   "target": "backend_docs_meta_capi_setup_sha256_pii_hashing",
+   "relation": "shares_data_with",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/META_CAPI_SETUP.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_meta_capi_setup_lead_created_event",
+   "target": "frontend_build_log_eventtype_union_drift",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.95,
+   "source_file": "backend/docs/META_CAPI_SETUP.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_meta_capi_setup_lead_created_event",
+   "target": "backend_docs_tracking_guide_lead_id_param",
+   "relation": "shares_data_with",
+   "confidence": "INFERRED",
+   "confidence_score": 0.75,
+   "source_file": "backend/docs/TRACKING_GUIDE.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_meta_capi_setup_sha256_pii_hashing",
+   "target": "backend_docs_meta_capi_setup_event_match_quality",
+   "relation": "implements",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/META_CAPI_SETUP.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_meta_capi_setup_client_ip_user_agent_capture",
+   "target": "backend_docs_meta_capi_setup_event_match_quality",
+   "relation": "implements",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/META_CAPI_SETUP.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_tracking_guide_hybrid_architecture",
+   "target": "backend_docs_gtm_setup_hybrid_tracking_architecture",
+   "relation": "semantically_similar_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.95,
+   "source_file": "backend/docs/TRACKING_GUIDE.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_tracking_guide_hybrid_architecture",
+   "target": "backend_docs_tracking_guide_adblocker_resilience",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/TRACKING_GUIDE.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_tracking_guide_hybrid_architecture",
+   "target": "backend_docs_gtm_setup_datalayer",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/TRACKING_GUIDE.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_tracking_guide_magic_link_lead_id",
+   "target": "backend_docs_tracking_guide_lead_id_param",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/TRACKING_GUIDE.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_tracking_guide_magic_link_lead_id",
+   "target": "backend_docs_tracking_guide_session_lead_binding",
+   "relation": "implements",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/TRACKING_GUIDE.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_tracking_guide_lead_id_param",
+   "target": "backend_docs_gtm_setup_datalayer",
+   "relation": "shares_data_with",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/TRACKING_GUIDE.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_tracking_guide_session_lead_binding",
+   "target": "backend_docs_tracking_guide_page_view_event",
+   "relation": "shares_data_with",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/TRACKING_GUIDE.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_tracking_guide_session_lead_binding",
+   "target": "backend_docs_utm_standards_session_scoped_attribution",
+   "relation": "semantically_similar_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "backend/docs/UTM_STANDARDS.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_tracking_guide_page_view_event",
+   "target": "backend_test_output_partner_dashboard_spec",
+   "relation": "conceptually_related_to",
+   "confidence": "AMBIGUOUS",
+   "confidence_score": 0.2,
+   "source_file": "backend/docs/TRACKING_GUIDE.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_tracking_guide_automatic_utm_capture",
+   "target": "backend_docs_utm_standards_utm_source",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/TRACKING_GUIDE.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_tracking_guide_automatic_utm_capture",
+   "target": "backend_docs_utm_standards_utm_medium",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/TRACKING_GUIDE.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_tracking_guide_automatic_utm_capture",
+   "target": "backend_docs_utm_standards_utm_campaign",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/TRACKING_GUIDE.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_tracking_guide_automatic_utm_capture",
+   "target": "backend_docs_tracking_guide_utm_term",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/TRACKING_GUIDE.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_tracking_guide_automatic_utm_capture",
+   "target": "backend_docs_utm_standards_utm_content",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/TRACKING_GUIDE.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_utm_standards_analyticsprovider",
+   "target": "backend_docs_utm_standards_referrer_capture",
+   "relation": "implements",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/UTM_STANDARDS.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_utm_standards_analyticsprovider",
+   "target": "backend_docs_utm_standards_session_scoped_attribution",
+   "relation": "implements",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/UTM_STANDARDS.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_utm_standards_analyticsprovider",
+   "target": "backend_docs_tracking_guide_automatic_utm_capture",
+   "relation": "implements",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "backend/docs/UTM_STANDARDS.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_utm_standards_naming_conventions",
+   "target": "backend_docs_utm_standards_utm_source",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/UTM_STANDARDS.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_utm_standards_naming_conventions",
+   "target": "backend_docs_utm_standards_utm_campaign",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/UTM_STANDARDS.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_utm_standards_live_logs_dashboard",
+   "target": "backend_docs_utm_standards_utm_source",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/UTM_STANDARDS.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_utm_standards_live_logs_dashboard",
+   "target": "backend_docs_gtm_setup_gtm_preview_validation",
+   "relation": "semantically_similar_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.75,
+   "source_file": "backend/docs/UTM_STANDARDS.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_docs_utm_standards_campaign_url_builder",
+   "target": "backend_docs_utm_standards_naming_conventions",
+   "relation": "implements",
+   "confidence": "INFERRED",
+   "confidence_score": 0.75,
+   "source_file": "backend/docs/UTM_STANDARDS.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_src_app_pages_braziliansoftware_design_brief_brsw_landing",
+   "target": "frontend_src_app_pages_braziliansoftware_design_brief_stitch_ui_design_template",
+   "relation": "implements",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "frontend/src/app/pages/BrazilianSoftware/DESIGN_BRIEF.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_src_app_pages_braziliansoftware_design_brief_brsw_landing",
+   "target": "frontend_src_app_pages_braziliansoftware_design_brief_brasil_palette",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "frontend/src/app/pages/BrazilianSoftware/DESIGN_BRIEF.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_src_app_pages_braziliansoftware_design_brief_brsw_landing",
+   "target": "frontend_index_softwareapplication_schema",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.55,
+   "source_file": "frontend/src/app/pages/BrazilianSoftware/DESIGN_BRIEF.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_src_app_pages_braziliansoftware_design_brief_hero_screen",
+   "target": "frontend_src_app_pages_braziliansoftware_design_brief_brasil_palette",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "frontend/src/app/pages/BrazilianSoftware/DESIGN_BRIEF.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_src_app_pages_braziliansoftware_design_brief_hero_screen",
+   "target": "frontend_src_app_pages_braziliansoftware_design_brief_produtos_screen",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "frontend/src/app/pages/BrazilianSoftware/DESIGN_BRIEF.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_src_app_pages_braziliansoftware_design_brief_hero_screen",
+   "target": "frontend_src_app_pages_braziliansoftware_design_brief_sobre_screen",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "frontend/src/app/pages/BrazilianSoftware/DESIGN_BRIEF.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_src_app_pages_braziliansoftware_design_brief_hero_screen",
+   "target": "frontend_src_app_pages_braziliansoftware_design_brief_brswlogo_assets",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "frontend/src/app/pages/BrazilianSoftware/DESIGN_BRIEF.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_src_app_pages_braziliansoftware_design_brief_produtos_screen",
+   "target": "frontend_src_app_pages_braziliansoftware_design_brief_brasil_palette",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "frontend/src/app/pages/BrazilianSoftware/DESIGN_BRIEF.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_src_app_pages_braziliansoftware_design_brief_produtos_screen",
+   "target": "backend_docs_gtm_setup_dlv_price",
+   "relation": "shares_data_with",
+   "confidence": "INFERRED",
+   "confidence_score": 0.65,
+   "source_file": "frontend/src/app/pages/BrazilianSoftware/DESIGN_BRIEF.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_src_app_pages_braziliansoftware_design_brief_cases_screen",
+   "target": "frontend_src_app_pages_braziliansoftware_design_brief_brasil_palette",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "frontend/src/app/pages/BrazilianSoftware/DESIGN_BRIEF.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_src_app_pages_braziliansoftware_design_brief_contrato_screen",
+   "target": "frontend_src_app_pages_braziliansoftware_design_brief_manifesto_screen",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "frontend/src/app/pages/BrazilianSoftware/DESIGN_BRIEF.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_src_app_pages_braziliansoftware_design_brief_contrato_screen",
+   "target": "backend_docs_utm_standards_utm_campaign",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.65,
+   "source_file": "frontend/src/app/pages/BrazilianSoftware/DESIGN_BRIEF.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_src_app_pages_braziliansoftware_design_brief_sobre_screen",
+   "target": "frontend_src_app_pages_braziliansoftware_design_brief_brswtimemember_contract",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "frontend/src/app/pages/BrazilianSoftware/DESIGN_BRIEF.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_src_app_pages_braziliansoftware_design_brief_sobre_screen",
+   "target": "frontend_src_app_pages_braziliansoftware_design_brief_brswlogo_assets",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "frontend/src/app/pages/BrazilianSoftware/DESIGN_BRIEF.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_src_app_pages_braziliansoftware_design_brief_navkit_grid",
+   "target": "frontend_src_app_pages_braziliansoftware_design_brief_manifesto_screen",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "frontend/src/app/pages/BrazilianSoftware/DESIGN_BRIEF.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_src_app_pages_braziliansoftware_design_brief_navkit_grid",
+   "target": "frontend_src_app_pages_braziliansoftware_design_brief_deep_linking_usehistorysync",
+   "relation": "shares_data_with",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "frontend/src/app/pages/BrazilianSoftware/DESIGN_BRIEF.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_src_app_pages_braziliansoftware_design_brief_deep_linking_usehistorysync",
+   "target": "frontend_public_robots_crawl_policy",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.55,
+   "source_file": "frontend/src/app/pages/BrazilianSoftware/DESIGN_BRIEF.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_src_app_pages_braziliansoftware_design_brief_brswtimemember_contract",
+   "target": "frontend_src_app_pages_braziliansoftware_design_brief_cases_screen",
+   "relation": "semantically_similar_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.75,
+   "source_file": "frontend/src/app/pages/BrazilianSoftware/DESIGN_BRIEF.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "readme_rails8_react_ts_stack",
+   "target": "readme_jwt_authentication",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "README.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "readme_rails8_react_ts_stack",
+   "target": "readme_backend_env_contract",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "README.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "readme_rails8_react_ts_stack",
+   "target": "readme_frontend_env_contract",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "README.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "readme_rails8_react_ts_stack",
+   "target": "readme_root_env_contract",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "README.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "readme_jwt_authentication",
+   "target": "readme_client_application_token",
+   "relation": "conceptually_related_to",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "README.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "readme_jwt_authentication",
+   "target": "readme_magic_login_flow",
+   "relation": "conceptually_related_to",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "README.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "readme_jwt_authentication",
+   "target": "frontend_build_log_api_client_refreshtoken_undefined",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "README.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "readme_backend_env_contract",
+   "target": "backend_config_sidekiq_queue_config",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.65,
+   "source_file": "README.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "readme_frontend_env_contract",
+   "target": "backend_config_cable_actioncable_redis_adapter",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "README.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "readme_switch_env_script",
+   "target": "readme_backend_env_contract",
+   "relation": "implements",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "README.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "readme_switch_env_script",
+   "target": "readme_frontend_env_contract",
+   "relation": "implements",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "README.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "readme_admin_seed_convention",
+   "target": "readme_magic_login_flow",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "README.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "readme_swagger_docs_endpoints",
+   "target": "readme_rails8_react_ts_stack",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "README.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "build_system_project_directory_layout",
+   "target": "readme_rails8_react_ts_stack",
+   "relation": "implements",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "BUILD_SYSTEM.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "build_system_env_secrets_isolation",
+   "target": "readme_switch_env_script",
+   "relation": "conceptually_related_to",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "BUILD_SYSTEM.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "build_system_setup_sh",
+   "target": "build_system_project_directory_layout",
+   "relation": "implements",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "BUILD_SYSTEM.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "build_system_docker_multistage_build",
+   "target": "build_system_project_directory_layout",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "BUILD_SYSTEM.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "build_system_ci_cd_pipeline",
+   "target": "build_system_backend_quality_gates",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "BUILD_SYSTEM.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "build_system_ci_cd_pipeline",
+   "target": "build_system_frontend_quality_gates",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "BUILD_SYSTEM.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "build_system_ci_cd_pipeline",
+   "target": "build_system_security_scanning",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "BUILD_SYSTEM.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "build_system_backend_quality_gates",
+   "target": "backend__rubocop_rubocop_config",
+   "relation": "implements",
+   "confidence": "INFERRED",
+   "confidence_score": 0.95,
+   "source_file": "BUILD_SYSTEM.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "build_system_backend_quality_gates",
+   "target": "backend__rubocop_todo_rubocop_todo_baseline",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "BUILD_SYSTEM.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "build_system_backend_quality_gates",
+   "target": "backend__rubocop_todo_metrics_cop_debt",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.75,
+   "source_file": "BUILD_SYSTEM.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "build_system_frontend_quality_gates",
+   "target": "frontend_build_log_typescript_build_failure",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "BUILD_SYSTEM.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "build_system_integrations",
+   "target": "readme_backend_env_contract",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.95,
+   "source_file": "BUILD_SYSTEM.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "bin_prod_bin_prod_script",
+   "target": "bin_prod_frontend_build_every_restart",
+   "relation": "implements",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "BIN_PROD.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "bin_prod_bin_prod_script",
+   "target": "bin_prod_puma_over_passenger",
+   "relation": "implements",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "BIN_PROD.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "bin_prod_bin_prod_script",
+   "target": "bin_prod_cors_origins_config",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "BIN_PROD.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "bin_prod_bin_prod_script",
+   "target": "backend_config_sidekiq_queue_config",
+   "relation": "references",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "BIN_PROD.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "bin_prod_bin_prod_script",
+   "target": "backend_config_sidekiq_app_name_queue_prefix",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.65,
+   "source_file": "BIN_PROD.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "bin_prod_frontend_build_every_restart",
+   "target": "media_guide_react_query_cache_note",
+   "relation": "semantically_similar_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.75,
+   "source_file": "BIN_PROD.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "bin_prod_cors_origins_config",
+   "target": "readme_root_env_contract",
+   "relation": "conceptually_related_to",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "BIN_PROD.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "bin_prod_nginx_reverse_proxy",
+   "target": "bin_prod_bin_prod_script",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "BIN_PROD.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "bin_prod_nginx_reverse_proxy",
+   "target": "bin_prod_certbot_ssl",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "BIN_PROD.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "bin_prod_nginx_reverse_proxy",
+   "target": "bin_prod_gzip_compression",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "BIN_PROD.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "bin_prod_nginx_reverse_proxy",
+   "target": "readme_frontend_env_contract",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.75,
+   "source_file": "BIN_PROD.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "bin_prod_nginx_reverse_proxy",
+   "target": "backend_config_cable_actioncable_redis_adapter",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "BIN_PROD.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "bin_prod_gzip_compression",
+   "target": "build_system_frontend_quality_gates",
+   "relation": "semantically_similar_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.65,
+   "source_file": "BIN_PROD.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "daemon_systemd_service",
+   "target": "bin_prod_bin_prod_script",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "DAEMON.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "daemon_systemd_service",
+   "target": "daemon_absolute_path_requirement",
+   "relation": "implements",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "DAEMON.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "daemon_absolute_path_requirement",
+   "target": "build_system_env_secrets_isolation",
+   "relation": "semantically_similar_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.65,
+   "source_file": "DAEMON.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "media_guide_media_identifier_system",
+   "target": "media_guide_demo_identifier",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "MEDIA_GUIDE.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "media_guide_media_identifier_system",
+   "target": "media_guide_what_is_it_identifier",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "MEDIA_GUIDE.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "media_guide_media_identifier_system",
+   "target": "media_guide_take_a_closer_look_grid",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "MEDIA_GUIDE.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "media_guide_media_identifier_system",
+   "target": "media_guide_feature_section_identifiers",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "MEDIA_GUIDE.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "media_guide_media_identifier_system",
+   "target": "media_guide_take_a_closer_look_hidden",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "MEDIA_GUIDE.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "media_guide_media_identifier_system",
+   "target": "media_guide_react_query_cache_note",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "MEDIA_GUIDE.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "media_guide_media_identifier_system",
+   "target": "backend_config_storage_activestorage_disk_service",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "MEDIA_GUIDE.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "media_guide_demo_identifier",
+   "target": "backend_db_seeds_maya_flow_scroll_demo",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "MEDIA_GUIDE.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "media_guide_take_a_closer_look_grid",
+   "target": "media_guide_take_a_closer_look_hidden",
+   "relation": "conceptually_related_to",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "MEDIA_GUIDE.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "project_standardization_grape_module_versioning",
+   "target": "project_standardization_no_routes_rb_redirects",
+   "relation": "implements",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "PROJECT_STANDARDIZATION.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "project_standardization_grape_module_versioning",
+   "target": "project_standardization_swagger_doc_endpoint",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "PROJECT_STANDARDIZATION.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "project_standardization_grape_module_versioning",
+   "target": "readme_client_application_token",
+   "relation": "conceptually_related_to",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "PROJECT_STANDARDIZATION.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "project_standardization_grape_module_versioning",
+   "target": "frontend_build_log_endpoints_duplicate_property",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.65,
+   "source_file": "PROJECT_STANDARDIZATION.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "project_standardization_grape_module_versioning",
+   "target": "readme_magic_login_flow",
+   "relation": "conceptually_related_to",
+   "confidence": "AMBIGUOUS",
+   "confidence_score": 0.3,
+   "source_file": "PROJECT_STANDARDIZATION.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "project_standardization_swagger_doc_endpoint",
+   "target": "project_standardization_stoplight_elements_docs",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "PROJECT_STANDARDIZATION.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "project_standardization_swagger_doc_endpoint",
+   "target": "readme_swagger_docs_endpoints",
+   "relation": "conceptually_related_to",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "PROJECT_STANDARDIZATION.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "project_standardization_swagger_spec_test",
+   "target": "project_standardization_swagger_doc_endpoint",
+   "relation": "implements",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "PROJECT_STANDARDIZATION.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "readme_tracking_lead_id_param",
+   "target": "readme_tracking_ai9_tracking_script",
+   "relation": "conceptually_related_to",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "README_TRACKING.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "readme_tracking_lead_id_param",
+   "target": "readme_tracking_manychat_integration",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "README_TRACKING.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "readme_tracking_lead_id_param",
+   "target": "readme_tracking_activecampaign_integration",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "README_TRACKING.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "readme_tracking_lead_id_param",
+   "target": "backend_config_sidekiq_linkeventstoleadjob",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "README_TRACKING.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "readme_tracking_ai9_tracking_script",
+   "target": "frontend_build_log_eventtype_union_drift",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.75,
+   "source_file": "README_TRACKING.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "readme_tracking_homem_dos_dados_agent",
+   "target": "readme_tracking_lead_id_param",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "README_TRACKING.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "readme_tracking_homem_dos_dados_agent",
+   "target": "backend_db_seeds_data_agent_flow_homem_dos_dados_agent",
+   "relation": "implements",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "README_TRACKING.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "ai9_29_public_posts_security_review",
+   "target": "ai9_29_blog_chat_idor",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "AI9-29.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "ai9_29_public_posts_security_review",
+   "target": "ai9_29_public_endpoint_rate_limit",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "AI9-29.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "ai9_29_public_posts_security_review",
+   "target": "ai9_29_comment_email_lgpd_leak",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "AI9-29.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "ai9_29_public_posts_security_review",
+   "target": "ai9_29_stored_xss_comment",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "AI9-29.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "ai9_29_public_posts_security_review",
+   "target": "ai9_29_rescue_from_all_backtrace_leak",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "AI9-29.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "ai9_29_public_posts_security_review",
+   "target": "ai9_29_og_admin_seed_note",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "AI9-29.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "ai9_29_blog_chat_idor",
+   "target": "backend_db_seeds_maya_flow_save_lead",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.65,
+   "source_file": "AI9-29.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "ai9_29_public_endpoint_rate_limit",
+   "target": "readme_rails8_react_ts_stack",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "AI9-29.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "ai9_29_public_endpoint_rate_limit",
+   "target": "readme_magic_login_flow",
+   "relation": "semantically_similar_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "AI9-29.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "ai9_29_stored_xss_comment",
+   "target": "ai9_29_comment_email_lgpd_leak",
+   "relation": "conceptually_related_to",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "AI9-29.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "ai9_29_rescue_from_all_backtrace_leak",
+   "target": "project_standardization_grape_module_versioning",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.75,
+   "source_file": "AI9-29.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "ai9_29_og_admin_seed_note",
+   "target": "readme_admin_seed_convention",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.95,
+   "source_file": "AI9-29.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_data_agent_flow_homem_dos_dados_agent",
+   "target": "backend_db_seeds_data_agent_flow_trigger_data_agent",
+   "relation": "implements",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/data_agent_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_data_agent_flow_trigger_data_agent",
+   "target": "backend_db_seeds_data_agent_flow_msg_explain_lead_id",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/data_agent_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_data_agent_flow_trigger_data_agent",
+   "target": "backend_db_seeds_data_agent_flow_msg_explain_capi",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/data_agent_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_data_agent_flow_trigger_data_agent",
+   "target": "backend_db_seeds_data_agent_flow_msg_explain_tracking",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/data_agent_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_data_agent_flow_msg_explain_lead_id",
+   "target": "backend_db_seeds_data_agent_flow_msg_explain_tracking",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/data_agent_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_data_agent_flow_msg_explain_lead_id",
+   "target": "backend_db_seeds_data_agent_flow_msg_menu",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/data_agent_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_data_agent_flow_msg_explain_lead_id",
+   "target": "readme_tracking_lead_id_param",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/data_agent_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_data_agent_flow_msg_explain_capi",
+   "target": "backend_db_seeds_data_agent_flow_msg_explain_tracking",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/data_agent_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_data_agent_flow_msg_explain_capi",
+   "target": "backend_db_seeds_data_agent_flow_msg_menu",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/data_agent_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_data_agent_flow_msg_explain_capi",
+   "target": "backend_db_seeds_data_agent_flow_stape_capi_integration",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/data_agent_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_data_agent_flow_msg_explain_tracking",
+   "target": "backend_db_seeds_data_agent_flow_msg_menu",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/data_agent_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_data_agent_flow_msg_explain_tracking",
+   "target": "backend_db_seeds_data_agent_flow_analytics_provider",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/data_agent_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_data_agent_flow_msg_menu",
+   "target": "backend_db_seeds_data_agent_flow_msg_explain_lead_id",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/data_agent_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_data_agent_flow_msg_menu",
+   "target": "backend_db_seeds_data_agent_flow_msg_explain_capi",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/data_agent_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_data_agent_flow_msg_menu",
+   "target": "backend_db_seeds_data_agent_flow_msg_explain_tracking",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/data_agent_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_data_agent_flow_analytics_provider",
+   "target": "readme_tracking_ai9_tracking_script",
+   "relation": "implements",
+   "confidence": "INFERRED",
+   "confidence_score": 0.95,
+   "source_file": "backend/db/seeds/data_agent_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_laura_flow_laura_agent",
+   "target": "backend_db_seeds_laura_flow_trigger_laura",
+   "relation": "implements",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/laura_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_laura_flow_trigger_laura",
+   "target": "backend_db_seeds_laura_flow_msg_como_funciona",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/laura_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_laura_flow_trigger_laura",
+   "target": "backend_db_seeds_laura_flow_msg_canais",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/laura_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_laura_flow_trigger_laura",
+   "target": "backend_db_seeds_laura_flow_msg_capture_demo",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/laura_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_laura_flow_msg_como_funciona",
+   "target": "backend_db_seeds_laura_flow_msg_canais",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/laura_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_laura_flow_msg_como_funciona",
+   "target": "backend_db_seeds_laura_flow_msg_capture_demo",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/laura_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_laura_flow_msg_canais",
+   "target": "backend_db_seeds_laura_flow_msg_capture_demo",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/laura_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_laura_flow_msg_canais",
+   "target": "backend_db_seeds_laura_flow_msg_preco",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/laura_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_laura_flow_msg_canais",
+   "target": "backend_db_seeds_laura_flow_comment_to_dm_automation",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/laura_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_laura_flow_msg_canais",
+   "target": "backend_db_seeds_laura_flow_evolution_api_whatsapp",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/laura_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_laura_flow_msg_preco",
+   "target": "backend_db_seeds_laura_flow_msg_canal_instagram",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/laura_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_laura_flow_msg_preco",
+   "target": "backend_db_seeds_laura_flow_msg_canal_whatsapp",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/laura_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_laura_flow_msg_preco",
+   "target": "backend_db_seeds_laura_flow_msg_canal_ambos",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/laura_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_laura_flow_msg_preco",
+   "target": "backend_plans_dump_saas_goat_plan",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.65,
+   "source_file": "backend/db/seeds/laura_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_laura_flow_msg_capture_demo",
+   "target": "backend_db_seeds_laura_flow_msg_fim_sucesso",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/laura_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_laura_flow_msg_capture_demo",
+   "target": "backend_db_seeds_maya_flow_save_lead",
+   "relation": "semantically_similar_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.75,
+   "source_file": "backend/db/seeds/laura_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_laura_flow_msg_canal_instagram",
+   "target": "backend_db_seeds_laura_flow_msg_capture_demo",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/laura_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_laura_flow_msg_canal_instagram",
+   "target": "backend_db_seeds_laura_flow_msg_preco",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/laura_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_laura_flow_msg_canal_instagram",
+   "target": "backend_db_seeds_laura_flow_comment_to_dm_automation",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/laura_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_laura_flow_msg_canal_whatsapp",
+   "target": "backend_db_seeds_laura_flow_msg_capture_demo",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/laura_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_laura_flow_msg_canal_whatsapp",
+   "target": "backend_db_seeds_laura_flow_msg_preco",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/laura_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_laura_flow_msg_canal_whatsapp",
+   "target": "backend_db_seeds_laura_flow_evolution_api_whatsapp",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/laura_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_laura_flow_msg_canal_ambos",
+   "target": "backend_db_seeds_laura_flow_msg_capture_demo",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/laura_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_laura_flow_msg_fim_sucesso",
+   "target": "backend_db_seeds_laura_flow_end_laura",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/laura_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_laura_flow_evolution_api_whatsapp",
+   "target": "readme_backend_env_contract",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "backend/db/seeds/laura_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_maya_flow_maya_agent",
+   "target": "backend_db_seeds_maya_flow_trigger_maya",
+   "relation": "implements",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_maya_flow_maya_agent",
+   "target": "frontend_index_goat_seo_metadata",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.75,
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_maya_flow_maya_agent",
+   "target": "backend_config_locales_pt_br_locale_messages",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.65,
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_maya_flow_node_type_vocabulary",
+   "target": "backend_db_seeds_maya_flow_trigger_maya",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_maya_flow_node_type_vocabulary",
+   "target": "backend_db_seeds_maya_flow_q_nome",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_maya_flow_node_type_vocabulary",
+   "target": "backend_db_seeds_maya_flow_save_lead",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_maya_flow_node_type_vocabulary",
+   "target": "backend_db_seeds_maya_flow_redirect_dashboard",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_maya_flow_node_type_vocabulary",
+   "target": "backend_db_seeds_laura_flow_trigger_laura",
+   "relation": "shares_data_with",
+   "confidence": "INFERRED",
+   "confidence_score": 0.95,
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_maya_flow_node_type_vocabulary",
+   "target": "backend_db_seeds_data_agent_flow_trigger_data_agent",
+   "relation": "shares_data_with",
+   "confidence": "INFERRED",
+   "confidence_score": 0.95,
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_maya_flow_trigger_maya",
+   "target": "backend_db_seeds_maya_flow_msg_sozinho",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_maya_flow_trigger_maya",
+   "target": "backend_db_seeds_maya_flow_scroll_letter",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_maya_flow_msg_sozinho",
+   "target": "backend_db_seeds_maya_flow_end_sozinho",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_maya_flow_scroll_letter",
+   "target": "backend_db_seeds_maya_flow_scroll_showroom",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_maya_flow_scroll_letter",
+   "target": "backend_db_seeds_maya_flow_scroll_team",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_maya_flow_scroll_showroom",
+   "target": "backend_db_seeds_maya_flow_scroll_arsenal",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_maya_flow_scroll_showroom",
+   "target": "backend_db_seeds_maya_flow_scroll_faq",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_maya_flow_scroll_arsenal",
+   "target": "backend_db_seeds_maya_flow_scroll_faq",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_maya_flow_scroll_arsenal",
+   "target": "backend_db_seeds_maya_flow_scroll_demo",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_maya_flow_scroll_arsenal",
+   "target": "readme_rails8_react_ts_stack",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_maya_flow_scroll_arsenal",
+   "target": "frontend_index_softwareapplication_schema",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.65,
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_maya_flow_scroll_faq",
+   "target": "backend_db_seeds_maya_flow_scroll_demo",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_maya_flow_scroll_faq",
+   "target": "backend_db_seeds_maya_flow_scroll_team",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_maya_flow_scroll_faq",
+   "target": "backend_plans_dump_goat_plan_catalog",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.75,
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_maya_flow_scroll_demo",
+   "target": "backend_db_seeds_maya_flow_msg_pre_cadastro",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_maya_flow_scroll_demo",
+   "target": "backend_db_seeds_maya_flow_scroll_team",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_maya_flow_scroll_team",
+   "target": "backend_db_seeds_maya_flow_msg_pre_cadastro",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_maya_flow_msg_pre_cadastro",
+   "target": "backend_db_seeds_maya_flow_q_nome",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_maya_flow_q_nome",
+   "target": "backend_db_seeds_maya_flow_msg_pos_nome",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_maya_flow_msg_pos_nome",
+   "target": "backend_db_seeds_maya_flow_q_email",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_maya_flow_q_email",
+   "target": "backend_db_seeds_maya_flow_msg_pos_email",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_maya_flow_msg_pos_email",
+   "target": "backend_db_seeds_maya_flow_q_whatsapp",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_maya_flow_q_whatsapp",
+   "target": "backend_db_seeds_maya_flow_save_lead",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_maya_flow_save_lead",
+   "target": "backend_db_seeds_maya_flow_redirect_dashboard",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_maya_flow_save_lead",
+   "target": "readme_tracking_lead_id_param",
+   "relation": "semantically_similar_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_db_seeds_maya_flow_redirect_dashboard",
+   "target": "readme_magic_login_flow",
+   "relation": "semantically_similar_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "backend/db/seeds/maya_flow.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_results_rspec_suite_run",
+   "target": "backend_results_expanded_service_spec_failures",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/results.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_results_rspec_suite_run",
+   "target": "backend_results_whatsapp_webhook_service_failures",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/results.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_results_rspec_suite_run",
+   "target": "backend_test_output_purchase_pagination_bug",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.75,
+   "source_file": "backend/results.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_results_rspec_suite_run",
+   "target": "build_system_backend_quality_gates",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.95,
+   "source_file": "backend/results.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_results_expanded_service_spec_failures",
+   "target": "backend_plans_dump_goat_plan_catalog",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.75,
+   "source_file": "backend/results.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_results_whatsapp_webhook_service_failures",
+   "target": "backend_config_cable_actioncable_redis_adapter",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "backend/results.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_results_whatsapp_webhook_service_failures",
+   "target": "backend_db_seeds_laura_flow_evolution_api_whatsapp",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.75,
+   "source_file": "backend/results.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_results_new_partner_dashboard_run",
+   "target": "backend_test_output_partner_dashboard_spec",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/results_new.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_results_new_partner_dashboard_run",
+   "target": "backend_results_new_line_coverage_baseline",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/results_new.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_results_new_partner_dashboard_run",
+   "target": "backend_results_rspec_suite_run",
+   "relation": "shares_data_with",
+   "confidence": "INFERRED",
+   "confidence_score": 0.95,
+   "source_file": "backend/results_new.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "backend_results_new_line_coverage_baseline",
+   "target": "build_system_backend_quality_gates",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.95,
+   "source_file": "backend/results_new.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "docker_compose_local_service_topology",
+   "target": "docker_compose_postgres_service",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "docker-compose.yml",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "docker_compose_local_service_topology",
+   "target": "docker_compose_redis_service",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "docker-compose.yml",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "docker_compose_local_service_topology",
+   "target": "docker_compose_backend_service",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "docker-compose.yml",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "docker_compose_local_service_topology",
+   "target": "docker_compose_frontend_service",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "docker-compose.yml",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "docker_compose_local_service_topology",
+   "target": "docker_compose_sidekiq_service",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "docker-compose.yml",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "docker_compose_local_service_topology",
+   "target": "docker_compose_named_volumes",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "docker-compose.yml",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "docker_compose_redis_service",
+   "target": "backend_config_sidekiq_queue_config",
+   "relation": "shares_data_with",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "docker-compose.yml",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "docker_compose_redis_service",
+   "target": "backend_config_cable_actioncable_redis_adapter",
+   "relation": "shares_data_with",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "docker-compose.yml",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "docker_compose_backend_service",
+   "target": "docker_compose_postgres_service",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "docker-compose.yml",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "docker_compose_backend_service",
+   "target": "docker_compose_redis_service",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "docker-compose.yml",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "docker_compose_backend_service",
+   "target": "docker_compose_multistage_build_targets",
+   "relation": "implements",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "docker-compose.yml",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "docker_compose_frontend_service",
+   "target": "docker_compose_multistage_build_targets",
+   "relation": "implements",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "docker-compose.yml",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "docker_compose_sidekiq_service",
+   "target": "docker_compose_postgres_service",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "docker-compose.yml",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "docker_compose_sidekiq_service",
+   "target": "docker_compose_redis_service",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "docker-compose.yml",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "docker_compose_sidekiq_service",
+   "target": "docker_compose_backend_service",
+   "relation": "shares_data_with",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "docker-compose.yml",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "docker_compose_sidekiq_service",
+   "target": "backend_config_sidekiq_queue_config",
+   "relation": "implements",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "docker-compose.yml",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "docker_compose_sidekiq_service",
+   "target": "backend_config_sidekiq_low_priority_queue",
+   "relation": "references",
+   "confidence": "INFERRED",
+   "confidence_score": 0.65,
+   "source_file": "docker-compose.yml",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "docker_compose_environment_contract",
+   "target": "docker_compose_cors_origin_binding",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "docker-compose.yml",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "docker_compose_environment_contract",
+   "target": "docker_compose_backend_service",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "docker-compose.yml",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "docker_compose_environment_contract",
+   "target": "docker_compose_frontend_service",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "docker-compose.yml",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "docker_compose_named_volumes",
+   "target": "backend_config_storage_activestorage_disk_service",
+   "relation": "semantically_similar_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.65,
+   "source_file": "docker-compose.yml",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "docker_compose_cors_origin_binding",
+   "target": "docker_compose_frontend_service",
+   "relation": "references",
+   "confidence": "INFERRED",
+   "confidence_score": 0.95,
+   "source_file": "docker-compose.yml",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "config_goat_robot_goat_v1_router_workflow",
+   "target": "config_goat_robot_channel_activation_matrix",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "config/goat-robot.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "config_goat_robot_goat_v1_router_workflow",
+   "target": "config_goat_robot_meta_webhook_challenge_validation",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "config/goat-robot.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "config_goat_robot_goat_v1_router_workflow",
+   "target": "config_goat_robot_presence_typing_indicator",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "config/goat-robot.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "config_goat_robot_channel_activation_matrix",
+   "target": "config_goat_robot_instagram_channel",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "config/goat-robot.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "config_goat_robot_channel_activation_matrix",
+   "target": "config_goat_robot_facebook_channel",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "config/goat-robot.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "config_goat_robot_channel_activation_matrix",
+   "target": "config_goat_robot_waba_channel",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "config/goat-robot.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "config_goat_robot_channel_activation_matrix",
+   "target": "config_goat_robot_whats_evolution_channel",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "config/goat-robot.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "config_goat_robot_channel_activation_matrix",
+   "target": "config_goat_robot_public_chat_api_channel",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "config/goat-robot.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "config_goat_robot_channel_activation_matrix",
+   "target": "config_goat_robot_manychat_bridge",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "config/goat-robot.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "config_goat_robot_instagram_channel",
+   "target": "config_goat_robot_joy_pipeline",
+   "relation": "shares_data_with",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "config/goat-robot.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "config_goat_robot_facebook_channel",
+   "target": "config_goat_robot_joy_pipeline",
+   "relation": "shares_data_with",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "config/goat-robot.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "config_goat_robot_waba_channel",
+   "target": "config_goat_robot_joy_pipeline",
+   "relation": "shares_data_with",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "config/goat-robot.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "config_goat_robot_waba_channel",
+   "target": "config_goat_robot_meta_graph_api_v22",
+   "relation": "implements",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "config/goat-robot.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "config_goat_robot_whats_evolution_channel",
+   "target": "config_goat_robot_joy_pipeline",
+   "relation": "shares_data_with",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "config/goat-robot.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "config_goat_robot_manychat_bridge",
+   "target": "config_goat_robot_joy_pipeline",
+   "relation": "shares_data_with",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "config/goat-robot.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "config_goat_robot_public_chat_api_channel",
+   "target": "config_goat_robot_joy_pipeline",
+   "relation": "shares_data_with",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "config/goat-robot.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "config_goat_robot_meta_webhook_challenge_validation",
+   "target": "config_goat_robot_instagram_channel",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "config/goat-robot.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "config_goat_robot_meta_webhook_challenge_validation",
+   "target": "config_goat_robot_waba_channel",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "config/goat-robot.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "config_goat_robot_joy_pipeline",
+   "target": "config_goat_robot_smart_v2_lma_subworkflow",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "config/goat-robot.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "config_goat_robot_joy_pipeline",
+   "target": "config_goat_robot_rails_api_endpoints",
+   "relation": "shares_data_with",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "config/goat-robot.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "config_goat_robot_joy_pipeline",
+   "target": "backend_config_sidekiq_linkeventstoleadjob",
+   "relation": "shares_data_with",
+   "confidence": "INFERRED",
+   "confidence_score": 0.65,
+   "source_file": "config/goat-robot.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "config_goat_robot_rails_api_endpoints",
+   "target": "config_goat_robot_api_host_drift",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "config/goat-robot.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "config_goat_robot_rails_api_endpoints",
+   "target": "docker_compose_backend_service",
+   "relation": "references",
+   "confidence": "INFERRED",
+   "confidence_score": 0.75,
+   "source_file": "config/goat-robot.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_package_build_script",
+   "target": "frontend_package_type_check_script",
+   "relation": "conceptually_related_to",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "frontend/package.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_package_build_script",
+   "target": "frontend_package_react_vite_stack",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "frontend/package.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_package_build_script",
+   "target": "frontend_build_log_typescript_build_failure",
+   "relation": "references",
+   "confidence": "INFERRED",
+   "confidence_score": 0.95,
+   "source_file": "frontend/package.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_package_dev_script",
+   "target": "frontend_package_react_vite_stack",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "frontend/package.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_package_dev_script",
+   "target": "docker_compose_frontend_service",
+   "relation": "implements",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "frontend/package.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_package_react_vite_stack",
+   "target": "frontend_package_radix_ui_layer",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "frontend/package.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_package_react_vite_stack",
+   "target": "frontend_package_data_layer_stack",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "frontend/package.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_package_react_vite_stack",
+   "target": "frontend_package_i18n_stack",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "frontend/package.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_package_react_vite_stack",
+   "target": "frontend_package_rich_content_stack",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "frontend/package.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_package_data_layer_stack",
+   "target": "frontend_build_log_api_client_refreshtoken_undefined",
+   "relation": "references",
+   "confidence": "INFERRED",
+   "confidence_score": 0.75,
+   "source_file": "frontend/package.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_package_i18n_stack",
+   "target": "frontend_src_locales_en_translation_en_catalogue",
+   "relation": "implements",
+   "confidence": "INFERRED",
+   "confidence_score": 0.95,
+   "source_file": "frontend/package.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_package_i18n_stack",
+   "target": "frontend_src_locales_pt_br_translation_pt_br_catalogue",
+   "relation": "implements",
+   "confidence": "INFERRED",
+   "confidence_score": 0.95,
+   "source_file": "frontend/package.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_package_actioncable_client",
+   "target": "backend_config_cable_actioncable_redis_adapter",
+   "relation": "shares_data_with",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "frontend/package.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_serve_static_cache_policy",
+   "target": "frontend_serve_html_no_cache_rule",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "frontend/serve.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_serve_static_cache_policy",
+   "target": "frontend_serve_immutable_hashed_assets_rule",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "frontend/serve.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_serve_static_cache_policy",
+   "target": "frontend_serve_nosniff_header",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "frontend/serve.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_serve_immutable_hashed_assets_rule",
+   "target": "frontend_package_build_script",
+   "relation": "references",
+   "confidence": "INFERRED",
+   "confidence_score": 0.75,
+   "source_file": "frontend/serve.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_serve_nosniff_header",
+   "target": "frontend_public_robots_crawl_policy",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.55,
+   "source_file": "frontend/serve.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_tsconfig_strict_mode",
+   "target": "frontend_tsconfig_unused_checks_disabled",
+   "relation": "conceptually_related_to",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "frontend/tsconfig.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_tsconfig_strict_mode",
+   "target": "frontend_package_type_check_script",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "frontend/tsconfig.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_tsconfig_path_alias_at_src",
+   "target": "frontend_package_react_vite_stack",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "frontend/tsconfig.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_tsconfig_tests_excluded_from_typecheck",
+   "target": "frontend_package_test_scripts",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "frontend/tsconfig.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_tsconfig_node_composite_project",
+   "target": "frontend_tsconfig_bundler_module_resolution",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "frontend/tsconfig.node.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_tsconfig_node_composite_project",
+   "target": "frontend_tsconfig_strict_mode",
+   "relation": "implements",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "frontend/tsconfig.node.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_src_locales_en_translation_en_catalogue",
+   "target": "frontend_src_locales_en_translation_landing_namespaces",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "frontend/src/locales/en/translation.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_src_locales_en_translation_en_catalogue",
+   "target": "frontend_src_locales_en_translation_commerce_namespaces",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "frontend/src/locales/en/translation.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_src_locales_en_translation_en_catalogue",
+   "target": "frontend_src_locales_en_translation_seo_namespace",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "frontend/src/locales/en/translation.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_src_locales_en_translation_en_catalogue",
+   "target": "frontend_src_locales_en_translation_product_namespaces",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "frontend/src/locales/en/translation.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_src_locales_en_translation_en_catalogue",
+   "target": "frontend_src_locales_pt_br_translation_pt_br_catalogue",
+   "relation": "shares_data_with",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "frontend/src/locales/pt-br/translation.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_src_locales_pt_br_translation_pt_br_catalogue",
+   "target": "frontend_src_locales_en_translation_landing_namespaces",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "frontend/src/locales/pt-br/translation.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_src_locales_pt_br_translation_pt_br_catalogue",
+   "target": "frontend_src_locales_en_translation_commerce_namespaces",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "frontend/src/locales/pt-br/translation.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_src_locales_pt_br_translation_pt_br_catalogue",
+   "target": "frontend_src_locales_en_translation_seo_namespace",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "frontend/src/locales/pt-br/translation.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_src_locales_pt_br_translation_pt_br_catalogue",
+   "target": "frontend_src_locales_en_translation_product_namespaces",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "frontend/src/locales/pt-br/translation.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_src_locales_pt_br_translation_pt_br_catalogue",
+   "target": "backend_config_locales_pt_br_locale_messages",
+   "relation": "semantically_similar_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.75,
+   "source_file": "frontend/src/locales/pt-br/translation.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_src_locales_en_translation_commerce_namespaces",
+   "target": "backend_plans_dump_goat_plan_catalog",
+   "relation": "shares_data_with",
+   "confidence": "INFERRED",
+   "confidence_score": 0.75,
+   "source_file": "frontend/src/locales/en/translation.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_src_locales_en_translation_commerce_namespaces",
+   "target": "backend_plans_dump_saas_goat_plan",
+   "relation": "references",
+   "confidence": "INFERRED",
+   "confidence_score": 0.65,
+   "source_file": "frontend/src/locales/en/translation.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_src_locales_en_translation_seo_namespace",
+   "target": "frontend_index_goat_seo_metadata",
+   "relation": "shares_data_with",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "frontend/src/locales/en/translation.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_src_locales_en_translation_product_namespaces",
+   "target": "frontend_index_softwareapplication_schema",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.65,
+   "source_file": "frontend/src/locales/en/translation.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_src_locales_pt_br_translation_locale_parity",
+   "target": "frontend_src_locales_en_translation_en_catalogue",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "frontend/src/locales/pt-br/translation.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "frontend_src_locales_pt_br_translation_locale_parity",
+   "target": "frontend_src_locales_pt_br_translation_pt_br_catalogue",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "frontend/src/locales/pt-br/translation.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "filters_analytics_events_filters_missing_route",
+   "target": "filters_rails_middleware_stack",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "filters.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "filters_rails_middleware_stack",
+   "target": "docker_compose_backend_service",
+   "relation": "references",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "filters.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "filters_rails_middleware_stack",
+   "target": "docker_compose_cors_origin_binding",
+   "relation": "implements",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "filters.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "filters2_authorization_header_format_contract",
+   "target": "filters_analytics_events_filters_missing_route",
+   "relation": "shares_data_with",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "filters2.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "filters2_authorization_header_format_contract",
+   "target": "backend_config_locales_pt_br_locale_messages",
+   "relation": "references",
+   "confidence": "INFERRED",
+   "confidence_score": 0.65,
+   "source_file": "filters2.json",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "specs_fix_plan_failing_spec_remediation_plan",
+   "target": "specs_fix_plan_group1_instagram_api_url_migration",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "specs_fix_plan.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "specs_fix_plan_failing_spec_remediation_plan",
+   "target": "specs_fix_plan_group2_comment_automation_operation_refactor",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "specs_fix_plan.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "specs_fix_plan_failing_spec_remediation_plan",
+   "target": "specs_fix_plan_group3_reply_sent_bot_validation",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "specs_fix_plan.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "specs_fix_plan_failing_spec_remediation_plan",
+   "target": "specs_fix_plan_group4_public_chat_service_n8n_stub",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "specs_fix_plan.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "specs_fix_plan_failing_spec_remediation_plan",
+   "target": "specs_fix_plan_group5_public_chat_request_specs",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "specs_fix_plan.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "specs_fix_plan_failing_spec_remediation_plan",
+   "target": "specs_fix_plan_group6_auth_checkout_mock_signature",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "specs_fix_plan.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "specs_fix_plan_failing_spec_remediation_plan",
+   "target": "specs_fix_plan_group7_partner_dashboard_factories",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "specs_fix_plan.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "specs_fix_plan_failing_spec_remediation_plan",
+   "target": "specs_fix_plan_group8_user_delete_fk_constraint",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "specs_fix_plan.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "specs_fix_plan_failing_spec_remediation_plan",
+   "target": "specs_fix_plan_group9_meta_webhook_job_enqueue",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "specs_fix_plan.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "specs_fix_plan_failing_spec_remediation_plan",
+   "target": "specs_fix_plan_fix_specs_not_code_principle",
+   "relation": "implements",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "specs_fix_plan.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "specs_fix_plan_failing_spec_remediation_plan",
+   "target": "backend__rubocop_todo_metrics_cop_debt",
+   "relation": "semantically_similar_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.65,
+   "source_file": "specs_fix_plan.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "specs_fix_plan_fix_specs_not_code_principle",
+   "target": "backend__rubocop_todo_rubocop_todo_baseline",
+   "relation": "semantically_similar_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.75,
+   "source_file": "specs_fix_plan.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "specs_fix_plan_group1_instagram_api_url_migration",
+   "target": "config_goat_robot_meta_graph_api_v22",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.75,
+   "source_file": "specs_fix_plan.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "specs_fix_plan_group1_instagram_api_url_migration",
+   "target": "config_goat_robot_instagram_channel",
+   "relation": "references",
+   "confidence": "INFERRED",
+   "confidence_score": 0.75,
+   "source_file": "specs_fix_plan.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "specs_fix_plan_group2_comment_automation_operation_refactor",
+   "target": "specs_fix_plan_group1_instagram_api_url_migration",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "specs_fix_plan.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "specs_fix_plan_group2_comment_automation_operation_refactor",
+   "target": "specs_fix_plan_pt_br_service_messages_convention",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "specs_fix_plan.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "specs_fix_plan_group2_comment_automation_operation_refactor",
+   "target": "config_goat_robot_joy_pipeline",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.75,
+   "source_file": "specs_fix_plan.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "specs_fix_plan_group4_public_chat_service_n8n_stub",
+   "target": "specs_fix_plan_n8n_webhook_env_contract",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "specs_fix_plan.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "specs_fix_plan_group5_public_chat_request_specs",
+   "target": "specs_fix_plan_n8n_webhook_env_contract",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "specs_fix_plan.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "specs_fix_plan_group5_public_chat_request_specs",
+   "target": "specs_fix_plan_group4_public_chat_service_n8n_stub",
+   "relation": "shares_data_with",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "specs_fix_plan.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "specs_fix_plan_group5_public_chat_request_specs",
+   "target": "config_goat_robot_public_chat_api_channel",
+   "relation": "references",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "specs_fix_plan.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "specs_fix_plan_group6_auth_checkout_mock_signature",
+   "target": "backend_plans_dump_goat_plan_catalog",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.55,
+   "source_file": "specs_fix_plan.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "specs_fix_plan_group7_partner_dashboard_factories",
+   "target": "backend_test_output_partner_dashboard_spec",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "specs_fix_plan.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "specs_fix_plan_group7_partner_dashboard_factories",
+   "target": "backend_test_output_purchase_pagination_bug",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.75,
+   "source_file": "specs_fix_plan.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "specs_fix_plan_group9_meta_webhook_job_enqueue",
+   "target": "backend_config_sidekiq_queue_config",
+   "relation": "references",
+   "confidence": "INFERRED",
+   "confidence_score": 0.65,
+   "source_file": "specs_fix_plan.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "specs_fix_plan_group9_meta_webhook_job_enqueue",
+   "target": "backend_config_sidekiq_linkeventstoleadjob",
+   "relation": "semantically_similar_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.65,
+   "source_file": "specs_fix_plan.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "specs_fix_plan_group9_meta_webhook_job_enqueue",
+   "target": "config_goat_robot_meta_webhook_challenge_validation",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.75,
+   "source_file": "specs_fix_plan.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "specs_fix_plan_n8n_webhook_env_contract",
+   "target": "config_goat_robot_public_chat_api_channel",
+   "relation": "shares_data_with",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "specs_fix_plan.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "specs_fix_plan_pt_br_service_messages_convention",
+   "target": "backend_config_locales_pt_br_locale_messages",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "specs_fix_plan.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "specs_fix_plan_pt_br_service_messages_convention",
+   "target": "filters2_authorization_header_format_contract",
+   "relation": "implements",
+   "confidence": "INFERRED",
+   "confidence_score": 0.75,
+   "source_file": "specs_fix_plan.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "specs_fix_plan_execution_priority_order",
+   "target": "specs_fix_plan_failing_spec_remediation_plan",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "specs_fix_plan.md",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "tsc_errors_chatwoot_typescript_failures",
+   "target": "tsc_errors_lead_type_missing_fields",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "tsc_errors.txt",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "tsc_errors_chatwoot_typescript_failures",
+   "target": "tsc_errors_missing_message_export",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "tsc_errors.txt",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "tsc_errors_chatwoot_typescript_failures",
+   "target": "tsc_errors_leads_endpoint_missing_methods",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "tsc_errors.txt",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "tsc_errors_chatwoot_typescript_failures",
+   "target": "tsc_errors_id_type_string_number_drift",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "tsc_errors.txt",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "tsc_errors_chatwoot_typescript_failures",
+   "target": "tsc_errors_implicit_any_parameters",
+   "relation": "references",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "tsc_errors.txt",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "tsc_errors_chatwoot_typescript_failures",
+   "target": "frontend_build_log_typescript_build_failure",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "tsc_errors.txt",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "tsc_errors_chatwoot_typescript_failures",
+   "target": "frontend_package_build_script",
+   "relation": "references",
+   "confidence": "INFERRED",
+   "confidence_score": 0.95,
+   "source_file": "tsc_errors.txt",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "tsc_errors_lead_type_missing_fields",
+   "target": "frontend_build_log_api_client_refreshtoken_undefined",
+   "relation": "conceptually_related_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.55,
+   "source_file": "tsc_errors.txt",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "tsc_errors_lead_type_missing_fields",
+   "target": "config_goat_robot_rails_api_endpoints",
+   "relation": "conceptually_related_to",
+   "confidence": "AMBIGUOUS",
+   "confidence_score": 0.3,
+   "source_file": "tsc_errors.txt",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "tsc_errors_missing_message_export",
+   "target": "frontend_tsconfig_path_alias_at_src",
+   "relation": "references",
+   "confidence": "INFERRED",
+   "confidence_score": 0.75,
+   "source_file": "tsc_errors.txt",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "tsc_errors_leads_endpoint_missing_methods",
+   "target": "frontend_build_log_endpoints_duplicate_property",
+   "relation": "shares_data_with",
+   "confidence": "INFERRED",
+   "confidence_score": 0.75,
+   "source_file": "tsc_errors.txt",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "tsc_errors_id_type_string_number_drift",
+   "target": "frontend_build_log_eventtype_union_drift",
+   "relation": "semantically_similar_to",
+   "confidence": "INFERRED",
+   "confidence_score": 0.75,
+   "source_file": "tsc_errors.txt",
+   "source_location": "",
+   "weight": 1.0
+  },
+  {
+   "source": "tsc_errors_implicit_any_parameters",
+   "target": "frontend_tsconfig_strict_mode",
+   "relation": "references",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "tsc_errors.txt",
+   "source_location": "",
+   "weight": 1.0
+  }
+ ],
+ "hyperedges": [
+  {
+   "id": "tsc_gate_blocking_errors",
+   "label": "Three TS Errors Block The tsc && vite build Gate",
+   "nodes": [
+    "frontend_build_log_typescript_build_failure",
+    "frontend_build_log_api_client_refreshtoken_undefined",
+    "frontend_build_log_endpoints_duplicate_property",
+    "frontend_build_log_eventtype_union_drift"
+   ],
+   "relation": "participate_in",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "\\\\wsl.localhost\\ubuntu-22.04\\home\\vinao\\workspace\\ai9\\frontend\\build_log.txt"
+  },
+  {
+   "id": "sidekiq_prefixed_queue_routing",
+   "label": "APP_NAME-Prefixed Queue Routing And The low_priority Gap",
+   "nodes": [
+    "backend_config_sidekiq_queue_config",
+    "backend_config_sidekiq_app_name_queue_prefix",
+    "backend_config_sidekiq_low_priority_queue",
+    "backend_config_sidekiq_linkeventstoleadjob"
+   ],
+   "relation": "form",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "\\\\wsl.localhost\\ubuntu-22.04\\home\\vinao\\workspace\\ai9\\backend\\config\\sidekiq.yml"
+  },
+  {
+   "id": "goat_public_discoverability_surface",
+   "label": "GOAT Public Discoverability Surface At goat.polemk.com",
+   "nodes": [
+    "frontend_index_goat_seo_metadata",
+    "frontend_index_softwareapplication_schema",
+    "frontend_public_robots_crawl_policy"
+   ],
+   "relation": "form",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "\\\\wsl.localhost\\ubuntu-22.04\\home\\vinao\\workspace\\ai9\\frontend\\index.html"
+  },
+  {
+   "id": "hybrid_tracking_pipeline",
+   "label": "Hybrid Tracking Pipeline (one event, server-side DB + GA4 MP + Meta CAPI + GTM dataLayer)",
+   "nodes": [
+    "backend_docs_tracking_guide_hybrid_architecture",
+    "backend_docs_gtm_setup_hybrid_tracking_architecture",
+    "backend_docs_gtm_setup_datalayer",
+    "backend_docs_ga4_setup_ga4_measurement_protocol",
+    "backend_docs_meta_capi_setup_meta_conversions_api"
+   ],
+   "relation": "form",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/TRACKING_GUIDE.md"
+  },
+  {
+   "id": "attribution_identity_chain",
+   "label": "Attribution & Identity Chain (UTMs + referrer + lead_id bound to the session)",
+   "nodes": [
+    "backend_docs_utm_standards_utm_source",
+    "backend_docs_utm_standards_utm_medium",
+    "backend_docs_utm_standards_utm_campaign",
+    "backend_docs_utm_standards_referrer_capture",
+    "backend_docs_tracking_guide_lead_id_param",
+    "backend_docs_utm_standards_session_scoped_attribution",
+    "backend_docs_utm_standards_analyticsprovider"
+   ],
+   "relation": "participate_in",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/docs/UTM_STANDARDS.md"
+  },
+  {
+   "id": "brsw_navkit_screen_row",
+   "label": "BRSW NavKit Screen Row (Hero to Contrato, with Sobre below)",
+   "nodes": [
+    "frontend_src_app_pages_braziliansoftware_design_brief_hero_screen",
+    "frontend_src_app_pages_braziliansoftware_design_brief_produtos_screen",
+    "frontend_src_app_pages_braziliansoftware_design_brief_manifesto_screen",
+    "frontend_src_app_pages_braziliansoftware_design_brief_cases_screen",
+    "frontend_src_app_pages_braziliansoftware_design_brief_contrato_screen",
+    "frontend_src_app_pages_braziliansoftware_design_brief_sobre_screen",
+    "frontend_src_app_pages_braziliansoftware_design_brief_navkit_grid"
+   ],
+   "relation": "form",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "frontend/src/app/pages/BrazilianSoftware/DESIGN_BRIEF.md"
+  },
+  {
+   "id": "env_secret_isolation_convention",
+   "label": "Secret-isolated Environment Configuration Convention",
+   "nodes": [
+    "readme_switch_env_script",
+    "build_system_env_secrets_isolation",
+    "readme_backend_env_contract",
+    "readme_frontend_env_contract",
+    "readme_root_env_contract"
+   ],
+   "relation": "form",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "BUILD_SYSTEM.md"
+  },
+  {
+   "id": "production_runtime_stack",
+   "label": "Production Runtime Stack (bin/prod + Systemd + Nginx + Sidekiq)",
+   "nodes": [
+    "bin_prod_bin_prod_script",
+    "daemon_systemd_service",
+    "bin_prod_nginx_reverse_proxy",
+    "bin_prod_certbot_ssl",
+    "backend_config_sidekiq_queue_config"
+   ],
+   "relation": "participate_in",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "BIN_PROD.md"
+  },
+  {
+   "id": "maya_lead_capture_sequence",
+   "label": "Maya Lead Capture and Auto-auth Sequence",
+   "nodes": [
+    "backend_db_seeds_maya_flow_q_nome",
+    "backend_db_seeds_maya_flow_q_email",
+    "backend_db_seeds_maya_flow_q_whatsapp",
+    "backend_db_seeds_maya_flow_save_lead",
+    "backend_db_seeds_maya_flow_redirect_dashboard"
+   ],
+   "relation": "form",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "backend/db/seeds/maya_flow.json"
+  },
+  {
+   "id": "goat_omnichannel_message_routing_flow",
+   "label": "Omnichannel Message Routing Flow (channel webhook to joy pipeline to Rails API)",
+   "nodes": [
+    "config_goat_robot_goat_v1_router_workflow",
+    "config_goat_robot_instagram_channel",
+    "config_goat_robot_waba_channel",
+    "config_goat_robot_public_chat_api_channel",
+    "config_goat_robot_joy_pipeline",
+    "config_goat_robot_rails_api_endpoints"
+   ],
+   "relation": "participate_in",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "config/goat-robot.json"
+  },
+  {
+   "id": "local_development_topology_convention",
+   "label": "Local Development Topology a Cloned App Inherits",
+   "nodes": [
+    "docker_compose_postgres_service",
+    "docker_compose_redis_service",
+    "docker_compose_backend_service",
+    "docker_compose_frontend_service",
+    "docker_compose_sidekiq_service",
+    "docker_compose_environment_contract",
+    "docker_compose_multistage_build_targets"
+   ],
+   "relation": "form",
+   "confidence": "EXTRACTED",
+   "confidence_score": 1.0,
+   "source_file": "docker-compose.yml"
+  },
+  {
+   "id": "frontend_typescript_build_gate",
+   "label": "TypeScript Build Gate (strict tsc blocks vite build)",
+   "nodes": [
+    "frontend_package_build_script",
+    "frontend_package_type_check_script",
+    "frontend_tsconfig_strict_mode",
+    "tsc_errors_chatwoot_typescript_failures",
+    "frontend_build_log_typescript_build_failure"
+   ],
+   "relation": "participate_in",
+   "confidence": "INFERRED",
+   "confidence_score": 0.85,
+   "source_file": "tsc_errors.txt"
+  }
+ ]
+}

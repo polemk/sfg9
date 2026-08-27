@@ -1,0 +1,2221 @@
+# GERADO por `rake sfg_etl:baseline` — NÃO editar à mão.
+#
+# Esquema ESPERADO da origem, derivado das 139 migrations do legado `sfg`
+# (que não versiona `db/schema.rb`). É o baseline contra o qual
+# `rake sfg_etl:introspect` compara o banco real e ABORTA ao achar surpresa.
+---
+generated_at: '2026-08-26T03:29:30-03:00'
+legacy_root: "/home/vinao/workspace/sfg"
+migrations_total: 138
+migrations_replayed: 138
+migrations_failed: []
+tables:
+  pictures:
+    columns:
+    - name: id
+      type: integer
+    - name: imageable_id
+      type: integer
+    - name: imageable_type
+      type: string
+    - name: image_file_name
+      type: string
+    - name: image_content_type
+      type: string
+    - name: image_file_size
+      type: integer
+    - name: image_updated_at
+      type: datetime
+    - name: description
+      type: text
+    - name: width
+      type: integer
+    - name: height
+      type: integer
+    - name: last_calc_at
+      type: timestamp
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    indexes: []
+  geolocations:
+    columns:
+    - name: id
+      type: integer
+    - name: geolocatable_id
+      type: integer
+    - name: geolocatable_type
+      type: string
+    - name: lat
+      type: decimal
+    - name: lng
+      type: decimal
+    - name: city
+      type: string
+    - name: state
+      type: string
+    - name: cep
+      type: string
+    - name: neighborhood
+      type: string
+    - name: country
+      type: string
+    - name: street_number
+      type: integer
+    - name: address
+      type: string
+    - name: complement
+      type: string
+    - name: full_address
+      type: string
+    - name: auto_loading
+      type: integer
+    - name: distance
+      type: float
+    - name: distance_unity
+      type: string
+    - name: ref_lat
+      type: decimal
+    - name: ref_lng
+      type: decimal
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    indexes: []
+  livetat_auth_users:
+    columns:
+    - name: id
+      type: integer
+    - name: formal
+      type: string
+    - name: username
+      type: string
+    - name: unconfirmed_email
+      type: string
+    - name: email
+      type: string
+    - name: encrypted_password
+      type: string
+    - name: authentication_token
+      type: string
+    - name: reset_password_token
+      type: string
+    - name: confirmation_token
+      type: string
+    - name: unlock_token
+      type: string
+    - name: sign_in_count
+      type: integer
+    - name: failed_attempts
+      type: integer
+    - name: current_sign_in_ip
+      type: string
+    - name: last_sign_in_ip
+      type: string
+    - name: current_sign_in_at
+      type: datetime
+    - name: last_sign_in_at
+      type: datetime
+    - name: confirmation_sent_at
+      type: datetime
+    - name: reset_password_sent_at
+      type: datetime
+    - name: remember_created_at
+      type: datetime
+    - name: locked_at
+      type: datetime
+    - name: confirmed_at
+      type: datetime
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    - name: avatar_file_name
+      type: string
+    - name: avatar_content_type
+      type: string
+    - name: avatar_file_size
+      type: integer
+    - name: avatar_updated_at
+      type: datetime
+    - name: kind
+      type: string
+    - name: manager_id
+      type: integer
+    - name: identifier
+      type: string
+    - name: color
+      type: string
+    - name: app_theme_id
+      type: integer
+    - name: default_project_id
+      type: integer
+    - name: legacy_id
+      type: integer
+    - name: legacy_password
+      type: string
+    - name: is_active
+      type: integer
+    - name: deactivated
+      type: boolean
+    - name: is_default_member
+      type: integer
+    indexes:
+    - columns:
+      - email
+      unique: true
+    - columns:
+      - reset_password_token
+      unique: true
+    - columns:
+      - confirmation_token
+      unique: true
+    - columns:
+      - unlock_token
+      unique: true
+    - columns:
+      - authentication_token
+      unique: true
+    - columns:
+      - legacy_id
+      unique: true
+  livetat_auth_roles:
+    columns:
+    - name: id
+      type: integer
+    - name: role_type_id
+      type: integer
+    - name: user_id
+      type: integer
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    indexes: []
+  livetat_auth_role_types:
+    columns:
+    - name: id
+      type: integer
+    - name: name
+      type: string
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    - name: hierarchy
+      type: integer
+    indexes: []
+  livetat_auth_abilities:
+    columns:
+    - name: id
+      type: integer
+    - name: name
+      type: string
+    - name: value
+      type: integer
+    - name: abilitable_id
+      type: integer
+    - name: abilitable_type
+      type: string
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    - name: description
+      type: string
+    - name: type
+      type: string
+    indexes: []
+  livetat_auth_client_applications:
+    columns:
+    - name: id
+      type: integer
+    - name: name
+      type: string
+    - name: agent
+      type: string
+    - name: authentication_token
+      type: string
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    - name: external_id
+      type: integer
+    - name: color
+      type: string
+    - name: default_user_id
+      type: integer
+    indexes: []
+  livetat_mailer_contacts:
+    columns:
+    - name: id
+      type: integer
+    - name: sender
+      type: string
+    - name: target
+      type: string
+    - name: target_name
+      type: string
+    - name: subject
+      type: string
+    - name: type
+      type: string
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    - name: message
+      type: text
+    indexes: []
+  livetat_feedback_messages:
+    columns:
+    - name: id
+      type: integer
+    - name: formal
+      type: string
+    - name: email
+      type: string
+    - name: message
+      type: string
+    - name: user_id
+      type: integer
+    - name: is_read
+      type: integer
+    - name: is_favorite
+      type: integer
+    - name: read_at
+      type: timestamp
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    - name: hadouken_label
+      type: string
+    - name: hadouken_value
+      type: string
+    - name: shoryuken_label
+      type: string
+    - name: shoryuken_value
+      type: string
+    - name: uses_hadouken_field
+      type: integer
+    - name: uses_shoryuken_field
+      type: integer
+    - name: state_id
+      type: integer
+    - name: context_id
+      type: integer
+    - name: is_intern
+      type: integer
+    - name: public_token
+      type: string
+    - name: private_token
+      type: string
+    indexes: []
+  delayed_jobs:
+    columns:
+    - name: id
+      type: integer
+    - name: priority
+      type: integer
+    - name: attempts
+      type: integer
+    - name: handler
+      type: text
+    - name: last_error
+      type: text
+    - name: run_at
+      type: datetime
+    - name: locked_at
+      type: datetime
+    - name: failed_at
+      type: datetime
+    - name: locked_by
+      type: string
+    - name: queue
+      type: string
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    - name: progress_stage
+      type: string
+    - name: progress_current
+      type: integer
+    - name: progress_max
+      type: integer
+    indexes:
+    - columns:
+      - priority
+      - run_at
+      unique: false
+  livetat_feedback_states:
+    columns:
+    - name: id
+      type: integer
+    - name: name
+      type: string
+    - name: code
+      type: integer
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    indexes: []
+  livetat_feedback_observers:
+    columns:
+    - name: id
+      type: integer
+    - name: user_id
+      type: integer
+    - name: last_updated_user_id
+      type: integer
+    - name: email
+      type: string
+    - name: title
+      type: string
+    - name: is_intern
+      type: integer
+    - name: is_extern
+      type: integer
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    indexes: []
+  livetat_feedback_contexts:
+    columns:
+    - name: id
+      type: integer
+    - name: name
+      type: string
+    - name: code
+      type: integer
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    indexes: []
+  livetat_feedback_observer_contexts:
+    columns:
+    - name: id
+      type: integer
+    - name: observer_id
+      type: integer
+    - name: context_id
+      type: integer
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    indexes: []
+  livetat_feedback_notes:
+    columns:
+    - name: id
+      type: integer
+    - name: description
+      type: text
+    - name: user_formal
+      type: string
+    - name: user_email
+      type: string
+    - name: user_id
+      type: integer
+    - name: top_parent_quote_id
+      type: integer
+    - name: quoted_note_id
+      type: integer
+    - name: feedback_id
+      type: integer
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    - name: unread
+      type: integer
+    indexes: []
+  livetat_auth_omni_providers:
+    columns:
+    - name: id
+      type: integer
+    - name: name
+      type: string
+    - name: uid
+      type: string
+    - name: user_id
+      type: integer
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    indexes:
+    - columns:
+      - name
+      - uid
+      - user_id
+      unique: true
+  livetat_auth_user_infos:
+    columns:
+    - name: id
+      type: integer
+    - name: user_id
+      type: integer
+    - name: first_name
+      type: string
+    - name: last_name
+      type: string
+    - name: gender
+      type: integer
+    - name: birthday
+      type: timestamp
+    - name: public_email
+      type: string
+    - name: cpf
+      type: string
+    - name: cnpj
+      type: string
+    - name: phone_confirmation_code
+      type: string
+    - name: complementary_phone_confirmation_code
+      type: string
+    - name: is_phone_checked
+      type: integer
+    - name: is_complementary_phone_checked
+      type: integer
+    - name: language
+      type: string
+    - name: living_address
+      type: string
+    - name: biography
+      type: text
+    - name: graduation
+      type: string
+    - name: work
+      type: string
+    - name: is_emergency_contact_active
+      type: integer
+    - name: emergency_contact_name
+      type: string
+    - name: emergency_contact_phone
+      type: string
+    - name: emergency_contact_email
+      type: string
+    - name: emergency_contact_relation
+      type: string
+    - name: is_delivery_location_active
+      type: integer
+    - name: delivery_location_country
+      type: string
+    - name: delivery_location_address
+      type: string
+    - name: delivery_location_complement
+      type: string
+    - name: delivery_location_city
+      type: string
+    - name: delivery_location_state
+      type: string
+    - name: delivery_location_cep
+      type: string
+    - name: professional_email
+      type: string
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    - name: tax_document_number
+      type: string
+    - name: tax_document_issuer
+      type: string
+    - name: tax_document_issue_date
+      type: string
+    - name: phone_area_code
+      type: string
+    - name: phone_number
+      type: string
+    - name: complementary_phone_area_code
+      type: string
+    - name: complementary_phone_number
+      type: string
+    - name: confiability_level
+      type: string
+    - name: delivery_location_address_number
+      type: string
+    - name: phone_country_code
+      type: string
+    - name: complementary_phone_country_code
+      type: string
+    indexes: []
+  contracts:
+    columns:
+    - name: id
+      type: integer
+    - name: title
+      type: string
+    - name: creator_id
+      type: integer
+    - name: version
+      type: integer
+    - name: kind
+      type: string
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    indexes: []
+  contract_deals:
+    columns:
+    - name: id
+      type: integer
+    - name: user_id
+      type: integer
+    - name: contract_id
+      type: integer
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    indexes: []
+  help_groups:
+    columns:
+    - name: id
+      type: integer
+    - name: title
+      type: string
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    indexes: []
+  help_categories:
+    columns:
+    - name: id
+      type: integer
+    - name: title
+      type: string
+    - name: help_group_id
+      type: integer
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    indexes: []
+  help_items:
+    columns:
+    - name: id
+      type: integer
+    - name: title
+      type: string
+    - name: help_category_id
+      type: integer
+    - name: description
+      type: text
+    - name: user_id
+      type: integer
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    indexes: []
+  trackings:
+    columns:
+    - name: id
+      type: integer
+    - name: user_id
+      type: integer
+    - name: target_id
+      type: integer
+    - name: trackable_type
+      type: string
+    - name: trackable_id
+      type: integer
+    - name: resume
+      type: string
+    - name: type
+      type: string
+    - name: target_group_id
+      type: integer
+    - name: target_group_type
+      type: string
+    - name: trackable_parent_id
+      type: integer
+    - name: trackable_parent_type
+      type: string
+    - name: kind
+      type: string
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    indexes: []
+  active_storage_blobs:
+    columns:
+    - name: id
+      type: integer
+    - name: key
+      type: string
+    - name: filename
+      type: string
+    - name: content_type
+      type: string
+    - name: metadata
+      type: text
+    - name: byte_size
+      type: bigint
+    - name: checksum
+      type: string
+    - name: created_at
+      type: datetime
+    indexes: []
+  active_storage_attachments:
+    columns:
+    - name: id
+      type: integer
+    - name: name
+      type: string
+    - name: record_id
+      type: integer
+    - name: record_type
+      type: string
+    - name: blob_id
+      type: integer
+    - name: created_at
+      type: datetime
+    indexes: []
+  action_text_rich_texts:
+    columns:
+    - name: id
+      type: integer
+    - name: name
+      type: string
+    - name: body
+      type: text
+    - name: record_id
+      type: integer
+    - name: record_type
+      type: string
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    indexes: []
+  app_themes:
+    columns:
+    - name: id
+      type: integer
+    - name: user_id
+      type: integer
+    - name: title
+      type: string
+    - name: type
+      type: string
+    - name: primary_color
+      type: string
+    - name: second_color
+      type: string
+    - name: accent_color
+      type: string
+    - name: style
+      type: string
+    - name: login_bkg_style
+      type: string
+    - name: login_bkg_color
+      type: string
+    - name: bar_font_name
+      type: string
+    - name: font_name
+      type: string
+    - name: is_default
+      type: integer
+    - name: symbol_logo_file_name
+      type: string
+    - name: symbol_logo_content_type
+      type: string
+    - name: symbol_logo_file_size
+      type: integer
+    - name: symbol_logo_updated_at
+      type: datetime
+    - name: full_logo_file_name
+      type: string
+    - name: full_logo_content_type
+      type: string
+    - name: full_logo_file_size
+      type: integer
+    - name: full_logo_updated_at
+      type: datetime
+    - name: text_logo_file_name
+      type: string
+    - name: text_logo_content_type
+      type: string
+    - name: text_logo_file_size
+      type: integer
+    - name: text_logo_updated_at
+      type: datetime
+    - name: login_bkg_image_file_name
+      type: string
+    - name: login_bkg_image_content_type
+      type: string
+    - name: login_bkg_image_file_size
+      type: integer
+    - name: login_bkg_image_updated_at
+      type: datetime
+    - name: override_css
+      type: text
+    - name: cached_css
+      type: text
+    - name: display_name
+      type: string
+    - name: copyright
+      type: string
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    indexes: []
+  projects:
+    columns:
+    - name: id
+      type: integer
+    - name: formal
+      type: string
+    - name: integration_key
+      type: string
+    - name: user_id
+      type: integer
+    - name: smart_id
+      type: string
+    - name: segment_id
+      type: integer
+    - name: is_active
+      type: integer
+    - name: color
+      type: string
+    - name: avatar_file_name
+      type: string
+    - name: avatar_content_type
+      type: string
+    - name: avatar_file_size
+      type: integer
+    - name: avatar_updated_at
+      type: datetime
+    - name: address_type
+      type: string
+    - name: address
+      type: string
+    - name: address_number
+      type: string
+    - name: address_complement
+      type: string
+    - name: neighborhood
+      type: string
+    - name: cep
+      type: string
+    - name: address_state
+      type: string
+    - name: closing_date
+      type: date
+    - name: importing_id
+      type: integer
+    - name: address_city
+      type: string
+    - name: city
+      type: string
+    - name: responsible_email
+      type: string
+    - name: responsible_formal
+      type: string
+    - name: responsible_id
+      type: string
+    - name: job_state
+      type: string
+    - name: job_report
+      type: text
+    - name: job_id
+      type: integer
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    - name: legacy_id
+      type: integer
+    - name: has_safegold_management
+      type: integer
+    - name: sub_segment_id
+      type: integer
+    - name: is_sandbox
+      type: integer
+    - name: has_bi
+      type: integer
+    indexes:
+    - columns:
+      - legacy_id
+      unique: true
+  memberships:
+    columns:
+    - name: id
+      type: integer
+    - name: user_id
+      type: integer
+    - name: memberable_id
+      type: integer
+    - name: memberable_type
+      type: string
+    - name: role
+      type: string
+    - name: is_active
+      type: integer
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    - name: legacy_id
+      type: integer
+    - name: legacy_project_id
+      type: integer
+    - name: legacy_user_id
+      type: integer
+    indexes:
+    - columns:
+      - legacy_id
+      unique: true
+  carriers:
+    columns:
+    - name: id
+      type: integer
+    - name: title
+      type: string
+    - name: resume
+      type: text
+    - name: user_id
+      type: integer
+    - name: is_active
+      type: integer
+    - name: logo_file_name
+      type: string
+    - name: logo_content_type
+      type: string
+    - name: logo_file_size
+      type: integer
+    - name: logo_updated_at
+      type: datetime
+    - name: integration_key
+      type: string
+    - name: bank_code
+      type: integer
+    - name: bank_name
+      type: string
+    - name: senior_accounts
+      type: integer
+    - name: subordinated_accounts
+      type: integer
+    - name: net_worth
+      type: decimal
+    - name: subordinated_accounts_percent
+      type: float
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    - name: legacy_id
+      type: integer
+    - name: group_id
+      type: integer
+    - name: financial_agent
+      type: string
+    - name: city
+      type: string
+    - name: uf
+      type: string
+    indexes:
+    - columns:
+      - legacy_id
+      unique: true
+  project_to_carrier_connections:
+    columns:
+    - name: id
+      type: integer
+    - name: project_id
+      type: integer
+    - name: carrier_id
+      type: integer
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    - name: legacy_id
+      type: integer
+    - name: legacy_project_id
+      type: integer
+    - name: legacy_carrier_id
+      type: integer
+    indexes:
+    - columns:
+      - legacy_id
+      unique: true
+  receivable_entries:
+    columns:
+    - name: id
+      type: integer
+    - name: user_id
+      type: integer
+    - name: project_id
+      type: integer
+    - name: date
+      type: date
+    - name: carrier_id
+      type: integer
+    - name: wallet_id
+      type: integer
+    - name: receivable_kind_id
+      type: integer
+    - name: resource_source_id
+      type: integer
+    - name: resource_kind_id
+      type: integer
+    - name: nro_bordero
+      type: string
+    - name: qtd_titulos
+      type: integer
+    - name: valor_bruto
+      type: decimal
+    - name: qtd_recusada
+      type: integer
+    - name: vlr_bruto_recusado
+      type: decimal
+    - name: vlr_bruto_final
+      type: decimal
+    - name: qtd_final
+      type: integer
+    - name: prz_med_pond_emp
+      type: float
+    - name: prz_med_pond_bco
+      type: float
+    - name: float_calculado
+      type: float
+    - name: float_acordado
+      type: float
+    - name: diferenca_float
+      type: float
+    - name: checagem_iof
+      type: float
+    - name: valor_total_tarifas
+      type: decimal
+    - name: valor_liquido
+      type: decimal
+    - name: cst_efetivo_acordado
+      type: float
+    - name: calc_valor_liq_correto
+      type: decimal
+    - name: dif_calc_vlr_liq
+      type: float
+    - name: status
+      type: string
+    - name: recompra
+      type: decimal
+    - name: recompra_percent
+      type: float
+    - name: retencao
+      type: decimal
+    - name: retencao_percent
+      type: float
+    - name: fomento
+      type: decimal
+    - name: fomento_percent
+      type: float
+    - name: outros
+      type: decimal
+    - name: outros_percent
+      type: float
+    - name: total_deducoes
+      type: decimal
+    - name: vlr_liq_recebido
+      type: decimal
+    - name: data_credito
+      type: date
+    - name: contrato
+      type: string
+    - name: observacoes
+      type: text
+    - name: tarifas_ad_valorem
+      type: decimal
+    - name: tarifas_desagio
+      type: decimal
+    - name: tarifas_iof
+      type: decimal
+    - name: tarifas_outras
+      type: decimal
+    - name: taxa_desconto_nominal_desagio_advalorem_bancos
+      type: float
+    - name: taxa_desconto_nominal_despesas_bancos
+      type: float
+    - name: taxa_desconto_nominal_despesas_iof_bancos
+      type: float
+    - name: custo_efetivo_pz_med_banco
+      type: float
+    - name: custo_efetivo_pz_med_banco_sem_iof
+      type: float
+    - name: taxa_desconto_nominal_desagio_advalorem_emp
+      type: float
+    - name: taxa_desconto_nominal_despesas_emp
+      type: float
+    - name: taxa_desconto_nominal_despesas_iof_emp
+      type: float
+    - name: custo_efetivo_pz_med_emp
+      type: float
+    - name: custo_efetivo_pz_med_emp_sem_iof
+      type: float
+    - name: custo_efetivo_sem_float
+      type: float
+    - name: custo_efetivo_com_float_total
+      type: float
+    - name: custo_efetivo_com_float_sem_iof
+      type: float
+    - name: multiplicador_pm_empresa
+      type: decimal
+    - name: multiplicador_pm_float
+      type: decimal
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    - name: legacy_id
+      type: integer
+    - name: has_safegold_management
+      type: integer
+    - name: company_id
+      type: integer
+    - name: nominal_tax
+      type: float
+    - name: nominal_tax_check
+      type: float
+    - name: nominal_tax_check_with_float
+      type: float
+    - name: description
+      type: text
+    - name: risk_operation_type_id
+      type: integer
+    - name: risk_operation_subtype_id
+      type: integer
+    indexes:
+    - columns:
+      - legacy_id
+      unique: true
+  wallets:
+    columns:
+    - name: id
+      type: integer
+    - name: title
+      type: string
+    - name: user_id
+      type: integer
+    - name: integration_key
+      type: string
+    - name: is_active
+      type: integer
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    - name: legacy_id
+      type: integer
+    indexes:
+    - columns:
+      - legacy_id
+      unique: true
+  receivable_kinds:
+    columns:
+    - name: id
+      type: integer
+    - name: title
+      type: string
+    - name: integration_key
+      type: string
+    - name: is_active
+      type: integer
+    - name: user_id
+      type: integer
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    - name: legacy_id
+      type: integer
+    indexes:
+    - columns:
+      - legacy_id
+      unique: true
+  resource_kinds:
+    columns:
+    - name: id
+      type: integer
+    - name: title
+      type: string
+    - name: integration_key
+      type: string
+    - name: is_active
+      type: integer
+    - name: user_id
+      type: integer
+    - name: is_conta_corrente
+      type: integer
+    - name: is_unique
+      type: integer
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    indexes: []
+  resource_sources:
+    columns:
+    - name: id
+      type: integer
+    - name: title
+      type: string
+    - name: integration_key
+      type: string
+    - name: is_active
+      type: integer
+    - name: user_id
+      type: integer
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    - name: legacy_id
+      type: integer
+    indexes:
+    - columns:
+      - legacy_id
+      unique: true
+  segments:
+    columns:
+    - name: id
+      type: integer
+    - name: title
+      type: string
+    - name: integration_key
+      type: string
+    - name: is_active
+      type: integer
+    - name: user_id
+      type: integer
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    - name: legacy_id
+      type: integer
+    indexes:
+    - columns:
+      - legacy_id
+      unique: true
+  movement_kinds:
+    columns:
+    - name: id
+      type: integer
+    - name: title
+      type: string
+    - name: user_id
+      type: integer
+    - name: integration_key
+      type: string
+    - name: is_operation
+      type: integer
+    - name: is_title
+      type: integer
+    - name: is_active
+      type: integer
+    - name: is_advalorem
+      type: integer
+    - name: is_desagio
+      type: integer
+    - name: is_iof
+      type: integer
+    - name: is_liquidation
+      type: integer
+    - name: kind
+      type: string
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    - name: legacy_id
+      type: integer
+    indexes:
+    - columns:
+      - legacy_id
+      unique: true
+  receivable_taxes:
+    columns:
+    - name: id
+      type: integer
+    - name: receivable_entry_id
+      type: integer
+    - name: movement_kind_id
+      type: integer
+    - name: value
+      type: decimal
+    - name: title
+      type: string
+    - name: is_advalorem
+      type: integer
+    - name: is_desagio
+      type: integer
+    - name: is_iof
+      type: integer
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    - name: legacy_id
+      type: integer
+    indexes:
+    - columns:
+      - legacy_id
+      unique: true
+  renegotiations:
+    columns:
+    - name: id
+      type: integer
+    - name: provider_name
+      type: string
+    - name: provider_id
+      type: integer
+    - name: project_id
+      type: integer
+    - name: kind
+      type: string
+    - name: integration_key
+      type: string
+    - name: original_value
+      type: decimal
+    - name: original_pending_value
+      type: decimal
+    - name: additional_value
+      type: decimal
+    - name: total_debt
+      type: decimal
+    - name: paid_value
+      type: decimal
+    - name: remaining_value
+      type: decimal
+    - name: renegotiation_date
+      type: date
+    - name: interest_rate_correction
+      type: float
+    - name: correct_value
+      type: decimal
+    - name: grace_period
+      type: integer
+    - name: operation_interest_rate
+      type: float
+    - name: observation
+      type: text
+    - name: origin
+      type: string
+    - name: installments_count
+      type: integer
+    - name: paid_installments
+      type: integer
+    - name: overdue_installments
+      type: integer
+    - name: due_installments
+      type: integer
+    - name: state
+      type: string
+    - name: paid_percent
+      type: float
+    - name: current_installment_value
+      type: decimal
+    - name: current_value
+      type: decimal
+    - name: first_due_date
+      type: date
+    - name: last_due_date
+      type: date
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    - name: attachments_count
+      type: integer
+    - name: has_safegold_management
+      type: integer
+    - name: title
+      type: string
+    - name: company_id
+      type: integer
+    - name: monetary_correction
+      type: string
+    - name: installments_main_value
+      type: decimal
+    - name: installments_interest_value
+      type: decimal
+    - name: installments_main_value_with_interest
+      type: decimal
+    - name: installments_monetary_correction_value
+      type: decimal
+    - name: installments_main_value_with_interest_cm
+      type: decimal
+    - name: main_value
+      type: decimal
+    - name: paid_value_with_interest_cm
+      type: decimal
+    - name: pending_main_value
+      type: decimal
+    - name: late_payment_value
+      type: decimal
+    - name: desagio_value
+      type: decimal
+    - name: total_value_with_desagio
+      type: decimal
+    indexes: []
+  renegotiation_installments:
+    columns:
+    - name: id
+      type: integer
+    - name: renegotiation_id
+      type: integer
+    - name: due_date
+      type: date
+    - name: installment
+      type: integer
+    - name: paid_value
+      type: decimal
+    - name: pending_value
+      type: decimal
+    - name: saldo
+      type: decimal
+    - name: month
+      type: integer
+    - name: year
+      type: integer
+    - name: batch_token
+      type: string
+    - name: is_paid
+      type: integer
+    - name: color
+      type: string
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    - name: main_value
+      type: decimal
+    - name: interest_value
+      type: decimal
+    - name: main_value_with_interest
+      type: decimal
+    - name: monetary_correction_value
+      type: decimal
+    - name: main_value_with_interest_cm
+      type: decimal
+    - name: late_payment_value
+      type: decimal
+    - name: installment_total_value
+      type: decimal
+    indexes: []
+  renegotiation_payments:
+    columns:
+    - name: id
+      type: integer
+    - name: renegotiation_id
+      type: integer
+    - name: renegotiation_installment_id
+      type: integer
+    - name: date
+      type: date
+    - name: days_late
+      type: integer
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    - name: payment_number
+      type: integer
+    - name: installment_paid_value_with_interest_cm
+      type: decimal
+    - name: late_payment_value
+      type: decimal
+    - name: total_paid_value
+      type: decimal
+    indexes: []
+  providers:
+    columns:
+    - name: id
+      type: integer
+    - name: title
+      type: string
+    - name: resume
+      type: text
+    - name: user_id
+      type: integer
+    - name: project_id
+      type: integer
+    - name: is_active
+      type: integer
+    - name: logo_file_name
+      type: string
+    - name: logo_content_type
+      type: string
+    - name: logo_file_size
+      type: integer
+    - name: logo_updated_at
+      type: datetime
+    - name: integration_key
+      type: string
+    - name: cnpj
+      type: string
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    - name: cpf
+      type: string
+    - name: abertura
+      type: date
+    - name: bairro
+      type: string
+    - name: cep
+      type: string
+    - name: data_situacao
+      type: date
+    - name: email
+      type: string
+    - name: fantasia
+      type: string
+    - name: logradouro
+      type: string
+    - name: complemento
+      type: string
+    - name: municipio
+      type: string
+    - name: nome
+      type: string
+    - name: numero
+      type: string
+    - name: situacao
+      type: string
+    - name: telefone
+      type: string
+    - name: uf
+      type: string
+    - name: atividades
+      type: text
+    - name: cnaes
+      type: text
+    indexes: []
+  availability_templates:
+    columns:
+    - name: id
+      type: integer
+    - name: title
+      type: string
+    - name: project_id
+      type: integer
+    - name: type
+      type: string
+    - name: is_global
+      type: integer
+    - name: is_mandatory
+      type: integer
+    - name: is_active
+      type: integer
+    - name: global_availability_template_id
+      type: integer
+    - name: operation_type
+      type: string
+    - name: deadline_type
+      type: string
+    - name: user_id
+      type: integer
+    - name: is_cumulative
+      type: integer
+    - name: numeric_first_level
+      type: integer
+    - name: numeric_second_level
+      type: integer
+    - name: numeric_third_level
+      type: integer
+    - name: max_level
+      type: integer
+    - name: is_upper_level
+      type: integer
+    - name: top_parent_id
+      type: integer
+    - name: should_insert_on_existing_projects
+      type: integer
+    - name: position
+      type: string
+    - name: parent_level
+      type: integer
+    - name: parent_position
+      type: string
+    - name: parent_template_id
+      type: integer
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    - name: is_locked
+      type: integer
+    - name: locked_at
+      type: datetime
+    - name: job_id
+      type: integer
+    - name: job_report
+      type: text
+    - name: job_state
+      type: string
+    - name: locked_message
+      type: string
+    - name: is_adjusted
+      type: integer
+    indexes: []
+  availability_entries:
+    columns:
+    - name: id
+      type: integer
+    - name: title
+      type: string
+    - name: user_id
+      type: integer
+    - name: project_id
+      type: integer
+    - name: availability_template_id
+      type: integer
+    - name: value
+      type: decimal
+    - name: date
+      type: date
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    - name: has_safegold_management
+      type: integer
+    - name: virtual_value
+      type: decimal
+    - name: company_id
+      type: integer
+    - name: original_value
+      type: decimal
+    indexes: []
+  renegotiation_attachments:
+    columns:
+    - name: id
+      type: integer
+    - name: renegotiation_id
+      type: integer
+    - name: user_id
+      type: integer
+    - name: title
+      type: string
+    - name: file_file_name
+      type: string
+    - name: file_content_type
+      type: string
+    - name: file_file_size
+      type: integer
+    - name: file_updated_at
+      type: datetime
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    indexes: []
+  companies:
+    columns:
+    - name: id
+      type: integer
+    - name: project_id
+      type: integer
+    - name: title
+      type: string
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    - name: has_safegold_management
+      type: integer
+    indexes: []
+  risk_controls:
+    columns:
+    - name: id
+      type: integer
+    - name: company_id
+      type: integer
+    - name: carrier_id
+      type: integer
+    - name: limite_auto_liquidaveis
+      type: decimal
+    - name: taxa_auto_liquidaveis
+      type: float
+    - name: limite_fomento
+      type: decimal
+    - name: taxa_fomento
+      type: float
+    - name: limite_comissaria
+      type: decimal
+    - name: taxa_comissaria
+      type: float
+    - name: limite_intercompany
+      type: decimal
+    - name: taxa_intercompany
+      type: float
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    - name: has_safegold_management
+      type: integer
+    - name: project_id
+      type: integer
+    - name: title
+      type: string
+    - name: is_active
+      type: integer
+    - name: risk_operation_type_id
+      type: integer
+    - name: user_id
+      type: integer
+    - name: limite
+      type: decimal
+    - name: taxa
+      type: float
+    - name: original_balance
+      type: decimal
+    - name: original_balance_pre
+      type: decimal
+    indexes: []
+  risk_entries:
+    columns:
+    - name: id
+      type: integer
+    - name: risk_control_id
+      type: integer
+    - name: company_id
+      type: integer
+    - name: date
+      type: date
+    - name: vencidos_value
+      type: decimal
+    - name: a_vencer_value
+      type: decimal
+    - name: total_carteira_value
+      type: decimal
+    - name: liquidacao_value
+      type: decimal
+    - name: descontos_value
+      type: decimal
+    - name: total_reducoes_value
+      type: decimal
+    - name: observacoes
+      type: string
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    - name: has_safegold_management
+      type: integer
+    - name: project_id
+      type: integer
+    - name: risk_control_title
+      type: string
+    - name: comissaria_vencidos_value
+      type: decimal
+    - name: comissaria_a_vencer_value
+      type: decimal
+    - name: fomento_vencidos_value
+      type: decimal
+    - name: fomento_a_vencer_value
+      type: decimal
+    - name: intercompany_vencidos_value
+      type: decimal
+    - name: intercompany_a_vencer_value
+      type: decimal
+    - name: comissaria_total_value
+      type: decimal
+    - name: fomento_total_value
+      type: decimal
+    - name: intercompany_total_value
+      type: decimal
+    indexes: []
+  carrier_groups:
+    columns:
+    - name: id
+      type: integer
+    - name: title
+      type: string
+    - name: user_id
+      type: integer
+    - name: carriers_count
+      type: integer
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    indexes: []
+  sub_segments:
+    columns:
+    - name: id
+      type: integer
+    - name: title
+      type: string
+    - name: integration_key
+      type: string
+    - name: is_active
+      type: integer
+    - name: user_id
+      type: integer
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    indexes: []
+  indicators:
+    columns:
+    - name: id
+      type: integer
+    - name: title
+      type: string
+    - name: key
+      type: string
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    - name: value_type
+      type: string
+    - name: project_id
+      type: integer
+    - name: is_active
+      type: integer
+    indexes: []
+  project_indicator_connections:
+    columns:
+    - name: id
+      type: integer
+    - name: project_id
+      type: integer
+    - name: indicator_id
+      type: integer
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    indexes: []
+  indicator_entries:
+    columns:
+    - name: id
+      type: integer
+    - name: title
+      type: string
+    - name: user_id
+      type: integer
+    - name: project_id
+      type: integer
+    - name: indicator_id
+      type: integer
+    - name: value
+      type: decimal
+    - name: month
+      type: integer
+    - name: year
+      type: integer
+    - name: key
+      type: string
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    - name: value_type
+      type: string
+    indexes: []
+  risk_operation_types:
+    columns:
+    - name: id
+      type: integer
+    - name: title
+      type: string
+    - name: integration_key
+      type: string
+    - name: is_active
+      type: integer
+    - name: user_id
+      type: integer
+    - name: is_default
+      type: integer
+    - name: allow_manual_operations
+      type: integer
+    - name: allow_receivable_entries
+      type: integer
+    - name: has_pre_faturamento
+      type: integer
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    indexes: []
+  risk_movement_types:
+    columns:
+    - name: id
+      type: integer
+    - name: title
+      type: string
+    - name: integration_key
+      type: string
+    - name: is_active
+      type: integer
+    - name: user_id
+      type: integer
+    - name: is_default
+      type: integer
+    - name: is_system_exclusive
+      type: integer
+    - name: credit_type_description
+      type: string
+    - name: credit_type
+      type: string
+    - name: is_transfer
+      type: integer
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    indexes: []
+  risk_operations:
+    columns:
+    - name: id
+      type: integer
+    - name: title
+      type: string
+    - name: user_id
+      type: integer
+    - name: operation_type_id
+      type: integer
+    - name: project_id
+      type: integer
+    - name: company_id
+      type: integer
+    - name: carrier_id
+      type: integer
+    - name: risk_control_id
+      type: integer
+    - name: contract_number
+      type: string
+    - name: issue_date
+      type: date
+    - name: operation_value
+      type: decimal
+    - name: original_balance
+      type: decimal
+    - name: balance
+      type: decimal
+    - name: due_date
+      type: date
+    - name: agreed_rate
+      type: float
+    - name: observation
+      type: string
+    - name: is_on_variable
+      type: integer
+    - name: is_ended
+      type: integer
+    - name: original_id
+      type: integer
+    - name: original_due_date
+      type: date
+    - name: receivable_id
+      type: integer
+    - name: operation_subtype_id
+      type: integer
+    - name: pair_id
+      type: integer
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    - name: receipt_id
+      type: integer
+    indexes: []
+  risk_movements:
+    columns:
+    - name: id
+      type: integer
+    - name: user_id
+      type: integer
+    - name: order
+      type: integer
+    - name: date
+      type: date
+    - name: movement_type_id
+      type: integer
+    - name: movement_value
+      type: decimal
+    - name: balance
+      type: decimal
+    - name: observation
+      type: string
+    - name: project_id
+      type: integer
+    - name: company_id
+      type: integer
+    - name: carrier_id
+      type: integer
+    - name: risk_operation_id
+      type: integer
+    - name: receivable_id
+      type: integer
+    - name: pair_id
+      type: integer
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    indexes: []
+  risk_operation_extensions:
+    columns:
+    - name: id
+      type: integer
+    - name: risk_operation_id
+      type: integer
+    - name: user_id
+      type: integer
+    - name: original_due_date
+      type: date
+    - name: new_due_date
+      type: date
+    - name: observation
+      type: string
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    indexes: []
+  risk_operation_subtypes:
+    columns:
+    - name: id
+      type: integer
+    - name: title
+      type: string
+    - name: integration_key
+      type: string
+    - name: is_active
+      type: integer
+    - name: user_id
+      type: integer
+    - name: is_default
+      type: integer
+    - name: pair_id
+      type: integer
+    - name: risk_operation_type_id
+      type: integer
+    - name: is_pre
+      type: integer
+    - name: allow_manual_operations
+      type: integer
+    - name: allow_receivable_entries
+      type: integer
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    indexes: []
+  project_guarantees:
+    columns:
+    - name: id
+      type: integer
+    - name: project_id
+      type: integer
+    - name: carrier_id
+      type: integer
+    - name: user_id
+      type: integer
+    - name: guarantee_type_id
+      type: integer
+    - name: title
+      type: string
+    - name: value
+      type: decimal
+    - name: observation
+      type: string
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    indexes: []
+  project_guarantee_types:
+    columns:
+    - name: id
+      type: integer
+    - name: title
+      type: string
+    - name: integration_key
+      type: string
+    - name: is_active
+      type: integer
+    - name: user_id
+      type: integer
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    indexes: []
+  remunerations:
+    columns:
+    - name: id
+      type: integer
+    - name: project_id
+      type: integer
+    - name: operation_type_id
+      type: integer
+    - name: operation_type_type
+      type: string
+    - name: value
+      type: float
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    - name: title
+      type: string
+    indexes: []
+  structured_operation_types:
+    columns:
+    - name: id
+      type: integer
+    - name: title
+      type: string
+    - name: integration_key
+      type: string
+    - name: is_active
+      type: integer
+    - name: user_id
+      type: integer
+    - name: is_default
+      type: integer
+    - name: allow_manual_operations
+      type: integer
+    - name: allow_receivable_entries
+      type: integer
+    - name: has_pre_faturamento
+      type: integer
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    indexes: []
+  structured_operations:
+    columns:
+    - name: id
+      type: integer
+    - name: title
+      type: string
+    - name: user_id
+      type: integer
+    - name: operation_type_id
+      type: integer
+    - name: project_id
+      type: integer
+    - name: company_id
+      type: integer
+    - name: carrier_id
+      type: integer
+    - name: contract_number
+      type: string
+    - name: issue_date
+      type: date
+    - name: operation_value
+      type: decimal
+    - name: original_balance
+      type: decimal
+    - name: balance
+      type: decimal
+    - name: due_date
+      type: date
+    - name: agreed_rate
+      type: float
+    - name: observation
+      type: string
+    - name: is_on_variable
+      type: integer
+    - name: is_ended
+      type: integer
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    - name: receipt_id
+      type: integer
+    indexes: []
+  charges:
+    columns:
+    - name: id
+      type: integer
+    - name: project_id
+      type: integer
+    - name: user_id
+      type: integer
+    - name: date
+      type: date
+    - name: state
+      type: string
+    - name: value
+      type: decimal
+    - name: structured_operations_value
+      type: decimal
+    - name: risk_operations_value
+      type: decimal
+    - name: total_operations_value
+      type: decimal
+    - name: receipts_count
+      type: integer
+    - name: risk_operations_count
+      type: integer
+    - name: structured_operations_count
+      type: integer
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    indexes: []
+  receipts:
+    columns:
+    - name: id
+      type: integer
+    - name: temp_id
+      type: string
+    - name: project_id
+      type: integer
+    - name: charge_id
+      type: integer
+    - name: operation_id
+      type: integer
+    - name: operation_type
+      type: string
+    - name: remuneration_id
+      type: integer
+    - name: kind
+      type: string
+    - name: title
+      type: string
+    - name: fee
+      type: float
+    - name: operation_value
+      type: decimal
+    - name: value
+      type: decimal
+    - name: user_id
+      type: integer
+    - name: created_at
+      type: datetime
+    - name: updated_at
+      type: datetime
+    - name: date
+      type: date
+    - name: operation_title
+      type: string
+    indexes: []

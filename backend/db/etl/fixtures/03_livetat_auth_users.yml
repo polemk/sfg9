@@ -1,0 +1,22 @@
+# Elenco pequeno, escolhido para conter UMA de cada anomalia AUTORIZADA por
+# `db/etl/decisions.yml`. Nenhuma anomalia NAO autorizada aqui — senao a carga
+# abortaria (que e o comportamento correto, provado a parte pelos specs).
+#
+# Dominio `.invalid` (RFC 2606) de proposito: nada disto se confunde com gente.
+table: livetat_auth_users
+rows:
+  - { id: 1, default_project_id: 1, formal: 'Fixture OG',          email: 'etl-fixture-og@safegold.invalid',      username: 'fixture.og',    identifier: 'FIXOG1',  is_active: 1, deactivated: false, is_default_member: 0, manager_id: null, kind: 'staff',  color: '#2D2D2A', created_at: '2016-05-20 14:00:00', updated_at: '2016-05-20 14:00:00' }
+  - { id: 2, default_project_id: 1, formal: 'Fixture Admin',       email: 'etl-fixture-admin@safegold.invalid',   username: 'fixture.admin', identifier: 'FIXAD2',  is_active: 1, deactivated: false, is_default_member: 0, manager_id: 1,    kind: 'client', color: '#2D2D2A', created_at: '2017-01-15 10:00:00', updated_at: '2017-01-15 10:00:00' }
+  # DEC-74 — chega com `is_phone_checked = 1` (ver `04_..._user_infos.yml`).
+  - { id: 3, default_project_id: 2, formal: 'Fixture Gerente',     email: 'etl-fixture-gerente@safegold.invalid', username: null,            identifier: 'FIXGE3',  is_active: 1, deactivated: false, is_default_member: 1, manager_id: 2,    kind: 'client', color: '#2D2D2A', created_at: '2018-02-17 23:30:00', updated_at: '2018-02-17 23:30:00' }
+  # DEC-39 — `is_active = 0` E `deactivated = true`: nasce com `blocked_at`.
+  - { id: 4, default_project_id: 1, formal: 'Fixture Colaborador', email: 'etl-fixture-colab@safegold.invalid',   username: null,            identifier: 'FIXCO4',  is_active: 0, deactivated: true,  is_default_member: 0, manager_id: 3,    kind: 'client', color: '#2D2D2A', created_at: '2019-06-01 08:30:00', updated_at: '2019-06-01 08:30:00' }
+  # D-128 — o caso que a fixture NAO tinha e que existe 72x em producao:
+  # `is_active = 1` mas `deactivated = true`. E o flag que o legado de fato le
+  # (`sessions_decorator.rb:12`), e sem esta linha o motor deixaria a conta
+  # ENTRAR. Ela tambem nasce com `blocked_at`.
+  - { id: 7, default_project_id: 1, formal: 'Fixture Desligado',   email: 'etl-fixture-desligado@safegold.invalid', username: null,          identifier: 'FIXDE7',  is_active: 1, deactivated: true,  is_default_member: 0, manager_id: 1,    kind: 'client', color: '#2D2D2A', created_at: '2022-04-11 09:00:00', updated_at: '2022-04-11 09:00:00' }
+  # D-36 — papel vazio na origem.
+  - { id: 5, default_project_id: 2, formal: 'Fixture Sem Papel',   email: 'etl-fixture-sempapel@safegold.invalid', username: null,           identifier: 'FIXSP5',  is_active: 1, deactivated: false, is_default_member: 0, manager_id: 1,    kind: 'client', color: '#2D2D2A', created_at: '2020-03-01 08:30:00', updated_at: '2020-03-01 08:30:00' }
+  # Q-16 — is_staff E is_superuser na origem Django (ver `10_authentication_user.yml`).
+  - { id: 6, default_project_id: 1, formal: 'Fixture Q16',         email: 'etl-fixture-q16@safegold.invalid',     username: null,            identifier: 'f-q1',  is_active: 1, deactivated: false, is_default_member: 0, manager_id: 1,    kind: 'staff',  color: '#2D2D2A', created_at: '2021-03-12 11:21:03', updated_at: '2021-03-12 11:21:03' }

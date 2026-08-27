@@ -1,0 +1,459 @@
+# DECISÕES QUE AUTORIZAM O ETL A PROSSEGUIR COM ANOMALIA — S14, tarefa 5.4.
+#
+# Regra da fatia, sem exceção:
+#
+#   **Nenhuma correção de dado do cliente sem decisão registrada e assinada.**
+#   Anomalia vira linha de relatório, nunca `UPDATE` silencioso.
+#
+# O dry-run agrupa cada anomalia por uma **chave** (`orphans:tabela.coluna`,
+# `duplicates:tabela[colunas]`, `booleans:…`, `enums:…`, `timestamps:…`,
+# `truncations:…`, `roles:…`, `users:…`). Grupo com contagem maior que zero e **sem
+# entrada aqui ABORTA** a execução.
+#
+# Está em arquivo versionado, e não numa flag `--force`, porque a autorização precisa
+# ter autor e aparecer no diff. É documento financeiro que está sendo migrado.
+#
+# Campos:
+#   key       — a chave exata que o relatório imprime
+#   decision  — o DEC/ata que autoriza
+#   effect    — o que o ETL faz com as linhas (carregar, pular, marcar)
+#   signed_by — quem assinou. Nome de gente, não "equipe"
+#   at        — data da assinatura
+
+decisions:
+  # -------------------------------------------------------------------------
+  # As quatro abaixo já estão decididas por DEC e entram assinadas pelo
+  # orquestrador da migração. Todas são "carregar e LISTAR para revisão humana" —
+  # nenhuma corrige dado.
+  # -------------------------------------------------------------------------
+  - key: 'roles:staff_precedence'
+    decision: >-
+      DEC-16 + Q-16 — o adaptador de 2021 (`legacy/u.rb:33`) dava à marca de EQUIPE
+      precedência sobre a de SUPERUSUÁRIO, e há usuários ativos com papel errado
+      desde então. NÃO reprocessar.
+    effect: 'carrega o papel como está e LISTA o par (is_staff, is_superuser) para revisão humana antes do cutover'
+    signed_by: 'orquestrador da migração sfg->ai9'
+    at: '2026-08-26'
+
+  - key: 'roles:empty_role'
+    decision: >-
+      DEC-18.8 / D-36 — `config/application.rb:65` do legado define
+      `default_role_type = ""`, então há usuários sem papel que casa com
+      og?/admin?/manager?/colab?.
+    effect: 'entra como Colaborador (o MENOS poderoso) e sai na lista de exceções para revisão humana'
+    signed_by: 'orquestrador da migração sfg->ai9'
+    at: '2026-08-26'
+
+  - key: 'users:inactive_blocked'
+    decision: >-
+      DEC-39 — toda conta DESLIGADA no legado nasce bloqueada e vai para revisão
+      humana. "Replicar" significaria não bloquear ninguém, e toda conta desligada
+      entraria no produto novo com acesso pleno. Bloquear e revisar é reversível;
+      liberar por engano não é.
+      ⚠ **A COLUNA QUE VALE É `deactivated`, NÃO `is_active`** (D-128, medido no dump
+      de 31/05/2025). `is_active` não tem um único leitor no legado; `deactivated` é o
+      único `boolean` do schema e é o que recusa o login
+      (`sessions_decorator.rb:12`) e derruba a sessão
+      (`pub_application_controller.rb:45`). Em produção: 50 ativos, 72 com
+      `is_active=1 / deactivated=t` e 13 com `is_active=0 / deactivated=t`. Bloquear só
+      por `is_active` deixaria **72 contas hoje impedidas de entrar** entrarem no ai9.
+      O bloqueio é a UNIÃO das duas — 85 contas.
+    effect: 'carrega com `blocked_at` preenchido e lista para revisão humana. `legacy_password` NÃO é migrada'
+    signed_by: 'usuário (rodada 1 de perguntas, P-048)'
+    at: '2026-08-25'
+
+  - key: 'users:phone_checked'
+    decision: >-
+      DEC-74 — o indicador de verificação é replicado como está. A TRAVA de edição do
+      telefone NÃO é replicada: no ai9 o telefone é canal de login, e portar a trava
+      seria portar um bloqueio de acesso sem autoatendimento.
+    effect: 'carrega a flag e LISTA quem vem com ela ligada'
+    signed_by: 'usuário (rodada 1 de perguntas, P-050)'
+    at: '2026-08-25'
+
+  - key: 'timestamps:*'
+    decision: >-
+      DEC-06 — armazenamento em UTC, conversão pelas transições da tz database de
+      America/Sao_Paulo (houve horário de verão até 2019-02-16). Hora ambígua da
+      virada de outono é resolvida pela regra padrão E LISTADA; hora inexistente da
+      virada de primavera é deslocada para o primeiro instante válido E LISTADA.
+    effect: 'converte pela regra padrão e LISTA cada instante afetado, linha a linha, para conferência manual'
+    signed_by: 'usuário (Q-01 / DEC-06)'
+    at: '2026-08-24'
+
+  - key: 'projects:responsible_from_2021_fallback'
+    decision: >-
+      BE-452 (c) + BE-454 — no ETL de 2021 o responsável do projeto caía em cascata
+      até um e-mail de pessoa real embutido no código-fonte e, por fim, ao primeiro
+      usuário; e a terceira correção pós-importação sobrescrevia o responsável
+      definido pela segunda, numa ordem que não estava documentada.
+    effect: 'carrega o responsável como está e LISTA os projetos afetados para conferência humana do responsável correto'
+    signed_by: 'orquestrador da migração sfg->ai9'
+    at: '2026-08-26'
+
+  - key: 'memberships:non_project_memberable'
+    decision: >-
+      A participação é polimórfica no legado (`memberable_type`) e, na prática, sempre
+      `Project`. O ai9 só tem projeto.
+    effect: 'LISTA as linhas que apontem para outra coisa; elas NÃO são convertidas em silêncio'
+    signed_by: 'orquestrador da migração sfg->ai9'
+    at: '2026-08-26'
+
+  - key: 'users:identifier_format'
+    decision: >-
+      No legado `identifier` e `string` livre; no ai9 e `/\A[A-Z0-9]{6}\z/` com
+      unicidade (`user.rb:122-125`). Normalizar seria fabricar identificador.
+    effect: 'carrega o usuario com `identifier` NULO e LISTA quem ficou sem, para atribuicao manual'
+    signed_by: 'orquestrador da migracao sfg->ai9'
+    at: '2026-08-26'
+
+  # -------------------------------------------------------------------------
+  # ACRESCENTADAS APOS O ENSAIO CONTRA O DUMP REAL (DEC-119, 26/08/2026).
+  # As duas primeiras nao autorizam anomalia: elas CORRIGEM UM ERRO NOSSO de
+  # desenho, revelado por olhar o dado.
+  # -------------------------------------------------------------------------
+  - key: 'duplicates:carriers[bank_code]'
+    decision: >-
+      DEC-119 — nao ha duplicata real. O legado usa SENTINELAS para "sem codigo
+      bancario": 181 portadores com 8888, 83 com NULL, 31 com 999, 13 com 9999 e 4
+      com 888. Um indice unico em `bank_code` e uma restricao que o dado real NUNCA
+      podera satisfazer — o erro esta no indice que NOS desenhamos a partir da
+      intencao do schema, nao no dado do cliente.
+    effect: 'o indice unico passa a ser PARCIAL (ignora NULL e os sentinelas 888/999/8888/9999); nenhuma linha e alterada nem pulada'
+    signed_by: 'orquestrador da migração sfg->ai9'
+    at: '2026-08-26'
+
+  - key: 'duplicates:livetat_auth_users[username]'
+    decision: >-
+      DEC-119 — as 72 contas que compartilham `username` tem o campo VAZIO ou NULO.
+      Entre os `username` preenchidos ha ZERO repetidos, e entre os `email` ha ZERO
+      repetidos. Como o login do ai9 e por e-mail, a chave real esta integra.
+    effect: 'unicidade de `username` vira PARCIAL (ignora vazio e nulo); a unicidade que vale e a de `email`, ja satisfeita. Nenhuma linha alterada'
+    signed_by: 'orquestrador da migração sfg->ai9'
+    at: '2026-08-26'
+
+  - key: 'orphans:livetat_auth_users.default_project_id'
+    decision: >-
+      DEC-119 — 7 usuarios apontam para projeto inexistente. `default_project_id` e
+      conveniencia de sessao (qual projeto abre primeiro), nao vinculo de negocio:
+      nulificar nao tira acesso de ninguem, porque o acesso vem de `memberships`.
+    effect: 'carrega com `current_project_id` NULO e LISTA os 7 no relatorio de carga; o usuario escolhe o projeto no proximo acesso'
+    signed_by: 'orquestrador da migração sfg->ai9'
+    at: '2026-08-26'
+
+  - key: 'custom:receivable_entries'
+    decision: >-
+      DEC-120 — DECISAO DO USUARIO: **preservar exatamente como esta**. Sao dois
+      padroes, ~17,9 mil linhas cada. **Q-B19**: registros do importador Django de
+      2021 com `user_id=1` e `company_id` forcados pelo ETL da epoca — o autor
+      registrado nao e quem lancou. **DB-154**: borderôs anteriores a 22/03/2022
+      tiveram a empresa atribuida EM BLOCO por `fix_entries_without_company`, e nao
+      escolhida no lancamento. O dado existe, e plausivel e esta assim ha 4 anos sem
+      ninguem reclamar; reatribuir seria inventar historia.
+    effect: 'carrega autor e empresa COMO ESTAO e LISTA os dois grupos no relatorio de carga, separados, para quem um dia quiser revisar'
+    signed_by: 'usuário (ensaio do ETL, 26/08/2026)'
+    at: '2026-08-26'
+
+  - key: 'custom:receivable_taxes'
+    decision: >-
+      DEC-120 — DECISAO DO USUARIO: o valor `NaN` (D-10) entra como **NULO**, nao como
+      zero. Preserva a informacao de que o valor e DESCONHECIDO, em vez de afirmar que
+      e zero. Em float o `NaN` se propaga por toda soma que o encontre, contaminando
+      total, liquido e os quatro percentuais do borderô pai — o nulo interrompe essa
+      propagacao sem mentir sobre o numero.
+    effect: >-
+      carrega a tarifa com valor NULO e LISTA a linha e o borderô pai. As somas do
+      borderô IGNORAM tarifa nula (nao propagam nulo, nao contam como zero na media),
+      e a tela sinaliza que o borderô tem tarifa desconhecida
+    signed_by: 'usuário (ensaio do ETL, 26/08/2026)'
+    at: '2026-08-26'
+
+  - key: 'custom:risk_controls'
+    decision: >-
+      DEC-119 — 38 controles em que os QUATRO pares (limite, taxa) sao zero: o limite
+      nao autoriza nada. Nao e anomalia de conversao, e um registro legitimo de
+      controle vazio — provavelmente criado e nunca preenchido. Zerar ou apagar seria
+      decidir pelo cliente o que ele quis dizer.
+    effect: 'carrega COMO ESTA e LISTA os 38 para conferencia humana; nenhum valor e alterado'
+    signed_by: 'orquestrador da migração sfg->ai9'
+    at: '2026-08-26'
+
+  - key: 'custom:renegotiations'
+    decision: >-
+      DEC-119 — 134 renegociacoes com `attachments_count` NULO (DB-195). E um
+      CONTADOR DERIVADO (counter cache), nao dado de origem: o numero certo e o que
+      se conta nos anexos. Recalcular nao inventa informacao — restaura a que o
+      contador deveria refletir. Nao e numero financeiro, entao nao esbarra no DEC-02.
+    effect: 'carrega a renegociacao e RECALCULA `attachments_count` a partir dos anexos carregados; LISTA as 134 recalculadas'
+    signed_by: 'orquestrador da migração sfg->ai9'
+    at: '2026-08-26'
+
+  - key: 'duplicates:renegotiations[project_id+integration_key]'
+    decision: >-
+      DEC-119 — mesma familia de `carriers[bank_code]`: nao ha duplicata real. A
+      `integration_key` repetida e a string literal **"Renegociação"** — um ROTULO
+      padrao, nao uma chave de integracao. 9 grupos, 82 linhas.
+    effect: 'o indice unico passa a ser PARCIAL (ignora o rotulo padrao e valores vazios); nenhuma linha alterada nem pulada'
+    signed_by: 'orquestrador da migração sfg->ai9'
+    at: '2026-08-26'
+
+  - key: 'duplicates:availability_templates[project_id+parent_template_id+title]'
+    decision: >-
+      DEC-119 — 2 grupos, e o `title` repetido e VAZIO. Mesma familia dos anteriores:
+      unicidade desenhada sobre um campo que o legado deixa em branco.
+    effect: 'indice unico PARCIAL (ignora titulo vazio); nenhuma linha alterada'
+    signed_by: 'orquestrador da migração sfg->ai9'
+    at: '2026-08-26'
+
+  - key: 'action_text:percent_encoded_body'
+    decision: >-
+      DEC-119 — 1 corpo de texto rico com sequencia `%XX`. As views de contrato do
+      legado faziam `URI.unescape`, entao pode ser texto literal OU escape de URL —
+      e NAO DA PARA SABER SEM OLHAR. Adivinhar erra em uma das duas direcoes:
+      des-escapar texto literal corrompe o conteudo; nao des-escapar deixa `%20` na
+      tela do contrato.
+    effect: 'carrega o corpo BYTE A BYTE como esta e LISTA a linha para conferencia humana antes do cutover; nenhuma transformacao'
+    signed_by: 'orquestrador da migração sfg->ai9'
+    at: '2026-08-26'
+
+  - key: 'orphans:contract_deals.user_id'
+    decision: >-
+      DEC-126 - DECISAO DO USUARIO: **descartar as 2 linhas e listar**. Dois dos 272
+      aceites apontam para um usuario que nao existe mais (os ids vao ate 136 e ha 135
+      contas). Diferente do caso `default_project_id` da DEC-119, aqui a coluna e
+      `null: false` COM chave estrangeira: **nao existe a quem apontar**, e nulificar
+      nao e opcao.
+      Criar um usuario marcador foi recusado: inventaria no ai9 uma conta que nunca
+      existiu no legado. E um aceite sem quem aceitou nao prova nada de qualquer forma -
+      nao ha o que preservar alem da contagem.
+    effect: >-
+      as 2 linhas NAO sao carregadas e saem LISTADAS no relatorio de carga, com o
+      legacy_id de origem e o user_id inexistente, para investigacao humana. As outras
+      270 entram normalmente
+    signed_by: 'usuario - ensaio do ETL, 27/08/2026'
+    at: '2026-08-27'
+
+  # A MESMA DEC-126, agora do lado da RECONCILIACAO (portao 3).
+  #
+  # A chave `orphans:` acima autoriza o motor a nao carregar as 2 linhas. Ela nao
+  # dizia nada sobre a CONTAGEM final, entao a reconciliacao via `272 -> 270` e
+  # reprovava com "sem explicacao" — reprovando uma decisao do usuario que estava
+  # sendo CUMPRIDA. Sao dois portoes diferentes e cada um precisa da sua assinatura.
+  #
+  # `expected_delta` e a contagem, e e ela que mantem o portao apertado: faltar 2
+  # e a decisao cumprida; faltar 3 volta a ser bloqueio, com o numero na mensagem.
+  - key: 'discard:contract_deals'
+    decision: >-
+      DEC-126 - os 2 aceites orfaos de `user_id` nao sao carregados. Ver a chave
+      `orphans:contract_deals.user_id`, que e a mesma decisao no portao da CARGA.
+    effect: >-
+      a reconciliacao aceita `272 origem -> 270 destino` como diferenca EXPLICADA,
+      e so essa. Qualquer outro delta nesta tabela volta a abortar
+    expected_delta: -2
+    signed_by: 'usuario - ensaio do ETL, 27/08/2026'
+    at: '2026-08-27'
+
+  - key: 'duplicates:providers[project_id+integration_key]'
+    decision: >-
+      DEC-125 - QUARTA ocorrencia do mesmo padrao, decidida por precedente das tres
+      anteriores (DEC-119). 6 grupos, 163 de 289 linhas, so 132 pares distintos: com a
+      unicidade de pe, 157 fornecedores NAO entram.
+      A evidencia aqui e a mais forte das quatro: dentro de cada grupo os TITULOS sao
+      todos distintos, e as chaves estao em CAIXA e com acento - forma que a derivacao
+      automatica do legado nunca produziria. Sao rotulos de classificacao digitados por
+      gente, nao chaves de integracao. Num dos grupos o rotulo e literalmente o mesmo
+      do caso ja decidido na DEC-119.
+      ATENCAO - esta assinatura NAO destrava sozinha, e isso foi medido: a validacao
+      vive no MODEL, nao so no indice. Com a chave autorizada, a carga ainda para em
+      "Integration key ja esta em uso neste projeto". Faltam duas mudancas da S4:
+      (1) migration tornando o indice parcial/nao-unico; (2) a validacao do model
+      relida para nao recusar o que o indice passou a aceitar. Enquanto as duas nao
+      existirem, `providers` continua bloqueado - e esta escrito, nao esquecido.
+    effect: 'carrega as 289 linhas COMO ESTAO e LISTA os 6 grupos; nenhum dado de cliente e reescrito'
+    signed_by: 'orquestrador da migracao sfg->ai9, por precedente da DEC-119'
+    at: '2026-08-27'
+
+  - key: 'projects:cep_invalido'
+    decision: >-
+      DEC-128.1 - DECISAO DO USUARIO: CEP de 7 digitos (3 de 83 projetos) entra VAZIO.
+      Completar com zero a esquerda foi recusado: corrigiria a maioria dos casos reais
+      e, no que nao fosse, gravaria endereco errado EM SILENCIO. Um CEP de 7 digitos
+      nao e um CEP, e adivinhar o digito que falta e fabricar dado.
+    effect: 'carrega o projeto com `cep` vazio e LISTA os 3 com o valor de origem'
+    # A chave era `custom:projects_cep` e o conversor imprime `projects:cep_invalido`
+    # (`converters/projects.rb:71`). Assinatura que nao casa com a chave impressa NAO
+    # autoriza nada - a carga abortava em `projects` com a decisao ja registrada.
+    # E a DEC-127 outra vez, numa variacao mais fina: nao e so "assinar nao basta",
+    # e "assinar a chave ERRADA e igual a nao assinar, e parece assinado".
+    signed_by: 'usuario - rodada de decisoes, 27/08/2026'
+    at: '2026-08-27'
+
+  - key: 'custom:renegotiation_attachments'
+    decision: >-
+      DEC-128.2 - DECISAO DO USUARIO: o mecanismo esta PROVADO (44 anexos, 44 binarios,
+      39.424.330 bytes reconciliados por magic bytes), mas os binarios NAO ficam no
+      projeto neste momento. A DEC-84 caiu pela premissa (nao tinhamos o disco); o que
+      permanece e que dado real nao fica aqui (DEC-123) e que o ETL roda no servidor
+      (DEC-124).
+    effect: >-
+      as LINHAS de anexo carregam normalmente; o religamento dos binarios
+      (`relink_attachments` com SYSTEM_ROOT) e passo de CUTOVER, executado no servidor.
+      A demonstracao segue no seed ficticio, sem anexo real
+    signed_by: 'usuario - rodada de decisoes, 27/08/2026'
+    at: '2026-08-27'
+
+  - key: 'custom:receivable_entries_nan_derived'
+    decision: >-
+      DEC-128.3 - DECISAO DO USUARIO: os 32 borderôs com `NaN` nos campos DERIVADOS sao
+      RECALCULADOS pelo motor. Diferente da tarifa (DEC-120, que entra nula): aqui as
+      entradas digitaveis estao integras, entao recalcular nao inventa dado - restaura o
+      que o proprio calculo deveria ter gravado, pelo mesmo motor que a tela usa
+      (contrato C2). E o unico caminho que mantem a contagem batendo com o legado E os
+      numeros somaveis.
+    effect: >-
+      o conversor recalcula os derivados a partir das entradas e LISTA os 32 com o valor
+      de origem e o recalculado lado a lado
+    signed_by: 'usuario - rodada de decisoes, 27/08/2026'
+    at: '2026-08-27'
+
+  - key: 'custom:receivable_entries_nan_input'
+    decision: >-
+      D-10 - por PRECEDENTE da DEC-128.1 e da DEC-128.3, medido no dump de
+      31/05/2025. A DEC-128.3 decidiu os `NaN` dos campos DERIVADOS ("as entradas
+      digitaveis estao integras"). Ao implementar, a medicao coluna a coluna mostrou
+      que a premissa vale para 31 das 32 linhas: em 30 delas o `NaN` esta numa
+      DEDUCAO digitavel (`recompra` 28x, `retencao` 1x, `fomento` 1x) e a origem e
+      conhecida - `parseFloat("")` do JavaScript da tela
+      (`_body.js.erb:412-415`) devolve `NaN` para campo em branco. O proprio servidor
+      do legado ja tratava esse campo como zero (`receivable_entry.rb:59`:
+      `recompra.blank? ? 0`), entao carregar 0,00 replica o legado, nao inventa dado.
+      RESTA UMA linha (legacy_id 22591) com `NaN` em `valor_bruto` - a entrada RAIZ.
+      Ali NAO ha derivado a restaurar: o que se perdeu e a entrada de onde a conta
+      sai, e nenhuma coluna do dump a recupera (`recompra_percent` tambem veio `NaN`,
+      entao nem a inversao do percentual serve). Adivinhar o bruto seria fabricar o
+      numero central de um borderô.
+      Aplico o precedente da DEC-128.1 (CEP de 7 digitos): entra o valor NEUTRO da
+      coluna e a linha sai LISTADA com o valor de origem, em vez de completar o que
+      falta. A coluna e `null: false`, entao o valor neutro e 0,00.
+      ⚠ ESTA E A UNICA das quatro que o usuario NAO decidiu diretamente. Esta em
+      chave PROPRIA, e nao junto dos derivados, exatamente para que ela possa ser
+      revista sem mexer no resto - e para que ninguem leia "32 recalculados" e ache
+      que este caso tambem foi.
+    effect: >-
+      as deducoes com `NaN` entram 0,00 (campo em branco, como o legado ja fazia) e
+      os derivados saem do motor C2; a linha com `NaN` em `valor_bruto` entra com
+      0,00 e sai LISTADA a parte, com o legacy_id, para conferencia humana antes do
+      cutover. Nenhuma linha e pulada - a contagem continua 28.131/28.131
+    signed_by: 'orquestrador da migracao sfg->ai9, por precedente da DEC-128.1 e DEC-128.3'
+    at: '2026-08-27'
+
+  - key: 'risk_entries:legacy_total_without_installments'
+    decision: >-
+      DEC-129.2 - DECISAO DO USUARIO: *"manter como e no legado"*. O legado TEM a
+      abertura por modalidade de jan-abr/2022 - 4.082 linhas, 161 limites, 19
+      projetos, R$ 4.884.851.467,94, de 28/01/2022 a 14/04/2022. Nosso conversor
+      deriva os totais das parcelas, e nessas linhas as parcelas estao zeradas: o
+      total continua correto (4.082/4.082) e o DETALHE some. Carregar sem poder ver
+      nao cumpre "nada se perde".
+    effect: >-
+      o conversor COPIA o total da origem quando as duas parcelas correspondentes
+      vierem zeradas, e LISTA cada linha com a modalidade e o valor preservado. Fora
+      dessa condicao o total continua sendo derivado das parcelas
+    signed_by: 'usuario - rodada de decisoes, 27/08/2026'
+    at: '2026-08-27'
+
+  - key: 'indicator_entries:connection_missing'
+    decision: >-
+      DEC-129.3 - DECISAO DO USUARIO: 51 lancamentos de indicador existem em producao
+      para pares (projeto, indicador) SEM conexao - 13 pares distintos. A grade do ai9
+      e montada pelas conexoes, entao eles carregariam e NUNCA APARECERIAM. Se ha
+      lancamento, alguem usou aquele indicador naquele projeto: o que sumiu foi a
+      conexao. O criterio geral que isto estabelece: dado migrado que nao e alcancavel
+      pela interface e dado perdido na pratica.
+    effect: >-
+      o conversor CRIA a conexao que falta, sem `legacy_id` (porque ela nao existe na
+      origem, e isso e o que a distingue das 590 migradas), e LISTA os 51 lancamentos
+      com o par (projeto, indicador); nenhum lancamento e alterado
+    signed_by: 'usuario - rodada de decisoes, 27/08/2026'
+    at: '2026-08-27'
+
+  # -------------------------------------------------------------------------
+  # AS DE BAIXO NÃO ESTÃO DECIDIDAS, e é por isso que NÃO estão nesta lista.
+  # Elas abortam o dry-run de propósito, até que alguém as responda com o dump de
+  # produção na mão:
+  #
+  #   users:username_without_channel  — DEC-45. Quem tem `username` e nenhum canal
+  #                                     NÃO CONSEGUE ENTRAR no dia 1. É possível
+  #                                     BLOQUEADOR DE CUTOVER, e a lista precisa ser
+  #                                     resolvida (cadastrar e-mail/telefone), não
+  #                                     autorizada.
+  #   orphans:*                       — BE-450/BE-452. O legado tem
+  #                                     `belongs_to_required_by_default = false`:
+  #                                     TODAS as associações são opcionais, e a
+  #                                     contagem de órfãos pode ser grande. Cada
+  #                                     coluna precisa da sua decisão, uma a uma.
+  #   duplicates:*                    — as 20+ unicidades compostas que o legado só
+  #                                     validava em aplicação. Enquanto houver
+  #                                     duplicata, o índice único correspondente fica
+  #                                     BLOQUEADO.
+  #   roles:unknown                   — papel fora do de-para. Isto NÃO se autoriza:
+  #                                     acrescenta-se a linha em `Legacy::RoleMap`.
+  # -------------------------------------------------------------------------
+  #
+  # -------------------------------------------------------------------------
+  # PENDENTES ABERTAS PELOS 15 CONVERSORES DA RODADA DE 27/08/2026 (S14).
+  #
+  # As duas abaixo têm contagem MAIOR QUE ZERO contra o dump de 31/05/2025 e
+  # **não estão assinadas de propósito** — o dry-run aborta nelas, que é o
+  # comportamento certo. Estão listadas aqui, e não no corpo da lista, porque
+  # listar não é autorizar.
+  #
+  #   duplicates:providers[project_id+integration_key]
+  #     6 grupos, 163 das 289 linhas (56%), um deles com 119. Só 132 pares
+  #     distintos: **157 fornecedores não entram** hoje. Dentro de cada grupo os
+  #     TÍTULOS são todos distintos, e as chaves repetidas estão em CAIXA e com
+  #     acento — forma que a derivação do legado nunca produziria. São rótulos de
+  #     classificação digitados por gente, não chaves de integração. Mesma
+  #     família de `carriers[bank_code]` e `renegotiations[…]`, e num dos grupos
+  #     o rótulo é literalmente o mesmo daquele caso.
+  #     ⚠ **A decisão sozinha NÃO destrava**: medido, com a chave autorizada num
+  #     arquivo de ensaio, a carga ainda para em `RecordInvalid: Integration key
+  #     já está em uso neste projeto`. Precisa também de migration da S4 tornando
+  #     o índice PARCIAL ou não-único, com a validação do model acompanhando —
+  #     como a DEC-119 fez para `carriers.bank_code`.
+  #
+  #   orphans:contract_deals.user_id
+  #     2 das 272 linhas apontam para um usuário que não existe mais (um único
+  #     usuário, um aceite de cada contrato; os ids vão de 1 a 136 e há 135
+  #     contas). O legado roda sem FK no banco, então apagar a conta deixou os
+  #     aceites para trás.
+  #     ⚠ Diferente de `orphans:livetat_auth_users.default_project_id`, que se
+  #     resolveu NULIFICANDO, aqui `user_id` é `null: false` com FK: **não existe
+  #     a quem apontar**. O único efeito possível é DESCARTAR as 2 linhas — e
+  #     descartar prova de aceite é decisão de gente. Além da assinatura, exige
+  #     ou a linha sair da origem, ou o motor ganhar um passo de "pular linha"
+  #     (hoje ele grava toda linha que lê, e a carga para em `RecordInvalid:
+  #     User é obrigatório(a)` depois de 3 linhas).
+  #
+  # As oito abaixo têm contagem ZERO no dump de 31/05/2025. Estão declaradas
+  # pelos conversores para o dia em que não tiverem, e por isso **não precisam
+  # de entrada aqui hoje**:
+  #
+  #   providers:two_documents · providers:invalid_document
+  #   help_items:without_body
+  #   contracts:kind_outside_catalog · contracts:without_body
+  #   contract_deals:contract_not_in_source
+  #   project_guarantees:carrier_not_connected
+  #   structured_operations:project_disagrees_with_company
+  #   remunerations:unknown_operation_type · remunerations:operation_type_not_loaded
+  #
+  # E uma que dispara em TODA linha lida, de propósito:
+  #
+  #   risk_operation_extensions:model_rewrites_source
+  #     `RiskOperationExtension` do ai9 tem `stamp_original_due_date` (descarta o
+  #     `original_due_date` da origem) e `push_operation_due_date!` (reescreve a
+  #     `risk_operations` já reconciliada). Os dois estão certos para uma
+  #     prorrogação lançada na tela e errados para uma carga. A tabela não existe
+  #     em produção; se aparecer com dado, autorizar a contagem NÃO basta — o
+  #     caminho de carga precisa existir antes.
+  # -------------------------------------------------------------------------

@@ -1,0 +1,42 @@
+# S6 / OPS-154 — textos de ajuda dos campos do formulário de borderô.
+#
+# ## O MECANISMO é o entregável. O conteúdo do legado, não.
+#
+# `../sfg/config/receivables_help_inputs.yml` tem ~40 chaves, e o texto de
+# **todas** elas é alguma variação de *"Só um teste de informações do campo…"*
+# (Q-B20). Copiar isso para a tela nova seria portar lixo visível.
+#
+# Então o arquivo nasce **vazio de propósito**, e a regra que o acompanha é:
+# **campo sem chave NÃO exibe indicador de ajuda**. Um ícone de interrogação que
+# abre um balão em branco é pior do que nenhum ícone — ele promete uma
+# explicação que não existe.
+#
+# Isto é diferente da **DEC-88**, que mandou *escrever* os 91 textos da central
+# de ajuda: aqueles são conteúdo de produto e já foram escritos. Estes são
+# tooltips de campo, e a decisão registrada para eles é a **DEC-69** (portados
+# com o placeholder). Aqui o placeholder virou **chave ausente**, que é o mesmo
+# efeito sem a mentira na tela.
+#
+# ## Como preencher, quando houver texto de negócio
+#
+# A chave é o **nome da coluna**, e o valor é o texto que aparece no balão.
+# Servido de `Rails.cache` por `Receivables::HelpTexts` (no legado o helper lia
+# o disco a cada campo renderizado — ~40 leituras por abertura do formulário).
+# Depois de editar, `Receivables::HelpTexts.reload!`.
+#
+# As chaves que a tela consulta hoje, na ordem do formulário:
+#
+#   date  data_credito  nro_bordero
+#   company_id  carrier_id  wallet_id  receivable_kind_id  resource_source_id
+#   valor_bruto  vlr_bruto_recusado  qtd_titulos  qtd_recusada
+#   prz_med_pond_emp  prz_med_pond_bco  float_acordado  cst_efetivo_acordado
+#   nominal_tax
+#   recompra  retencao  fomento  outros
+#   description  observacoes
+#
+# Exemplo (comentado — descomentar já faz o indicador aparecer no campo):
+#
+#   prz_med_pond_emp: >-
+#     Prazo médio ponderado dos títulos, do ponto de vista da empresa.
+#     Precisa ser maior que zero: ele é divisor de seis fórmulas do custo efetivo.
+---

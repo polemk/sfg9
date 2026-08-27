@@ -1,0 +1,22 @@
+{
+  "_comment": "Bundle pt-BR do Safegold. O conteudo anterior era a copy de venda da landing do ai9 (GOAT/polemk), orfa desde que o site publico saiu de escopo (Phase 0). Nenhuma tela chama useTranslation hoje; as chaves abaixo existem para o bundle nao nascer vazio e para dar o padrao de nomeacao a quem for internacionalizar tela nova.",
+  "app": {
+    "name": "Safegold",
+    "tagline": "Gestão de risco, recebíveis e operações estruturadas"
+  },
+  "common": {
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "delete": "Excluir",
+    "edit": "Editar",
+    "back": "Voltar",
+    "search": "Buscar",
+    "loading": "Carregando...",
+    "empty": "Nada por aqui ainda"
+  },
+  "seo": {
+    "title": "Safegold — gestão de risco, recebíveis e operações estruturadas",
+    "description": "Borderô e recebíveis, operações estruturadas, renegociações, limites por portador e indicadores de carteira em um lugar só."
+  }
+}

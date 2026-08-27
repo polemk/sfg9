@@ -1,0 +1,12 @@
+Olá <%= @user.name %>,
+
+<% if @inviter_name.present? %><%= @inviter_name %> criou<% else %>Foi criado<% end %> um acesso para você no <%= ENV.fetch('APP_NAME', 'Safegold') %><% if @role_name.present? %>, com o perfil <%= @role_name %><% end %>.
+
+Para ativar seu acesso, abra o link abaixo:
+
+<%= @magic_url %>
+
+Sem senha: o Safegold entra por código enviado ao seu e-mail ou WhatsApp.
+Não há senha para criar nem para lembrar.
+
+O link expira em 24 horas e só pode ser usado uma vez.

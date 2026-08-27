@@ -1,0 +1,380 @@
+# Catálogo pt-BR — OPS-629. **Um** catálogo, e ele é realmente lido.
+#
+# O legado tem `config/locales/` com 6 arquivos e 2 idiomas, e a UI é 100% hardcoded:
+# os catálogos nunca foram usados. Portar aqueles arquivos reproduziria o adorno.
+#
+# O que faz este catálogo ser lido de verdade, e não decoração como lá: as mensagens
+# de validação do **Grape** saem daqui. `config.i18n.default_locale = :'pt-BR'`
+# (`config/application.rb`) faz toda validação de parâmetro responder em português —
+# não é uma chave de exemplo esperando alguém chamar, é o caminho por onde já passa
+# todo request malformado da API.
+#
+# Portão da fatia: texto novo de servidor não entra hardcoded. O destino de
+# `gender_prefix` e `pluralize_for` (helpers de S19, que no legado eram função e viram
+# dado) também é aqui.
+pt-BR:
+  hello: "Olá"
+
+  activerecord:
+    # S6 — o NOME dos models do bloco de recebíveis.
+    #
+    # Sem verbete aqui, `Company.blocking_dependents` monta a frase do 422 com o
+    # nome da classe em inglês no meio de um texto em português — foi
+    # exatamente o defeito que a S4 achou ("existem *companies* dependentes").
+    # Model financeiro aparece em mensagem de erro que o usuário lê; o nome dele
+    # é parte da interface.
+    models:
+      receivable_entry:
+        one: "Borderô"
+        other: "Borderôs"
+      receivable_tax:
+        one: "Tarifa de borderô"
+        other: "Tarifas de borderô"
+      charge:
+        one: "Cobrança"
+        other: "Cobranças"
+      receipt:
+        one: "Recibo"
+        other: "Recibos"
+      wallet:
+        one: "Carteira"
+        other: "Carteiras"
+      receivable_kind:
+        one: "Tipo de recebível"
+        other: "Tipos de recebível"
+      movement_kind:
+        one: "Tipo de movimentação"
+        other: "Tipos de movimentação"
+      resource_source:
+        one: "Fonte de recurso"
+        other: "Fontes de recurso"
+      iof_rate:
+        one: "Alíquota de IOF"
+        other: "Alíquotas de IOF"
+
+    # S10 — os nomes de atributo que o legado traduzia à mão em cada controller
+    # (`translate_keys(@indicator.errors, :title, "Título")`,
+    # `indicators_controller.rb:134-137`). Aqui é dado, não código repetido.
+    attributes:
+      # S6 — os campos do borderô. O legado mostrava o nome cru da coluna
+      # (`prz_med_pond_emp`) na mensagem de erro; num sistema financeiro isso
+      # obriga o usuário a adivinhar qual campo do formulário reprovou.
+      receivable_entry:
+        # **Os nomes de ASSOCIAÇÃO, não só os `_id`.** O `belongs_to` obrigatório
+        # do Rails reporta o erro no nome da associação (`project`), não na
+        # coluna (`project_id`) — sem estas linhas a mensagem sai "Project é
+        # obrigatório(a)", com o nome da classe em inglês no meio de um texto em
+        # português. Achado rodando `ReceivableEntry.new.valid?`.
+        project: "Projeto"
+        project_id: "Projeto"
+        company: "Empresa"
+        carrier: "Portador"
+        wallet: "Carteira"
+        receivable_kind: "Tipo de recebível"
+        resource_source: "Fonte de recurso"
+        author: "Autor"
+        risk_operation_type: "Tipo de operação de risco"
+        risk_operation_subtype: "Subtipo de operação de risco"
+        taxes: "Tarifas"
+        date: "Data"
+        data_credito: "Data de crédito"
+        nro_bordero: "Nº do borderô"
+        company_id: "Empresa"
+        carrier_id: "Portador"
+        wallet_id: "Carteira"
+        receivable_kind_id: "Tipo de recebível"
+        resource_source_id: "Fonte de recurso"
+        risk_operation_subtype_id: "Subtipo de operação de risco"
+        user_id: "Autor"
+        valor_bruto: "Valor bruto"
+        vlr_bruto_recusado: "Valor bruto recusado"
+        qtd_titulos: "Quantidade de títulos"
+        qtd_recusada: "Quantidade recusada"
+        prz_med_pond_emp: "Prazo médio ponderado da empresa"
+        prz_med_pond_bco: "Prazo médio ponderado do banco"
+        float_acordado: "Float acordado"
+        cst_efetivo_acordado: "Custo efetivo acordado"
+        nominal_tax: "Taxa nominal"
+        recompra: "Recompra"
+        retencao: "Retenção"
+        fomento: "Fomento"
+        outros: "Outros"
+        valor_liquido: "Valor líquido"
+        description: "Descrição"
+        observacoes: "Observações"
+        status: "Situação"
+      receivable_tax:
+        receivable_entry: "Borderô"
+        movement_kind: "Tipo de movimentação"
+        movement_kind_id: "Tipo de movimentação"
+        value: "Valor"
+        title: "Título"
+      charge:
+        project: "Projeto"
+        project_id: "Projeto"
+        author: "Autor"
+        date: "Data"
+        state: "Situação"
+      receipt:
+        project: "Projeto"
+        project_id: "Projeto"
+        charge: "Cobrança"
+        operation: "Operação"
+        remuneration: "Remuneração"
+        author: "Autor"
+        charge_id: "Cobrança"
+        operation_id: "Operação"
+        remuneration_id: "Remuneração"
+        kind: "Tipo"
+        title: "Título"
+        fee: "Taxa"
+        operation_value: "Valor da operação"
+        value: "Valor"
+        date: "Data"
+      movement_kind:
+        title: "Nome"
+        integration_key: "Chave de integração"
+        kind: "Sentido contábil"
+      iof_rate:
+        daily_rate: "Alíquota diária"
+        fixed_rate: "Alíquota fixa"
+        valid_from: "Início da vigência"
+        valid_to: "Fim da vigência"
+      indicator:
+        title: "Título"
+        key: "Chave de Integração"
+        value_type: "Tipo de valor"
+        is_active: "Ativo"
+      indicator_entry:
+        title: "Título"
+        indicator: "Indicador"
+        indicator_id: "Indicador"
+        project_id: "Projeto"
+        value: "Valor"
+        year: "Ano"
+        month: "Mês"
+        key: "Chave"
+      project_indicator_connection:
+        project_id: "Projeto"
+        indicator_id: "Indicador"
+
+      # S2 — os campos da mensagem do formulário público.
+      #
+      # Achado escrevendo o spec dos mailers: a validação respondia **"Sender
+      # name não pode ficar em branco"** — nome de coluna em inglês numa
+      # mensagem que o visitante lê. Mesmo defeito do BE-199, em outra tabela, e
+      # aqui é pior: o formulário é PÚBLICO, então quem lê a frase pode nunca
+      # ter visto o sistema antes.
+      admin_message:
+        sender_name: "Nome"
+        sender_email: "E-mail"
+        message: "Mensagem"
+        context: "Tipo"
+        state: "Situação"
+        extra1_value: "Informação adicional"
+        extra2_value: "Informação adicional"
+      message_note:
+        description: "Resposta"
+        author_name: "Nome de quem respondeu"
+        author_email: "E-mail de quem respondeu"
+      observer:
+        name: "Nome"
+        email: "E-mail"
+
+      # S9 / BE-199 — os campos da renegociação.
+      #
+      # O legado os traduzia à mão, um `translate_keys` por linha, no
+      # `renegotiations_controller.rb:144-186` — **43 chamadas**. A migração não
+      # portou nenhuma: `grep -c renegotiation config/locales/pt-BR.yml` dava
+      # zero, e as mensagens saíam com o nome da coluna em inglês
+      # (`installments_main_value_with_interest_cm não pode ficar em branco`)
+      # numa tela que fala português. Achado pela conferência de paridade da
+      # Phase 4.
+      #
+      # Aqui é DADO, não código repetido em cada controller — mesmo desenho que
+      # a S10 já usava para os indicadores.
+      #
+      # ⚠ **`paid_value` aparecia DUAS vezes no legado**, com textos diferentes:
+      # "Valor pago" (`:150`) e "Valor pago total" (`:181`). Como as chamadas são
+      # sequenciais, a última vencia — então o que o usuário via era **"Valor
+      # pago total"**, e é ele que fica. A primeira era código morto por
+      # sobrescrita, e não uma segunda tradução legítima.
+      #
+      # `id` e `integration_key` do legado NÃO entram: `id` é UUID e nunca
+      # aparece em erro de formulário, e a chave de integração é interna.
+      renegotiation:
+        # Os nomes de ASSOCIAÇÃO, além dos `_id`: o `belongs_to` obrigatório do
+        # Rails reporta o erro no nome da associação, não na coluna.
+        project: "Projeto"
+        project_id: "Projeto"
+        provider: "Fornecedor"
+        provider_id: "Fornecedor"
+        provider_name: "Fornecedor"
+        company: "Empresa"
+        company_id: "Empresa"
+        title: "Nome da renegociação"
+        kind: "Tipo de renegociação"
+        renegotiation_date: "Data da negociação"
+        observation: "Observação"
+        origin: "Origem"
+        state: "Estado"
+        monetary_correction: "Correção monetária"
+        grace_period: "Carência (em dias)"
+        interest_rate_correction: "Taxa Juro Correção"
+        operation_interest_rate: "Taxa de Juros Acordada"
+        # Valores
+        original_value: "Valor da renegociação"
+        original_pending_value: "Valor a vencer"
+        additional_value: "Despesas adicionais (exceto juros)"
+        total_debt: "Valor com juros projetados"
+        correct_value: "Valor Atualizado até data Correção"
+        desagio_value: "Valor do deságio"
+        total_value_with_desagio: "Valor após deságio"
+        main_value: "Valor total da renegociação"
+        pending_main_value: "Valor pendente"
+        remaining_value: "Valor a pagar"
+        paid_value: "Valor pago total"
+        paid_value_with_interest_cm: "Valor pago c/ juros e correção monetária"
+        late_payment_value: "Valor pago mora e juros por atraso"
+        paid_percent: "Porcentagem paga"
+        current_value: "Valor presente"
+        current_installment_value: "Valor da próxima parcela"
+        # Parcelas
+        installments_count: "Quantidade Parcelas"
+        installments_main_value: "Valor principal"
+        installments_interest_value: "Valor juros das parcelas"
+        installments_main_value_with_interest: "Valor principal + juros"
+        installments_monetary_correction_value: "Valor correção monetária das parcelas"
+        installments_main_value_with_interest_cm: "Valor principal c/ juros e correção monetária"
+        paid_installments: "Parcelas pagas"
+        overdue_installments: "Parcelas vencidas"
+        due_installments: "Parcelas a vencer"
+        first_due_date: "Primeiro vencimento"
+        last_due_date: "Último vencimento"
+    errors:
+      messages:
+        record_invalid: "Registro inválido: %{errors}"
+
+  errors:
+    messages:
+      blank: "não pode ficar em branco"
+      invalid: "não é válido"
+      taken: "já está em uso"
+
+  # Mensagens de validação de parâmetro do Grape. As chaves são as do
+  # `grape-3.1.1/lib/grape/locale/en.yml`; o que não estiver aqui cai no inglês do gem.
+  grape:
+    errors:
+      format: '%{attributes} %{message}'
+      messages:
+        all_or_none: 'informe todos ou nenhum dos parâmetros'
+        at_least_one: 'estão ausentes; informe ao menos um parâmetro'
+        blank: 'está vazio'
+        coerce: 'é inválido'
+        conflicting_types: 'os parâmetros da consulta têm tipos conflitantes'
+        empty_message_body: 'corpo da requisição vazio com content-type %{body_format}'
+        exactly_one: 'estão ausentes; informe exatamente um parâmetro'
+        except_values: 'tem um valor não permitido'
+        invalid_parameters: 'os parâmetros da consulta têm formato ou sequência de bytes inválida'
+        invalid_response: 'Resposta inválida'
+        length: 'deve ter tamanho entre %{min} e %{max}'
+        length_is: 'deve ter tamanho exatamente igual a %{is}'
+        length_max: 'deve ter tamanho menor ou igual a %{max}'
+        length_min: 'deve ter tamanho maior ou igual a %{min}'
+        mutual_exclusion: 'são mutuamente exclusivos'
+        presence: 'é obrigatório'
+        regexp: 'está em formato inválido'
+        same_as: 'não é igual a %{parameter}'
+        unknown_parameter: 'parâmetro desconhecido: %{param}'
+        values: 'não tem um valor válido'
+
+  # Plataforma — mensagens do contrato de configuração e dos limites de domínio.
+  platform:
+    unauthorized: "Sessão necessária."
+    forbidden: "Você não tem permissão para esta ação."
+    not_found: "Registro não encontrado."
+    readonly: "Seu acesso é somente leitura."
+    google_maps_key_missing: "A chave do Google Maps não está cadastrada. Cadastre-a em Credenciais para o mapa carregar."
+
+  # Trilha de auditoria (S19 / DEC-59). Aqui moram os dois verbetes que o
+  # cabeçalho deste arquivo reservou para a S19:
+  #
+  #  - **concordância de gênero** (`FE-432`, o `gender_prefix` do legado) deixa de
+  #    ser função e vira o par `artigo`/`entidade` — a frase é montada por
+  #    interpolação de catálogo, não por `if` em Ruby;
+  #  - **formas plurais** (`FE-438`, o `pluralize_for`) ficam em `plurais`, porque
+  #    "concatenar 's'" erra em `nível`, `contrato`→`contratos` (acerta) e
+  #    `renegociação`→`renegociaçãos` (erra feio).
+  #
+  # A frase é montada **uma vez, aqui no servidor** — e não também no cliente.
+  # Duas implementações da mesma frase é o que esta fatia existe para evitar; o
+  # cliente recebe `summary` pronto e usa `event`/`item_type` só para ícone e cor.
+  #
+  # **Por que a frase é DERIVADA e não gravada:** no legado o `resume` era uma
+  # coluna `string(300)`, e um resumo maior fazia o `save` retornar `false` sem
+  # ninguém verificar — o evento sumia, e sumia justamente no caso complicado.
+  # Frase derivada na leitura não tem tamanho para estourar: o evento não pode
+  # se perder por causa do texto dele.
+  audit_trail:
+    resumo: "%{artigo} %{entidade} %{acao}"
+    acoes:
+      create:
+        f: "foi criada"
+        m: "foi criado"
+      update:
+        f: "foi alterada"
+        m: "foi alterado"
+      destroy:
+        f: "foi removida"
+        m: "foi removido"
+      # Impersonação (DEC-18.3). Não são eventos do `paper_trail` — são gravados
+      # à mão por `Auth::ImpersonateService#record_trail` na MESMA tabela, porque
+      # a trilha é uma só (DEC-59). Precisam de verbete: sem ele a frase cairia
+      # no `update` e diria "a conta de usuário foi alterada", que é exatamente
+      # a informação errada sobre o ato mais sensível do sistema.
+      impersonate_start:
+        f: "passou a ser personificada"
+        m: "passou a ser personificado"
+      impersonate_stop:
+        f: "deixou de ser personificada"
+        m: "deixou de ser personificado"
+    artigos:
+      f: "A"
+      m: "O"
+    # `entidade` é o rótulo em pt-BR do `item_type` versionado, com o gênero que
+    # a concordância exige. A lista espelha `Sfg::AuditTrail::VERSIONED` — model
+    # declarado sem verbete aqui é reprovado pelo spec da trilha.
+    entidades:
+      User: { rotulo: "conta de usuário", genero: f }
+      UserType: { rotulo: "papel", genero: m }
+      Permission: { rotulo: "permissão", genero: f }
+      UserPermission: { rotulo: "permissão do usuário", genero: f }
+      UserTypePermission: { rotulo: "permissão do papel", genero: f }
+      Membership: { rotulo: "participação no projeto", genero: f }
+      Project: { rotulo: "projeto", genero: m }
+      RiskControl: { rotulo: "limite", genero: m }
+      # S6 — a chave é `ReceivableEntry`, o nome REAL do model. Era
+      # `Receivable`, que nunca existiu como classe. "Borderô" é a palavra
+      # que o usuário do Safegold usa; "recebível" é o nome do domínio.
+      ReceivableEntry: { rotulo: "borderô", genero: m }
+      Charge: { rotulo: "cobrança", genero: f }
+      Receipt: { rotulo: "recibo", genero: m }
+      RiskOperation: { rotulo: "operação de risco", genero: f }
+      StructuredOperation: { rotulo: "operação estruturada", genero: f }
+      Remuneration: { rotulo: "remuneração", genero: f }
+      Renegotiation: { rotulo: "renegociação", genero: f }
+      Contract: { rotulo: "contrato", genero: m }
+      Indicator: { rotulo: "indicador", genero: m }
+    # Formas plurais (`FE-438`). Só o que é irregular ou tem acento precisa estar
+    # aqui; o resto cai na regra do `Sfg::Inflection`.
+    plurais:
+      permissão: "permissões"
+      renegociação: "renegociações"
+      remuneração: "remunerações"
+      operação de risco: "operações de risco"
+      operação estruturada: "operações estruturadas"
+      recebível: "recebíveis"
+      participação no projeto: "participações no projeto"
+      conta de usuário: "contas de usuário"
+      papel: "papéis"
+      nível: "níveis"

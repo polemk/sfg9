@@ -1,0 +1,44 @@
+# S8 / OPS-284 — textos de ajuda dos campos do formulário de operação estruturada.
+#
+# ## O MECANISMO é o entregável. O conteúdo do legado, não.
+#
+# `../sfg/db/seed_assets/structured_operations_help_inputs.yml` tem **13**
+# chaves, e o texto das **treze** é literalmente a mesma frase:
+#
+#     "Só um teste de informações do campo pra descrever para que serve cada campo"
+#
+# Conferido linha a linha — não é "quase todas", são todas. Copiar isso para a
+# tela nova seria portar lixo visível.
+#
+# O arquivo nasce **vazio de propósito**, e a regra que o acompanha é: **campo
+# sem chave NÃO exibe indicador de ajuda**. Um ícone de interrogação que abre um
+# balão vazio é pior do que ícone nenhum.
+#
+# O conteúdo real é a **Q-R9**, e o dono é o negócio. Quando os textos vierem,
+# basta preencher os valores abaixo: nada de código muda.
+#
+# ## Duas correções em relação ao legado
+#
+# 1. **Carregado uma vez**, de `Rails.cache`. O helper do legado fazia
+#    `YAML.load_file` **a cada campo renderizado** — 13 leituras de disco por
+#    abertura do formulário — e, se o arquivo sumisse do deploy, o formulário
+#    inteiro respondia **500**. Aqui a ausência devolve `{}`.
+# 2. **A chave `description` virou `observation`** e **`nro_contrato` virou
+#    `contract_number`**, acompanhando o nome real da coluna no ai9. `titulo`
+#    virou `title`. As três são o mesmo campo com o nome que o resto do sistema
+#    usa.
+#
+# As 13 chaves, na ordem do formulário:
+contract_number:
+title:
+carrier_id:
+operation_type_id:
+company_id:
+observation:
+issue_date:
+due_date:
+operation_value:
+balance:
+agreed_rate:
+is_on_variable:
+is_ended:

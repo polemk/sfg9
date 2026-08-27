@@ -1,0 +1,94 @@
+
+> frontend@0.0.0 build
+> tsc && vite build
+
+src/NavKit/components/NavKitControls.tsx(1,1): error TS6133: 'React' is declared but its value is never read.
+src/NavKit/components/NavKitMatrix.tsx(1,8): error TS6133: 'React' is declared but its value is never read.
+src/NavKit/components/NavKitScreen.tsx(1,8): error TS6133: 'React' is declared but its value is never read.
+src/NavKit/context/NavKitContext.tsx(1,8): error TS6133: 'React' is declared but its value is never read.
+src/app/NavKitDemo.tsx(1,1): error TS6133: 'React' is declared but its value is never read.
+src/app/NavKitDemo.tsx(8,1): error TS6192: All imports in import declaration are unused.
+src/app/experiments/audio-visualizer/page.tsx(51,32): error TS2304: Cannot find name 'toast'.
+src/app/experiments/audio-visualizer/page.tsx(52,25): error TS2304: Cannot find name 'toast'.
+src/app/experiments/audio-visualizer/page.tsx(57,32): error TS2304: Cannot find name 'toast'.
+src/app/experiments/audio-visualizer/page.tsx(58,25): error TS2304: Cannot find name 'toast'.
+src/app/pages/LeadsChatPage.tsx(123,47): error TS2339: Property 'agent_type' does not exist on type 'LeadMessage'.
+src/app/pages/NavKitHome.tsx(1,1): error TS6133: 'React' is declared but its value is never read.
+src/app/pages/NavKitLanding/ScrollFeatureScreen.tsx(1,1): error TS6133: 'React' is declared but its value is never read.
+src/app/pages/NavKitLanding/components/BackgroundCanvas.tsx(1,8): error TS6133: 'React' is declared but its value is never read.
+src/app/pages/NavKitLanding/components/FeatureCard.tsx(47,10): error TS6133: 'classNames' is declared but its value is never read.
+src/app/pages/NavKitOverview.tsx(1,8): error TS6133: 'React' is declared but its value is never read.
+src/app/pages/admin/AnalyticsPage.tsx(1,1): error TS6192: All imports in import declaration are unused.
+src/app/pages/admin/AnalyticsPage.tsx(6,10): error TS6133: 'ArrowUpRight' is declared but its value is never read.
+src/app/pages/admin/AnalyticsPage.tsx(6,65): error TS6133: 'BarChart2' is declared but its value is never read.
+src/app/pages/admin/AnalyticsPage.tsx(21,11): error TS6133: 'eventTypeData' is declared but its value is never read.
+src/app/pages/admin/AnalyticsPage.tsx(44,21): error TS2322: Type '{ title: string; value: string; icon: LucideIcon; change: string; changeType: "positive"; color: string; }' is not assignable to type 'IntrinsicAttributes & { title: string; value: string | number; changeLabel: string; changeType: "positive" | "negative" | "neutral"; icon: IconType; color?: string | undefined; }'.
+  Property 'change' does not exist on type 'IntrinsicAttributes & { title: string; value: string | number; changeLabel: string; changeType: "positive" | "negative" | "neutral"; icon: IconType; color?: string | undefined; }'.
+src/app/pages/admin/AnalyticsPage.tsx(52,21): error TS2322: Type '{ title: string; value: string; icon: LucideIcon; change: string; changeType: "positive"; color: string; }' is not assignable to type 'IntrinsicAttributes & { title: string; value: string | number; changeLabel: string; changeType: "positive" | "negative" | "neutral"; icon: IconType; color?: string | undefined; }'.
+  Property 'change' does not exist on type 'IntrinsicAttributes & { title: string; value: string | number; changeLabel: string; changeType: "positive" | "negative" | "neutral"; icon: IconType; color?: string | undefined; }'.
+src/app/pages/admin/AnalyticsPage.tsx(60,21): error TS2322: Type '{ title: string; value: string; icon: LucideIcon; change: string; changeType: "positive"; changeLabel: string; color: string; }' is not assignable to type 'IntrinsicAttributes & { title: string; value: string | number; changeLabel: string; changeType: "positive" | "negative" | "neutral"; icon: IconType; color?: string | undefined; }'.
+  Property 'change' does not exist on type 'IntrinsicAttributes & { title: string; value: string | number; changeLabel: string; changeType: "positive" | "negative" | "neutral"; icon: IconType; color?: string | undefined; }'.
+src/app/pages/admin/AnalyticsPage.tsx(69,21): error TS2322: Type '{ title: string; value: string; icon: LucideIcon; change: string; changeType: "neutral"; color: string; }' is not assignable to type 'IntrinsicAttributes & { title: string; value: string | number; changeLabel: string; changeType: "positive" | "negative" | "neutral"; icon: IconType; color?: string | undefined; }'.
+  Property 'change' does not exist on type 'IntrinsicAttributes & { title: string; value: string | number; changeLabel: string; changeType: "positive" | "negative" | "neutral"; icon: IconType; color?: string | undefined; }'.
+src/app/pages/admin/OperationsPage.tsx(5,18): error TS6133: 'Filter' is declared but its value is never read.
+src/app/pages/admin/OperationsPage.tsx(12,12): error TS6133: 'total' is declared but its value is never read.
+src/components/3d/FinalPurpleRoom.tsx(3,16): error TS6133: 'Float' is declared but its value is never read.
+src/components/3d/FinalPurpleRoom.tsx(14,11): error TS6133: 'buttonBgRef' is declared but its value is never read.
+src/components/3d/FinalPurpleRoom.tsx(18,11): error TS6133: 'purpleDark' is declared but its value is never read.
+src/components/3d/FinalScenario.tsx(9,15): error TS6133: 'state' is declared but its value is never read.
+src/components/3d/FloatingShape.tsx(3,17): error TS6133: 'RoundedBox' is declared but its value is never read.
+src/components/3d/FloatingShape.tsx(23,15): error TS6133: 'state' is declared but its value is never read.
+src/components/3d/HeroScene.tsx(1,18): error TS6133: 'useMemo' is declared but its value is never read.
+src/components/3d/HeroScene.tsx(1,47): error TS6133: 'useEffect' is declared but its value is never read.
+src/components/3d/HeroScene.tsx(3,69): error TS6133: 'Float' is declared but its value is never read.
+src/components/3d/HeroScene.tsx(3,82): error TS6133: 'Image' is declared but its value is never read.
+src/components/3d/HeroScene.tsx(7,1): error TS6133: 'StellarSpace' is declared but its value is never read.
+src/components/3d/HeroScene.tsx(10,1): error TS6133: 'FinalScenario' is declared but its value is never read.
+src/components/3d/HeroScene.tsx(59,13): error TS6133: 'viewport' is declared but its value is never read.
+src/components/3d/HeroScene.tsx(69,22): error TS6133: 'delta' is declared but its value is never read.
+src/components/3d/HeroScene.tsx(70,32): error TS2339: Property 'scroll' does not exist on type 'ScrollControlsState'.
+src/components/3d/HeroScene.tsx(76,24): error TS2339: Property 'scroll' does not exist on type 'ScrollControlsState'.
+src/components/3d/HiddenRoom.tsx(1,10): error TS6133: 'useGLTF' is declared but its value is never read.
+src/components/3d/HiddenRoom.tsx(1,61): error TS6133: 'RoundedBox' is declared but its value is never read.
+src/components/3d/HiddenRoom.tsx(1,73): error TS6133: 'Cylinder' is declared but its value is never read.
+src/components/3d/PortalWall.tsx(14,40): error TS6133: 'color' is declared but its value is never read.
+src/components/3d/PortalWall.tsx(24,15): error TS6133: 'state' is declared but its value is never read.
+src/components/3d/StellarSpace.tsx(31,15): error TS6133: 'state' is declared but its value is never read.
+src/components/3d/StellarSpace.tsx(118,14): error TS2741: Property 'children' is missing in type '{ position: [number, number, number]; fontSize: number; color: string; font: string; anchorX: "center"; anchorY: "middle"; fillOpacity: number; }' but required in type 'Omit<Props, "ref">'.
+src/components/3d/TransitionSpace.tsx(3,23): error TS6133: 'Stars' is declared but its value is never read.
+src/components/3d/Wormhole.tsx(75,15): error TS6133: 'state' is declared but its value is never read.
+src/components/3d/chat/HolographicChat.tsx(29,11): error TS6133: 'white' is declared but its value is never read.
+src/components/chat/AIChatWidget.tsx(43,35): error TS2503: Cannot find namespace 'NodeJS'.
+src/components/chat/AIChatWidget.tsx(111,9): error TS6133: 'typingQuery' is declared but its value is never read.
+src/components/chat/ParticleLoader.tsx(1,1): error TS6192: All imports in import declaration are unused.
+src/components/experiments/NeonOscilloscope.tsx(65,44): error TS2345: Argument of type 'Uint8Array<ArrayBufferLike>' is not assignable to parameter of type 'Uint8Array<ArrayBuffer>'.
+  Type 'ArrayBufferLike' is not assignable to type 'ArrayBuffer'.
+    Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+      Types of property '[Symbol.toStringTag]' are incompatible.
+        Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.
+src/components/terminal/TerminalWindow.tsx(2,28): error TS6133: 'TerminalStep' is declared but its value is never read.
+src/components/terminal/TerminalWindow.tsx(19,9): error TS6133: 'userPhone' is declared but its value is never read.
+src/components/terminal/TerminalWindow.tsx(20,9): error TS6133: 'userInstagram' is declared but its value is never read.
+src/components/terminal/TerminalWindow.tsx(70,17): error TS6133: 'cumulativeDelay' is declared but its value is never read.
+src/components/terminal/TerminalWindow.tsx(117,24): error TS2345: Argument of type '"terminal_interaction"' is not assignable to parameter of type 'EventType'.
+src/components/terminal/TerminalWindow.tsx(140,32): error TS2345: Argument of type '"lead_created"' is not assignable to parameter of type 'EventType'.
+src/components/terminal/TypewriterText.tsx(22,20): error TS2503: Cannot find namespace 'NodeJS'.
+src/hooks/useAudioAnalyzer.ts(137,44): error TS2345: Argument of type 'Uint8Array<ArrayBufferLike>' is not assignable to parameter of type 'Uint8Array<ArrayBuffer>'.
+  Type 'ArrayBufferLike' is not assignable to type 'ArrayBuffer'.
+    Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+      Types of property '[Symbol.toStringTag]' are incompatible.
+        Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.
+src/hooks/useAudioAnalyzer.ts(170,54): error TS2345: Argument of type 'Uint8Array<ArrayBufferLike>' is not assignable to parameter of type 'Uint8Array<ArrayBuffer>'.
+  Type 'ArrayBufferLike' is not assignable to type 'ArrayBuffer'.
+    Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+      Types of property '[Symbol.toStringTag]' are incompatible.
+        Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.
+src/hooks/useAudioAnalyzer.ts(178,55): error TS2345: Argument of type 'Uint8Array<ArrayBufferLike>' is not assignable to parameter of type 'Uint8Array<ArrayBuffer>'.
+  Type 'ArrayBufferLike' is not assignable to type 'ArrayBuffer'.
+    Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+      Types of property '[Symbol.toStringTag]' are incompatible.
+        Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.
+src/lib/analytics/AnalyticsProvider.tsx(34,34): error TS2503: Cannot find namespace 'NodeJS'.
+src/lib/api/client.ts(53,14): error TS2304: Cannot find name 'refreshToken'.
+src/lib/api/client.ts(80,30): error TS2304: Cannot find name 'refreshToken'.
+src/lib/api/endpoints.ts(279,3): error TS1117: An object literal cannot have multiple properties with the same name.

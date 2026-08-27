@@ -1,0 +1,9 @@
+Olá <%= @user.name %>,
+
+Para entrar no <%= ENV.fetch('APP_NAME', 'Safegold') %>, abra o link abaixo:
+
+<%= @magic_url %>
+
+O link expira em 24 horas e só pode ser usado uma vez.
+
+Se você não pediu este link, ignore este e-mail.

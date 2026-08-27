@@ -1,0 +1,12 @@
+<%# Cor literal: ver `layouts/mailer.html.erb`. %>
+<h2 style="font-family:'Work Sans',Arial,sans-serif; color:#2D2D2A; font-size:20px; font-weight:600; margin:0 0 16px;">Você saiu da lista de observadores</h2>
+
+<p style="color:#2D2D2A; font-size:15px; line-height:1.5; margin:0 0 16px;">
+  Olá <strong><%= @observer.name %></strong>, o administrador <strong><%= @admin&.name %></strong>
+  removeu o seu cadastro de observador no <%= @app_name %>. Você não receberá mais notificações
+  sobre novas mensagens.
+</p>
+
+<p style="color:#63635C; font-size:13px; line-height:1.6; margin:0;">
+  Se isso foi engano, fale com <%= @admin&.name %> em <%= @admin&.email %>.
+</p>

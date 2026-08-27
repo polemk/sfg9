@@ -1,0 +1,35 @@
+# Filas prefixadas com APP_NAME para evitar colisão entre apps no mesmo Redis.
+# O APP_NAME é injetado via ERB a partir da variável de ambiente.
+# Ex: APP_NAME=ai9 → filas: ai9_default, ai9_mailers, ai9_webhooks
+:queues:
+  - <%= ENV.fetch('APP_NAME', 'ai9') %>_default
+  - <%= ENV.fetch('APP_NAME', 'ai9') %>_mailers
+  - <%= ENV.fetch('APP_NAME', 'ai9') %>_webhooks
+  - <%= ENV.fetch('APP_NAME', 'ai9') %>_transcriptions
+  # Sem esta fila os jobs de baixa prioridade (queue_as :low_priority) empilhavam
+  # para sempre — mesmo defeito ja consertado no brsw (01/08) e no facil.
+  - <%= ENV.fetch('APP_NAME', 'ai9') %>_low_priority
+
+:concurrency: <%= ENV.fetch('SIDEKIQ_CONCURRENCY', 5) %>
+:timeout: 25
+
+# --- Dead set: OPS-624, no lugar do `delayed_job_config.rb` do legado ------------
+#
+# O legado configurava `Delayed::Worker.max_attempts` e `destroy_failed_jobs`, e o
+# efeito prático era: job que esgotava as tentativas **sumia**. Não havia onde olhar
+# para descobrir o que falhou nem como reexecutar.
+#
+# O default do Sidekiq (25 tentativas com backoff exponencial, ~21 dias) já é a
+# política de retentativa desta migração — não se empilha `retry_on` de ActiveJob por
+# cima (ver `app/jobs/application_job.rb`). O que se declara aqui é o **destino final**:
+#
+#   - `dead_max_jobs`: quantos jobs mortos ficam guardados. Alto de propósito — um
+#     job de negócio que morreu é evidência, não lixo.
+#   - `dead_timeout_in_seconds`: por quanto tempo. 6 meses cobre com folga o ciclo de
+#     uma operação de crédito, que é o horizonte em que alguém ainda pergunta
+#     "por que este recálculo não rodou em março?".
+#
+# Job morto continua **visível e reenfileirável** pelo painel do Sidekiq. É a
+# diferença entre "falhou e alguém pode consertar" e "falhou e ninguém soube" (D-79).
+:dead_max_jobs: <%= ENV.fetch('SIDEKIQ_DEAD_MAX_JOBS', 10_000) %>
+:dead_timeout_in_seconds: <%= ENV.fetch('SIDEKIQ_DEAD_TIMEOUT', 15_552_000) %>

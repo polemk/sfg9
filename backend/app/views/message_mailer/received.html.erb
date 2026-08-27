@@ -1,0 +1,15 @@
+<%# Cor literal: ver `layouts/mailer.html.erb`. %>
+<h2 style="font-family:'Work Sans',Arial,sans-serif; color:#2D2D2A; font-size:20px; font-weight:600; margin:0 0 16px;">Recebemos sua mensagem</h2>
+
+<p style="color:#2D2D2A; font-size:15px; line-height:1.5; margin:0 0 16px;">
+  Olá <strong><%= @message.sender_name %></strong>, sua mensagem chegou e já está na fila da nossa equipe.
+</p>
+
+<div style="background-color:#FAFAF9; border:1px solid #E5E4DF; border-radius:12px; padding:20px; margin:0 0 24px;">
+  <em style="color:#2D2D2A; font-size:15px; line-height:1.6;">“<%= @message.message %>”</em>
+</div>
+
+<p style="color:#63635C; font-size:13px; line-height:1.6; margin:0;">
+  Protocolo <strong style="font-family:'Fira Mono',Consolas,monospace; color:#2D2D2A;">#<%= @message.id %></strong>
+  &middot; <%= @message.context_label %>
+</p>

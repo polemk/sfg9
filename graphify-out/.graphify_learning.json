@@ -1,0 +1,200 @@
+{
+  "generated_at": "2026-08-27T17:18:30.941236+00:00",
+  "nodes": {
+    "backend_app_channels_permissions_channel_permissionschannel": {
+      "code_fingerprint": "9e05dcb309504fc80ee1d96dce68aca8ce5638e084ef4b4b60e5063edcb11eb1",
+      "label": "PermissionsChannel",
+      "last": "2026-08-22T05:03:28.077484+00:00",
+      "neg": 1,
+      "provenance": [
+        {
+          "date": "2026-08-22T05:03:28.077484+00:00",
+          "outcome": "corrected",
+          "q": "CORRECTION: were the 40% false calls edges real?"
+        },
+        {
+          "date": "2026-08-22T04:47:54.030216+00:00",
+          "outcome": "useful",
+          "q": "Cross-language edge audit: how many graphify edges survive verification against source, and is the graph trustworthy for architecture questions?"
+        }
+      ],
+      "score": -0.000219893,
+      "source_file": "backend/app/channels/permissions_channel.rb",
+      "status": "contested",
+      "uses": 1,
+      "verdict": "dead end"
+    },
+    "backend_app_controllers_api_entities_auth_session_authsession": {
+      "code_fingerprint": "6a93ae5ad216c8e4871d06d47af9787888e2019b40c346e45720af078ef92c67",
+      "label": "AuthSession",
+      "last": "2026-08-22T05:03:28.077484+00:00",
+      "neg": 1,
+      "provenance": [
+        {
+          "date": "2026-08-22T05:03:28.077484+00:00",
+          "outcome": "corrected",
+          "q": "CORRECTION: were the 40% false calls edges real?"
+        },
+        {
+          "date": "2026-08-22T04:47:54.030216+00:00",
+          "outcome": "useful",
+          "q": "Cross-language edge audit: how many graphify edges survive verification against source, and is the graph trustworthy for architecture questions?"
+        }
+      ],
+      "score": -0.000219893,
+      "source_file": "backend/app/controllers/api/entities/auth_session.rb",
+      "status": "contested",
+      "uses": 1,
+      "verdict": "dead end"
+    },
+    "backend_app_services_ai_agent_service_agentservice": {
+      "code_fingerprint": "0d3bfecdee4e4dcc2e82300225b61a4ba3f9bf22d3016e3c68e0486d17e4c295",
+      "label": "AgentService",
+      "last": "2026-08-22T04:55:16.816206+00:00",
+      "provenance": [
+        {
+          "date": "2026-08-22T04:55:16.816206+00:00",
+          "outcome": "useful",
+          "q": "Can the graph quality be improved?"
+        }
+      ],
+      "score": 0.88033761,
+      "source_file": "backend/app/services/ai/agent_service.rb",
+      "status": "tentative",
+      "uses": 1
+    },
+    "backend_app_services_auth_token_service_tokenservice": {
+      "code_fingerprint": "3e6021b41120677ea59b2525b4e60b6813f99c2acba8f71cba2b64aacfb4280e",
+      "label": "TokenService",
+      "last": "2026-08-22T06:17:11.851960+00:00",
+      "provenance": [
+        {
+          "date": "2026-08-22T06:17:11.851960+00:00",
+          "outcome": "useful",
+          "q": "Remove .trae and close the Ruby recall gap"
+        },
+        {
+          "date": "2026-08-22T06:09:20.556423+00:00",
+          "outcome": "useful",
+          "q": "Is the graph good for the base-repo objective?"
+        },
+        {
+          "date": "2026-08-22T06:06:09.405664+00:00",
+          "outcome": "useful",
+          "q": "Close out: measure TypeScript recall and finish the graph"
+        },
+        {
+          "date": "2026-08-22T06:02:09.966128+00:00",
+          "outcome": "useful",
+          "q": "Is the graph ready?"
+        },
+        {
+          "date": "2026-08-22T04:55:16.816206+00:00",
+          "outcome": "useful",
+          "q": "Can the graph quality be improved?"
+        }
+      ],
+      "score": 4.405839639,
+      "source_file": "backend/app/services/auth/token_service.rb",
+      "status": "preferred",
+      "uses": 5
+    },
+    "backend_app_services_concerns_api_response_handler_apiresponsehandler": {
+      "code_fingerprint": "d704badefb7b7aca6343251d7c2230e01ac9c0c8cc62f6a9e30dbff2c95b81dc",
+      "label": "ApiResponseHandler",
+      "last": "2026-08-22T05:09:00.397836+00:00",
+      "provenance": [
+        {
+          "date": "2026-08-22T05:09:00.397836+00:00",
+          "outcome": "useful",
+          "q": "Rebuild the graph as directed"
+        }
+      ],
+      "score": 0.880531518,
+      "source_file": "backend/app/services/concerns/api_response_handler.rb",
+      "status": "tentative",
+      "uses": 1
+    },
+    "frontend_src_lib_api_endpoints": {
+      "code_fingerprint": "24ebadfbeb54836982dce885359a945ec4f3b331f45b0329f7291780d1c9d44f",
+      "label": "endpoints.ts",
+      "last": "2026-08-22T05:09:00.397836+00:00",
+      "provenance": [
+        {
+          "date": "2026-08-22T05:09:00.397836+00:00",
+          "outcome": "useful",
+          "q": "Rebuild the graph as directed"
+        }
+      ],
+      "score": 0.880531518,
+      "source_file": "frontend/src/lib/api/endpoints.ts",
+      "status": "tentative",
+      "uses": 1
+    },
+    "frontend_src_lib_utils_cn": {
+      "code_fingerprint": "36bc80ae5ebe3127c245cb26061686c5f365f9930497e8d4b4f9f3374a7eb7ab",
+      "label": "cn()",
+      "last": "2026-08-22T05:09:00.397836+00:00",
+      "provenance": [
+        {
+          "date": "2026-08-22T05:09:00.397836+00:00",
+          "outcome": "useful",
+          "q": "Rebuild the graph as directed"
+        }
+      ],
+      "score": 0.880531518,
+      "source_file": "frontend/src/lib/utils.ts",
+      "status": "tentative",
+      "uses": 1
+    },
+    "frontend_src_store_authstore_useauthstore": {
+      "code_fingerprint": "7999f6511460a2ead55612069da7d389e68f28e8bcd337eeb7516f3f8d4fe7bd",
+      "label": "useAuthStore",
+      "last": "2026-08-22T05:09:00.397836+00:00",
+      "provenance": [
+        {
+          "date": "2026-08-22T05:09:00.397836+00:00",
+          "outcome": "useful",
+          "q": "Rebuild the graph as directed"
+        }
+      ],
+      "score": 0.880531518,
+      "source_file": "frontend/src/store/authStore.ts",
+      "status": "tentative",
+      "uses": 1
+    },
+    "readme_switch_env_script": {
+      "code_fingerprint": "e4256100a97646ae7886739e2499551971af7f2ce65dee4493fb2d126c7f0c50",
+      "label": "bin/switch_env Environment Switcher",
+      "last": "2026-08-22T06:09:20.556423+00:00",
+      "provenance": [
+        {
+          "date": "2026-08-22T06:09:20.556423+00:00",
+          "outcome": "useful",
+          "q": "Is the graph good for the base-repo objective?"
+        }
+      ],
+      "score": 0.881384369,
+      "source_file": "README.md",
+      "status": "tentative",
+      "uses": 1
+    },
+    "specs_fix_plan": {
+      "code_fingerprint": "f627d80d41fb9db48ce839d0ce9a6e25246d3faa1bf22902716f63faa338a2bf",
+      "label": "specs_fix_plan.md",
+      "last": "2026-08-22T05:56:17.983742+00:00",
+      "provenance": [
+        {
+          "date": "2026-08-22T05:56:17.983742+00:00",
+          "outcome": "useful",
+          "q": "Make the graph good as a base-repo reference: extract remaining in-scope docs and clean noise"
+        }
+      ],
+      "score": 0.881199937,
+      "source_file": "specs_fix_plan.md",
+      "status": "tentative",
+      "uses": 1
+    }
+  },
+  "version": 1
+}

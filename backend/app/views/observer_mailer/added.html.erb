@@ -1,0 +1,17 @@
+<%# Cor literal: ver `layouts/mailer.html.erb`. %>
+<h2 style="font-family:'Work Sans',Arial,sans-serif; color:#2D2D2A; font-size:20px; font-weight:600; margin:0 0 16px;">Você virou observador</h2>
+
+<p style="color:#2D2D2A; font-size:15px; line-height:1.5; margin:0 0 16px;">
+  Olá <strong><%= @observer.name %></strong>, o administrador <strong><%= @admin&.name %></strong>
+  te adicionou como observador no <%= @app_name %>. Você será notificado por e-mail sempre que
+  houver mensagem em aberto nos contextos que você acompanha.
+</p>
+
+<div style="background-color:#FAFAF9; border:1px solid #E5E4DF; border-radius:12px; padding:16px; margin:0 0 24px;">
+  <div style="font-size:12px; color:#63635C; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; margin:0 0 8px;">Contextos</div>
+  <div style="color:#2D2D2A; font-size:15px;"><%= @observer.contexts.map { |c| AdminMessage::CONTEXTS[c] }.join(', ') %></div>
+</div>
+
+<p style="color:#63635C; font-size:13px; line-height:1.6; margin:0;">
+  Para sair da lista, fale com <%= @admin&.name %> em <%= @admin&.email %>.
+</p>

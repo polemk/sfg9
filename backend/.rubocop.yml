@@ -1,0 +1,6 @@
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+  NewCops: disable
+  Exclude:
+    - 'reproduce_flow_bug_v2.rb'

@@ -1,0 +1,29 @@
+<%# Cor literal: ver a explicação no topo de `layouts/mailer.html.erb`.
+    Este arquivo substitui as 20 linhas de `message << "<div style='…'>"` do
+    `feedback19/lib/livetat/feedback19/notification.rb:44-64`. O que o usuário
+    digitou passa pelo escape do ERB — antes ia com `html_safe`. %>
+<h2 style="font-family:'Work Sans',Arial,sans-serif; color:#2D2D2A; font-size:20px; font-weight:600; margin:0 0 16px;">Nova mensagem no <%= @app_name %></h2>
+
+<p style="color:#2D2D2A; font-size:15px; line-height:1.5; margin:0 0 16px;">
+  Olá <strong><%= @observer.name %></strong>, <strong><%= @message.sender_name %></strong> enviou uma nova mensagem:
+</p>
+
+<div style="background-color:#FAFAF9; border:1px solid #E5E4DF; border-radius:12px; padding:20px; margin:0 0 24px;">
+  <em style="color:#2D2D2A; font-size:15px; line-height:1.6;">“<%= @message.message %>”</em>
+</div>
+
+<div style="font-size:12px; color:#63635C; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; margin:0 0 12px;">Dados do remetente</div>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="font-size:14px; color:#2D2D2A;">
+  <tr><td style="padding:4px 0; width:120px; color:#63635C;">Nome</td><td style="padding:4px 0;"><%= @message.sender_name %></td></tr>
+  <tr><td style="padding:4px 0; color:#63635C;">E-mail</td><td style="padding:4px 0;"><%= @message.sender_email %></td></tr>
+  <tr><td style="padding:4px 0; color:#63635C;">Situação</td><td style="padding:4px 0;"><%= @message.state_label %></td></tr>
+  <tr><td style="padding:4px 0; color:#63635C;">Tipo</td><td style="padding:4px 0;"><%= @message.context_label %></td></tr>
+  <tr><td style="padding:4px 0; color:#63635C;">Quando</td><td style="padding:4px 0;"><%= @message.created_at.strftime('%d/%m/%Y %H:%M') %></td></tr>
+  <% if @message.extra1_enabled? %>
+    <tr><td style="padding:4px 0; color:#63635C;"><%= @message.extra1_label %></td><td style="padding:4px 0;"><%= @message.extra1_value %></td></tr>
+  <% end %>
+  <% if @message.extra2_enabled? %>
+    <tr><td style="padding:4px 0; color:#63635C;"><%= @message.extra2_label %></td><td style="padding:4px 0;"><%= @message.extra2_value %></td></tr>
+  <% end %>
+</table>

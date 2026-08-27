@@ -1,0 +1,209 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+# ==========================================================
+# GARANTIAS PARA SYSTEMD (não depende de shell interativo)
+# ==========================================================
+export HOME="/root"
+
+# --- RVM (Ruby + Gems) ---
+RUBY="/usr/local/rvm/rubies/ruby-3.2.3/bin/ruby"
+GEM="/usr/local/rvm/rubies/ruby-3.2.3/bin/gem"
+
+export GEM_HOME="/usr/local/rvm/gems/ruby-3.2.3"
+export GEM_PATH="/usr/local/rvm/gems/ruby-3.2.3:/usr/local/rvm/gems/ruby-3.2.3@global"
+
+# Garante que binários de gems (ex: bundle, sidekiq) estejam no PATH
+export PATH="/usr/local/rvm/gems/ruby-3.2.3/bin:/usr/local/rvm/gems/ruby-3.2.3@global/bin:/usr/local/rvm/rubies/ruby-3.2.3/bin:${PATH}"
+
+# --- NVM (Node) ---
+export NVM_DIR="/root/.nvm"
+
+# ==========================================================
+# Carrega variáveis de ambiente (.env)
+# ==========================================================
+if [ -f backend/.env ]; then
+  set -a; source backend/.env; set +a
+fi
+
+if [ -f frontend/.env ]; then
+  set -a; source frontend/.env; set +a
+fi
+
+# ==========================================================
+# Defaults
+# ==========================================================
+RAILS_ENV="${RAILS_ENV:-production}"
+RAILS_PORT="${RAILS_PORT:-3000}"
+VITE_PORT="${VITE_PORT:-5173}"
+
+pids=()
+
+log() { printf "\033[1;36m[prod]\033[0m %s\n" "$*"; }
+err() { printf "\033[1;31m[prod]\033[0m %s\n" "$*" >&2; }
+
+cleanup() {
+  trap - INT TERM EXIT
+  log "Encerrando serviços…"
+  for pid in "${pids[@]}"; do
+    kill -TERM "$pid" 2>/dev/null || true
+  done
+  wait || true
+  log "Todos finalizados."
+}
+
+trap 'cleanup; exit 0' INT TERM
+trap cleanup EXIT
+
+# ==========================================================
+# Node setup (NVM)
+# ==========================================================
+NODE=""; NPM=""; NPX=""
+
+setup_node() {
+  [ -s "$NVM_DIR/nvm.sh" ] || { err "nvm.sh não encontrado em $NVM_DIR/nvm.sh"; exit 1; }
+  # shellcheck disable=SC1090
+  . "$NVM_DIR/nvm.sh"
+
+  # Se existir .nvmrc no frontend, respeita. Senão, usa default.
+  if [ -f "frontend/.nvmrc" ]; then
+    ( cd frontend && nvm use --silent ) || true
+  else
+    nvm use --silent default >/dev/null 2>&1 || true
+  fi
+
+  # fallback: última versão instalada
+  if ! command -v node >/dev/null 2>&1; then
+    local latest
+    latest="$(nvm ls --no-colors | awk '/v[0-9]+\./{print $1}' | tail -n 1 || true)"
+    [ -n "$latest" ] && nvm use --silent "$latest" >/dev/null 2>&1 || true
+  fi
+
+  NODE="$(command -v node || true)"
+  NPM="$(command -v npm  || true)"
+  NPX="$(command -v npx  || true)"
+
+  [ -n "$NODE" ] && [ -x "$NODE" ] || { err "Node não encontrado após carregar NVM"; exit 1; }
+  [ -n "$NPM"  ] && [ -x "$NPM"  ] || { err "npm não encontrado após carregar NVM"; exit 1; }
+  [ -n "$NPX"  ] && [ -x "$NPX"  ] || { err "npx não encontrado após carregar NVM"; exit 1; }
+
+  log "Node OK: $("$NODE" -v) (node=$NODE)"
+}
+
+# ==========================================================
+# Ruby/Bundler setup
+# ==========================================================
+setup_ruby() {
+  [ -x "$RUBY" ] || { err "Ruby não encontrado em $RUBY"; exit 1; }
+  [ -x "$GEM"  ] || { err "gem não encontrado em $GEM"; exit 1; }
+
+  log "Ruby OK: $("$RUBY" -v)"
+
+  # bundler deve existir (você já confirmou que existe). Aqui só validamos.
+  "$RUBY" -S bundle -v >/dev/null 2>&1 || {
+    err "Bundler não encontrado no systemd mesmo com GEM_PATH setado."
+    err "Cheque se existe: /usr/local/rvm/gems/ruby-3.2.3@global/bin/bundle"
+    exit 1
+  }
+
+  log "Bundler OK: $("$RUBY" -S bundle -v)"
+}
+
+preflight() {
+  setup_ruby
+  setup_node
+}
+
+# ==========================================================
+# Build frontend
+# ==========================================================
+# O dist esta mais novo que TODO o fonte do frontend?
+#
+# Um gate por flag (SKIP_BUILD=1) ja existiu aqui e foi removido porque deixou
+# o site servindo bundle velho sem ninguem perceber: ele depende de alguem
+# lembrar de setar e, pior, de lembrar de NAO setar quando o fonte mudou.
+#
+# Esta versao nao pergunta a ninguem — compara relogio. Deploy que ja buildou
+# reinicia em segundos; dist velho builda do mesmo jeito. O que era decisao
+# humana virou fato verificavel.
+dist_esta_fresco() {
+  local dist_novo fonte_novo
+  [ -d frontend/dist/assets ] || return 1
+
+  dist_novo=$(find frontend/dist -type f -printf '%T@\n' 2>/dev/null | sort -rn | head -1)
+  [ -n "$dist_novo" ] || return 1
+
+  # O fonte: tudo que entra no bundle. node_modules fora — reinstalar
+  # dependencia nao muda o que o usuario baixa, e o mtime dela e ruido.
+  fonte_novo=$(find frontend/src frontend/public frontend/index.html \
+                    frontend/package.json frontend/vite.config.* \
+                    -type f -printf '%T@\n' 2>/dev/null | sort -rn | head -1)
+  [ -n "$fonte_novo" ] || return 1
+
+  awk -v d="$dist_novo" -v f="$fonte_novo" 'BEGIN { exit !(d > f) }'
+}
+
+build() {
+  if dist_esta_fresco; then
+    log "Frontend em dia (dist mais novo que o fonte) — pulando o build."
+    return 0
+  fi
+
+  log "Buildando frontend (Vite)…"
+  (
+    cd frontend
+    "$NPM" install --silent
+    "$NPM" run build
+  )
+}
+
+# ==========================================================
+# Rails / Puma
+# ==========================================================
+start_backend() {
+  log "Iniciando Rails (Puma) em :${RAILS_PORT} [${RAILS_ENV}]…"
+  (
+    cd backend
+    export BUNDLE_GEMFILE="$PWD/Gemfile"
+    PORT="$RAILS_PORT" RAILS_ENV="$RAILS_ENV" RAILS_LOG_TO_STDOUT=true \
+      "$RUBY" -S bundle exec puma -C config/puma.rb 2>&1 | sed 's/^/[backend] /'
+  ) &
+  pids+=("$!")
+}
+
+# ==========================================================
+# Sidekiq
+# ==========================================================
+start_sidekiq() {
+  log "Iniciando Sidekiq [${RAILS_ENV}]…"
+  (
+    cd backend
+    export BUNDLE_GEMFILE="$PWD/Gemfile"
+    RAILS_ENV="$RAILS_ENV" \
+      "$RUBY" -S bundle exec sidekiq -C config/sidekiq.yml 2>&1 | sed 's/^/[sidekiq] /'
+  ) &
+  pids+=("$!")
+}
+
+# ==========================================================
+# Frontend serve
+# ==========================================================
+start_frontend() {
+  log "Servindo frontend estático em :${VITE_PORT}…"
+  (
+    cd frontend
+    "$NPX" serve -s dist -l "$VITE_PORT" 2>&1 | sed 's/^/[frontend] /'
+  ) &
+  pids+=("$!")
+}
+
+main() {
+  preflight
+  build
+  start_backend
+  start_sidekiq
+  start_frontend
+  wait -n
+}
+
+main

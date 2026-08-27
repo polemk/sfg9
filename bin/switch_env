@@ -1,0 +1,385 @@
+#!/bin/bash
+
+# Usage: bin/switch_env [local|ngrok|prod] [ngrok_url]
+
+MODE=$1
+NGROK_URL=$2
+
+if [ -z "$MODE" ]; then
+  echo "Usage: $0 [local|ngrok|prod] [ngrok_url]"
+  echo "  local: Configures .env files for localhost development"
+  echo "  ngrok: Configures .env files for ngrok URL (requires ngrok_url, e.g. https://xxxx.ngrok-free.app)"
+  echo "  prod:  Configures .env files for production (goat.polemk.com)"
+  exit 1
+fi
+
+FRONTEND_ENV="frontend/.env"
+BACKEND_ENV="backend/.env"
+
+# Load local secrets to avert leaking tokens in git
+if [ -f ".env.secrets" ]; then
+  source .env.secrets
+elif [ -f "../.env.secrets" ]; then
+  source ../.env.secrets
+fi
+
+write_frontend_local() {
+cat > "$FRONTEND_ENV" <<EOF
+# Frontend Environment Variables
+VITE_API_URL=http://localhost:3000
+VITE_WS_URL=ws://localhost:3000/cable
+VITE_APP_NAME=${VITE_APP_NAME:-"YOUR_APP_NAME_HERE"}
+VITE_APP_VERSION=1.0.0
+
+# Theme Configuration
+VITE_DEFAULT_THEME=dark
+
+# Feature Flags
+VITE_ENABLE_ANALYTICS=false
+VITE_ENABLE_ERROR_REPORTING=true
+
+# Google API Key
+VITE_GOOGLE_API_KEY=${VITE_GOOGLE_API_KEY:-YOUR_GOOGLE_API_KEY_HERE}
+
+# Build Configuration
+VITE_BUILD_MODE=development
+# Discord
+VITE_DISCORD_SERVER_URL=https://discord.gg/29xarvd7yp
+EOF
+}
+
+write_backend_local() {
+cat > "$BACKEND_ENV" <<EOF
+# Backend Environment Variables
+REDIS_URL=redis://localhost:6379/1
+
+RAILS_ENV=development
+RAILS_LOG_TO_STDOUT=true
+RAILS_SERVE_STATIC_FILES=true
+
+# CORS and Host Configuration
+CORS_ORIGINS=http://localhost:5173,http://localhost:3000
+APP_HOST=http://localhost:5173
+API_HOST=http://localhost:3000
+ACTION_CABLE_URL=ws://localhost:3000/cable
+
+# JWT Configuration
+DEVISE_JWT_SECRET_KEY=${DEVISE_JWT_SECRET_KEY:-YOUR_DEVISE_JWT_SECRET_KEY_HERE}
+JWT_EXPIRATION_TIME=15
+JWT_REFRESH_EXPIRATION_TIME=10080
+
+# Integration APIs
+ASAAS_API_KEY="${ASAAS_API_KEY:-YOUR_ASAAS_API_KEY_HERE}"
+ASAAS_API_URL="https://api.asaas.com/v3"
+ASAAS_INVOICE_SERVICE_ID="178941"
+ASAAS_INVOICE_SERVICE_NAME="6203-1/00 - Licenciamento ou cessão de direito de uso de programas de computação"
+ASAAS_INVOICE_SERVICE_CODE="1.05"
+ASAAS_INVOICE_UPDATE_PAYMENT="false"
+ASAAS_INVOICE_DEDUCTIONS=0
+ASAAS_INVOICE_EFFECTIVE_DATE="ON_PAYMENT_CONFIRMATION"
+ASAAS_INVOICE_RECEIVED_ONLY="true"
+ASAAS_INVOICE_RETAIN_ISS="false"
+ASAAS_INVOICE_COFINS=0
+ASAAS_INVOICE_CSLL=0
+ASAAS_INVOICE_INSS=0
+ASAAS_INVOICE_IR=0
+ASAAS_INVOICE_PIS=0
+ASAAS_INVOICE_ISS=0
+
+WHATS_SERVER_TYPE=${WHATS_SERVER_TYPE:-https}
+WHATS_SERVER_URL=${WHATS_SERVER_URL:-https://whats.example.com}
+WHATS_AUTHENTICATION_API_KEY=${WHATS_AUTHENTICATION_API_KEY:-YOUR_WHATS_AUTHENTICATION_API_KEY_HERE}
+WHATS_CORS_ORIGIN=*
+WHATS_CORS_METHODS=GET,POST,PUT,DELETE
+WHATS_CORS_CREDENTIALS=true
+WHATS_LOG_LEVEL=ERROR,WARN,DEBUG,INFO,LOG,VERBOSE,DARK,WEBHOOKS,WEBSOCKET
+WHATS_LOG_COLOR=true
+WHATS_CONFIG_SESSION_PHONE_CLIENT=${WHATS_CONFIG_SESSION_PHONE_CLIENT:-"Example API"}
+WHATS_CONFIG_SESSION_PHONE_NAME=${WHATS_CONFIG_SESSION_PHONE_NAME:-"YOUR_PHONE_NAME_HERE"}
+WHATS_LANGUAGE=en
+
+# Security
+SECRET_KEY_BASE=${SECRET_KEY_BASE:-YOUR_SECRET_KEY_BASE_HERE}
+
+# Rate Limiting
+RATE_LIMIT_REQUESTS_PER_MINUTE=60
+RATE_LIMIT_BURST=10
+
+# Swagger/OpenAPI
+SWAGGER_HOST=localhost:3000
+SWAGGER_SCHEMES=http
+
+OAUTH_REDIRECT_URI=http://localhost:3000/auth/callback
+OAUTH_GOOGLE_REDIRECT_URI=http://localhost:3000/auth/google_oauth2/callback
+OAUTH_FACEBOOK_REDIRECT_URI=http://localhost:3000/auth/callback
+
+# Email Configuration
+SMTP_ADDRESS=${SMTP_ADDRESS:-"YOUR_SMTP_ADDRESS"}
+SMTP_PORT=${SMTP_PORT:-"587"}
+SMTP_USERNAME=${SMTP_USERNAME:-"YOUR_SMTP_USERNAME"}
+SMTP_SENDER=${SMTP_SENDER:-"YOUR_SMTP_SENDER"}
+SMTP_PASSWORD=${SMTP_PASSWORD:-"YOUR_SMTP_PASSWORD_HERE"}
+SMTP_AUTHENTICATION=${SMTP_AUTHENTICATION:-"login"}
+SMTP_DOMAIN=${SMTP_DOMAIN:-"YOUR_SMTP_DOMAIN"}
+SMTP_TLS_ENABLED=${SMTP_TLS_ENABLED:-"true"}
+SMTP_DELIVERING=${SMTP_DELIVERING:-"async"}
+MAILER_FROM=${MAILER_FROM:-"YOUR_MAILER_FROM"}
+
+APP_HOST=localhost
+FRONTEND_CALLBACK_URL=http://localhost:5173/auth/callback
+EOF
+}
+
+write_frontend_ngrok() {
+  local url=$1
+  local ws_url=${url/https/wss}
+  ws_url=${ws_url/http/ws}
+  
+cat > "$FRONTEND_ENV" <<EOF
+# Frontend Environment Variables (Ngrok)
+VITE_API_URL=$url
+VITE_WS_URL=$ws_url/cable
+VITE_APP_NAME=${VITE_APP_NAME:-"YOUR_APP_NAME_HERE"}
+VITE_APP_VERSION=1.0.0
+
+# Theme Configuration
+VITE_DEFAULT_THEME=dark
+
+# Feature Flags
+VITE_ENABLE_ANALYTICS=false
+VITE_ENABLE_ERROR_REPORTING=true
+
+# Google API Key
+VITE_GOOGLE_API_KEY=${VITE_GOOGLE_API_KEY:-YOUR_GOOGLE_API_KEY_HERE}
+
+# Build Configuration
+VITE_BUILD_MODE=development
+# Discord
+VITE_DISCORD_SERVER_URL=https://discord.gg/29xarvd7yp
+EOF
+}
+
+write_backend_ngrok() {
+  local url=$1
+  local ws_url=${url/https/wss}
+  ws_url=${ws_url/http/ws}
+  local host=$(echo $url | sed -e 's|^[^/]*//||' -e 's|/.*$||')
+
+cat > "$BACKEND_ENV" <<EOF
+# Backend Environment Variables (Ngrok)
+REDIS_URL=redis://localhost:6379/1
+
+RAILS_ENV=development
+RAILS_LOG_TO_STDOUT=true
+RAILS_SERVE_STATIC_FILES=true
+
+# CORS and Host Configuration
+CORS_ORIGINS=http://localhost:5173,http://localhost:3000,$url
+APP_HOST=http://localhost:5173
+API_HOST=$url
+ACTION_CABLE_URL=$ws_url/cable
+
+# JWT Configuration
+DEVISE_JWT_SECRET_KEY=${DEVISE_JWT_SECRET_KEY:-YOUR_DEVISE_JWT_SECRET_KEY_HERE}
+JWT_EXPIRATION_TIME=15
+JWT_REFRESH_EXPIRATION_TIME=10080
+
+# Integration APIs
+ASAAS_API_KEY="${ASAAS_API_KEY:-YOUR_ASAAS_API_KEY_HERE}"
+ASAAS_API_URL="https://api.asaas.com/v3"
+ASAAS_INVOICE_SERVICE_ID="178941"
+ASAAS_INVOICE_SERVICE_NAME="6203-1/00 - Licenciamento ou cessão de direito de uso de programas de computação"
+ASAAS_INVOICE_SERVICE_CODE="1.05"
+ASAAS_INVOICE_UPDATE_PAYMENT="false"
+ASAAS_INVOICE_DEDUCTIONS=0
+ASAAS_INVOICE_EFFECTIVE_DATE="ON_PAYMENT_CONFIRMATION"
+ASAAS_INVOICE_RECEIVED_ONLY="true"
+ASAAS_INVOICE_RETAIN_ISS="false"
+ASAAS_INVOICE_COFINS=0
+ASAAS_INVOICE_CSLL=0
+ASAAS_INVOICE_INSS=0
+ASAAS_INVOICE_IR=0
+ASAAS_INVOICE_PIS=0
+ASAAS_INVOICE_ISS=0
+
+WHATS_SERVER_TYPE=${WHATS_SERVER_TYPE:-https}
+WHATS_SERVER_URL=${WHATS_SERVER_URL:-https://whats.example.com}
+WHATS_AUTHENTICATION_API_KEY=${WHATS_AUTHENTICATION_API_KEY:-YOUR_WHATS_AUTHENTICATION_API_KEY_HERE}
+WHATS_CORS_ORIGIN=*
+WHATS_CORS_METHODS=GET,POST,PUT,DELETE
+WHATS_CORS_CREDENTIALS=true
+WHATS_LOG_LEVEL=ERROR,WARN,DEBUG,INFO,LOG,VERBOSE,DARK,WEBHOOKS,WEBSOCKET
+WHATS_LOG_COLOR=true
+WHATS_CONFIG_SESSION_PHONE_CLIENT=${WHATS_CONFIG_SESSION_PHONE_CLIENT:-"Example API"}
+WHATS_CONFIG_SESSION_PHONE_NAME=${WHATS_CONFIG_SESSION_PHONE_NAME:-"YOUR_PHONE_NAME_HERE"}
+WHATS_LANGUAGE=en
+
+# Security
+SECRET_KEY_BASE=${SECRET_KEY_BASE:-YOUR_SECRET_KEY_BASE_HERE}
+
+# Rate Limiting
+RATE_LIMIT_REQUESTS_PER_MINUTE=60
+RATE_LIMIT_BURST=10
+
+# Swagger/OpenAPI
+SWAGGER_HOST=$host
+SWAGGER_SCHEMES=https
+
+OAUTH_REDIRECT_URI=$url/auth/callback
+OAUTH_GOOGLE_REDIRECT_URI=$url/auth/google_oauth2/callback
+OAUTH_FACEBOOK_REDIRECT_URI=$url/auth/callback
+
+# Email Configuration
+SMTP_ADDRESS=${SMTP_ADDRESS:-"YOUR_SMTP_ADDRESS"}
+SMTP_PORT=${SMTP_PORT:-"587"}
+SMTP_USERNAME=${SMTP_USERNAME:-"YOUR_SMTP_USERNAME"}
+SMTP_SENDER=${SMTP_SENDER:-"YOUR_SMTP_SENDER"}
+SMTP_PASSWORD=${SMTP_PASSWORD:-"YOUR_SMTP_PASSWORD_HERE"}
+SMTP_AUTHENTICATION=${SMTP_AUTHENTICATION:-"login"}
+SMTP_DOMAIN=${SMTP_DOMAIN:-"YOUR_SMTP_DOMAIN"}
+SMTP_TLS_ENABLED=${SMTP_TLS_ENABLED:-"true"}
+SMTP_DELIVERING=${SMTP_DELIVERING:-"async"}
+MAILER_FROM=${MAILER_FROM:-"YOUR_MAILER_FROM"}
+
+APP_HOST=$host
+FRONTEND_CALLBACK_URL=$url/auth/callback
+EOF
+}
+
+write_frontend_prod() {
+cat > "$FRONTEND_ENV" <<EOF
+# Frontend Environment Variables
+VITE_API_URL=https://api-goat.polemk.com
+VITE_WS_URL=wss://api-goat.polemk.com/cable
+VITE_APP_NAME=${VITE_APP_NAME:-"YOUR_APP_NAME_HERE"}
+VITE_APP_VERSION=1.0.0
+
+# Theme Configuration
+VITE_DEFAULT_THEME=dark
+
+# Feature Flags
+VITE_ENABLE_ANALYTICS=false
+VITE_ENABLE_ERROR_REPORTING=true
+
+# Google API Key
+VITE_GOOGLE_API_KEY=${VITE_GOOGLE_API_KEY:-YOUR_GOOGLE_API_KEY_HERE}
+
+# Build Configuration
+VITE_BUILD_MODE=production
+# Discord
+VITE_DISCORD_SERVER_URL=https://discord.gg/29xarvd7yp
+EOF
+}
+
+write_backend_prod() {
+cat > "$BACKEND_ENV" <<EOF
+# Backend Environment Variables
+REDIS_URL=redis://localhost:6379/1
+
+RAILS_ENV=production
+RAILS_LOG_TO_STDOUT=true
+RAILS_SERVE_STATIC_FILES=true
+
+# CORS and Host Configuration
+CORS_ORIGINS=https://goat.polemk.com,https://api-goat.polemk.com,http://localhost:5173
+APP_HOST=https://goat.polemk.com
+API_HOST=https://api-goat.polemk.com
+ACTION_CABLE_URL=wss://api-goat.polemk.com/cable
+
+# JWT Configuration
+DEVISE_JWT_SECRET_KEY=${DEVISE_JWT_SECRET_KEY:-YOUR_DEVISE_JWT_SECRET_KEY_HERE}
+JWT_EXPIRATION_TIME=15
+JWT_REFRESH_EXPIRATION_TIME=10080
+
+# Integration APIs
+ASAAS_API_KEY="${ASAAS_API_KEY:-YOUR_ASAAS_API_KEY_HERE}"
+ASAAS_API_URL="https://api.asaas.com/v3"
+ASAAS_INVOICE_SERVICE_ID="178941"
+ASAAS_INVOICE_SERVICE_NAME="6203-1/00 - Licenciamento ou cessão de direito de uso de programas de computação"
+ASAAS_INVOICE_SERVICE_CODE="1.05"
+ASAAS_INVOICE_UPDATE_PAYMENT="false"
+ASAAS_INVOICE_DEDUCTIONS=0
+ASAAS_INVOICE_EFFECTIVE_DATE="ON_PAYMENT_CONFIRMATION"
+ASAAS_INVOICE_RECEIVED_ONLY="true"
+ASAAS_INVOICE_RETAIN_ISS="false"
+ASAAS_INVOICE_COFINS=0
+ASAAS_INVOICE_CSLL=0
+ASAAS_INVOICE_INSS=0
+ASAAS_INVOICE_IR=0
+ASAAS_INVOICE_PIS=0
+ASAAS_INVOICE_ISS=0
+
+WHATS_SERVER_TYPE=${WHATS_SERVER_TYPE:-https}
+WHATS_SERVER_URL=${WHATS_SERVER_URL:-https://whats.example.com}
+WHATS_AUTHENTICATION_API_KEY=${WHATS_AUTHENTICATION_API_KEY:-YOUR_WHATS_AUTHENTICATION_API_KEY_HERE}
+WHATS_CORS_ORIGIN=*
+WHATS_CORS_METHODS=GET,POST,PUT,DELETE
+WHATS_CORS_CREDENTIALS=true
+WHATS_LOG_LEVEL=ERROR,WARN,DEBUG,INFO,LOG,VERBOSE,DARK,WEBHOOKS,WEBSOCKET
+WHATS_LOG_COLOR=true
+WHATS_CONFIG_SESSION_PHONE_CLIENT=${WHATS_CONFIG_SESSION_PHONE_CLIENT:-"Example API"}
+WHATS_CONFIG_SESSION_PHONE_NAME=${WHATS_CONFIG_SESSION_PHONE_NAME:-"YOUR_PHONE_NAME_HERE"}
+WHATS_LANGUAGE=en
+
+# Security
+SECRET_KEY_BASE=${SECRET_KEY_BASE:-YOUR_SECRET_KEY_BASE_HERE}
+
+# Rate Limiting
+RATE_LIMIT_REQUESTS_PER_MINUTE=60
+RATE_LIMIT_BURST=10
+
+# Swagger/OpenAPI
+SWAGGER_HOST=api-goat.polemk.com
+SWAGGER_SCHEMES=https
+
+OAUTH_REDIRECT_URI=https://api-goat.polemk.com/auth/callback
+OAUTH_GOOGLE_REDIRECT_URI=https://api-goat.polemk.com/auth/google_oauth2/callback
+OAUTH_FACEBOOK_REDIRECT_URI=https://api-goat.polemk.com/auth/callback
+
+# Email Configuration
+SMTP_ADDRESS=${SMTP_ADDRESS:-"YOUR_SMTP_ADDRESS"}
+SMTP_PORT=${SMTP_PORT:-"587"}
+SMTP_USERNAME=${SMTP_USERNAME:-"YOUR_SMTP_USERNAME"}
+SMTP_SENDER=${SMTP_SENDER:-"YOUR_SMTP_SENDER"}
+SMTP_PASSWORD=${SMTP_PASSWORD:-"YOUR_SMTP_PASSWORD_HERE"}
+SMTP_AUTHENTICATION=${SMTP_AUTHENTICATION:-"login"}
+SMTP_DOMAIN=${SMTP_DOMAIN:-"YOUR_SMTP_DOMAIN"}
+SMTP_TLS_ENABLED=${SMTP_TLS_ENABLED:-"true"}
+SMTP_DELIVERING=${SMTP_DELIVERING:-"async"}
+MAILER_FROM=${MAILER_FROM:-"YOUR_MAILER_FROM"}
+
+APP_HOST=goat.polemk.com
+FRONTEND_CALLBACK_URL=https://goat.polemk.com/auth/callback
+EOF
+}
+
+case $MODE in
+  local)
+    echo "Switching to LOCAL environment..."
+    write_frontend_local
+    write_backend_local
+    echo "Done."
+    ;;
+  ngrok)
+    if [ -z "$NGROK_URL" ]; then
+      echo "Error: Ngrok URL required for 'ngrok' mode."
+      echo "Usage: $0 ngrok <url>"
+      exit 1
+    fi
+    echo "Switching to NGROK environment ($NGROK_URL)..."
+    write_frontend_ngrok "$NGROK_URL"
+    write_backend_ngrok "$NGROK_URL"
+    echo "Done."
+    ;;
+  prod)
+    echo "Switching to PRODUCTION environment..."
+    write_frontend_prod
+    write_backend_prod
+    echo "Done."
+    ;;
+  *)
+    echo "Unknown mode: $MODE"
+    echo "Usage: $0 [local|ngrok|prod] [ngrok_url]"
+    exit 1
+    ;;
+esac

@@ -1,0 +1,6 @@
+# O Safegold é um console interno de gestão de risco de crédito — não há nada
+# aqui para indexar, e a listagem de rotas só ajudaria quem estivesse mapeando a
+# aplicação. O site público do legado ficou fora de escopo (Phase 0), então não
+# existe sitemap.
+User-agent: *
+Disallow: /

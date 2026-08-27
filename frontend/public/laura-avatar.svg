@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="200" height="200">
+  <defs>
+    <linearGradient id="lauraGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0ea5e9"/>
+      <stop offset="100%" style="stop-color:#6366f1"/>
+    </linearGradient>
+    <linearGradient id="lauraHair" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4b1d1d"/>
+      <stop offset="100%" style="stop-color:#2d0f0f"/>
+    </linearGradient>
+  </defs>
+  <!-- Background circle -->
+  <circle cx="50" cy="50" r="50" fill="url(#lauraGrad)"/>
+  <!-- Neck + body -->
+  <ellipse cx="50" cy="85" rx="22" ry="20" fill="#f5c9b0"/>
+  <!-- Face -->
+  <ellipse cx="50" cy="55" rx="21" ry="23" fill="#f5c9b0"/>
+  <!-- Hair top -->
+  <ellipse cx="50" cy="35" rx="23" ry="18" fill="url(#lauraHair)"/>
+  <!-- Hair sides -->
+  <path d="M29 38 Q24 58, 31 72" fill="url(#lauraHair)"/>
+  <path d="M71 38 Q76 58, 69 72" fill="url(#lauraHair)"/>
+  <!-- Hair fringe -->
+  <path d="M27 38 Q35 28 50 30 Q65 28 73 38 Q65 34 50 35 Q35 34 27 38" fill="url(#lauraHair)"/>
+  <!-- Eyes -->
+  <circle cx="41" cy="52" r="3.5" fill="#1c1c2e"/>
+  <circle cx="59" cy="52" r="3.5" fill="#1c1c2e"/>
+  <circle cx="42" cy="51" r="1.3" fill="white"/>
+  <circle cx="60" cy="51" r="1.3" fill="white"/>
+  <!-- Eyebrows -->
+  <path d="M37 47 Q41 45 45 47" stroke="#2d0f0f" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+  <path d="M55 47 Q59 45 63 47" stroke="#2d0f0f" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+  <!-- Smile -->
+  <path d="M44 65 Q50 72 56 65" stroke="#c97b7b" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  <!-- Cheeks -->
+  <ellipse cx="33" cy="60" rx="5" ry="3" fill="#f4a6a6" opacity="0.45"/>
+  <ellipse cx="67" cy="60" rx="5" ry="3" fill="#f4a6a6" opacity="0.45"/>
+</svg>

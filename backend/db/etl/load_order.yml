@@ -1,0 +1,311 @@
+# ORDEM DE CARGA DO ETL — S14, tarefa 6.6. VERSIONADA de propósito.
+#
+# A ordem é **dependência real**, não estética: uma tabela só entra depois de tudo
+# que ela referencia, porque o religamento de FK é feito **exclusivamente pelo
+# de-para** (`etl_id_map`) e o de-para só tem a linha depois que ela foi gravada.
+# Fora de ordem, a referência não resolve e vira órfã contada.
+#
+# **O piso são as 12 entidades de `Legacy::TABLES`** (`../sfg/app/models/legacy.rb:2-15`),
+# a ordem que o ETL Django→Rails de 2021 já usou em produção — e que funcionou, apesar
+# de aquele pipeline não ter transação nem idempotência (BE-450). O que vem depois é o
+# que o Safegold ganhou de 2021 para cá: risco, estruturadas, renegociações,
+# indicadores e disponibilidades.
+#
+# Cada entrada é ou o nome de uma classe em `app/lib/sfg/etl/converters/`, ou um
+# bloco declarando o conversor que **ainda não foi escrito**. O segundo caso NÃO
+# derruba a execução: aparece no relatório como pulado, com a tabela de origem, o
+# model de destino e a fatia dona. Lacuna declarada é lacuna que alguém vê.
+#
+# YAML e não constante Ruby porque esta lista é lida e discutida na janela de
+# cutover por quem não vai abrir código.
+
+order:
+  # ------------------------------------------------------------ identidade
+  # **`Users` VEM PRIMEIRO, e isto é uma divergência DELIBERADA da ordem de 2021.**
+  #
+  # No pipeline Django→Rails os usuários eram a 7ª entidade, depois dos catálogos —
+  # e é por isso que o adaptador daquele ETL **forçava o autor para um identificador
+  # fixo** em portadores e recebíveis (BE-452 (a)): quando `carriers` e `segments`
+  # eram gravados, `users` ainda não existia, e não havia a quem apontar. Esses
+  # registros estão em produção com autoria errada por construção.
+  #
+  # Aqui o defeito não se repete: `users` entra antes de tudo que tem `user_id`.
+  # O ciclo que sobra (`users.default_project_id` -> `projects` -> `segments` ->
+  # `users`) é resolvido pelo **segundo passo** do motor (`deferred`), não por um
+  # id inventado.
+  #
+  # É também o conversor de maior risco da migração: contrato C3 (papéis).
+  - Users
+
+  # ---------------------------------------------------------------- catálogos
+  - Carriers
+  - Segments
+  - converter: SubSegments
+    source_table: sub_segments
+    target_model: SubSegment
+    owner_slice: S4
+  # S6 — ESCRITOS. Os três catálogos do borderô. São pequenos (12, 7 e 18
+  # linhas) e já vêm semeados por `Seeds::Reference::*` com o MESMO `legacy_id`,
+  # que é a chave natural dos conversores: rodar sobre a base semeada
+  # ATUALIZA, não duplica. Sem isso a carga criaria uma segunda "Fomento" e
+  # metade dos 28.131 borderôs apontaria para cada uma.
+  - ReceivableKinds
+  - Wallets
+  - MovementKinds
+  # `resource_sources` é da **S8** (DB-287/DB-562); a TABELA nasceu na S6 por
+  # dependência de FK (`receivable_entries.resource_source_id` é obrigatório e
+  # está preenchido em 28.131/28.131 linhas de produção) e o seed também.
+  # O conversor fica com a dona.
+  - converter: ResourceSources
+    source_table: resource_sources
+    target_model: ResourceSource
+    owner_slice: S8
+  # `resource_kinds` — **NÃO SERÁ ESCRITO.** Medido no dump: a tabela tem 0
+  # linhas e 0 de 28.131 borderôs têm `resource_kind_id`. Ver `do_not_migrate`.
+
+  # ------------------------------------------------------------- estrutura
+  - Projects
+  - Companies
+  - Memberships
+  - converter: ProjectToCarrierConnections
+    source_table: project_to_carrier_connections
+    target_model: ProjectToCarrierConnection
+    owner_slice: S4
+  - converter: Providers
+    source_table: providers
+    target_model: Provider
+    owner_slice: S4
+  - converter: ProjectGuaranteeTypes
+    source_table: project_guarantee_types
+    target_model: ProjectGuaranteeType
+    owner_slice: S4
+  - converter: ProjectGuarantees
+    source_table: project_guarantees
+    target_model: ProjectGuarantee
+    owner_slice: S4
+
+  # ------------------------------------------------------------- recebíveis
+  # S6 — ESCRITOS (DEC-102: a CARGA foi adiada, o conversor não).
+  #
+  # `receivable_entries` é a segunda maior tabela do sistema: **28.131 linhas**,
+  # de 27/02/2022 a 30/05/2025. Os ~33 derivados são **copiados**, nunca
+  # recalculados — o motor do ai9 já foi conferido contra elas (927.267
+  # comparações, zero divergência), e transformar a conferência em premissa da
+  # carga apagaria a conferência. Ver o cabeçalho do conversor.
+  - ReceivableEntries
+  - ReceivableTaxes
+  # `charges` e `receipts` **NÃO EXISTEM na origem**: as migrations que as
+  # criam estão entre as 24 que nunca subiram (o dump não tem `COPY
+  # public.charges` nem `COPY public.receipts`). Zero linhas lidas é o
+  # resultado ESPERADO. Os conversores existem para o caso de o cliente rodar
+  # as migrations pendentes antes do cutover — e porque lacuna declarada é
+  # lacuna que alguém vê.
+  - Charges
+  - Receipts
+  # `Entries` SAIU da lista, e não por omissão: **não existe tabela `entries`**
+  # no legado. `Entry` é `self.abstract_class = true`
+  # (`../sfg/app/models/entry.rb:7`) — a classe base de `ReceivableEntry` e
+  # `AvailabilityEntry`, sem tabela própria. O passo produziria uma linha de
+  # relatório mentindo sobre cobertura. `BE-445` (o enum de status) é fechado
+  # DENTRO de `ReceivableEntries`, pelo de-para `Values::RECEIVABLE_STATUS`.
+
+  # ------------------------------------------------------------------ risco
+  # `risk_controls` antes de `risk_operations` (a operação aponta para o controle);
+  # `risk_movements` por último, porque `balance` é saldo ACUMULADO e persistido.
+  #
+  # Os quatro catálogos e o limite foram ESCRITOS PELA S5, que é a dona dos
+  # models. Os dois `post_load!` que importam estão em `RiskControls` (a
+  # contagem das duas formas de `risk_controls`, DEC-43) e em `RiskMovementTypes`
+  # (as três chaves funcionais existem? sem elas a S7 não lança movimento).
+  - RiskOperationTypes
+  - RiskOperationSubtypes
+  - RiskMovementTypes
+  - RiskControls
+  - RiskOperations
+  - converter: RiskOperationExtensions
+    source_table: risk_operation_extensions
+    target_model: RiskOperationExtension
+    owner_slice: S7
+  - RiskMovements
+  # DEC-57 — o dado sobrevive, a tela não volta. Escrito pela S5.
+  - RiskEntries
+
+  # ------------------------------------------------------------ estruturadas
+  - converter: StructuredOperationTypes
+    source_table: structured_operation_types
+    target_model: StructuredOperationType
+    owner_slice: S8
+  - converter: StructuredOperations
+    source_table: structured_operations
+    target_model: StructuredOperation
+    owner_slice: S8
+  - converter: Remunerations
+    source_table: remunerations
+    target_model: Remuneration
+    owner_slice: S8
+
+  # ---------------------------------------------------------- renegociações
+  - converter: Renegotiations
+    source_table: renegotiations
+    target_model: Renegotiation
+    owner_slice: S9
+  - converter: RenegotiationInstallments
+    source_table: renegotiation_installments
+    target_model: RenegotiationInstallment
+    owner_slice: S9
+  - converter: RenegotiationPayments
+    source_table: renegotiation_payments
+    target_model: RenegotiationPayment
+    owner_slice: S9
+  # Os ANEXOS de renegociação são **documento financeiro** (DEC-84) e o binário vive
+  # no disco do servidor legado. O registro migra aqui; o arquivo, no passo 6.7.
+  #
+  # **DESTRAVADO em 26/08/2026** — o acervo chegou (`sfg-31-may-25.tar`). Os 44
+  # arquivos batem 1:1 com o banco (39.424.330 B), e `rake sfg_etl:relink_attachments`
+  # copia e reanexa por ActiveStorage conferindo tamanho **e SHA-256** na volta.
+  # ⚠ Um deles (`#45`, `ANEXO_INSTRUMENTO_DE_GARANTIA.pdf`) tem **0 byte** no banco E
+  # no disco: reconciliação passa, o documento não existe. Ver D-133.
+  - converter: RenegotiationAttachments
+    source_table: renegotiation_attachments
+    target_model: RenegotiationAttachment
+    owner_slice: S9
+
+  # -------------------------------------------------------- disponibilidades
+  # **DOIS conversores, não quatro** (S11, 26/08/2026).
+  #
+  # A lista trazia `GlobalAvailabilityTemplates` e `ProjectAvailabilityTemplates`
+  # como tabelas de origem separadas. **Elas não existem no legado**: as duas
+  # classes são STI sobre a MESMA tabela `availability_templates`, que tem a
+  # coluna `type` (`20210420180734_create_availability_templates.rb:6`). Manter
+  # os quatro produziria dois passos vazios e um relatório mentindo sobre
+  # cobertura. A dona também estava errada — era S5, e disponibilidades são S11.
+  #
+  # `AvailabilityTemplates` resolve `parent_template_id` e `top_parent_id` no
+  # **segundo passo** (`deferred`): a hierarquia aponta para a própria tabela e o
+  # pai pode vir depois do filho.
+  - AvailabilityTemplates
+  - AvailabilityEntries
+
+  # ------------------------------------------------------------ indicadores
+  # DEC-89: o título continua em CAIXA ALTA sem acento — `Values.indicator_title`.
+  #
+  # ⚠ **RUNBOOK — A "INSTRUÇÃO" DO INDICADOR NÃO VIAJA NESTA TABELA.** Ela é
+  # ActionText: vive em `action_text_rich_texts` com `record_type = 'Indicator'` e
+  # `name = 'description'`. **Carregar `indicators` sem carregar aquela tabela junto
+  # perde o conteúdo, em silêncio** — a coluna não existe para ninguém notar a falta.
+  #
+  # Duas condições, antes de dar a carga por boa:
+  #   1. `action_text_rich_texts` da origem entra no dump/na conexão, e o
+  #      `record_id` é religado pelo **de-para de `indicators`**, nunca pelo id
+  #      numérico do legado;
+  #   2. a **codificação de cada corpo é validada item por item**: os corpos do
+  #      legado podem estar **URL-escapados** (é por isso que as views de contrato
+  #      fazem `CGI.unescape`). Validar em lote esconde justamente o item torto.
+  #
+  # A ordem certa é DEPOIS de `Indicators`, porque o religamento depende do de-para.
+  - Indicators
+  - ProjectIndicatorConnections
+  - IndicatorEntries
+
+  # --------------------------------------------------------------- contratos
+  # DEC-66: os `contract_deals` existentes migram marcados como `implicit_legacy`,
+  # preservando a data original, **e** o novo aceite explícito é exigido na próxima
+  # entrada. A base atual não distingue "aceitou" de "foi carimbado".
+  - converter: Contracts
+    source_table: contracts
+    target_model: Contract
+    owner_slice: S11
+  - converter: ContractDeals
+    source_table: contract_deals
+    target_model: ContractDeal
+    owner_slice: S11
+
+  # ------------------------------------------------------------------ ajuda
+  #
+  # **`HelpGroups` ANTES de `HelpCategories`** — estava invertido, e a inversão
+  # violava a regra do cabeçalho deste próprio arquivo ("a tabela só entra
+  # depois de tudo que ela referencia").
+  #
+  # `HelpCategories.references` é `{ 'help_group_id' => 'help_groups' }` e
+  # `HelpCategory belongs_to :group` é **obrigatório**. Com os grupos ainda
+  # ausentes do de-para, as 7 categorias eram recusadas com "`group` é
+  # obrigatório(a)" — e a recusa descia em cascata: 25 `help_items` recusados
+  # por "`category` é obrigatório(a)", e daí os 25 textos ricos abortando a
+  # carga por dono ausente. Um erro de ordem, três sintomas em três tabelas.
+  - converter: HelpGroups
+    source_table: help_groups
+    target_model: HelpGroup
+    owner_slice: S12
+  - converter: HelpCategories
+    source_table: help_categories
+    target_model: HelpCategory
+    owner_slice: S12
+  - converter: HelpItems
+    source_table: help_items
+    target_model: HelpItem
+    owner_slice: S12
+
+  # ------------------------------------------------------------ texto rico
+  # **POR ÚLTIMO, e não é detalhe de arrumação.** O religamento é polimórfico e sai
+  # do de-para: `Indicator`, `HelpItem` e `Contract` precisam já estar carregados.
+  #
+  # Medido no dump de 31/05/2025: **512 linhas** — Indicator 485, HelpItem 25,
+  # Contract 2 — e **zero** corpos URL-escapados (a única `%XX` do acervo é o texto
+  # literal `%DE PARTICIPAÇÃO`). A conferência item a item que o aviso acima exigia
+  # está feita, e o corpo viaja como está.
+  - ActionTextRichTexts
+
+# ============================================================================
+# NÃO MIGRAM — e cada uma tem evidência. Se aparecerem na origem, a introspecção
+# as trata como conhecidas; se ganharem linhas, a volumetria as CONTA antes do
+# descarte fechar.
+# ============================================================================
+do_not_migrate:
+  - table: geolocations
+    reason: >-
+      DEC-92 — descartada. Nenhum model declara `has_one`/`has_many :geolocation`
+      no repositório inteiro; `geolocatable` só aparece dentro do próprio
+      `geolocation.rb`. A associação polimórfica não tem lado inverso: nada lê nem
+      escreve. NÃO construir conversor.
+  - table: pictures
+    reason: >-
+      DB-593 — MUST NOT migrar. Nenhum model declara `has_many :pictures` e o
+      `counter_cache: :pictures_count` aponta para coluna inexistente. O ETL ainda
+      CONTA as linhas antes de fechar o descarte.
+  - table: delayed_jobs
+    reason: >-
+      DB-597 — job pendente no legado no momento do cutover não é importado. O que
+      estiver em voo é reexecutado ou descartado, por decisão registrada (runbook 9.8).
+  - table: schema_migrations
+    reason: >-
+      DB-599 — o ai9 tem o próprio histórico. A tabela legada é lida APENAS pela
+      introspecção, para conferir quais das 139 migrations foram de fato aplicadas.
+  - table: livetat_auth_omni_providers
+    reason: >-
+      DB-544 — o vínculo OAuth já existe em `users.provider`/`provider_uid`. O ETL
+      CONTA as linhas antes de fechar o descarte (ENG-auth_omni19).
+  - table: user_themes
+    reason: DEC-55/56 — `UserTheme` descartado.
+  - table: resource_kinds
+    reason: >-
+      S6, medido no dump de 31/05/2025: a tabela tem **0 linhas** e **0 de 28.131**
+      `receivable_entries` têm `resource_kind_id`. Fecha o portão T-D7 da S8 e a
+      DEC-82 com evidência — `BE-307`, `BE-720`…`BE-724`, `FE-307`, `DB-286`,
+      `DB-289` e `DB-294` viram `dropped`. A tabela NÃO é criada no ai9 e a
+      coluna `receivable_entries.resource_kind_id` não existe.
+  - table: entries
+    reason: >-
+      S6 — **a tabela não existe**. `Entry` é `self.abstract_class = true`
+      (`../sfg/app/models/entry.rb:7`), a classe base de `ReceivableEntry` e
+      `AvailabilityEntry`. Estava na lista como conversor a escrever; um passo
+      sobre tabela inexistente produziria relatório mentindo sobre cobertura.
+  - table: active_storage_blobs
+    reason: >-
+      DB-598 — é FONTE, não tabela a recriar: a base ai9 já a tem. Medido no dump de
+      31/05/2025: **0 linha**. O legado guarda binário em Paperclip
+      (`file_file_name`/`file_file_size`) sob `public/system/`, e é de lá que o passo
+      6.7 copia. Nada a converter aqui — mas a contagem fica registrada, porque
+      "0 linha" só é informação depois de medida.
+  - table: active_storage_attachments
+    reason: >-
+      DB-736 — mesma coisa, mesma medição: **0 linha** no dump de produção.

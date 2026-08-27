@@ -1,0 +1,12 @@
+# ATENCAO: nao existe coluna `phone` aqui. A migration de 2017
+# (`add_phone_columns_to_user_info`) a REMOVEU e a partiu em tres. A introspecao
+# pegou isso; ler `phone` traria nil para toda a base, e no ai9 o telefone e canal
+# de login.
+table: livetat_auth_user_infos
+rows:
+  - { id: 1, user_id: 1, first_name: 'Fixture', last_name: 'OG',          phone_country_code: '55', phone_area_code: '51', phone_number: '999990001', is_phone_checked: 0, birthday: '1980-01-01', created_at: '2016-05-20 14:00:00', updated_at: '2016-05-20 14:00:00' }
+  - { id: 2, user_id: 2, first_name: 'Fixture', last_name: 'Admin',       phone_country_code: '55', phone_area_code: '51', phone_number: '999990002', is_phone_checked: 0, birthday: '1985-02-02', created_at: '2017-01-15 10:00:00', updated_at: '2017-01-15 10:00:00' }
+  - { id: 3, user_id: 3, first_name: 'Fixture', last_name: 'Gerente',     phone_country_code: '55', phone_area_code: '51', phone_number: '999990003', is_phone_checked: 1, birthday: '1990-03-03', created_at: '2018-02-17 23:30:00', updated_at: '2018-02-17 23:30:00' }
+  - { id: 4, user_id: 4, first_name: 'Fixture', last_name: 'Colaborador', phone_country_code: '55', phone_area_code: '51', phone_number: '999990004', is_phone_checked: 0, birthday: '1992-04-04', created_at: '2019-06-01 08:30:00', updated_at: '2019-06-01 08:30:00' }
+  - { id: 5, user_id: 5, first_name: 'Fixture', last_name: 'SemPapel',    phone_country_code: '55', phone_area_code: '51', phone_number: '999990005', is_phone_checked: 0, birthday: '1993-05-05', created_at: '2020-03-01 08:30:00', updated_at: '2020-03-01 08:30:00' }
+  - { id: 6, user_id: 6, first_name: 'Fixture', last_name: 'Q16',         phone_country_code: '55', phone_area_code: '51', phone_number: '999990006', is_phone_checked: 0, birthday: '1994-06-06', created_at: '2021-03-12 11:21:03', updated_at: '2021-03-12 11:21:03' }

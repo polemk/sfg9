@@ -1,0 +1,6 @@
+# `net_worth` decimal(15,2) e `subordinated_accounts_percent` float — a mistura que
+# DEC-02 manda REPLICAR, nao consertar. A reconciliacao soma `net_worth` por ano.
+table: carriers
+rows:
+  - { id: 1, title: 'ETL Fixture FIDC Alfa', resume: 'Portador de ensaio do ETL.', user_id: 1, is_active: 1, integration_key: 'etl_fixture_alfa', bank_code: 9001, bank_name: 'Alfa', senior_accounts: 10, subordinated_accounts: 2, net_worth: '1500000.00', subordinated_accounts_percent: 12.5, created_at: '2016-05-22 10:00:00', updated_at: '2016-05-22 10:00:00' }
+  - { id: 2, title: 'ETL Fixture FIDC Beta',  resume: 'Segundo portador de ensaio.', user_id: 2, is_active: 1, integration_key: 'etl_fixture_beta', bank_code: 9002, bank_name: 'Beta',  senior_accounts: 4,  subordinated_accounts: 1, net_worth: '480000.50',  subordinated_accounts_percent: 20.0, created_at: '2018-02-17 23:30:00', updated_at: '2018-02-17 23:30:00' }

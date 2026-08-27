@@ -1,0 +1,12 @@
+# Papeis do legado. A escala e INVERTIDA em relacao a do ai9:
+# maior = mais poder (OG 1111 > Admin 998 > Gerente 888 > Colaborador 799).
+# O de-para vive em `Legacy::RoleMap` e e TABELA, nunca formula.
+table: livetat_auth_role_types
+rows:
+  - { id: 1, name: 'OG',          hierarchy: 1111, created_at: '2016-01-10 09:00:00', updated_at: '2016-01-10 09:00:00' }
+  - { id: 2, name: 'Admin',       hierarchy: 998,  created_at: '2016-01-10 09:00:00', updated_at: '2016-01-10 09:00:00' }
+  - { id: 3, name: 'Gerente',     hierarchy: 888,  created_at: '2016-01-10 09:00:00', updated_at: '2016-01-10 09:00:00' }
+  - { id: 4, name: 'Colaborador', hierarchy: 799,  created_at: '2016-01-10 09:00:00', updated_at: '2016-01-10 09:00:00' }
+  # D-36: `default_role_type = ""` em `config/application.rb:65` do legado.
+  # Papel vazio -> Colaborador + LISTA DE EXCECOES (decisao registrada `roles:empty_role`).
+  - { id: 5, name: '',            hierarchy: null, created_at: '2016-01-10 09:00:00', updated_at: '2016-01-10 09:00:00' }

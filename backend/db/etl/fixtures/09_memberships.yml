@@ -1,0 +1,8 @@
+# `memberable_id`/`memberable_type` (polimorfico no legado) -> `project_id`.
+# O papel de participacao e texto em pt-BR COM ACENTO e vira chave estavel.
+table: memberships
+rows:
+  - { id: 1, user_id: 2, memberable_id: 1, memberable_type: 'Project', role: 'Responsável',  is_active: 1, created_at: '2016-06-02 12:00:00', updated_at: '2016-06-02 12:00:00' }
+  - { id: 2, user_id: 3, memberable_id: 1, memberable_type: 'Project', role: 'Gestor',       is_active: 1, created_at: '2017-01-16 12:00:00', updated_at: '2017-01-16 12:00:00' }
+  - { id: 3, user_id: 4, memberable_id: 1, memberable_type: 'Project', role: 'Participante', is_active: 1, created_at: '2019-06-01 12:00:00', updated_at: '2019-06-01 12:00:00' }
+  - { id: 4, user_id: 3, memberable_id: 2, memberable_type: 'Project', role: 'Coordenador',  is_active: 1, created_at: '2019-06-03 12:00:00', updated_at: '2019-06-03 12:00:00' }

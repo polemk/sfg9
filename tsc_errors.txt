@@ -1,0 +1,12 @@
+src/features/leads/chatwoot/LeadsChatwootTab.tsx(30,44): error TS2339: Property 'lead' does not exist on type 'Lead'.
+src/features/leads/chatwoot/components/ChatwootConversation.tsx(4,21): error TS2305: Module '"@/lib/api/types"' has no exported member 'Message'.
+src/features/leads/chatwoot/components/ChatwootConversation.tsx(32,33): error TS2339: Property 'messages' does not exist on type '{ list: (params?: { page?: number | undefined; per_page?: number | undefined; q?: string | undefined; sort?: "recent" | "volume" | undefined; } | undefined) => Promise<{ leads: Lead[]; meta: { ...; }; }>; ... 4 more ...; stats: (days?: number) => Promise<...>; }'.
+src/features/leads/chatwoot/components/ChatwootConversation.tsx(38,48): error TS2339: Property 'sendMessage' does not exist on type '{ list: (params?: { page?: number | undefined; per_page?: number | undefined; q?: string | undefined; sort?: "recent" | "volume" | undefined; } | undefined) => Promise<{ leads: Lead[]; meta: { ...; }; }>; ... 4 more ...; stats: (days?: number) => Promise<...>; }'.
+src/features/leads/chatwoot/components/ChatwootConversation.tsx(44,66): error TS2339: Property 'id' does not exist on type '{}'.
+src/features/leads/chatwoot/components/ChatwootConversation.tsx(77,63): error TS2367: This comparison appears to be unintentional because the types 'number' and 'string' have no overlap.
+src/features/leads/chatwoot/components/ChatwootConversation.tsx(172,33): error TS7006: Parameter 'msg' implicitly has an 'any' type.
+src/features/leads/chatwoot/components/ChatwootConversation.tsx(172,38): error TS7006: Parameter 'index' implicitly has an 'any' type.
+src/features/leads/chatwoot/components/ChatwootInfoPanel.tsx(111,31): error TS2339: Property 'instagram' does not exist on type 'Lead'.
+src/features/leads/chatwoot/components/ChatwootInfoPanel.tsx(116,84): error TS2339: Property 'instagram' does not exist on type 'Lead'.
+src/features/leads/chatwoot/components/ChatwootSidebar.tsx(82,40): error TS2367: This comparison appears to be unintentional because the types 'string | null' and 'number' have no overlap.
+src/features/leads/chatwoot/components/ChatwootSidebar.tsx(88,53): error TS2345: Argument of type 'number' is not assignable to parameter of type 'string'.

@@ -1,0 +1,8 @@
+<%# Layout texto. Existe porque cliente de e-mail que recusa HTML não pode receber
+    uma mensagem vazia — e é justamente nesse cliente que o código de acesso
+    precisa chegar, senão a pessoa fica sem entrar. %>
+<%= yield %>
+
+--
+<%= ENV.fetch('APP_NAME', 'Safegold') %>
+Este e-mail é automático. Não responda.
