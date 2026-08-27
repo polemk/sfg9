@@ -239,7 +239,7 @@ if escrever_arquivo backend/config/database.yml; then
 cat > backend/config/database.yml <<YML
 # Gerado por install_dev.sh. NÃO versionado (ver .gitignore).
 #
-# `production` aponta para um banco que não existe de propósito: numa máquina de
+# A seção 'production' aponta para um banco que não existe de propósito: numa máquina de
 # desenvolvimento, falhar é melhor do que escrever sem querer num banco real.
 development:
   adapter: postgresql

@@ -221,9 +221,14 @@ API_HOST=${API_DOMAIN}
 
 # Action Cable — a URL que o navegador usa para abrir o WebSocket.
 #
-# Obrigatória em produção (`required_env.rb`). Faltava aqui, e sem ela o boot
-# reprova antes de qualquer requisição. `wss`, não `ws`: a página é servida por
-# HTTPS e o navegador recusa WebSocket inseguro numa origem segura.
+# Obrigatória em produção (required_env.rb). Faltava aqui, e sem ela o boot
+# reprova antes de qualquer requisição. É "wss", não "ws": a página é servida
+# por HTTPS e o navegador recusa WebSocket inseguro numa origem segura.
+#
+# ATENÇÃO a quem editar este bloco: ele está dentro de um heredoc SEM aspas
+# (<<EOF), porque precisa expandir \${API_DOMAIN}. Isso significa que crase aqui
+# vira execução de comando, inclusive em linha de comentário. Foi o que
+# aconteceu: "required_env.rb: command not found" no meio de um deploy.
 ACTION_CABLE_URL=wss://${API_DOMAIN}/cable
 
 # Cifra do Active Record — ver o bloco de geração acima para o porquê de estas
@@ -290,12 +295,26 @@ echo "database.yml gerado."
 # sobrescrevia a escolha do operador e falhava dizendo o contrário do que ele
 # tinha acabado de pedir.
 #
-# Lendo de `.ruby-version`, instalar noutra versão passa a ser trocar um arquivo
-# do app, e o script deixa de ter opinião sobre isso.
-RUBY_VERSION_APP="$(tr -d '[:space:]' < "$(dirname "$0")/backend/.ruby-version")"
+# A versão sai do **Gemfile**, e não do `.ruby-version`.
+#
+# ⚠ A primeira versão desta correção lia `backend/.ruby-version` — e quebrou no
+# servidor com "No such file or directory". O arquivo é **git-ignored**
+# (`.gitignore:46`): existe na máquina de quem desenvolve e **não existe num
+# clone**. Conferi que ele existia sem conferir que ele era versionado.
+#
+# O `Gemfile` é versionado, e é ele a autoridade de qualquer modo: quem recusa a
+# versão errada é o Bundler, lendo esta linha. `.ruby-version` fica como
+# preferência local, quando existir.
+APP_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+if [ -f "${APP_DIR}/backend/.ruby-version" ]; then
+  RUBY_VERSION_APP="$(tr -d '[:space:]' < "${APP_DIR}/backend/.ruby-version")"
+else
+  RUBY_VERSION_APP="$(grep -oE "^ruby ['\"][0-9]+\.[0-9]+\.[0-9]+" "${APP_DIR}/backend/Gemfile" | grep -oE "[0-9]+\.[0-9]+\.[0-9]+")"
+fi
 
 if [ -z "${RUBY_VERSION_APP}" ]; then
-  echo "❌ Não consegui ler backend/.ruby-version. Sem isso não dá para saber qual Ruby usar."
+  echo "❌ Não achei a versão do Ruby nem em backend/.ruby-version nem no backend/Gemfile."
   exit 1
 fi
 
