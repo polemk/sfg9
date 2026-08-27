@@ -602,6 +602,42 @@ Nenhum destes aparece em `tsc --noEmit`, em `rspec` (185/185 verde) nem em `vite
 
 ## D-QA-01 — a tela de login diz se um e-mail é cliente do Safegold · **alta**
 
+> ### ✅ 27/08/2026 — **corrigido e verificado, num ramo à parte: `qa/d-qa-01-ensaio`, commit `a47689c`**
+>
+> Não entrou na `main` porque a apresentação é em 28/08 e isto mexe no caminho
+> de login, que é a rota mais crítica dela. **A decisão de trazer agora ou
+> depois é do Vinícius** — é um `git cherry-pick a47689c`, ou nada.
+>
+> **Verificado:** suíte inteira **3092 exemplos, 0 falhas** (eram 3090; +2 dos
+> exemplos novos); auth **118/118**.
+>
+> **O que a correção faz.** O cooldown de 30 s subiu do `MagicLoginService` para
+> `SecurityHelpers`, com chave no **destino normalizado** em vez da conta — o
+> único ponto onde ele pode ser cobrado sem saber se a conta existe. Os dois
+> casos passam pelo mesmo `if`, então respondem igual **por construção**, e não
+> porque alguém lembre de manter dois ramos em sincronia. Falha aberto igual nos
+> dois, de modo que nem o Redis fora vira oráculo. **429** em vez de 422, que é o
+> que o endpoint já documentava. A política não muda: 30 s é o número que já
+> estava em `User#can_request_new_code?`.
+>
+> **Um segundo oráculo, no mesmo trecho.** Em `development` o corpo de sucesso
+> carrega `code` e o silencioso não carregava — bastava olhar a **presença da
+> chave**. E a demonstração roda em `development`. O ramo silencioso passou a
+> gerar um código também, que não é gravado em lugar nenhum.
+>
+> ⚠ **Consequência para o dia da demonstração**, se o cherry-pick for feito: um
+> e-mail digitado errado passa a mostrar um código na tela, e ele não funciona.
+> É o comportamento certo — conta inexistente não entra —, mas pode parecer
+> defeito em cima do palco.
+>
+> **Um exemplo reprovou, e era o exemplo que estava errado.** `can_resend` criava
+> um `LoginCode` na mão e exigia `false`; passava porque o endpoint lia a
+> **tabela**, e responder pela existência de código para aquele destino é o mesmo
+> oráculo por outra porta. Reescrito para o contrato novo, mais o que faltava:
+> **conta inexistente responde igual**. Se os dois ramos divergirem de novo, é
+> ali que aparece.
+
+
 **O que é.** `MagicLoginService#execute!` responde `silent_response` (**200**) para
 identificador sem conta **antes** de chegar ao cooldown, mas para conta **real** passa por
 `can_request_code?`, que impõe 30 segundos entre pedidos e responde **422**. Dois pedidos
@@ -642,6 +678,17 @@ a mesma semântica.
 ---
 
 ## D-QA-02 — «Sair» não revoga o access token · **média-alta**
+
+> ### ✅ **JÁ CORRIGIDO na `main`** — `api/root.rb:153` e `api/v1/defaults.rb:50`
+>
+> A checagem de revogação está nas duas portas, com o comentário explicando por
+> que ela fica na linha do gate e não dentro de um dos dois decodificadores: assim
+> vale para os dois, inclusive se a ordem mudar de novo.
+>
+> Achado ao conferir o D-QA-01 em 27/08 — o patch parado em
+> `.migration-ai9/wip-auth-backup/wip.patch` **não aplicava inteiro** justamente
+> porque esta metade dele já tinha sido superada pelo código.
+
 
 **O que é.** O logout **grava o `jti` na denylist** e `Auth::TokenService.revoked?` passa a
 devolver `true` — mas o gate central usa **outro decodificador**, que não consulta a

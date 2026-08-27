@@ -45,7 +45,7 @@
     "semantic_hash": ""
   },
   "backend/app/controllers/api/auth/v1/magic_login.rb": {
-    "mtime": 1787814738.9032733,
+    "mtime": 1787862487.8835971,
     "ast_hash": "7ec4ea38b69494148f0f9bb645f32172",
     "semantic_hash": ""
   },
@@ -455,7 +455,7 @@
     "semantic_hash": ""
   },
   "backend/app/services/auth/magic_login_service.rb": {
-    "mtime": 1787786398.3362882,
+    "mtime": 1787862487.8835971,
     "ast_hash": "271d5454b3051113bac6a4307d68f974",
     "semantic_hash": ""
   },
@@ -1035,7 +1035,7 @@
     "semantic_hash": ""
   },
   "backend/spec/requests/api/auth/v1/magic_login_spec.rb": {
-    "mtime": 1787598508.430346,
+    "mtime": 1787862487.8835971,
     "ast_hash": "0323de3dc1582f7b75d9c170ffe9f1f0",
     "semantic_hash": ""
   },
@@ -3240,8 +3240,8 @@
     "semantic_hash": ""
   },
   ".migration-ai9/parity-ledger.md": {
-    "mtime": 1787860068.234456,
-    "ast_hash": "0c0a67d340b464db0e26be9e6fd3c983",
+    "mtime": 1787860809.2824302,
+    "ast_hash": "7e4e125dc1fa1e34e3e702b4e0996008",
     "semantic_hash": ""
   },
   ".migration-ai9/project-options.md": {
@@ -3500,7 +3500,7 @@
     "semantic_hash": ""
   },
   "backend/app/controllers/api/auth/v1/security_helpers.rb": {
-    "mtime": 1787814738.9032733,
+    "mtime": 1787862487.8835971,
     "ast_hash": "60fd7f2bc7fb5096ad3de28e7f75e324",
     "semantic_hash": ""
   },
@@ -5055,8 +5055,8 @@
     "semantic_hash": ""
   },
   "frontend/src/app/consoleNavigation.tsx": {
-    "mtime": 1787779250.3539257,
-    "ast_hash": "d0dd0aa9196528ed449a4e57eb9d8b93",
+    "mtime": 1787860313.4218578,
+    "ast_hash": "378b9805cc0275a339241ff9e2555b98",
     "semantic_hash": ""
   },
   "frontend/src/app/pages/ErrorPages.tsx": {
@@ -6550,8 +6550,8 @@
     "semantic_hash": ""
   },
   "backend/app/controllers/api/entities/availability_template.rb": {
-    "mtime": 1787714988.8945913,
-    "ast_hash": "493f905a89c681cea0cf4dd654f8a95c",
+    "mtime": 1787860173.817585,
+    "ast_hash": "3dce9e59044fc736acfc56af48b56ed5",
     "semantic_hash": ""
   },
   "backend/app/controllers/api/entities/indicator.rb": {
@@ -7370,8 +7370,8 @@
     "semantic_hash": ""
   },
   "frontend/src/app/pages/availability/AvailabilityTemplatesPage.tsx": {
-    "mtime": 1787718029.7739327,
-    "ast_hash": "ec0c6738c538033426dcbd4b0fcefa27",
+    "mtime": 1787860318.8208432,
+    "ast_hash": "c3140bfadcf69ed1dc7caa76dc047ffc",
     "semantic_hash": ""
   },
   "frontend/src/app/pages/availability/ProjectAvailabilitiesPage.tsx": {
@@ -7585,8 +7585,8 @@
     "semantic_hash": ""
   },
   "frontend/src/lib/api/availability.ts": {
-    "mtime": 1787719062.579014,
-    "ast_hash": "a91d56cdcaaae3d2ba0d07374388b6bd",
+    "mtime": 1787860197.4375541,
+    "ast_hash": "4f1f4f7e60bfeea583df56047a08fc52",
     "semantic_hash": ""
   },
   "frontend/src/lib/api/indicators.ts": {
@@ -7885,7 +7885,7 @@
     "semantic_hash": ""
   },
   "backend/db/migrate/20260826220100_bordero_de_recebiveis.rb": {
-    "mtime": 1787775347.1159844,
+    "mtime": 1787860859.185453,
     "ast_hash": "cac5ea09fc352103bd1e10d8ba62e6c1",
     "semantic_hash": ""
   },
@@ -9005,8 +9005,8 @@
     "semantic_hash": ""
   },
   ".migration-ai9/parity/dump-based.md": {
-    "mtime": 1787857949.5757718,
-    "ast_hash": "f522d4fe8ada50e946b4174094a95330",
+    "mtime": 1787860809.2784302,
+    "ast_hash": "061e2264673468206d8c8a5e3e4b6d51",
     "semantic_hash": ""
   },
   "backend/app/lib/sfg/etl/converters/project_guarantees.rb": {
@@ -9165,8 +9165,8 @@
     "semantic_hash": ""
   },
   "backend/spec/requests/api/v1/availability_parents_and_show_spec.rb": {
-    "mtime": 1787848146.265303,
-    "ast_hash": "b61c84290209ad2aa654b79293932c18",
+    "mtime": 1787860413.407295,
+    "ast_hash": "62b8f8bd4d4066227ffabc57268f73b8",
     "semantic_hash": ""
   },
   "backend/spec/requests/api/v1/global_template_destroy_spec.rb": {
@@ -9247,6 +9247,21 @@
   "frontend/src/app/pages/users/__tests__/UserDetailPage.test.tsx": {
     "mtime": 1787860042.0784323,
     "ast_hash": "f2bf03fe3332f7b93c4ca5487ceac470",
+    "semantic_hash": ""
+  },
+  "backend/db/migrate/20260827170000_o_comentario_da_legacy_id_afirmava_o_contrario_do_que_acontece.rb": {
+    "mtime": 1787860859.185453,
+    "ast_hash": "a81420efa75ccb29710136c3250624fa",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/pages/availability/AvailabilityTemplateDetailPage.tsx": {
+    "mtime": 1787860275.4322035,
+    "ast_hash": "9f2a166bb7feb9e0eb1740d6bf259315",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/pages/availability/__tests__/AvailabilityTemplateDetail.test.tsx": {
+    "mtime": 1787860353.9118173,
+    "ast_hash": "c0e1e88f94221d1b41bcbbee58e029b0",
     "semantic_hash": ""
   }
 }
