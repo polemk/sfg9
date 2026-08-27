@@ -142,7 +142,19 @@ O sistema DEVE (SHALL) registrar o progresso de onboarding informado para o proj
 - **WHEN** o cliente informa a ultima etapa concluida
 - **THEN** o registro de progresso e gravado e fica disponivel na trilha de auditoria do projeto
 
-> AMBIGUIDADE: no legado esse tracking so dispara no update e nao tem nenhum efeito visivel na UI de projetos. Confirmar quem consome esse dado antes de porta-lo.
+> **RESOLVIDA em 27/08/2026 — e a resposta e: ninguem, porque nunca rodou.**
+>
+> `pub/projects_controller.rb:135` chama `TrackingFacade.track_new_project`, e
+> a classe **nao define esse metodo**: sao 22 `def self.` em
+> `lib/tracking_facade.rb` e nenhum e ele, sem `method_missing` nem
+> `define_method`. E **ninguem envia `update_type=update_progress`** — o `grep`
+> no `app/` inteiro so encontra a propria condicional (os outros
+> `update_progress` sao o delegate da barra de job, outra coisa).
+>
+> Ramo inalcancavel que, se alcancado, levantaria `NoMethodError`. **Nao ha
+> comportamento a replicar**, entao DEC-30 nao se aplica. O requisito e
+> `dropped`; a trilha de auditoria do projeto vive em `has_paper_trail`
+> (DEC-59 / DC-15), que cobre o update inteiro em vez de uma etapa avulsa.
 
 ### Requirement: BE-091 — Remover projeto
 O sistema DEVE (SHALL) remover um projeto sem dados dependentes e DEVE (SHALL) bloquear a remocao, com erro visivel, quando houver portadores, indicadores, recebiveis, renegociacoes, empresas, controles de risco ou lancamentos de disponibilidade vinculados. Fonte legada: `app/controllers/pub/projects_controller.rb:175-188`; `app/models/project.rb:12-22`.

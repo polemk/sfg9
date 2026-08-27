@@ -1,11 +1,11 @@
 # Graph Report - .  (2026-08-27)
 
 ## Corpus Check
-- 1725 files · ~3,011,225 words
+- 1726 files · ~3,012,361 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 15971 nodes · 20830 edges · 2167 communities (1764 shown, 403 thin omitted)
+- 15973 nodes · 20832 edges · 2167 communities (1764 shown, 403 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 229 edges (avg confidence: 0.77)
 - Token cost: 0 input · 0 output
 
@@ -19,19 +19,21 @@
 - parity-ledger.md (5)
 - parity-ledger.md (6)
 - parity-ledger.md (8)
-- Client Pages & Auth Routing
+- .migration-ai9/parity (4)
+- Backend Services / seeds
+- App Shell & Route Table
 - Frontend Pages / pages - CatalogScreen
 - backend/app/lib/sfg - Users
 - Backend Models - AvailabilityEntry
-- Backend Services / risk - Company
+- Backend Models - Company
 - Backend Services / availability - grid_service.rb
-- Backend Models - RiskOperation
+- Backend Services / receivables - ReceivableEntry
 - API Controllers / api - recalculate!
 - Backend Services - RenegotiationInstallment
-- Backend Services / risk - movement_service.rb
+- Backend Services / risk - RiskMovement
 - Backend Services / risk - RiskOperations
 - Database & Seeds / migrate (9)
-- Background Jobs - ProjectAvailabilityTemplate
+- Background Jobs
 - Backend Services / availability - entry_service.rb
 - User Model & Code Validation
 - decisions.md - decisions.md
@@ -74,37 +76,36 @@
 - decisions.md (14)
 - decisions.md (32)
 - Frontend Features - formatMoney
-- Frontend Pages / pages - projetoEmpresas.test.tsx
-- Frontend Pages / pages - MessagesPage.tsx
+- Frontend Components / mobile - MobileRowActions.tsx
 - Frontend Lib / api - console.ts
 - Frontend Pages / pages - ProfilePage.tsx
 - tools/graphify - install-hook.sh
 - frontend - vite.config.ts
 - Blog Posts & WhatsApp Admin
-- Dashboard KPIs & Flow Builder
+- Client Pages & Auth Routing
 - Frontend Pages / pages - availability.ts
-- Frontend Lib / api - projects.ts
+- Frontend Components / renegotiations - renegotiations.ts
 - Frontend Pages / pages - RenegotiationsPage.tsx
-- Frontend Components / renegotiations - InstallmentsTab.tsx
 - Frontend Features / attachments - index.ts
 - Frontend Lib / api - indicators.ts
+- Frontend Lib / api - projects.ts
 - Frontend Features / risk - risk.ts
 - Frontend Features / structured-operations - structuredOperations.ts
 - Frontend Components / ui - DatePicker.tsx
 - Frontend Components / ui - DataTable.tsx
 - Frontend Lib / api - receivables.ts
-- Frontend Lib / api - renegotiations.ts
-- Frontend Components / renegotiations - SummaryCards.tsx
 - backend/app/mailers - MessageMailer
 - Backend Models - MessageNote
 - Backend Services / availability - project_template_service.rb
 - Backend Services / availability - global_template_service.rb
+- Backend Services / availability - ProjectAvailabilityTemplate
 - Backend Models - Renegotiation
 - Backend Services / renegotiations - Formulas
-- ActionCable Channels / application_cable - defaults.rb
+- .migration-ai9/wip-auth-backup - defaults.rb
 - Auth Request Specs
 - API Controllers / api - MagicLogin
 - Backend Services / auth - MagicLoginService
+- Backend Services / auth - AuthMailer
 - API Controllers / api - SecurityHelpers
 - .migration-ai9/parity/phase4 - g1-backend-a.md
 - .migration-ai9/parity/phase4 - g2-backend-b.md
@@ -129,16 +130,15 @@
 - backend/app/lib/sfg - Renegotiations (3)
 - backend/app/lib/sfg
 - backend/app/lib/sfg (2)
-- Backend Specs / lib/sfg - engine_rejections_spec.rb
+- backend/app/lib/sfg - Report
 - backend/app/lib/sfg - Reconcile
 - backend/app/lib/sfg - convert
-- backend/app/lib/sfg - Run
 - backend/app/lib/sfg - base.rb
 - backend/app/lib/sfg - Base (2)
 - backend/app/lib/sfg - Outcome
 - backend/app/lib/sfg - risk_controls.rb
 - backend/app/lib/sfg - AvailabilityEntries
-- backend/app/lib/sfg - Report
+- backend/app/lib/sfg - Run
 - backend/app/lib/sfg - Projects
 - backend/app/lib/sfg - ReceivableEntries
 - Database & Seeds / migrate
@@ -146,13 +146,13 @@
 - Backend Specs / lib/sfg - ProjectIndicatorConnection
 - backend/app/lib/sfg - RiskEntries
 - Backend Services / availability - AvailabilityTemplate
-- Database & Seeds / seeds/demo - RiskMovementType
+- Backend Models - RiskMovementType
 - backend/app/lib/sfg - variant_url
 - backend/app/lib/sfg - Provider
 - Backend Models - User
 - API Controllers / api
 - Backend Services / authorization - PermissionResolver
-- Backend Services - Project
+- backend/app - Project
 - backend/app/lib/sfg - Archive
 - backend/app/lib/sfg - Attachments
 - runbook-cutover.md - 3. Sequência da janela
@@ -161,48 +161,45 @@
 - API Controllers / api - CatalogService
 - Backend Models / concerns - GlobalCatalog
 - Backend Services / charges - charge_service.rb
-- API Controllers / api - ProjectScopedService
 - API Controllers / api - company_service.rb
-- API Controllers / api - ProjectToCarrierConnection
-- Backend Services / risk - RiskOperationType
+- API Controllers / api - project_guarantee_service.rb
 - Backend Services - project_scoped_service.rb
+- Backend Services / risk - RiskOperation
 - API Controllers / api - resource_source_service.rb
 - Backend Services / structured - operation_service.rb
-- Backend Services / structured - StructuredOperations
 - Backend Services / structured - remuneration_service.rb
 - API Controllers / api - wallet_service.rb
 - Database & Seeds / seeds/demo - Ledger
 - Database & Seeds / seeds/demo - records.rb
 - Database & Seeds / seeds/demo - Ancillary
+- Database & Seeds / seeds/demo - coverage_spec.rb
 - Database & Seeds / seeds/demo
+- Database & Seeds / seeds/demo (2)
 - Database & Seeds / seeds/demo - Availability
-- Database & Seeds / seeds/demo - Billing
+- Database & Seeds / seeds/demo (5)
 - Database & Seeds / seeds/demo - Charges
+- Database & Seeds / seeds/demo - Billing
 - Database & Seeds / seeds/demo - Orchestrator
 - Database & Seeds / seeds/demo - Indicators
 - Database & Seeds / seeds/demo - StaticTransfers
-- Database & Seeds / seeds/demo - coverage_spec.rb
 - frontend/src/__tests__
-- App Shell & Route Table
+- Frontend Components / chat - ChatCTA.tsx
 - Frontend Components / __tests__ - layoutRespiroDoTopo.test.ts
-- Backend Services
+- Backend Services - Permission
 - Backend Services - polemk_instance_service.rb
+- backend/app - ProjectToCarrierConnection
 - API Controllers / api - Credential
 - API Controllers / api - instances.rb
 - Backend Services - polemk_webhook_service.rb
 - backend/app/lib/sfg - access.rb
-- Backend Models - ApplicationRecord
-- .migration-ai9/parity (4)
+- Backend Specs / requests
 - backend/app/lib/sfg - RiskOperationSubtypes
 - backend/app/lib/sfg - ProjectGuarantees
 - backend/app/lib/sfg - Remunerations
 - backend/app/lib/sfg - RiskOperationExtensions
 - backend/app/lib/sfg - StructuredOperations
-- API Controllers / api - Receivables
+- Backend Services / receivables - Receivables
 - backend/app/lib/sfg - ReceivableTaxes
-- Backend Models - RiskControl
-- Backend Services / receivables - call
-- Backend Services / receivables - InputGuard
 - Backend Services / receivables - Calculator
 - Database & Seeds / migrate (2)
 - backend/app/lib/sfg - ContractDeals
@@ -224,7 +221,7 @@
 - upstream-flags.md (3)
 - upstream-flags.md (4)
 - upstream-flags.md (5)
-- Backend Models - PolemkWebhook
+- API Controllers / api - PolemkWebhook
 - Backend Models - PolemkInstance
 - platform-runbook.md - Runbook de plataforma — sfg9
 - backend/app/lib/sfg - WorkerHealth
@@ -240,20 +237,21 @@
 - improvements-log.md - improvements-log.md
 - Frontend Pages - consoleNavigation.tsx
 - Frontend Hooks - useNavItems.ts
+- Frontend Pages - App.tsx
 - Frontend Components / ui - cn
-- Frontend Components / mobile - MobileRowActions.tsx
 - Frontend Features / receivables - chargeDetailPage.test.tsx
 - Frontend Hooks - useDragToScroll.ts
 - Database & Seeds / migrate (3)
-- Frontend Pages / pages - AuditEventDialog.tsx
+- Frontend Components / ui - AuditEventDialog.tsx
 - Frontend Components / audit - auditTrail.ts
+- Frontend Pages / pages - auditTrailPage.test.tsx
 - frontend/src/__tests__ - numero-em-pt-br.test.ts
-- Frontend Pages / pages - RenegotiationDetailPage
+- frontend/src - RenegotiationDetailPage
 - Frontend Components / renegotiations - AttachmentGallery
-- Frontend Components / ui - Table.tsx
 - frontend/src/__tests__ - empilhamento-barras.test.ts
 - backend/app/lib/sfg - LedgerGate
-- Backend Services / charges - Receipt
+- Background Jobs (2)
+- Backend Services - Receipt
 - Backend Models
 - Backend Services / risk - calculator.rb
 - openspec/changes/s11-disponibilidades-cobrancas
@@ -271,19 +269,18 @@
 - Frontend Features / dashboard - DashboardFilters.tsx
 - openspec/changes/s15-graficos-dashboard - Decisions
 - openspec/changes/s15-graficos-dashboard (2)
+- Frontend Components / ui - MasonryGrid.tsx
 - Frontend Components / charts - SeriesLineChart.tsx
 - Backend Services / dashboard - SummaryService
-- Backend Services / receivables - search_service.rb
 - Backend Services / renegotiations - aggregate_service.rb
 - Frontend Lib / api - dashboard.ts
-- Frontend Features / indicators - CarrierVolumeChart.tsx
 - frontend/src/__tests__ - no-api-polling.test.ts
 - Backend Services / risk - aggregate_service.rb
-- Frontend Components / ui - number.ts
 - legacy-defects.md
 - Database & Seeds / seeds/demo - Remunerations
-- Database & Seeds / seeds/demo - StructuredOperationType
+- Database & Seeds / seeds/demo - StructuredOperations
 - openspec/changes/s20-seed-demonstracao (2)
+- Frontend Features / indicators - indicatorCharts.test.tsx
 - .migration-ai9/tools
 - .migration-ai9/tools - browser.js
 - backend/app/lib/sfg - attachments.rb
@@ -304,7 +301,7 @@
 - openspec/changes/s9-renegociacoes
 - backend/app/lib/sfg (5)
 - backend/app/lib/sfg - Renegotiations
-- backend/app/lib/sfg - SqlDump
+- Backend Specs / lib/sfg - renegotiation_parity_spec.rb
 - API Controllers / api (2)
 - API Controllers / api - indicator_connection.rb
 - Backend Models - Indicator
@@ -317,8 +314,9 @@
 - openspec/changes/s1-autenticacao-conta
 - Backend Services / seeds - Runner
 - API Controllers / api (3)
-- Backend Services / seeds
-- Frontend Features / chat-builder - timeAgo
+- Backend Services / seeds (2)
+- Frontend Hooks - useMyPermissions.ts
+- Dashboard KPIs & Flow Builder
 - Frontend Components / chat - AIChatWidget.tsx
 - API Controllers / api - ControllerHelpers
 - Backend Models - LoginCode
@@ -330,11 +328,14 @@
 - API Controllers / api - risk_operation_extension.rb
 - backend/app/lib/sfg - RiskMovements
 - Backend Services / risk - ExposureCache
-- Database & Seeds / seeds/demo (2)
+- Database & Seeds / seeds/demo (4)
 - Database & Seeds / seeds/demo - Stream
-- Database & Seeds / seeds/demo - base.rb
+- Database & Seeds / seeds/demo - Base
+- Database & Seeds / seeds/demo (6)
+- Database & Seeds / seeds/demo (3)
 - Database & Seeds / seeds/demo - Observers
 - Database & Seeds / seeds/demo - ReceivableEntries
+- Database & Seeds / seeds/demo - RiskMovements
 - Database & Seeds / seeds/demo - Scaffolding
 - Frontend Features / risk - riskOperations.test.tsx
 - removed-features.md (3)
@@ -349,7 +350,7 @@
 - removed-features.md (12)
 - removed-features.md (2)
 - removed-features.md (7)
-- API Controllers / api - me.rb
+- Auth Services & Entities
 - API Controllers / api - movement_kind.rb
 - API Controllers / api - receipt.rb
 - API Controllers / api - receivable_kind.rb
@@ -359,9 +360,7 @@
 - API Controllers / api - movement_kind_service.rb
 - API Controllers / api - receivable_kinds.rb
 - API Controllers / api - uploads.rb
-- Background Jobs - GlobalAvailabilityTemplate
-- Background Jobs / receivables
-- Background Jobs
+- Background Jobs (3)
 - backend/app/lib/sfg - dkim_signer.rb
 - backend/app/lib/sfg - ActionTextRichTexts
 - backend/app/lib/sfg - Charges
@@ -379,16 +378,11 @@
 - backend/app/lib/sfg - Scan
 - backend/app/lib/sfg - Base
 - backend/app/lib/sfg - Connection
+- backend/app/lib/sfg - SqlDump
 - backend/app/lib/sfg - Money
-- backend/app/mailers - AuthMailer
-- Auth Services & Entities
-- Backend Services / receivables - persist
-- Backend Services / receivables - help_texts.rb
 - Backend Services / seeds - iof_rates.rb
 - Backend Services / seeds - movement_kinds.rb
-- Backend Services / seeds - receivable_kinds.rb
 - Backend Services / seeds - resource_sources.rb
-- Backend Services / seeds - wallets.rb
 - Backend Specs / lib/sfg - engine_spec.rb
 - Frontend Pages / pages - faqPage.test.tsx
 - Frontend Lib / api - UiKitPage.tsx
@@ -397,10 +391,9 @@
 - openspec/changes/s13-jobs-integracoes (2)
 - openspec/changes/s14-etl-producao - Decisions
 - openspec/changes/trim-ai9-safegold
-- Frontend Features / chat-builder - AIAgentConfigPanel.tsx
-- Frontend Lib - sidebarModes.ts
-- Frontend Components - Button.tsx
-- Frontend Components / ui - PhoneInputGroup.tsx
+- Frontend Features / chat-builder - ChatBuilderPage.tsx
+- Frontend Stores - sidebarModeStore.ts
+- Frontend Components / ui - Button.tsx
 - Frontend Components / ui - Autocomplete.tsx
 - Frontend Components / ui - alturaSobrescrivel.test.tsx
 - ai9-conventions.md
@@ -414,7 +407,7 @@
 - frontend/scripts - mobile-audit.mjs
 - frontend/scripts - mobile-surfaces.mjs
 - Frontend Components / mobile - mobileLibrary.test.tsx
-- Frontend Components / mobile - AsyncSection.tsx
+- Frontend Components / ui - Select.tsx
 - backend/app/lib/sfg - Memberships
 - ai9-feature-selection.md
 - feature-inventory.md
@@ -440,8 +433,10 @@
 - project-options.md
 - backend/app/lib/sfg (3)
 - API Controllers / api - IndicatorEntries
+- API Controllers / api - provider_service.rb
 - Backend Services / renegotiations - attachment_service.rb
-- Backend Services (2)
+- Backend Services
+- API Controllers / api - risk_movement_type.rb
 - API Controllers / api - risk_operation_subtype.rb
 - API Controllers / api - risk_operation_type.rb
 - Backend Services / indicators - connection_service.rb
@@ -449,20 +444,18 @@
 - Backend Services / renegotiations - criar!
 - Backend Services / risk - movement_type_service.rb
 - Backend Services / risk - operation_type_service.rb
-- Backend Services / availability
 - backend/app/lib/sfg - AvailabilityTemplates
 - backend/app/lib/sfg - Indicators
 - backend/app/lib/sfg - ProjectIndicatorConnections
 - backend/app/lib/sfg - RenegotiationInstallments
 - backend/app/lib/sfg - RenegotiationPayments
-- backend/app/lib/sfg - RiskMovementTypes
 - backend/app/lib/sfg - RiskOperationTypes
 - backend/app/lib/sfg - RiskOperations
 - backend/app/lib/sfg - FixLog
 - Backend Services / indicators - IndicatorEntry
+- Backend Services / availability
 - Backend Services / indicators - backfill_service.rb
 - Backend Services / renegotiations
-- Backend Services / seeds - risk_movement_types.rb
 - Backend Services / seeds - risk_operation_types.rb
 - Database & Seeds / migrate - TiposDeLimiteDeRisco
 - Database & Seeds / migrate - SubtiposDeLimiteDeRisco
@@ -483,8 +476,9 @@
 - Database & Seeds / migrate - CreateIndicators
 - Database & Seeds / migrate (17)
 - Database & Seeds / migrate - CreateIndicatorEntries
-- Database & Seeds / seeds/demo (3)
+- Database & Seeds / seeds/demo (7)
 - Database & Seeds / seeds/demo - Renegotiations
+- Database & Seeds / seeds/demo - RiskControls
 - Frontend Components / ui - ConfirmDialog.tsx
 - Frontend Components / ui - RichTextField.tsx
 - Frontend Features / indicators - periodo.ts
@@ -492,6 +486,7 @@
 - openspec/changes/s10-indicadores (3)
 - Backend Services / contracts
 - Frontend Pages / pages - routing.test.tsx
+- Frontend Components / ui - currency.ts
 - Database & Seeds / migrate - AddProjectDomainColumns
 - Database & Seeds / migrate - CreateCompanies
 - Database & Seeds / migrate - CreateProviders
@@ -507,21 +502,24 @@
 - Frontend Components / brand - Logo.tsx
 - openspec/changes/s17-temas (2)
 - openspec/changes/s16-pwa-minimo - Design: S16 — PWA mínimo
+- Backend Services - EvolutionConnection
 - Backend Services - whats_app_webhook_service.rb
 - authorization-matrix.md
 - API Controllers / api - carrier.rb
 - Backend Config / environments - Application
 - Database & Seeds / migrate - CreateCarriers
 - Database & Seeds / migrate - ReaddJobStateToProjects
-- Backend Services - EvolutionConnection
 - Backend Services / seeds - guarantee_types.rb
+- Frontend Pages / pages - helpCenterPage.test.tsx
 - Frontend Pages / pages - oneRichTextEditor.test.ts
 - Frontend Lib / api - contracts.ts
+- Frontend Components / contracts - termsBanner.test.tsx
 - Frontend Components / help - helpItemEditor.test.tsx
 - openspec/changes/s12-contratos-ajuda-faq (3)
 - API Controllers / api - base.rb (2)
 - API Controllers / api - attachment.rb
 - API Controllers / api - carrier_group.rb
+- API Controllers / api - chat_flow.rb
 - Chat Flows & Deliveries API
 - API Controllers / api - Contracts
 - API Controllers / api - contract_deal.rb
@@ -529,7 +527,6 @@
 - Backend Services / help - Help
 - API Controllers / api - help_item.rb
 - API Controllers / api - permission_audit_log.rb
-- API Controllers / api - polemk_instances.rb
 - API Controllers / api - project_guarantee_type.rb
 - API Controllers / api - segment.rb
 - API Controllers / api - sub_segment.rb
@@ -548,6 +545,7 @@
 - API Controllers / api - sub_segments.rb
 - API Controllers / api - base.rb
 - Background Jobs - ApplicationJob
+- backend/app/mailers - EmailDeliveryLogger
 - Backend Services / ai - conversation_memory.rb
 - Backend Models - ChatSession
 - Backend Services / contracts - ContractDeal
@@ -595,7 +593,6 @@
 - Backend Services - admin_messages_service.rb
 - API Controllers / api - countries.rb
 - Backend Services - Observer
-- API Controllers / users
 - backend/app/lib/sfg - Inflection
 - backend/app/lib/sfg - Iso8601
 - backend/app/mailers - ObserverMailer
@@ -612,6 +609,7 @@
 - Database & Seeds / migrate - CreateAdminMessages
 - Database & Seeds / migrate - CreateMessageNotes
 - Database & Seeds / migrate - CreateObservers
+- Database & Seeds / seeds/demo - money.rb
 - Database & Seeds / seeds/demo - CarrierConnections
 - Database & Seeds / seeds/demo - Guarantees
 - Frontend Features / auth - LoginPage.tsx
@@ -622,8 +620,7 @@
 - openspec/changes/s20-seed-demonstracao (3)
 - openspec/changes/s20-seed-demonstracao/specs - ADDED Requirements
 - brand-and-metadata.md
-- ActionCable Channels
-- Background Jobs / purge_audit_versions_job.rb - scripts
+- Background Jobs - package.json
 - backend/app/lib/sfg - DateBounds
 - Backend Models / concerns - project_scoped.rb
 - Backend Config / initializers - RequiredEnv
@@ -634,13 +631,16 @@
 - Database & Seeds / migrate - CreateUserTypePermissions
 - Database & Seeds / migrate - AddIsDefaultMemberToUsers
 - Backend Specs / requests/api - DummyController
+- API Controllers / api - defaults.rb
+- package.json - scripts
 - Frontend NPM Dependencies
-- Frontend Components / ui - FloatingPanel.tsx
+- Frontend Components / ui - react
 - package.json - devDependencies
 - Frontend Assets - analytics-ga4.js
 - frontend/scripts - check-coercion-golden.mjs
 - frontend/scripts - csp-console-sweep.mjs
 - Frontend Components / ui - DetailList.tsx
+- Frontend Components / ui - FloatingPanel.tsx
 - Frontend Components / ui - UserAvatar.tsx
 - Frontend Hooks - useJobProgress.ts
 - Frontend Lib / utils - address.ts
@@ -1948,10 +1948,10 @@
 - Frontend Components - useTheme
 - Frontend Components - RichTextEditor.tsx
 - Frontend Components / charts - theme.ts
-- Frontend Components / chat - ChatCTA.tsx
 - Frontend Components / chat - MobileChatBar.tsx
-- Frontend Features / chat-builder - ChatBuilderPage.tsx
-- Frontend Features / chat-builder - PropertiesPanel.tsx
+- Frontend Components / ui - Sheet.tsx
+- Frontend Components / ui - drawer.tsx
+- Frontend Lib / api - PropertiesPanel.tsx
 - .migration-ai9/map - 2. Mapa item por item
 - ai9-base-catalog.md - Backend — o que existe
 - .migration-ai9/map (2)
@@ -1962,7 +1962,6 @@
 - API Controllers / api - credential.rb
 - API Controllers / api - login_code_response.rb
 - API Controllers / api - permission.rb
-- API Controllers / api - polemk_webhook.rb
 - API Controllers / api - downloads.rb
 - API Controllers - application_controller.rb
 - API Controllers - AssetsProxyController
@@ -2099,23 +2098,23 @@
 
 ## Communities (2167 total, 403 thin omitted)
 
-### Community 360 - "parity-ledger.md - Parity ledger — sfg -> ai9"
+### Community 352 - "parity-ledger.md - Parity ledger — sfg -> ai9"
 Cohesion: 0.17
 Nodes (11): Parity ledger — sfg -> ai9, ESTADO ATUAL — 27/08/2026, depois da Phase 4, ⚠ Por que `scripts/status.py` diz 127 abertos e não 63, S14 — o ETL EXECUTADO contra o dump de produção — 26/08/2026, O que a execução DESMENTIU do material da própria fatia, O dump de produção aplicado ao razão — 26/08/2026, O que o dump NÃO decidiu, e continua aberto — dono: **usuário**, S1 — os 173 IDs lançados, e as três contradições que o lançamento revelou (26/08/2026) (+3 more)
 
-### Community 664 - "parity-ledger.md (3)"
+### Community 662 - "parity-ledger.md (3)"
 Cohesion: 0.40
 Nodes (5): A paridade que esperava o dump: **67 promovidos, 21 com motivo novo** (27/08/2026), O que provou os 67, Cinco defeitos, e quatro param a virada, Cinco achados, e dois desmentem artefato escrito, E dois que o dump respondeu com "nunca"
 
-### Community 536 - "parity-ledger.md"
+### Community 530 - "parity-ledger.md"
 Cohesion: 0.29
 Nodes (7): Phase 4 — `receivables` · `renegotiations` · `contracts`: **73 promovidos por execução** (26/08/2026), A régua desta passada, O que provou os 73, O que continua `migrated`, por três motivos e nenhum "esqueci", Três defeitos, e o mais caro não é do meu bloco, Cinco coisas que pareciam defeito e **não eram** — conferidas na fonte antes de reportar, E oito artefatos que envelheceram, incluindo o meu próprio briefing
 
-### Community 665 - "parity-ledger.md (4)"
+### Community 663 - "parity-ledger.md (4)"
 Cohesion: 0.40
 Nodes (5): Phase 4 — bloco **risco · estruturadas · indicadores**: 155 `verified` (26/08/2026), A régua aplicada aqui, O dump mudou a régua no meio da passada, e desmentiu duas afirmações, O que ficou `migrated`, e por quê, Três defeitos e três achados
 
-### Community 537 - "parity-ledger.md (2)"
+### Community 531 - "parity-ledger.md (2)"
 Cohesion: 0.29
 Nodes (7): S9 — renegociações: o razão fechado, e a régua que decide `verified` (26/08/2026), A régua, escrita antes da promoção, Os 11 `verified`, e o que provou cada um, Três IDs que PODERIAM parecer `verified` e não são, O que a execução reprovou, Os 2 `dropped`, com evidência escrita, O que continua fora do alcance, e de quem é
 
@@ -2123,11 +2122,11 @@ Nodes (7): S9 — renegociações: o razão fechado, e a régua que decide `veri
 Cohesion: 0.67
 Nodes (3): DEC-108 — as 17 abilities do legado: **7 `migrated`, 10 `dropped`** (26/08/2026), O que o `dropped` significa aqui, e o que ele NÃO significa, A correção de atribuição que acompanha esta DEC
 
-### Community 813 - "parity-ledger.md (5)"
+### Community 812 - "parity-ledger.md (5)"
 Cohesion: 0.50
 Nodes (4): S8 — operações estruturadas e remuneração (26/08/2026), Os 11 `build?` estão FECHADOS — tarefa 13.3, ⚠ NENHUM destes 98 tem oráculo de produção — e a tarefa 13.5 fica ABERTA por isso, O que o fechamento desta fatia DESBLOQUEOU na S6
 
-### Community 812 - "parity-ledger.md (6)"
+### Community 811 - "parity-ledger.md (6)"
 Cohesion: 0.50
 Nodes (4): S7 — operações de risco, movimentos, prorrogação e renovação (26/08/2026), ⚠ NENHUM destes 59 tem oráculo de produção — e a diferença importa, Três decisões do usuário anularam tarefas escritas no Phase 2, O que foi corrigido, e é mudança de comportamento visível
 
@@ -2135,103 +2134,111 @@ Nodes (4): S7 — operações de risco, movimentos, prorrogação e renovação 
 Cohesion: 0.67
 Nodes (3): Inventário completo — semeado em `pending`, IDs de S1 sem linha no inventário — acrescentados em 26/08/2026, S1/F.7 — o de-para da configuração do engine de autenticação (OPS-604)
 
-### Community 0 - "Client Pages & Auth Routing"
-Cohesion: 0.03
-Nodes (73): UsersPage(), ProfilePage(), PermissionsPage(), UserDetailPage(), SELO_POR_PAPEL, selo(), ImpersonateSearchProps, ImpersonateSearch() (+65 more)
+### Community 146 - ".migration-ai9/parity (4)"
+Cohesion: 0.09
+Nodes (21): Paridade contra o dump de produção — os itens que esperavam "a carga", 1. O escopo, contado aqui e não herdado, 2. A régua, 3. Cinco defeitos, e quatro deles param a virada, D-PAR-01 — um CEP de 7 dígitos derrubava a carga inteira · **CORRIGIDO**, D-PAR-02 — 32 borderôs de produção com `NaN` **impedem a carga**. Bloqueador de cutover, D-PAR-03 — 90 templates de disponibilidade **sem título** derrubam a carga, D-PAR-05 — o conversor de `providers` que falta **também barra as 169 renegociações** (+13 more)
 
-### Community 2 - "Frontend Pages / pages - CatalogScreen"
+### Community 73 - "Backend Services / seeds"
+Cohesion: 0.06
+Nodes (12): Seeds, Reference, ReceivableKinds, entries(), Seeds, Reference, Wallets, entries() (+4 more)
+
+### Community 2 - "App Shell & Route Table"
 Cohesion: 0.04
-Nodes (73): CarriersPage(), ScreenRow, CatalogTexts, CatalogApi, CatalogScreenProps, CatalogFormProps, PAPEIS_DE_ESCRITA, CatalogScreen() (+65 more)
+Nodes (55): UsersPage(), ProfilePage(), UserDetailPage(), ImpersonateSearch(), ImpersonateSelector(), Sidebar(), MobileContextSheet(), CodeValidation() (+47 more)
 
-### Community 31 - "backend/app/lib/sfg - Users"
+### Community 1 - "Frontend Pages / pages - CatalogScreen"
+Cohesion: 0.04
+Nodes (71): CarriersPage(), ScreenRow, CatalogTexts, CatalogApi, CatalogScreenProps, CatalogFormProps, PAPEIS_DE_ESCRITA, CatalogScreen() (+63 more)
+
+### Community 33 - "backend/app/lib/sfg - Users"
 Cohesion: 0.07
 Nodes (6): Sfg, Etl, Converters, Users, Sfg, Coercion
 
-### Community 81 - "Backend Models - AvailabilityEntry"
+### Community 86 - "Backend Models - AvailabilityEntry"
 Cohesion: 0.10
 Nodes (3): AvailabilityEntry, Availability, DataReport
 
-### Community 21 - "Backend Services / risk - Company"
-Cohesion: 0.06
-Nodes (24): Carrier, Carrier, Company, Api, Entities, RiskControl, Api, V1 (+16 more)
+### Community 14 - "Backend Models - Company"
+Cohesion: 0.05
+Nodes (26): Carrier, Carrier, Company, SafegoldStamped, safegold_stamp_source_name(), RiskControl, Api, Entities (+18 more)
 
-### Community 198 - "Backend Services / availability - grid_service.rb"
-Cohesion: 0.20
-Nodes (16): Availability, GridService, grid(), panel(), resolve_company(), uuid?(), parse_date(), month_range() (+8 more)
+### Community 177 - "Backend Services / availability - grid_service.rb"
+Cohesion: 0.19
+Nodes (17): Availability, GridService, grid(), panel(), resolve_company(), uuid?(), parse_date(), month_range() (+9 more)
 
-### Community 58 - "Backend Models - RiskOperation"
-Cohesion: 0.08
-Nodes (9): Receivables, RiskSyncService, call!(), release_on_static_operation!(), upsert_operation!(), RiskScenarios, RiskMovement, RiskOperation (+1 more)
+### Community 3 - "Backend Services / receivables - ReceivableEntry"
+Cohesion: 0.03
+Nodes (46): Receivables, RiskSyncService, call!(), release_on_static_operation!(), upsert_operation!(), ReceivableEntry, ReceivableTax, Receivables (+38 more)
 
-### Community 128 - "API Controllers / api - recalculate!"
+### Community 126 - "API Controllers / api - recalculate!"
 Cohesion: 0.13
 Nodes (16): base_scope(), filter(), index(), create(), update(), destroy(), general_values(), Api (+8 more)
 
-### Community 30 - "Backend Services - RenegotiationInstallment"
+### Community 31 - "Backend Services - RenegotiationInstallment"
 Cohesion: 0.07
 Nodes (26): RenegotiationService, RenegotiationInstallmentService, base_scope(), index(), create_batch(), update_installment(), destroy_installment(), find_in() (+18 more)
 
-### Community 90 - "Backend Services / risk - movement_service.rb"
-Cohesion: 0.12
-Nodes (18): Risk, MovementService, create(), update(), build(), positivo?(), save_safely(), unprocessable() (+10 more)
+### Community 45 - "Backend Services / risk - RiskMovement"
+Cohesion: 0.08
+Nodes (20): Risk, MovementService, create(), update(), build(), positivo?(), save_safely(), unprocessable() (+12 more)
 
-### Community 33 - "Backend Services / risk - RiskOperations"
+### Community 35 - "Backend Services / risk - RiskOperations"
 Cohesion: 0.09
 Nodes (31): index(), form_options(), destroy(), find(), OperationService, find(), last_movement(), update() (+23 more)
 
-### Community 26 - "Background Jobs - ProjectAvailabilityTemplate"
-Cohesion: 0.08
-Nodes (18): lancar(), ActivateProjectTemplateJob, DeactivateProjectTemplateJob, RemoveProjectTemplateJob, HasEntries, ProjectAvailabilityTemplate, Availability, seed_project!() (+10 more)
+### Community 152 - "Background Jobs"
+Cohesion: 0.15
+Nodes (4): lancar(), PropagateGlobalTemplateJob, PropagateGlobalTemplateToProjectJob, GlobalAvailabilityTemplate
 
-### Community 77 - "Backend Services / availability - entry_service.rb"
+### Community 99 - "Backend Services / availability - entry_service.rb"
 Cohesion: 0.12
-Nodes (21): lancar(), atualizar(), Api, Entities, AvailabilityGridRow, Api, V1, AvailabilityEntries (+13 more)
+Nodes (19): lancar(), atualizar(), Api, Entities, AvailabilityGridRow, Api, V1, AvailabilityEntries (+11 more)
 
-### Community 4 - "User Model & Code Validation"
+### Community 6 - "User Model & Code Validation"
 Cohesion: 0.07
-Nodes (13): counts(), grant_readonly!(), conceder(), corpo(), Permission, Permissions, RiskMovementTypes, PermissionAuditLog (+5 more)
+Nodes (9): grant_readonly!(), corpo(), Permissions, PermissionAuditLog, grant_readonly!(), ObserverContext, Membership, UserPermission (+1 more)
 
-### Community 93 - "decisions.md - decisions.md"
+### Community 94 - "decisions.md - decisions.md"
 Cohesion: 0.07
 Nodes (27): Perguntas do QA x decisoes ja tomadas, Perguntas ainda ABERTAS para o usuario (fila do Phase 2), Estado final do Phase 1 — todas as perguntas encerradas, Correcoes trazidas pela matriz de autorizacao (24/08/2026), O DEC-04 era mais pessimista do que precisava, O defeito D-36 estava com o sintoma errado, Decima rodada — DEC-19 (24/08/2026) — Q-A1 fica para **depois da venda**, Decima primeira rodada — DEC-20 (24/08/2026) — onde o assistente guarda a conversa (+19 more)
 
-### Community 587 - "decisions.md (8)"
+### Community 583 - "decisions.md (8)"
 Cohesion: 0.33
 Nodes (6): Decisoes do usuario (Vinicius) — registradas em 24/08/2026, DEC-01 — Sinal da exposicao ao risco (D-93): **replicar exatamente como esta hoje**, DEC-02 — Dinheiro em float (D-104): **replicar o float para bater numero**, DEC-03 — Versao de producao (D-113): **Ruby 2.6.1 / Rails 6.0.3.2**, DEC-04 — Dumps do banco: **seguir so com as migrations**, O que estas decisoes NAO cobrem
 
-### Community 501 - "decisions.md (4)"
+### Community 493 - "decisions.md (4)"
 Cohesion: 0.25
 Nodes (8): Segunda rodada — DEC-05..DEC-09 (24/08/2026), DEC-05 — Banco de producao (Q-05): **PostgreSQL** — RESOLVIDO SEM PRODUCAO, DEC-06 — Timezone (Q-01): **converter para UTC** (o usuario delegou: "uso o que for melhor"), DEC-07 — Multi-tenancy (Q-03): pergunta reformulada e **respondida via DEC-09**, DEC-08 — Matriz de autorizacao (Q-02): **sim, eu proponho e voce aprova**, DEC-09 — Escopo (Q-06): **so o que existe no legado**, O que o DEC-09 NAO desliga, Situacao das perguntas
 
-### Community 808 - "decisions.md (23)"
+### Community 807 - "decisions.md (23)"
 Cohesion: 0.50
 Nodes (4): Terceira rodada — DEC-10..DEC-12 (24/08/2026) — encerra o Phase 1, DEC-10 — Graficos e dialogos (Q-09): **usar as libs do ai9**, DEC-11 — Versao de producao (D-113): **CONFIRMADA — Ruby 2.6.1 / Rails 6.0.3.2**, DEC-12 — `Legacy::execute` (Q-08): **assumido como nao executado**
 
-### Community 588 - "decisions.md (9)"
+### Community 584 - "decisions.md (9)"
 Cohesion: 0.33
 Nodes (6): Quarta rodada — DEC-13 (24/08/2026) — Phase 1b: gate de selecao ai9-only, DEC-13.1 — Decisao do usuario: **manter 7, remover 28**, DEC-13.2 — O chatbot fica, mas **desacoplado**. Uso: assistente interno., DEC-13.3 — Rota `/` aponta para a **tela de login**, DEC-13.4 — Login perde o canal WhatsApp (decisao minha, registrada), Ordem de execucao da remocao (dependencias primeiro)
 
-### Community 535 - "decisions.md (6)"
+### Community 529 - "decisions.md (6)"
 Cohesion: 0.29
 Nodes (7): Quinta rodada — DEC-14 (24/08/2026) — **REVOGA o DEC-13.4**, DEC-14 — O login **mantem** o canal WhatsApp. AI9-005 passa a `kept` **parcial**., O que o login realmente precisa — medido no codigo, Escopo minimo mantido (~677 LOC de backend + 1 tela), O que continua sendo removido do AI9-005 (~653 LOC), Consequencia operacional que voce precisa saber, Ledger
 
-### Community 810 - "decisions.md (24)"
+### Community 809 - "decisions.md (24)"
 Cohesion: 0.50
 Nodes (4): Sexta rodada — DEC-15 (24/08/2026) — respostas sobre a matriz de autorizacao, DEC-15.1 — Disponibilidades e cobrancas estao **VIVAS** (Q-A3), DEC-15.2 — Membership: a regra existe e esta na view (Q-A6), DEC-15.3 — Dump do banco: **amanha** (25/08/2026)
 
-### Community 450 - "decisions.md - O que muda"
+### Community 444 - "decisions.md - O que muda"
 Cohesion: 0.22
 Nodes (9): Setima rodada — DEC-16 (24/08/2026) — **a primeira entrega e uma DEMO comercial**, O contexto novo, O que muda, 1. Os bloqueadores de dados deixam de bloquear — para a DEMO, 2. Nasce um entregavel novo: **seed de demonstracao**, 3. O ETL passa de "executar" para "**preparar e testar contra dado fake**", 4. **A qualidade visual sobe de prioridade**, 5. A ordem dos slices no Phase 2 muda (+1 more)
 
-### Community 811 - "decisions.md (25)"
+### Community 810 - "decisions.md (25)"
 Cohesion: 0.50
 Nodes (4): Oitava rodada — DEC-17 (24/08/2026) — escopo e ritmo confirmados, DEC-17.1 — Escopo: **sistema completo**. So o DADO e provisorio., DEC-17.2 — Prazo: **sexta-feira, 28/08/2026** (4 dias), DEC-17.3 — **PARAR de implementar** ("nao implemente nada ainda")
 
-### Community 418 - "decisions.md (3)"
+### Community 405 - "decisions.md (3)"
 Cohesion: 0.20
 Nodes (10): Nona rodada — DEC-18 (24/08/2026) — **a matriz de autorizacao esta APROVADA**, DEC-18.1 — OG e papel do **fornecedor (Livetat)** (Q-A5), DEC-18.2 — Permissoes: **OG + Admin, limitado a hierarquia inferior** (decisao #2), DEC-18.3 — Impersonation: **OG + Admin restrito a hierarquia inferior** (decisao #5), DEC-18.4 — Colaborador **le** os catalogos globais (decisao #1), DEC-18.5 — Membership: criam/removem **OG, Admin e Gerente** (Q-A6, fecha o DEC-15.2), DEC-18.6 — `Membership.role` e **so rotulo descritivo** (Q-A2), DEC-18.7 — Cadastro publico **desligado**; entrada so por **convite** (decisao #7) (+2 more)
 
-### Community 6 - "decisions.md"
+### Community 7 - "decisions.md"
 Cohesion: 0.02
 Nodes (81): Decima segunda rodada — DEC-21 (25/08/2026) — escopo da demo, apos o mapeamento, DEC-21.1 — `NEW-001`: graficos nos indicadores, DEC-21.2 — `NEW-002`: dashboard resumo na tela inicial, DEC-21.3 — `NEW-003`: PWA **so o minimo instalavel**, DEC-21.4 — `openssl_verify_mode`: **deixar como esta, por enquanto**, O que estas decisoes NAO mudam, DEC-22 — Escopo da demo: **manter tudo** (25/08/2026), DEC-23 — Perguntas do mapeamento: **rodada completa agora** (25/08/2026) (+73 more)
 
@@ -2243,11 +2250,11 @@ Nodes (3): DEC-30 — **PRINCIPIO GOVERNANTE**: o legado e sistema validado; reg
 Cohesion: 0.67
 Nodes (3): DEC-50 — **PRINCIPIO**: este repositorio e um produto proprio, derivado do ai9 (25/08/2026), O que muda, O que NAO muda
 
-### Community 807 - "decisions.md (26)"
+### Community 806 - "decisions.md (26)"
 Cohesion: 0.50
 Nodes (4): DEC-99 — OG e Admin enxergam TODOS os projetos, sem participação (25/08/2026), O contrato C1 continua inteiro, Por que a visao global e melhor que participacao de favor, Consequencia nos testes, e como foi tratada
 
-### Community 806 - "decisions.md (27)"
+### Community 805 - "decisions.md (27)"
 Cohesion: 0.50
 Nodes (4): DEC-100 — Mobile e CRITERIO DE ACEITE, com views proprias (25/08/2026), A regra, As 9 fatias ja fechadas, Por que views proprias e nao so responsivo
 
@@ -2255,7 +2262,7 @@ Nodes (4): DEC-100 — Mobile e CRITERIO DE ACEITE, com views proprias (25/08/20
 Cohesion: 0.67
 Nodes (3): DEC-101 — O PRAZO SAI DA EQUACAO. O criterio passa a ser qualidade (25/08/2026), O que muda na pratica, O que NAO muda
 
-### Community 656 - "decisions.md (15)"
+### Community 654 - "decisions.md (15)"
 Cohesion: 0.40
 Nodes (5): DEC-102 — A migracao de DADOS fica para depois da apresentacao; o foco agora e recurso + acabamento, O que isso separa, O que NAO muda, A armadilha que fica registrada, As 8 consultas de producao
 
@@ -2263,19 +2270,19 @@ Nodes (5): DEC-102 — A migracao de DADOS fica para depois da apresentacao; o f
 Cohesion: 0.67
 Nodes (3): DEC-103 — A S16 fecha, e o codigo de 2022 que nunca subiu vira ESPELHO do legado, (a) S16 (PWA) esta FECHADA, (b) O codigo de 2022 que nunca rodou em producao vira ESPELHO do legado
 
-### Community 582 - "decisions.md (10)"
+### Community 578 - "decisions.md (10)"
 Cohesion: 0.33
 Nodes (6): DEC-105 — Os 457 limites entram desativados mesmo. O espelho fica., A pergunta que estava aberta, A decisao, Nao ha mudanca de codigo, O que fica registrado para o dia da carga, Nota sobre a numeracao: por que nao existe DEC-104
 
-### Community 658 - "decisions.md (16)"
+### Community 656 - "decisions.md (16)"
 Cohesion: 0.40
 Nodes (5): DEC-106 — Os 669 `memberships.role` fosseis viram `participante`, O bloqueio, A medicao que resolveu, A decisao, Por que isto NAO contraria o espelho (DEC-103b)
 
-### Community 657 - "decisions.md (17)"
+### Community 655 - "decisions.md (17)"
 Cohesion: 0.40
 Nodes (5): DEC-107 — A DEC-39 nomeou a coluna errada. O bloqueio e pela UNIAO., O achado, A consequencia de seguir o literal, A decisao, O que fica para a revisao humana
 
-### Community 659 - "decisions.md (18)"
+### Community 657 - "decisions.md (18)"
 Cohesion: 0.40
 Nodes (5): DEC-108 (26/08/2026) — as abilities: **as 7 com efeito real voltam, e agora sao checadas de verdade**, O erro que esta DEC corrige, A decisao do usuario, O que isso obriga, DEC-109 (26/08/2026) — a tela **Galeria (`/media`) sai**; o motor de upload fica
 
@@ -2283,215 +2290,211 @@ Nodes (5): DEC-108 (26/08/2026) — as abilities: **as 7 com efeito real voltam,
 Cohesion: 0.67
 Nodes (3): DEC-111 (26/08/2026) — os **4 `TODO:` de texto de ajuda** estao fechados, Por que ela travou, e por que nao precisava travar, Os 4
 
-### Community 804 - "decisions.md (28)"
+### Community 803 - "decisions.md (28)"
 Cohesion: 0.50
 Nodes (4): DEC-112 (26/08/2026) — `has_safegold_management`: **a pergunta ja tinha resposta.** O razao citava a Q errada, A decisao que vale, entao, O que muda na pratica, A licao, que ja e a terceira do dia
 
-### Community 661 - "decisions.md (19)"
+### Community 659 - "decisions.md (19)"
 Cohesion: 0.40
 Nodes (5): DEC-113 (26/08/2026) — o **backend do `Medium` sai**, e a premissa da DEC-109 estava errada, O que eu tinha dito errado, O que saiu, O que FICA, e por que, A licao, pela quarta vez hoje
 
-### Community 583 - "decisions.md (11)"
+### Community 579 - "decisions.md (11)"
 Cohesion: 0.33
 Nodes (6): DEC-115 (26/08/2026) — **nao existe oraculo.** As tres tarefas de golden sao reescritas, nao adiadas, A pergunta, A decisao, O que isso NAO significa, O contexto maior que veio junto, EXECUCAO da DEC-115 (26/08/2026, QA) — feita, e ela achou uma regressao
 
-### Community 500 - "decisions.md (5)"
+### Community 492 - "decisions.md (5)"
 Cohesion: 0.25
 Nodes (8): DEC-116 (26/08/2026) — **"Limites no teto" vira DOIS indicadores**: o que estourou e o que esta prestes, Como isto apareceu, A decisao do usuario, 1. Cartao **"Limites no teto"** — `>= 100%`, 2. Lista **"Limites prestes a estourar"** — `>= 90%`, CORRECAO (26/08/2026) — a faixa e `>= 90%` **E** `< 100%`. Sem sobreposicao., O que isso obriga, A licao, que e minha
 
-### Community 803 - "decisions.md (29)"
+### Community 802 - "decisions.md (29)"
 Cohesion: 0.50
 Nodes (4): DEC-117 (26/08/2026) — as **6 colunas de escala 6 voltam a ser `float`**, como a DEC-02 pedia, A pergunta do usuario, A decisao, O que isso obriga
 
-### Community 534 - "decisions.md (7)"
+### Community 528 - "decisions.md (7)"
 Cohesion: 0.29
 Nodes (7): DEC-118 (26/08/2026) — o dump chegou: o que ele **respondeu**, e o que ele **mudou**, 1. Q-A1 — **FECHADA**, e o risco que eu mais temia nao se concretizou, 2. Os dois bloqueadores de schema do DEC-04 — **resolvidos, e os dois defeitos morrem**, 3. Os papeis — a inferencia do DEC-04 vira **evidencia**, 4. Volumetria real — o ETL precisa saber disto, 5. Os anexos — e um achado sobre a marca, 6. O que ainda NAO da para afirmar
 
-### Community 359 - "decisions.md (2)"
+### Community 351 - "decisions.md (2)"
 Cohesion: 0.17
 Nodes (12): DEC-119 (26/08/2026) — o ensaio do ETL contra o dump real, O que eu decido, com evidencia medida, 1. `duplicates:carriers[bank_code]` — **o indice unico esta errado, nao o dado**, 2. `duplicates:livetat_auth_users[username]` — **idem, e a chave real e o e-mail**, 3. `orphans:livetat_auth_users.default_project_id` — **7 usuarios**, nulificar, 4. `action_text:owner_not_loaded` — **512 textos**: e ordem de carga, nao decisao, O que e do usuario, e por que eu nao decido, `custom:receivable_entries` — **35.813 anomalias, que sao DOIS padroes** (+4 more)
 
-### Community 584 - "decisions.md (12)"
+### Community 580 - "decisions.md (12)"
 Cohesion: 0.33
 Nodes (6): DEC-123 (26/08/2026) — dado real de cliente **nao e versionado**, A violacao que existia, O que ficou, O que foi auditado e esta limpo, O que continua permitido, A ressalva honesta
 
-### Community 802 - "decisions.md (30)"
+### Community 801 - "decisions.md (30)"
 Cohesion: 0.50
 Nodes (4): DEC-124 (26/08/2026) — o dump **e** a carga real, e o ETL roda **no servidor**, 1. Nao existe "esperar a carga". O dump E a carga., 2. O ETL roda **no servidor de producao**, nao aqui, 3. O que NAO muda
 
-### Community 805 - "decisions.md (31)"
+### Community 804 - "decisions.md (31)"
 Cohesion: 0.50
 Nodes (4): DEC-125 (27/08/2026) — `providers`: a **quarta** vez do mesmo achado, Por que eu decido isto sozinho, O que isto exige, e que a assinatura sozinha NAO resolve, A licao que a repeticao ensina
 
-### Community 660 - "decisions.md (20)"
+### Community 658 - "decisions.md (20)"
 Cohesion: 0.40
 Nodes (5): DEC-127 (27/08/2026) — **decisao registrada nao e decisao implementada**, O achado, Por que isso passou despercebido tanto tempo, O que fazer, e a ordem importa, A licao, para as fatias que ainda vierem
 
-### Community 662 - "decisions.md (21)"
+### Community 660 - "decisions.md (21)"
 Cohesion: 0.40
 Nodes (5): DEC-128 (27/08/2026) — quatro travas de carga, decididas pelo usuario, DEC-128.1 — CEP de 7 digitos: **entra VAZIO e vai listado**, DEC-128.2 — Anexos: **o mecanismo esta provado; os binarios NAO ficam agora**, DEC-128.3 — Os 32 borderôs com `NaN` nos derivados: **recalcular pelo motor**, DEC-128.4 — 90 padroes de disponibilidade com titulo vazio: **indice parcial**
 
-### Community 586 - "decisions.md (13)"
+### Community 582 - "decisions.md (13)"
 Cohesion: 0.33
 Nodes (6): DEC-129 (27/08/2026) — storage, abertura de 2022, lancamentos orfaos e o aceite, DEC-129.1 — Storage: **`Disk` com volume persistente garantido pelo deploy**, DEC-129.2 — Abertura por modalidade de 2022: **manter como esta no legado**, DEC-129.3 — Os 51 lancamentos sem conexao: **criar a conexao que falta**, DEC-129.4 — Aceite dos Termos: **replicar o legado** (D-64), CORRECAO (27/08/2026) — **o D-64 nao e defeito neste contexto, e o erro foi meu**
 
-### Community 663 - "decisions.md (22)"
+### Community 661 - "decisions.md (22)"
 Cohesion: 0.40
 Nodes (5): DEC-130 (27/08/2026) — ReceitaWS fica para **depois da venda**, O que foi medido antes de decidir, Por que adiar nao custa nada agora, O estado dos 2 IDs, O que reavaliar se houver venda
 
-### Community 585 - "decisions.md (14)"
+### Community 581 - "decisions.md (14)"
 Cohesion: 0.33
 Nodes (6): DEC-131 (27/08/2026) — o indice parcial cujo predicado depende de coluna DIFERIDA, O sintoma, O mecanismo, medido depois de TRES hipoteses erradas, As tres hipoteses que derrubei, e por que registro isso, O desenho que o defeito expoe, O conserto
 
-### Community 809 - "decisions.md (32)"
+### Community 808 - "decisions.md (32)"
 Cohesion: 0.50
 Nodes (4): DEC-132 — Os callbacks do model competiam com o ETL (`etl_loading`), O que parecia e o que era, Os dois estragos que NAO derrubavam nada, O conserto e por que ele e FIEL
 
-### Community 3 - "Frontend Features - formatMoney"
+### Community 4 - "Frontend Features - formatMoney"
 Cohesion: 0.06
-Nodes (78): ProjectsPage(), ProjectAvailabilitiesPage(), CarrierConnectionsPage(), RenegotiationsPage(), FilesSection(), InstallmentsTab(), IndicatorsPage(), ProjectIndicatorsPage() (+70 more)
+Nodes (78): ProjectsPage(), ProjectAvailabilitiesPage(), CarrierConnectionsPage(), RenegotiationsPage(), InstallmentsTab(), IndicatorsPage(), ProjectIndicatorsPage(), ChargeEditDrawer() (+70 more)
 
-### Community 630 - "Frontend Pages / pages - projetoEmpresas.test.tsx"
-Cohesion: 0.50
-Nodes (3): raiz, ler(), semComentarios()
+### Community 183 - "Frontend Components / mobile - MobileRowActions.tsx"
+Cohesion: 0.15
+Nodes (11): raiz, ler(), semComentarios(), MobileRowAction, MobileRowActionsProps, AnchoredActionsProps, MobileActionsSheet(), useEscapeToClose() (+3 more)
 
-### Community 494 - "Frontend Pages / pages - MessagesPage.tsx"
-Cohesion: 0.25
-Nodes (4): VARIANTE_DE_CONTEXTO, VARIANTE_DE_SITUACAO, CONTEXTOS, SITUACOES
+### Community 50 - "Frontend Lib / api - console.ts"
+Cohesion: 0.06
+Nodes (27): VARIANTE_DE_CONTEXTO, VARIANTE_DE_SITUACAO, CONTEXTOS, SITUACOES, MessagesPage(), PaginationPillProps, PaginationPill(), ProjectOption (+19 more)
 
-### Community 73 - "Frontend Lib / api - console.ts"
-Cohesion: 0.08
-Nodes (23): MessagesPage(), PaginationPillProps, PaginationPill(), ProjectOption, CurrentProjectPayload, currentProjectApi, AdminMessageState, AdminMessageContext (+15 more)
-
-### Community 64 - "Frontend Pages / pages - ProfilePage.tsx"
+### Community 67 - "Frontend Pages / pages - ProfilePage.tsx"
 Cohesion: 0.08
 Nodes (28): CustomText, ParagraphElement, H1Element, H2Element, BulletedListElement, ListItemElement, LinkElement, CodeBlockElement (+20 more)
 
-### Community 526 - "frontend - vite.config.ts"
+### Community 518 - "frontend - vite.config.ts"
 Cohesion: 0.33
 Nodes (4): BACKEND_WS, CspOptions, toOrigin(), buildCsp()
 
-### Community 158 - "Blog Posts & WhatsApp Admin"
-Cohesion: 0.12
-Nodes (15): EstadoInstancia, EstadoCanal, normalizarEstado(), rotuloEstado, comoDataUrl(), formatarData(), mensagemDeFalha(), PASSOS (+7 more)
+### Community 42 - "Blog Posts & WhatsApp Admin"
+Cohesion: 0.06
+Nodes (30): EstadoInstancia, EstadoCanal, normalizarEstado(), rotuloEstado, comoDataUrl(), formatarData(), mensagemDeFalha(), PASSOS (+22 more)
 
-### Community 1 - "Dashboard KPIs & Flow Builder"
+### Community 0 - "Client Pages & Auth Routing"
 Cohesion: 0.03
-Nodes (68): ContractDetailPage(), ContractVersionFormPage(), CredentialsPage(), HelpCenterPage(), ContractPage(), AbaId, MyTermsSection(), TermsBanner() (+60 more)
+Nodes (56): ContractDetailPage(), ContractVersionFormPage(), CredentialsPage(), HelpCenterPage(), ContractPage(), PermissionsPage(), AbaId, SELO_POR_PAPEL (+48 more)
 
 ### Community 28 - "Frontend Pages / pages - availability.ts"
 Cohesion: 0.06
 Nodes (26): AvailabilityPage(), toIso(), fromIso(), formatarDataLonga(), nomeDaEmpresa(), CHAVE, CURRENT_PROJECT_KEY, useCurrentProject() (+18 more)
 
-### Community 16 - "Frontend Lib / api - projects.ts"
-Cohesion: 0.05
-Nodes (46): RenegotiationFormPage(), formularioVazio(), doRegistro(), FormState, VAZIO, ReceivableFormPage(), num(), inteiro() (+38 more)
+### Community 11 - "Frontend Components / renegotiations - renegotiations.ts"
+Cohesion: 0.04
+Nodes (39): RenegotiationFormPage(), formularioVazio(), doRegistro(), InstallmentRowProps, InstallmentRow(), InstallmentsTabProps, PARCELA, DO_MEIO (+31 more)
 
-### Community 230 - "Frontend Pages / pages - RenegotiationsPage.tsx"
+### Community 225 - "Frontend Pages / pages - RenegotiationsPage.tsx"
 Cohesion: 0.13
 Nodes (12): podeRemoverMotivo(), TOM_DO_ESTADO, estadoLegivel(), EstadoBadge(), colunas, ListaEstreitaProps, ListaEstreita(), list (+4 more)
 
-### Community 398 - "Frontend Components / renegotiations - InstallmentsTab.tsx"
-Cohesion: 0.22
-Nodes (6): InstallmentRowProps, InstallmentRow(), InstallmentsTabProps, PARCELA, DO_MEIO, SEMPRE
-
-### Community 65 - "Frontend Features / attachments - index.ts"
-Cohesion: 0.13
-Nodes (24): Props, humanSize(), AttachmentList(), AttachmentUploader(), Attachment, AttachmentLimit, AttachmentLimits, AttachmentLimitsResponse (+16 more)
-
-### Community 178 - "Frontend Lib / api - indicators.ts"
+### Community 60 - "Frontend Features / attachments - index.ts"
 Cohesion: 0.12
-Nodes (17): EntryCell(), DeleteIndicatorDialogProps, DeleteIndicatorDialog(), paraDecimalString(), IndicatorScope, IndicatorConnectionRow, IndicatorEntry, GridCell (+9 more)
+Nodes (25): Props, humanSize(), AttachmentList(), Props, AttachmentUploader(), Attachment, AttachmentLimit, AttachmentLimits (+17 more)
 
-### Community 11 - "Frontend Features / risk - risk.ts"
+### Community 109 - "Frontend Lib / api - indicators.ts"
+Cohesion: 0.10
+Nodes (21): EntryCellProps, Estado, EntryCell(), DeleteIndicatorDialogProps, DeleteIndicatorDialog(), MonthlyGridProps, paraDecimalString(), IndicatorScope (+13 more)
+
+### Community 19 - "Frontend Lib / api - projects.ts"
 Cohesion: 0.05
-Nodes (42): ExtensionDrawer(), RiskOperationSubtype, RiskMovementType, RiskControl, ExposureRow, ExposureTypeGroup, TotalLimitsRow, TotalLimits (+34 more)
+Nodes (47): FormState, VAZIO, ReceivableFormPage(), num(), inteiro(), dataDe(), iso(), OperationFormValues (+39 more)
 
-### Community 70 - "Frontend Features / structured-operations - structuredOperations.ts"
-Cohesion: 0.09
-Nodes (25): OperationFormValues, OperationForm(), iso(), usePreSelecao(), RemunerationDrawer(), StructuredOperationFormPage(), vazio(), numero() (+17 more)
+### Community 12 - "Frontend Features / risk - risk.ts"
+Cohesion: 0.05
+Nodes (45): ExtensionDrawer(), RiskOperationSubtype, RiskMovementType, RiskControl, ExposureRow, ExposureTypeGroup, TotalLimitsRow, TotalLimits (+37 more)
 
-### Community 529 - "Frontend Components / ui - DatePicker.tsx"
+### Community 172 - "Frontend Features / structured-operations - structuredOperations.ts"
+Cohesion: 0.12
+Nodes (18): RemunerationDrawer(), StructuredOperation, StructuredOperationType, Remuneration, REMUNERATION_CLASSES, RemunerationClass, REMUNERATION_CLASS_LABELS, StructuredOperationQuery (+10 more)
+
+### Community 522 - "Frontend Components / ui - DatePicker.tsx"
 Cohesion: 0.38
 Nodes (5): DatePickerProps, foraDaFaixa(), mascarar(), DatePicker(), DateRangePickerProps
 
-### Community 47 - "Frontend Components / ui - DataTable.tsx"
+### Community 51 - "Frontend Components / ui - DataTable.tsx"
 Cohesion: 0.06
 Nodes (26): SortDirection, SortState, ColumnVariant, DataTableProps, alinhamento, numericas, formatarPorVariante(), comparar() (+18 more)
 
-### Community 25 - "Frontend Lib / api - receivables.ts"
+### Community 27 - "Frontend Lib / api - receivables.ts"
 Cohesion: 0.06
 Nodes (39): Wallet, ReceivableKind, TaxClassifier, MovementKind, ResourceSource, resourceSourcesApi, walletsApi, receivableKindsApi (+31 more)
 
-### Community 84 - "Frontend Lib / api - renegotiations.ts"
-Cohesion: 0.10
-Nodes (16): RenegotiationState, RenegotiationStateFilter, RenegotiationPayment, RenegotiationInstallment, RenegotiationAttachment, RenegotiationOptions, RenegotiationAttachmentLimits, RenegotiationQuery (+8 more)
+### Community 117 - "Backend Services / availability - project_template_service.rb"
+Cohesion: 0.17
+Nodes (19): Api, V1, ProjectAvailabilities, find(), Availability, ProjectTemplateService, base_scope(), tree() (+11 more)
 
-### Community 415 - "Frontend Components / renegotiations - SummaryCards.tsx"
-Cohesion: 0.27
-Nodes (5): Renegotiation, RenegotiationGeneralValues, RegistrationCardProps, RegistrationCard(), SummaryCardsProps
+### Community 78 - "Backend Services / availability - global_template_service.rb"
+Cohesion: 0.12
+Nodes (23): json(), Api, Entities, AvailabilityTemplate, Api, V1, AvailabilityTemplates, Availability (+15 more)
 
-### Community 102 - "Backend Services / availability - project_template_service.rb"
-Cohesion: 0.13
-Nodes (20): Api, V1, ProjectAvailabilities, Api, Entities, AvailabilityTemplate, Availability, ProjectTemplateService (+12 more)
+### Community 83 - "Backend Services / availability - ProjectAvailabilityTemplate"
+Cohesion: 0.11
+Nodes (13): RemoveProjectTemplateJob, HasEntries, ProjectAvailabilityTemplate, Availability, GlobalSeeder, seed_project!(), insert_into_project!(), sync_attributes!() (+5 more)
 
-### Community 113 - "Backend Services / availability - global_template_service.rb"
-Cohesion: 0.15
-Nodes (19): json(), Api, V1, AvailabilityTemplates, Availability, GlobalTemplateService, index(), show() (+11 more)
-
-### Community 186 - "Backend Services / renegotiations - Formulas"
+### Community 180 - "Backend Services / renegotiations - Formulas"
 Cohesion: 0.19
 Nodes (3): parcela(), Renegotiations, Formulas
 
-### Community 337 - "ActionCable Channels / application_cable - defaults.rb"
-Cohesion: 0.15
-Nodes (5): Api, V1, Defaults, ApplicationCable, Connection
+### Community 534 - ".migration-ai9/wip-auth-backup - defaults.rb"
+Cohesion: 0.29
+Nodes (3): Api, V1, Defaults
 
-### Community 12 - "Auth Request Specs"
-Cohesion: 0.06
-Nodes (16): current_user(), Api, Root, impersonated_by_claim(), Api, Root, impersonated_by_claim(), secure_auth_nodes!() (+8 more)
+### Community 10 - "Auth Request Specs"
+Cohesion: 0.05
+Nodes (19): current_user(), Api, Root, impersonated_by_claim(), Api, Root, impersonated_by_claim(), ApplicationCable (+11 more)
 
-### Community 127 - "API Controllers / api - MagicLogin"
+### Community 124 - "API Controllers / api - MagicLogin"
 Cohesion: 0.10
 Nodes (17): Api, Auth, V1, MagicLogin, Api, Auth, V1, Registration (+9 more)
 
-### Community 38 - "Backend Services / auth - MagicLoginService"
-Cohesion: 0.08
-Nodes (6): Auth, MagicLoginService, Auth, MagicLoginService, Auth, EmailService
-
-### Community 55 - "API Controllers / api - SecurityHelpers"
+### Community 64 - "Backend Services / auth - MagicLoginService"
 Cohesion: 0.10
+Nodes (4): Auth, MagicLoginService, Auth, MagicLoginService
+
+### Community 133 - "Backend Services / auth - AuthMailer"
+Cohesion: 0.11
+Nodes (6): Auth, InviteService, ApplicationMailer, AuthMailer, Auth, EmailService
+
+### Community 57 - "API Controllers / api - SecurityHelpers"
+Cohesion: 0.09
 Nodes (10): Api, Auth, V1, SecurityHelpers, Rack, Attack, Api, Auth (+2 more)
 
-### Community 666 - ".migration-ai9/parity/phase4"
+### Community 664 - ".migration-ai9/parity/phase4"
 Cohesion: 0.40
 Nodes (4): Phase 4 — lote `g5-ops` (118 itens), Provas executadas nesta passada (27/08/2026), Ruby 3.4.9, banco `sfg9_test`, Defeitos achados nesta passada (registrados, NAO corrigidos — QA nao edita codigo), Resumo do lote
 
-### Community 820 - "tools/graphify - rebuild.sh"
+### Community 819 - "tools/graphify - rebuild.sh"
 Cohesion: 0.50
 Nodes (3): rebuild.sh script, PYTHONHASHSEED, PYTHONUTF8
 
-### Community 459 - "tools/graphify/steps - 02_prune.py"
+### Community 453 - "tools/graphify/steps - 02_prune.py"
 Cohesion: 0.25
 Nodes (6): source_sumiu(), texto_de(), chamada_morta(), Step 02 - remove the four classes of edge/node that graphify's extractor gets wr, O arquivo citado nao existe mais no disco.      O `verify.py` reprova `source_fi, Aresta `calls` cujo metodo NAO aparece mais no arquivo do chamador.      Mesma r
 
-### Community 44 - "tools/graphify/lib - RubyFile"
+### Community 46 - "tools/graphify/lib - RubyFile"
 Cohesion: 0.06
 Nodes (18): Step 03b - recover the TypeScript cross-file edges the extractor misses.  O pass, _block_end(), RubyFile, load_all(), Ruby source model: class/module nesting, method ranges, constant index (Zeitwerk, resolve_module(), parse_clause(), TsFile (+10 more)
 
-### Community 179 - "checkpoint.md - Migration checkpoint"
+### Community 173 - "checkpoint.md - Migration checkpoint"
 Cohesion: 0.10
 Nodes (19): Migration checkpoint, O que os 12 commits entregaram (02:11 a 02:54), Prova acidental de que o motor novo funciona, ERROS MEUS DE HOJE, para o proximo nao repetir, CORRECOES DE AMBIENTE (varias instrucoes minhas estavam velhas), Rodada de uso do app pelo usuario (26/08/2026) — 3 queixas, 3 vereditos, S6 — fechada (137/140), e as 3 abertas sao da S8, ATENCAO — os `tasks.md` foram escritos ANTES das decisoes (+11 more)
 
-### Community 655 - "checkpoint.md - ESTADO EM 27/08/2026 02:15"
+### Community 653 - "checkpoint.md - ESTADO EM 27/08/2026 02:15"
 Cohesion: 0.40
 Nodes (5): ESTADO EM 27/08/2026 02:15, Todas as decisoes pendentes foram FECHADAS, Duas correcoes de classificacao minhas, O seed da demonstracao esta pronto (13 commits), ARMADILHA CONFIRMADA — `db:migrate` re-dumpa o `schema.rb`
 
-### Community 449 - "checkpoint.md"
+### Community 443 - "checkpoint.md"
 Cohesion: 0.22
 Nodes (9): ONDE ESTA (26/08, noite) — leia isto primeiro, Phase 4: **~470 `verified`**, de 43 no inicio do dia, O DUMP CHEGOU (DEC-118 a DEC-123), O ensaio do ETL — o que ele provou e o que falta, O que foi CONSERTADO hoje, O que esta RODANDO (deixar terminar; nao despachar mais nada), FILA PARA DEPOIS (o usuario pediu para deixar), PASSADA DE 27/08/2026 — seed da demo + varredura de telas (+1 more)
 
-### Community 533 - "checkpoint.md (2)"
+### Community 527 - "checkpoint.md (2)"
 Cohesion: 0.29
 Nodes (7): FIM DO DIA 26/08/2026 — leia isto antes de qualquer coisa, A licao que dominou o dia: **artefato envelhece, e ninguem re-confere**, O que o usuario achou ABRINDO O APP, que nenhum portao pegou, DECs de hoje: **108 a 117**, Pendencias do USUARIO (nada aqui bloqueia o Phase 4), AVISO DE FERRAMENTA — o `diff` deste shell MENTE, Bancada, com varios agentes na mesma arvore
 
@@ -2499,7 +2502,7 @@ Nodes (7): FIM DO DIA 26/08/2026 — leia isto antes de qualquer coisa, A licao 
 Cohesion: 0.67
 Nodes (3): Regra de bancada — NUNCA derrubar processo por padrao amplo, O que foi medido depois, para nao ficar mito, Reciclar o `puma` entre ondas de agente
 
-### Community 581 - "checkpoint.md (3)"
+### Community 577 - "checkpoint.md (3)"
 Cohesion: 0.33
 Nodes (6): FILA DE DESPACHO — autorizacao permanente do usuario (26/08/2026), Rodando agora, Solta assim que a dependencia cair, Solto agora, porque nao depende de ninguem, Espera a bancada esvaziar (conflitaria com quem edita agora), Aberto por dependencia REAL, nao por divida
 
@@ -2507,11 +2510,11 @@ Nodes (6): FILA DE DESPACHO — autorizacao permanente do usuario (26/08/2026), 
 Cohesion: 0.67
 Nodes (3): Onda em curso (26/08/2026), O numero de `rspec` que vale e o do orquestrador, sem agente ativo, Divida aberta que EU tenho que resolver quando S5 e S11 fecharem
 
-### Community 801 - "checkpoint.md (4)"
+### Community 800 - "checkpoint.md (4)"
 Cohesion: 0.50
 Nodes (4): O dump de producao foi APLICADO ao razao (26/08/2026), Colisao de identificador desfeita: o defeito do dump e **D-126**, nao D-125, O que o dump NAO resolveu, e continua aberto — dono: **usuario**, Portao vermelho encontrado de passagem: `Sfg::Etl::TargetBaseline` (dono S14)
 
-### Community 800 - "checkpoint.md (5)"
+### Community 799 - "checkpoint.md (5)"
 Cohesion: 0.50
 Nodes (4): Phase 1b — resultado final (fechado em 25/08/2026), Correcoes fora do trim que entraram no caminho, A licao que se repetiu tres vezes e virou regra, Armadilha registrada para o Phase 3
 
@@ -2519,111 +2522,103 @@ Nodes (4): Phase 1b — resultado final (fechado em 25/08/2026), Correcoes fora 
 Cohesion: 0.67
 Nodes (3): Phase 1b — andamento (remocao ai9-only), Limitacoes de ambiente — **REVOGADAS em 26/08/2026. AS DUAS ERAM FALSAS.**, ATENCAO — a skill mudou durante esta execucao (24/08/2026)
 
-### Community 225 - "backend/app/lib/sfg - RenegotiationAttachments"
+### Community 218 - "backend/app/lib/sfg - RenegotiationAttachments"
 Cohesion: 0.13
 Nodes (4): Sfg, Etl, Converters, RenegotiationAttachments
 
-### Community 254 - "backend/app/lib/sfg - Renegotiations (3)"
+### Community 250 - "backend/app/lib/sfg - Renegotiations (3)"
 Cohesion: 0.12
 Nodes (4): Sfg, Etl, Converters, Renegotiations
 
-### Community 17 - "backend/app/lib/sfg"
-Cohesion: 0.08
-Nodes (5): Sfg, Etl, Values, OutOfDomain, Converted
+### Community 23 - "backend/app/lib/sfg"
+Cohesion: 0.09
+Nodes (6): Sfg, Etl, Values, OutOfDomain, Converted, sobrevive_ao_transporte?()
 
-### Community 347 - "backend/app/lib/sfg (2)"
+### Community 344 - "backend/app/lib/sfg (2)"
 Cohesion: 0.21
 Nodes (4): Sfg, Etl, Decisions, Entry
 
-### Community 170 - "Backend Specs / lib/sfg - engine_rejections_spec.rb"
-Cohesion: 0.12
-Nodes (3): executar(), run_load(), dry_run()
+### Community 40 - "backend/app/lib/sfg - Report"
+Cohesion: 0.09
+Nodes (11): Sfg, Etl, Report, Section, executar(), rodar(), rodar_com_volume(), run_load() (+3 more)
 
-### Community 275 - "backend/app/lib/sfg - Reconcile"
-Cohesion: 0.17
+### Community 220 - "backend/app/lib/sfg - Reconcile"
+Cohesion: 0.15
 Nodes (4): Sfg, Etl, Reconcile, IdMap
 
-### Community 154 - "backend/app/lib/sfg - convert"
+### Community 153 - "backend/app/lib/sfg - convert"
 Cohesion: 0.14
 Nodes (5): Pipeline, Sfg, Etl, TargetBaseline, convert()
 
-### Community 62 - "backend/app/lib/sfg - Run"
-Cohesion: 0.10
-Nodes (9): Sfg, Etl, Run, Blocked, Rejection, Sfg, Etl, cache_for() (+1 more)
-
-### Community 142 - "backend/app/lib/sfg - base.rb"
+### Community 141 - "backend/app/lib/sfg - base.rb"
 Cohesion: 0.09
 Nodes (3): Sfg, Etl, Converters
 
-### Community 410 - "backend/app/lib/sfg - Base (2)"
+### Community 400 - "backend/app/lib/sfg - Base (2)"
 Cohesion: 0.24
 Nodes (3): Base, legacy_pk(), target_class()
 
-### Community 472 - "backend/app/lib/sfg - risk_controls.rb"
+### Community 465 - "backend/app/lib/sfg - risk_controls.rb"
 Cohesion: 0.29
 Nodes (7): missing_models(), model_ready?(), Sfg, Etl, Converters, expand_typed_controls!(), post_load!()
 
-### Community 250 - "backend/app/lib/sfg - AvailabilityEntries"
+### Community 246 - "backend/app/lib/sfg - AvailabilityEntries"
 Cohesion: 0.13
 Nodes (4): Sfg, Etl, Converters, AvailabilityEntries
 
-### Community 78 - "backend/app/lib/sfg - Report"
-Cohesion: 0.12
-Nodes (8): Sfg, Etl, Report, Section, rodar(), rodar_com_volume(), rodar(), introspect()
+### Community 63 - "backend/app/lib/sfg - Run"
+Cohesion: 0.10
+Nodes (11): Sfg, Etl, Run, Blocked, Rejection, converter_name(), Sfg, Etl (+3 more)
 
-### Community 315 - "backend/app/lib/sfg - Projects"
+### Community 313 - "backend/app/lib/sfg - Projects"
 Cohesion: 0.17
 Nodes (4): Sfg, Etl, Converters, Projects
 
-### Community 79 - "backend/app/lib/sfg - ReceivableEntries"
-Cohesion: 0.11
+### Community 75 - "backend/app/lib/sfg - ReceivableEntries"
+Cohesion: 0.12
 Nodes (4): Sfg, Etl, Converters, ReceivableEntries
 
-### Community 273 - "backend/app/lib/sfg - IndicatorEntries"
+### Community 272 - "backend/app/lib/sfg - IndicatorEntries"
 Cohesion: 0.15
 Nodes (4): Sfg, Etl, Converters, IndicatorEntries
 
-### Community 117 - "backend/app/lib/sfg - RiskEntries"
+### Community 113 - "backend/app/lib/sfg - RiskEntries"
 Cohesion: 0.09
 Nodes (6): Sfg, Etl, Converters, RiskEntries, RiskEntry, nova_posicao()
 
-### Community 48 - "Backend Services / availability - AvailabilityTemplate"
-Cohesion: 0.09
-Nodes (14): AvailabilityTemplate, travado_ha(), Availability, pad(), assign_next_position!(), build_sort_key(), move!(), reorder_global!() (+6 more)
+### Community 30 - "Backend Services / availability - AvailabilityTemplate"
+Cohesion: 0.07
+Nodes (17): AvailabilityTemplate, travado_ha(), Availability, pad(), assign_next_position!(), build_sort_key(), move!(), reorder_project!() (+9 more)
 
-### Community 143 - "Database & Seeds / seeds/demo - RiskMovementType"
-Cohesion: 0.12
-Nodes (5): Demo, Writers, RiskMovements, RiskOperationScenarios, RiskMovementType
-
-### Community 169 - "backend/app/lib/sfg - Provider"
+### Community 165 - "backend/app/lib/sfg - Provider"
 Cohesion: 0.16
 Nodes (3): Provider, Sfg, Document
 
-### Community 9 - "Backend Models - User"
-Cohesion: 0.05
-Nodes (25): User, Api, V1, Users, Auth, InviteService, Api, Entities (+17 more)
+### Community 17 - "Backend Models - User"
+Cohesion: 0.06
+Nodes (23): User, Api, V1, Users, Api, Entities, User, UsersService (+15 more)
 
-### Community 152 - "API Controllers / api"
-Cohesion: 0.11
-Nodes (12): Api, Entities, AuthSession, Auth, OauthService, Api, Auth, V1 (+4 more)
-
-### Community 115 - "Backend Services / authorization - PermissionResolver"
-Cohesion: 0.13
-Nodes (6): definir_default(), concedida?(), teto(), Authorization, PermissionResolver, UserTypePermission
-
-### Community 7 - "Backend Services - Project"
-Cohesion: 0.05
-Nodes (43): Project, ProjectService, index(), autocomplete(), show(), responsible_candidates(), create(), update() (+35 more)
-
-### Community 116 - "backend/app/lib/sfg - Archive"
+### Community 90 - "API Controllers / api"
 Cohesion: 0.09
-Nodes (8): Sfg, Etl, Archive, Missing, DirectoryArchive, TarArchive, converter_name(), record!()
+Nodes (14): Api, Entities, AuthSession, Users, OmniauthCallbacksController, Auth, OauthService, Api (+6 more)
 
-### Community 52 - "runbook-cutover.md - 3. Sequência da janela"
+### Community 127 - "Backend Services / authorization - PermissionResolver"
+Cohesion: 0.13
+Nodes (5): conceder(), definir_default(), Authorization, PermissionResolver, UserTypePermission
+
+### Community 5 - "backend/app - Project"
+Cohesion: 0.04
+Nodes (45): counts(), Project, ProjectService, index(), autocomplete(), show(), responsible_candidates(), create() (+37 more)
+
+### Community 216 - "backend/app/lib/sfg - Archive"
+Cohesion: 0.15
+Nodes (6): Sfg, Etl, Archive, Missing, DirectoryArchive, TarArchive
+
+### Community 56 - "runbook-cutover.md - 3. Sequência da janela"
 Cohesion: 0.06
 Nodes (35): Runbook de cutover — Safegold (`sfg`) → ai9 (`sfg9`), 0. ONDE isto roda, e por quem — leia antes de qualquer outra coisa (DEC-124), 0.1 O que este runbook assume, e o que ele NÃO faz, 1. PRÉ-REQUISITOS BLOQUEANTES — sem estes, não há janela, 1.0 A máquina onde isto vai rodar (DEC-124) — conferir ANTES de marcar a janela, 1.1 Os do usuário e do time, 1.4.1 Conferir o volume do storage — ANTES da carga, e de novo depois de um redeploy (DEC-129.1), O acervo, reconciliado contra o banco (medido em 26/08/2026) (+27 more)
 
-### Community 41 - "demo-seed-design.md"
+### Community 43 - "demo-seed-design.md"
 Cohesion: 0.05
 Nodes (40): Seed de demonstracao — Safegold no ai9, 1. Que sistema e este (a leitura do dominio que sustenta o seed), 2. O anti-exemplo: o seed que o legado ja tem, 3. Os sete principios de credibilidade, 4. Catalogos: copiar **literalmente** do legado, 5. O elenco ficticio, 5.1 Contrapartes (`Carrier`) — **ficticias, e por um motivo**, 5.2 Clientes (`Project`) — 12, com cauda (+32 more)
 
@@ -2631,259 +2626,251 @@ Nodes (40): Seed de demonstracao — Safegold no ai9, 1. Que sistema e este (a l
 Cohesion: 0.13
 Nodes (12): index(), show(), create(), update(), destroy(), find(), assign(), after_assign_on_update() (+4 more)
 
-### Community 409 - "API Controllers / api - CatalogService"
+### Community 399 - "API Controllers / api - CatalogService"
 Cohesion: 0.22
 Nodes (5): CatalogService, Api, V1, Segments, SegmentService
 
-### Community 40 - "Backend Models / concerns - GlobalCatalog"
-Cohesion: 0.06
-Nodes (13): usage_counts(), sandbox_segment(), provider_usage_counts(), BlockingDependents, blocking_dependents(), GlobalCatalog, slug_for(), ProjectGuaranteeType (+5 more)
+### Community 71 - "Backend Models / concerns - GlobalCatalog"
+Cohesion: 0.08
+Nodes (10): usage_counts(), sandbox_segment(), provider_usage_counts(), BlockingDependents, blocking_dependents(), GlobalCatalog, slug_for(), ProjectGuaranteeType (+2 more)
 
-### Community 162 - "Backend Services / charges - charge_service.rb"
-Cohesion: 0.12
-Nodes (10): Charges, update(), destroy(), statement(), Api, Entities, Charge, Api (+2 more)
+### Community 125 - "Backend Services / charges - charge_service.rb"
+Cohesion: 0.10
+Nodes (13): Charges, ChargeService, update(), destroy(), statement(), ProjectScopedService, OperationService, Api (+5 more)
 
-### Community 163 - "API Controllers / api - ProjectScopedService"
-Cohesion: 0.12
-Nodes (11): ChargeService, ProjectScopedService, Api, Entities, Provider, Api, V1, Providers (+3 more)
-
-### Community 196 - "API Controllers / api - company_service.rb"
+### Community 192 - "API Controllers / api - company_service.rb"
 Cohesion: 0.14
 Nodes (11): CompanyService, index(), risk_summary(), blank_risk_summary(), Api, Entities, Company, Api (+3 more)
 
-### Community 19 - "API Controllers / api - ProjectToCarrierConnection"
-Cohesion: 0.05
-Nodes (33): ProjectGuaranteeService, base_scope(), index(), available_carriers(), ProjectCarrierConnectionService, candidates(), index(), update_connections() (+25 more)
+### Community 140 - "API Controllers / api - project_guarantee_service.rb"
+Cohesion: 0.11
+Nodes (14): ProjectGuaranteeService, base_scope(), filter(), index(), available_carriers(), Api, Entities, CarrierCandidate (+6 more)
 
-### Community 82 - "Backend Services / risk - RiskOperationType"
-Cohesion: 0.10
-Nodes (15): filter(), uuid?(), Risk, base_scope(), index(), filter(), janela(), filter_options() (+7 more)
-
-### Community 145 - "Backend Services - project_scoped_service.rb"
+### Community 142 - "Backend Services - project_scoped_service.rb"
 Cohesion: 0.14
 Nodes (11): base_scope(), index(), show(), create(), update(), destroy(), find(), assign() (+3 more)
 
-### Community 375 - "API Controllers / api - resource_source_service.rb"
+### Community 41 - "Backend Services / risk - RiskOperation"
+Cohesion: 0.07
+Nodes (16): uuid?(), Risk, base_scope(), index(), filter(), janela(), filter_options(), carriers_with_manual_control() (+8 more)
+
+### Community 367 - "API Controllers / api - resource_source_service.rb"
 Cohesion: 0.22
 Nodes (5): ResourceSourceService, update(), Api, V1, ResourceSources
 
-### Community 353 - "Backend Services / structured - operation_service.rb"
-Cohesion: 0.23
-Nodes (5): Structured, create(), update(), company_guard(), stamp_editor()
+### Community 129 - "Backend Services / structured - operation_service.rb"
+Cohesion: 0.11
+Nodes (12): Structured, create(), update(), company_guard(), stamp_editor(), Api, V1, StructuredOperations (+4 more)
 
-### Community 221 - "Backend Services / structured - StructuredOperations"
-Cohesion: 0.12
-Nodes (11): OperationService, Api, Entities, StructuredOperation, Api, V1, StructuredOperations, Structured (+3 more)
-
-### Community 220 - "Backend Services / structured - remuneration_service.rb"
+### Community 214 - "Backend Services / structured - remuneration_service.rb"
 Cohesion: 0.12
 Nodes (8): Structured, RemunerationService, Api, Entities, Remuneration, Api, V1, Remunerations
 
-### Community 433 - "API Controllers / api - wallet_service.rb"
+### Community 420 - "API Controllers / api - wallet_service.rb"
 Cohesion: 0.25
 Nodes (4): WalletService, Api, V1, Wallets
 
-### Community 50 - "Database & Seeds / seeds/demo - records.rb"
+### Community 59 - "Database & Seeds / seeds/demo - records.rb"
 Cohesion: 0.08
-Nodes (18): Demo, Ledger, Records, Client, Company, StructuredOperation, Provider, Guarantee (+10 more)
+Nodes (17): Demo, Ledger, Records, Client, Company, Bordero, Guarantee, AvailabilityTemplate (+9 more)
 
-### Community 205 - "Database & Seeds / seeds/demo - Ancillary"
+### Community 198 - "Database & Seeds / seeds/demo - Ancillary"
 Cohesion: 0.18
 Nodes (6): Demo, Ledger, Ancillary, Renegotiation, RenegotiationInstallment, IndicatorEntry
 
-### Community 27 - "Database & Seeds / seeds/demo"
-Cohesion: 0.09
-Nodes (13): Demo, Ledger, Operations, Bordero, Operation, Movement, StaticTransfer, Demo (+5 more)
+### Community 293 - "Database & Seeds / seeds/demo - coverage_spec.rb"
+Cohesion: 0.18
+Nodes (6): Provider, coverage_for(), complete?(), Demo, Support, Br
 
-### Community 63 - "Database & Seeds / seeds/demo - Availability"
-Cohesion: 0.09
-Nodes (12): Control, Month, AvailabilityEntry, Demo, Ledger, Controls, Demo, Ledger (+4 more)
+### Community 76 - "Database & Seeds / seeds/demo"
+Cohesion: 0.14
+Nodes (7): Demo, Ledger, Operations, Operation, Movement, StaticTransfer, Money
 
-### Community 279 - "Database & Seeds / seeds/demo - Billing"
-Cohesion: 0.20
-Nodes (5): Charge, ChargeReceipt, Demo, Ledger, Billing
+### Community 167 - "Database & Seeds / seeds/demo (2)"
+Cohesion: 0.14
+Nodes (8): Month, StructuredOperation, Demo, Ledger, Receivables, Demo, Ledger, Timeline
 
-### Community 172 - "Database & Seeds / seeds/demo - Charges"
+### Community 136 - "Database & Seeds / seeds/demo - Availability"
+Cohesion: 0.13
+Nodes (7): Control, Demo, Ledger, Controls, Demo, Ledger, Availability
+
+### Community 430 - "Database & Seeds / seeds/demo (5)"
+Cohesion: 0.25
+Nodes (4): AvailabilityEntry, Demo, Writers, AvailabilityEntries
+
+### Community 168 - "Database & Seeds / seeds/demo - Charges"
 Cohesion: 0.17
-Nodes (4): Remuneration, Demo, Writers, Charges
+Nodes (4): Charge, Demo, Writers, Charges
 
-### Community 320 - "Database & Seeds / seeds/demo - Indicators"
+### Community 277 - "Database & Seeds / seeds/demo - Billing"
+Cohesion: 0.20
+Nodes (5): ChargeReceipt, Remuneration, Demo, Ledger, Billing
+
+### Community 319 - "Database & Seeds / seeds/demo - Indicators"
 Cohesion: 0.21
 Nodes (3): Demo, Writers, Indicators
 
-### Community 322 - "Database & Seeds / seeds/demo - StaticTransfers"
+### Community 321 - "Database & Seeds / seeds/demo - StaticTransfers"
 Cohesion: 0.21
 Nodes (3): Demo, Writers, StaticTransfers
 
-### Community 354 - "Database & Seeds / seeds/demo - coverage_spec.rb"
-Cohesion: 0.21
-Nodes (5): coverage_for(), complete?(), Demo, Support, Br
+### Community 144 - "Frontend Components / chat - ChatCTA.tsx"
+Cohesion: 0.11
+Nodes (12): Layout(), BaseCTAProps, TriggerAgentProps, SendIntentProps, ChatCTA, TriggerFlowOptions, ViewMode, ChatContextType (+4 more)
 
-### Community 157 - "App Shell & Route Table"
-Cohesion: 0.12
-Nodes (14): Layout(), NavItem, CONSOLE_NAV_GROUPS, HOME_AREA, itemDePermissoes(), LoginPage, OAuthCallbackPage, MagicLinkCallbackPage (+6 more)
-
-### Community 15 - "Backend Services"
+### Community 21 - "Backend Services - Permission"
 Cohesion: 0.07
-Nodes (36): ApiResponseHandler, MembershipService, index(), candidates(), create(), destroy(), release_current_project!(), serialize() (+28 more)
+Nodes (33): ApiResponseHandler, MembershipService, index(), candidates(), create(), destroy(), release_current_project!(), serialize() (+25 more)
 
-### Community 223 - "Backend Services - polemk_instance_service.rb"
-Cohesion: 0.26
-Nodes (14): PolemkInstanceService, get_connection_status(), create_instance(), delete_instance(), logout_instance(), instance_connect_status(), connect_instance(), restart_instance() (+6 more)
+### Community 151 - "Backend Services - polemk_instance_service.rb"
+Cohesion: 0.19
+Nodes (16): PolemkInstanceService, get_connection_status(), create_instance(), delete_instance(), logout_instance(), instance_connect_status(), connect_instance(), restart_instance() (+8 more)
 
-### Community 199 - "API Controllers / api - Credential"
+### Community 52 - "backend/app - ProjectToCarrierConnection"
+Cohesion: 0.08
+Nodes (22): ProjectCarrierConnectionService, candidates(), index(), update_connections(), destroy(), connect_one(), disconnect_one(), item() (+14 more)
+
+### Community 194 - "API Controllers / api - Credential"
 Cohesion: 0.12
 Nodes (9): Api, V1, Credentials, credential_key(), Credential, Api, V1, RuntimeConfig (+1 more)
 
-### Community 616 - "API Controllers / api - instances.rb"
+### Community 611 - "API Controllers / api - instances.rb"
 Cohesion: 0.40
 Nodes (3): Api, Whats, V1
 
-### Community 201 - "Backend Services - polemk_webhook_service.rb"
-Cohesion: 0.20
+### Community 162 - "Backend Services - polemk_webhook_service.rb"
+Cohesion: 0.18
 Nodes (15): Api, Whats, V1, Webhooks, PolemkWebhookService, callback_base_url(), publicly_reachable?(), ensure_registered!() (+7 more)
 
-### Community 620 - "backend/app/lib/sfg - access.rb"
+### Community 616 - "backend/app/lib/sfg - access.rb"
 Cohesion: 0.40
 Nodes (3): Sfg, Whats, Access
 
-### Community 411 - "Backend Models - ApplicationRecord"
-Cohesion: 0.22
-Nodes (6): bearer_for(), headers_for(), user_com_papel(), ApplicationRecord, ClientApplication, PermissionConflict
+### Community 792 - "Backend Specs / requests"
+Cohesion: 0.67
+Nodes (3): bearer_for(), headers_for(), user_com_papel()
 
-### Community 161 - ".migration-ai9/parity (4)"
-Cohesion: 0.10
-Nodes (20): Paridade contra o dump de produção — os itens que esperavam "a carga", 1. O escopo, contado aqui e não herdado, 2. A régua, 3. Cinco defeitos, e quatro deles param a virada, D-PAR-01 — um CEP de 7 dígitos derrubava a carga inteira · **CORRIGIDO**, D-PAR-02 — 32 borderôs de produção com `NaN` **impedem a carga**. Bloqueador de cutover, D-PAR-03 — 90 templates de disponibilidade **sem título** derrubam a carga, D-PAR-05 — o conversor de `providers` que falta **também barra as 169 renegociações** (+12 more)
-
-### Community 80 - "backend/app/lib/sfg - RiskOperationSubtypes"
+### Community 84 - "backend/app/lib/sfg - RiskOperationSubtypes"
 Cohesion: 0.08
 Nodes (8): Demo, Writers, RiskOperations, Sfg, Etl, Converters, RiskOperationSubtypes, RiskOperationSubtype
 
-### Community 314 - "backend/app/lib/sfg - ProjectGuarantees"
+### Community 312 - "backend/app/lib/sfg - ProjectGuarantees"
 Cohesion: 0.15
 Nodes (4): Sfg, Etl, Converters, ProjectGuarantees
 
-### Community 316 - "backend/app/lib/sfg - Remunerations"
+### Community 314 - "backend/app/lib/sfg - Remunerations"
 Cohesion: 0.15
 Nodes (4): Sfg, Etl, Converters, Remunerations
 
-### Community 274 - "backend/app/lib/sfg - RiskOperationExtensions"
+### Community 273 - "backend/app/lib/sfg - RiskOperationExtensions"
 Cohesion: 0.15
 Nodes (4): Sfg, Etl, Converters, RiskOperationExtensions
 
-### Community 255 - "backend/app/lib/sfg - StructuredOperations"
+### Community 251 - "backend/app/lib/sfg - StructuredOperations"
 Cohesion: 0.12
 Nodes (4): Sfg, Etl, Converters, StructuredOperations
 
-### Community 197 - "API Controllers / api - Receivables"
-Cohesion: 0.12
-Nodes (10): Api, Entities, ReceivableEntry, Api, Entities, ReceivableDerived, Entry, Api (+2 more)
+### Community 55 - "Backend Services / receivables - Receivables"
+Cohesion: 0.06
+Nodes (19): Api, Entities, ReceivableEntry, Api, Entities, ReceivableDerived, Entry, Api (+11 more)
 
-### Community 346 - "backend/app/lib/sfg - ReceivableTaxes"
+### Community 343 - "backend/app/lib/sfg - ReceivableTaxes"
 Cohesion: 0.18
 Nodes (4): Sfg, Etl, Converters, ReceivableTaxes
 
-### Community 130 - "Backend Models - RiskControl"
-Cohesion: 0.09
-Nodes (5): ReceivableEntry, SafegoldStamped, safegold_stamp_source_name(), RiskControl, risk_control_usage()
-
-### Community 319 - "Backend Services / receivables - call"
-Cohesion: 0.22
-Nodes (9): Receivables, Tax, Input, call(), Receivables, PreviewService, call(), build_input() (+1 more)
-
-### Community 144 - "Backend Services / receivables - InputGuard"
-Cohesion: 0.17
-Nodes (3): ReceivableTax, Receivables, InputGuard
-
-### Community 251 - "backend/app/lib/sfg - ContractDeals"
+### Community 247 - "backend/app/lib/sfg - ContractDeals"
 Cohesion: 0.14
 Nodes (4): Sfg, Etl, Converters, ContractDeals
 
-### Community 224 - "backend/app/lib/sfg - Contracts"
+### Community 217 - "backend/app/lib/sfg - Contracts"
 Cohesion: 0.13
 Nodes (4): Sfg, Etl, Converters, Contracts
 
-### Community 311 - "backend/app/lib/sfg - HelpCategories"
+### Community 309 - "backend/app/lib/sfg - HelpCategories"
 Cohesion: 0.15
 Nodes (4): Sfg, Etl, Converters, HelpCategories
 
-### Community 343 - "backend/app/lib/sfg - HelpGroups"
+### Community 340 - "backend/app/lib/sfg - HelpGroups"
 Cohesion: 0.17
 Nodes (4): Sfg, Etl, Converters, HelpGroups
 
-### Community 252 - "backend/app/lib/sfg - HelpItems"
+### Community 248 - "backend/app/lib/sfg - HelpItems"
 Cohesion: 0.14
 Nodes (4): Sfg, Etl, Converters, HelpItems
 
-### Community 253 - "backend/app/lib/sfg - Providers"
+### Community 249 - "backend/app/lib/sfg - Providers"
 Cohesion: 0.14
 Nodes (4): Sfg, Etl, Converters, Providers
 
-### Community 344 - "backend/app/lib/sfg - ProjectToCarrierConnections"
+### Community 341 - "backend/app/lib/sfg - ProjectToCarrierConnections"
 Cohesion: 0.17
 Nodes (4): Sfg, Etl, Converters, ProjectToCarrierConnections
 
-### Community 381 - "backend/app/lib/sfg - ProjectGuaranteeTypes"
+### Community 372 - "backend/app/lib/sfg - ProjectGuaranteeTypes"
 Cohesion: 0.18
 Nodes (4): Sfg, Etl, Converters, ProjectGuaranteeTypes
 
-### Community 384 - "backend/app/lib/sfg - ResourceSources"
+### Community 375 - "backend/app/lib/sfg - ResourceSources"
 Cohesion: 0.18
 Nodes (4): Sfg, Etl, Converters, ResourceSources
 
-### Community 387 - "backend/app/lib/sfg - StructuredOperationTypes"
+### Community 378 - "backend/app/lib/sfg - StructuredOperationTypes"
 Cohesion: 0.18
 Nodes (4): Sfg, Etl, Converters, StructuredOperationTypes
 
-### Community 388 - "backend/app/lib/sfg - SubSegments"
+### Community 379 - "backend/app/lib/sfg - SubSegments"
 Cohesion: 0.18
 Nodes (4): Sfg, Etl, Converters, SubSegments
 
-### Community 14 - "upstream-flags.md"
+### Community 18 - "upstream-flags.md"
 Cohesion: 0.03
 Nodes (59): Flags para o time do ai9 base (NÃO corrigir nesta migração), Lacunas do ai9 relevantes para o Safegold (viram trabalho DESTA migração, não flag), 7. Nove tabelas orfas no `schema.rb` da base ai9 (achado no Bloco 3, 24/08/2026), 8. `current_ip` nao existe — o login por magic code responde **500** (achado no Bloco 4, 24/08/2026), 8. O login por codigo esta quebrado na base ai9 — e cada migracao redescobre isso, 10. `AssetsProxyController` — serve arquivo sem autenticacao e sem guarda de path traversal, 11. `openssl_verify_mode: 'none'` **em producao**, 12. `Credential` so aceita provedor de IA (+51 more)
 
-### Community 452 - "upstream-flags.md (2)"
+### Community 446 - "upstream-flags.md (2)"
 Cohesion: 0.22
 Nodes (9): S4 — achados na base ai9 (26/08/2026), #S4-1 — `CatalogScreen` era genérico demais no nome e específico demais no tipo, #S4-2 — `MobileMenuActions` tem a lista de ações CRAVADA, #S4-3 — `Sfg::ReceitaWs::LookupService#valid_cnpj?` era a única validação de documento, e era privada, #S4-4 — `users.app_theme_id` continua órfã (confirmando TEM-S17-08), #S4-5 — `MobileChartCard.tsx` estava com erro de type-check enquanto esta fatia rodava, #S4-6 — ⚠ BLOQUEADOR DE SUÍTE achado às 00:15 de 26/08: duas migrations com a MESMA versão, e uma tabela criada DUAS vezes, #S4-7 — `zeitwerk:check` vermelho às 00:23 por `IndicatorEntry` (S10), não pela S4 (+1 more)
 
-### Community 592 - "upstream-flags.md - S9 — renegociações"
+### Community 588 - "upstream-flags.md - S9 — renegociações"
 Cohesion: 0.33
 Nodes (6): S9 — renegociações, F-1 — `AssetsProxyController` serve `public/uploads/**` inline, sem autenticação, F-2 — `api/v1/uploads.rb` grava arquivo de usuário dentro de `public/`, F-4 — ActiveStorage em `Disk` **também em produção** — requisito de deploy, não de código, F-S9-5 — `Grape::Entity` + `Symbol#to_proc` = **500 silencioso**, F-S9-6 — o motor de anexos ficou com o caminho `multiple: true` **sem consumidor**
 
-### Community 815 - "upstream-flags.md (3)"
+### Community 814 - "upstream-flags.md (3)"
 Cohesion: 0.50
 Nodes (4): #S6-3 — **PARA A S20**: o contrato de `ReceivableEntry`, e as duas strings que derrubam o escritor, 1. Os três pontos que quebram, em ordem de quem estoura primeiro, 2. O contrato de `ReceivableEntry` — o que é obrigatório, 3. O caminho mais seguro, se quiserem trocar
 
-### Community 816 - "upstream-flags.md (4)"
+### Community 815 - "upstream-flags.md (4)"
 Cohesion: 0.50
 Nodes (4): S7 — achados na base ai9 (26/08/2026), #S7-1 — `aasm` e `pg_search` continuam declaradas e sem um único uso, #S7-2 — `Campo` (de `CatalogFields`) tipava `label` como `string`, #S7-3 — o seed de demonstração e o motor da S7 concordam (medido duas vezes, com resultados opostos)
 
-### Community 817 - "upstream-flags.md (5)"
+### Community 816 - "upstream-flags.md (5)"
 Cohesion: 0.50
 Nodes (4): S8 — achados na base ai9 (26/08/2026), #S8-1 — `pg_search` e `paper_trail`: a S8 confere, e o quadro mudou de metade, #S8-2 — `Charges::BulkReceiptsService` destruía o recibo antes de soltar a operação, #S8-3 — o banco de teste `sfg9_test` é COMPARTILHADO entre os agentes, e isso produz falha falsa
 
-### Community 236 - "platform-runbook.md - Runbook de plataforma — sfg9"
+### Community 460 - "API Controllers / api - PolemkWebhook"
+Cohesion: 0.21
+Nodes (4): PolemkWebhook, Api, Entities, PolemkWebhook
+
+### Community 231 - "platform-runbook.md - Runbook de plataforma — sfg9"
 Cohesion: 0.12
 Nodes (16): Runbook de plataforma — sfg9, 1. Pendências bloqueadas por dependência externa, Q-07 — provedor de storage em produção · **BLOQUEADO**, Q-20 — quando o CSP vira bloqueante · **RESPONDIDO PELO DEC-48: já nasceu bloqueante**, Q-01 — `openssl_verify_mode` da linha específica do SMTP · **ADIADO POR DECISÃO DO USUÁRIO**, 2. Ações externas obrigatórias antes do cutover, 2b. Avisos que precisam chegar às PESSOAS antes da apresentação (S1, tarefa 10.5), 3. Pendências de código declaradas, com dono (+8 more)
 
-### Community 277 - "backend/app/lib/sfg - WorkerHealth"
+### Community 275 - "backend/app/lib/sfg - WorkerHealth"
 Cohesion: 0.18
 Nodes (3): Sfg, WorkerHealth, Report
 
-### Community 53 - "Database & Seeds / seeds/demo - Reset"
+### Community 58 - "Database & Seeds / seeds/demo - Reset"
 Cohesion: 0.08
 Nodes (8): Demo, Reset, cache(), real(), Demo, Writers, Carriers, CarrierGroup
 
-### Community 146 - "Database & Seeds / seeds/demo - AvailabilityTemplates"
-Cohesion: 0.13
-Nodes (7): Demo, Writers, AvailabilityEntries, Demo, Writers, AvailabilityTemplates, normalized_title()
+### Community 255 - "Database & Seeds / seeds/demo - AvailabilityTemplates"
+Cohesion: 0.19
+Nodes (4): Demo, Writers, AvailabilityTemplates, normalized_title()
 
-### Community 628 - "Backend Specs / lib/sfg - values_precision_spec.rb"
-Cohesion: 0.70
-Nodes (4): cast_sql(), cast_do_banco(), cast_float_do_banco(), sobrevive_ao_transporte?()
+### Community 791 - "Backend Specs / lib/sfg - values_precision_spec.rb"
+Cohesion: 0.83
+Nodes (3): cast_sql(), cast_do_banco(), cast_float_do_banco()
 
-### Community 125 - ".migration-ai9/parity (2)"
+### Community 122 - ".migration-ai9/parity (2)"
 Cohesion: 0.08
 Nodes (23): Phase 4 — paridade do bloco `data-infra`, 0. O que foi executado (é isto que sustenta cada linha abaixo), 1. As 37 linhas `pending` — veredito de cada uma, 1.1 O caso que desmente a leitura fácil — `BE-399`, 1.2 As outras 36 — a leitura fácil está certa, mas só depois de conferida, 2. O bloco (275 IDs nas 7 capabilities), 2.1 O que virou `verified`, e a prova de cada família, 2.2 O que continua `migrated`, e por quê — sem repetir justificativa velha (+15 more)
 
@@ -2891,391 +2878,399 @@ Nodes (23): Phase 4 — paridade do bloco `data-infra`, 0. O que foi executado (
 Cohesion: 0.07
 Nodes (26): Paridade — `receivables`, `renegotiations`, `contracts` (Phase 4), As evidências, e o que cada uma mede, Portões que rodei (verde prova que carrega, não que funciona — por isso são o piso, não a prova), Uma linha por ID, receivables — backend, receivables — frontend, receivables — dados, receivables — operação (+18 more)
 
-### Community 232 - ".migration-ai9/parity (5)"
+### Community 227 - ".migration-ai9/parity (5)"
 Cohesion: 0.12
 Nodes (16): Phase 4 — paridade do bloco **risco · operações estruturadas · indicadores**, Resultado, A régua desta passada, O dump de produção mudou o que dá para provar — e desmentiu duas coisas, ⚠ Duas afirmações que o dump NÃO confirma, Os 38 controles com os 4 pares zerados, DEC-01: o que eu quase reportei como defeito e não é, `balance_on` devolvendo 0 — a ressalva que precisa ficar escrita (+8 more)
 
-### Community 119 - ".migration-ai9/parity"
+### Community 115 - ".migration-ai9/parity"
 Cohesion: 0.08
 Nodes (24): Phase 4 — paridade do bloco **projetos, empresas/portadores e disponibilidades**, Resultado, 1. O código de cada prova, 2. A prioridade #1 — o escopo por projeto, provado nos dois lados, 3. A prioridade #2 — membership virou regra de servidor, 4. A prioridade #3 — disponibilidades e cobranças estão VIVAS, 5. Mobile e dark — critério por tela, não amostra, 6. Os defeitos (+16 more)
 
-### Community 138 - ".migration-ai9/parity (3)"
+### Community 137 - ".migration-ai9/parity (3)"
 Cohesion: 0.09
 Nodes (22): Phase 4 — paridade verificada: **auth-users · engines · console-admin**, O que foi executado, O núcleo: a matriz e a hierarquia, provadas nos dois sentidos, O de-para de papel deixou de ser inferência, Onde a tela foi provada, Defeitos achados, Duas correções de artefato envelhecido, O que NÃO deu para verificar, e por quê (+14 more)
 
-### Community 13 - "Frontend Pages - consoleNavigation.tsx"
+### Community 16 - "Frontend Pages - consoleNavigation.tsx"
 Cohesion: 0.03
 Nodes (60): PageComponent, AreaChildRoute, DashboardPage, UsersPage, UserDetailPage, PermissionsPage, ProfilePage, CredentialsPage (+52 more)
 
-### Community 72 - "Frontend Hooks - useNavItems.ts"
-Cohesion: 0.12
-Nodes (25): RoleSlug, NavGroup, CONSOLE_NAV_ITEMS, ConsoleTopbar(), SidebarSearch(), menuDe(), itensDe(), menuRenderizadoDe() (+17 more)
+### Community 107 - "Frontend Hooks - useNavItems.ts"
+Cohesion: 0.14
+Nodes (20): RoleSlug, NavGroup, CONSOLE_NAV_ITEMS, ConsoleTopbar(), SidebarSearch(), menuDe(), itensDe(), menuRenderizadoDe() (+12 more)
 
-### Community 5 - "Frontend Components / ui - cn"
+### Community 182 - "Frontend Pages - App.tsx"
+Cohesion: 0.13
+Nodes (13): NavItem, CONSOLE_NAV_GROUPS, HOME_AREA, itemDePermissoes(), LoginPage, OAuthCallbackPage, MagicLinkCallbackPage, ContractPage (+5 more)
+
+### Community 8 - "Frontend Components / ui - cn"
 Cohesion: 0.03
-Nodes (57): MobileMenuActionsProps, MobileMenuActions(), MasonryGridProps, useColunas(), MasonryGrid(), SectionHeadingProps, SectionHeading(), CheckboxProps (+49 more)
+Nodes (55): MobileMenuActionsProps, MobileMenuActions(), TableProps, Table, TableHeader, TableBody, TableFooter, TableRow (+47 more)
 
-### Community 297 - "Frontend Components / mobile - MobileRowActions.tsx"
-Cohesion: 0.22
-Nodes (8): MobileRowAction, MobileRowActionsProps, AnchoredActionsProps, MobileActionsSheet(), useEscapeToClose(), MobileRowActions(), folhaDeAcoes(), ACOES
-
-### Community 531 - "Frontend Features / receivables - chargeDetailPage.test.tsx"
+### Community 525 - "Frontend Features / receivables - chargeDetailPage.test.tsx"
 Cohesion: 0.29
 Nodes (5): get, statement, COBRANCA, EXTRATO, montar()
 
-### Community 796 - "Frontend Hooks - useDragToScroll.ts"
+### Community 795 - "Frontend Hooks - useDragToScroll.ts"
 Cohesion: 0.50
 Nodes (3): UseDragToScrollOptions, DragToScroll, useDragToScroll()
 
-### Community 136 - "Frontend Pages / pages - AuditEventDialog.tsx"
-Cohesion: 0.11
-Nodes (15): list, get, types, VERSAO, montar(), AuditEventDialogProps, comoTexto(), pareceIdentificador() (+7 more)
+### Community 258 - "Frontend Components / ui - AuditEventDialog.tsx"
+Cohesion: 0.18
+Nodes (11): montar(), AuditEventDialogProps, comoTexto(), pareceIdentificador(), AuditEventDialog(), DialogOverlay, DialogContentProps, DialogContent (+3 more)
 
-### Community 123 - "Frontend Components / audit - auditTrail.ts"
+### Community 119 - "Frontend Components / audit - auditTrail.ts"
 Cohesion: 0.13
 Nodes (17): AuditTrailPage(), AuditTrailItemProps, AuditTrailItem(), AuditTrailTimelineProps, AuditTrailTimeline(), auditAppearance, PADRAO, MAPA (+9 more)
 
-### Community 414 - "Frontend Pages / pages - RenegotiationDetailPage"
-Cohesion: 0.24
-Nodes (7): ABAS, Aba, RenegotiationDetailPage(), usePermission(), useIsReadonly(), RenegotiationChannelState, useRenegotiationChannel()
+### Community 520 - "Frontend Pages / pages - auditTrailPage.test.tsx"
+Cohesion: 0.29
+Nodes (4): list, get, types, VERSAO
 
-### Community 632 - "Frontend Components / renegotiations - AttachmentGallery"
+### Community 143 - "frontend/src - RenegotiationDetailPage"
+Cohesion: 0.13
+Nodes (16): ABAS, Aba, RenegotiationDetailPage(), DashboardLimits, DashboardNearCeiling, numeroDe(), LimitMeterItem, preenchimento() (+8 more)
+
+### Community 627 - "Frontend Components / renegotiations - AttachmentGallery"
 Cohesion: 0.50
 Nodes (3): AttachmentGalleryProps, AttachmentGallery(), formatarTamanho()
 
-### Community 207 - "Frontend Components / ui - Table.tsx"
-Cohesion: 0.10
-Nodes (13): TableProps, Table, TableHeader, TableBody, TableFooter, TableRow, TableHead, TableCell (+5 more)
-
-### Community 637 - "frontend/src/__tests__ - empilhamento-barras.test.ts"
+### Community 635 - "frontend/src/__tests__ - empilhamento-barras.test.ts"
 Cohesion: 0.50
 Nodes (3): Z, fonte(), codigo()
 
-### Community 133 - "backend/app/lib/sfg - LedgerGate"
+### Community 132 - "backend/app/lib/sfg - LedgerGate"
 Cohesion: 0.11
 Nodes (4): Sfg, Etl, LedgerGate, Row
 
-### Community 20 - "Backend Services / charges - Receipt"
-Cohesion: 0.06
-Nodes (28): temp_ids_de(), receipt_id(), create_receipt(), Remuneration, Charges, BulkReceiptsService, call(), remove_unlisted!() (+20 more)
+### Community 245 - "Background Jobs (2)"
+Cohesion: 0.18
+Nodes (3): ActivateProjectTemplateJob, DeactivateProjectTemplateJob, TemplateLock
 
-### Community 37 - "Backend Models"
+### Community 15 - "Backend Services - Receipt"
 Cohesion: 0.05
-Nodes (9): headers_a(), StructuredOperation, Charge, MovementKind, ReceivableKind, ResourceSource, Wallet, Sfg (+1 more)
+Nodes (29): temp_ids_de(), receipt_id(), create_receipt(), Remuneration, Charges, BulkReceiptsService, call(), remove_unlisted!() (+21 more)
 
-### Community 75 - "Backend Services / risk - calculator.rb"
+### Community 32 - "Backend Models"
+Cohesion: 0.05
+Nodes (12): headers_a(), Api, Entities, StructuredOperation, StructuredOperation, StructuredOperationType, MovementKind, ReceivableKind (+4 more)
+
+### Community 80 - "Backend Services / risk - calculator.rb"
 Cohesion: 0.14
 Nodes (21): company_row(), project_row(), percent_of(), Risk, Calculator, operations_on(), balance_on(), limite_utilizado_on() (+13 more)
 
-### Community 139 - "openspec/changes/s11-disponibilidades-cobrancas"
+### Community 138 - "openspec/changes/s11-disponibilidades-cobrancas"
 Cohesion: 0.09
 Nodes (22): Tasks: S11 — Disponibilidades (e o menu de Cobranças habilitado), ⚠ O que mudou depois que esta fila foi escrita (26/08/2026), E uma qualificação do próprio DEC-30, que nasceu da análise do dump, 1. Dados — a remodelagem primeiro, 2. Backend — catálogo global de padrões, 3. Backend — padrões do projeto e os quatro jobs, 4. Backend — lançamentos e painel, 5. Backend — o motor de números (+14 more)
 
-### Community 265 - "openspec/changes/s14-etl-producao - Tasks: S14 — ETL de produção"
+### Community 263 - "openspec/changes/s14-etl-producao - Tasks: S14 — ETL de produção"
 Cohesion: 0.12
 Nodes (15): Tasks: S14 — ETL de produção, ATUALIZAÇÃO — 26/08/2026: o dump e o acervo chegaram, e o motor rodou contra eles, Três defeitos NO PRÓPRIO MOTOR, que só apareceram executando, O que a execução DESMENTIU do material desta fatia, 1. Portão do schema (S-00) — antes de qualquer migration desta fatia, 2. Dados de apoio do ETL, 3. Motor: introspecção, 4. Motor: conversores (+7 more)
 
-### Community 269 - "openspec/changes/s5-limites-risco (2)"
+### Community 267 - "openspec/changes/s5-limites-risco (2)"
 Cohesion: 0.12
 Nodes (15): Tasks: S5 — Limites de risco e motor de exposição, Bloco 0 — Decisões que destravam trabalho (não produzem código), Bloco 1 — Dados: as 7 tabelas de risco nascem com integridade, Bloco 2 — Dados: seeds e chaves de integração (contrato), Bloco 3 — Backend: catálogos de tipo (R1), Bloco 4 — Backend: limites (R2), Bloco 5 — Backend: motor de exposição (R3) · **zona DEC-01**, Bloco 6 — Backend: posições diárias, bloqueadas (R8) (+7 more)
 
-### Community 288 - "openspec/changes/s7-operacoes-risco (3)"
+### Community 285 - "openspec/changes/s7-operacoes-risco (3)"
 Cohesion: 0.13
 Nodes (14): Tasks: S7 — Operações de risco: movimentos, prorrogação e renovação, Bloco 0 — Decisões que destravam trabalho (não produzem código), Bloco 1 — Dados, Bloco 2 — Backend: o model da operação e a cascata de criação, Bloco 3 — Backend: a cadeia de saldos (R6) · **zona DEC-01/DEC-02**, Bloco 4 — Backend: movimentos (R6), Bloco 5 — Backend: operações, CRUD e listagem (R5), Bloco 6 — Backend: prorrogação e renovação (R7) (+6 more)
 
-### Community 248 - "openspec/changes/s8-operacoes-estruturadas"
+### Community 243 - "openspec/changes/s8-operacoes-estruturadas"
 Cohesion: 0.12
 Nodes (16): Tasks: S8 — Operações estruturadas e remuneração, Bloco 0 — Decisões que destravam trabalho (não produzem código), Bloco 1 — Dados: as 5 tabelas da unidade nascem com integridade, Bloco 2 — Dados: seeds, Bloco 3 — Backend: a fórmula de remuneração (E2) · **zona DEC-02**, Bloco 4 — Backend: remunerações (E2), Bloco 5 — Backend: operações estruturadas (E1), Bloco 6 — Backend: tipos de operação estruturada (E1) (+8 more)
 
-### Community 416 - "Frontend Components / ui - FormActionBar.test.tsx"
+### Community 403 - "Frontend Components / ui - FormActionBar.test.tsx"
 Cohesion: 0.27
 Nodes (4): FormActionBar(), Formulario(), UnsavedChangesGuard, useUnsavedChanges()
 
-### Community 302 - "openspec/changes/s2-console-navegacao"
+### Community 300 - "openspec/changes/s2-console-navegacao"
 Cohesion: 0.14
 Nodes (13): Tasks: S2 — Console e navegação, 1. Dados — mensagens administrativas e observadores, 2. Backend — casca, áreas e navegação, 3. Backend — mensagens administrativas e observadores, 4. Frontend — casca e navegação, 5. Frontend — mensagens administrativas, 6. Testes, 6.1 Navegação por papel (C3) — **sempre os dois lados** (+5 more)
 
-### Community 51 - "backend/app - UserType"
+### Community 48 - "backend/app - UserType"
 Cohesion: 0.07
-Nodes (13): Api, V1, Base, resolve_user_type(), com_papel(), Demo, Writers, Users (+5 more)
+Nodes (15): Api, V1, Base, concedida?(), teto(), resolve_user_type(), com_papel(), Demo (+7 more)
 
-### Community 242 - "openspec/changes/s3-cadastros-globais"
+### Community 237 - "openspec/changes/s3-cadastros-globais"
 Cohesion: 0.12
 Nodes (16): Tasks: S3 — Cadastros globais, 1. Dados — as cinco tabelas, 2. Backend — endpoints, serviços e models, 2.1 Portadores, 2.2 Grupos de portadores, 2.3 Segmentos e subsegmentos, 2.4 Tipos de garantia, 2.5 Transversais de backend (+8 more)
 
-### Community 402 - "PRODUCT.md - Product"
+### Community 392 - "PRODUCT.md - Product"
 Cohesion: 0.18
 Nodes (10): Product, Platform, Users, Product Purpose, Positioning, Constraints, Terminology, Evidence & assets (+2 more)
 
-### Community 280 - "Frontend Features / dashboard - SummaryCards.tsx"
-Cohesion: 0.19
-Nodes (12): IconType, corpoDoValor(), KpiCard(), ICONES, AUSENCIA, valorLegivel(), CartaoLigado(), SummaryCards() (+4 more)
+### Community 295 - "Frontend Features / dashboard - SummaryCards.tsx"
+Cohesion: 0.21
+Nodes (11): IconType, corpoDoValor(), KpiCard(), ICONES, AUSENCIA, valorLegivel(), CartaoLigado(), parseValue() (+3 more)
 
-### Community 173 - "Frontend Features / dashboard - dashboard.test.tsx"
+### Community 169 - "Frontend Features / dashboard - dashboard.test.tsx"
 Cohesion: 0.13
 Nodes (14): mesPorExtenso(), hojeIso(), JANELAS_VALIDAS, DashboardPage(), summary, volumeByCarrier, CARTAO_SEM_DADO, RESUMO_VAZIO (+6 more)
 
-### Community 634 - "Frontend Features / dashboard - DashboardFilters.tsx"
+### Community 631 - "Frontend Features / dashboard - DashboardFilters.tsx"
 Cohesion: 0.50
 Nodes (4): DashboardFiltersProps, JANELAS, paraIso(), DashboardFilters()
 
-### Community 331 - "openspec/changes/s15-graficos-dashboard - Decisions"
+### Community 329 - "openspec/changes/s15-graficos-dashboard - Decisions"
 Cohesion: 0.15
 Nodes (12): Design: S15 — gráficos e dashboard sobre peças que já existem, Context, Goals / Non-Goals, Decisions, G1. O número vem do serviço de domínio. Sempre, G2. Escopo por projeto no endpoint, e escopo por permissão no payload, G3. `NEW-001` mora nas telas de indicadores, não numa tela nova, G4. `NEW-002` é uma composição de quatro leituras e um gráfico (+4 more)
 
-### Community 453 - "openspec/changes/s15-graficos-dashboard (2)"
+### Community 447 - "openspec/changes/s15-graficos-dashboard (2)"
 Cohesion: 0.22
 Nodes (8): Tasks: S15 — gráficos nos indicadores e dashboard resumo, 1. Serviços de domínio (pré-requisito, e é onde mora o risco), 2. Backend, 3. Frontend — `NEW-001`, 4. Frontend — `NEW-002`, 5. Testes, 6. Registro, Bloco 7 — Filtro de datas no dashboard (pedido do usuário, 26/08/2026)
 
-### Community 231 - "Frontend Components / charts - SeriesLineChart.tsx"
-Cohesion: 0.24
-Nodes (12): CHART_TOKENS, CategoryBarChart(), formatMoneyCompact(), formatAmountCompact(), SeriesLineChartProps, SeriesLineChart(), ChartFormat, formatExact() (+4 more)
+### Community 628 - "Frontend Components / ui - MasonryGrid.tsx"
+Cohesion: 0.50
+Nodes (3): MasonryGridProps, useColunas(), MasonryGrid()
+
+### Community 259 - "Frontend Components / charts - SeriesLineChart.tsx"
+Cohesion: 0.25
+Nodes (11): CHART_TOKENS, formatMoneyCompact(), formatAmountCompact(), SeriesLineChartProps, SeriesLineChart(), ChartFormat, formatExact(), formatTick() (+3 more)
 
 ### Community 135 - "Backend Services / dashboard - SummaryService"
 Cohesion: 0.18
 Nodes (6): Dashboard, SummaryService, Card, call(), window_for(), AggregateService
 
-### Community 351 - "Backend Services / receivables - search_service.rb"
-Cohesion: 0.21
-Nodes (6): Receivables, SearchService, summary_scope(), totals(), monthly_totals(), meses_entre()
-
-### Community 393 - "Backend Services / renegotiations - aggregate_service.rb"
+### Community 384 - "Backend Services / renegotiations - aggregate_service.rb"
 Cohesion: 0.35
 Nodes (10): Renegotiations, preview(), draft_installment(), compute(), live_overdue_for(), overdue_renegotiations_count(), overdue_renegotiations_on(), compute_from() (+2 more)
 
-### Community 137 - "Frontend Lib / api - dashboard.ts"
-Cohesion: 0.13
-Nodes (19): DashboardCardFormat, DashboardCard, DashboardSeries, DashboardLimit, DashboardLimits, DashboardNearCeilingItem, DashboardNearCeiling, DashboardOverdueRenegotiation (+11 more)
+### Community 120 - "Frontend Lib / api - dashboard.ts"
+Cohesion: 0.14
+Nodes (20): DashboardCardFormat, DashboardCard, DashboardSeries, DashboardLimit, DashboardNearCeilingItem, DashboardOverdueRenegotiation, DashboardOverdueRenegotiations, DashboardSummary (+12 more)
 
-### Community 206 - "Frontend Features / indicators - CarrierVolumeChart.tsx"
-Cohesion: 0.17
-Nodes (11): valoresDaSerie(), dashboardApi, CARRIER_VOLUME_KEY, CategoryBarChartProps, CarrierExposurePanel(), CarrierVolumeChartProps, dataDeApuracao(), porExtenso() (+3 more)
-
-### Community 105 - "Backend Services / risk - aggregate_service.rb"
+### Community 104 - "Backend Services / risk - aggregate_service.rb"
 Cohesion: 0.19
 Nodes (23): Risk, AggregateService, active_controls(), active_controls_for_rows(), base_controls(), limite_utilizado_on(), limite_total_on(), limite_disponivel_on() (+15 more)
 
-### Community 110 - "Frontend Components / ui - number.ts"
-Cohesion: 0.12
-Nodes (15): fmtMoeda, fmtDecimal(), fmtCompacto, fmtCompactoSimples, ParseResult, parseNumberPtBr(), MoneyInputProps, MoneyInput (+7 more)
-
-### Community 94 - "legacy-defects.md"
+### Community 95 - "legacy-defects.md"
 Cohesion: 0.07
 Nodes (27): Defeitos do legado encontrados no inventário, Bloqueadores de dados a resolver antes do Phase 3, Defeitos achados ao escrever os textos de ajuda (25/08/2026, DEC-88), D-121 — `data_credito` em branco impede, em silencio, a criacao da operacao de risco, D-122 — cinco campos do formulario de recebiveis testam a variavel errada, D-123 — duas colunas de taxa sem guarda de divisao por zero, Correcoes ao material, achadas na mesma varredura, Defeitos achados na S4 (26/08/2026, lendo a fonte antes de escrever) (+19 more)
 
-### Community 444 - "Database & Seeds / seeds/demo - Remunerations"
+### Community 433 - "Database & Seeds / seeds/demo - Remunerations"
 Cohesion: 0.25
 Nodes (3): Demo, Writers, Remunerations
 
-### Community 350 - "Database & Seeds / seeds/demo - StructuredOperationType"
-Cohesion: 0.18
-Nodes (4): Demo, Writers, StructuredOperations, StructuredOperationType
+### Community 481 - "Database & Seeds / seeds/demo - StructuredOperations"
+Cohesion: 0.29
+Nodes (3): Demo, Writers, StructuredOperations
 
-### Community 368 - "openspec/changes/s20-seed-demonstracao (2)"
+### Community 360 - "openspec/changes/s20-seed-demonstracao (2)"
 Cohesion: 0.17
 Nodes (11): Tasks: S20 — Seed de demonstração, 1. Suporte determinístico, 2. O razão (`Demo::Ledger`) — Ruby puro, zero ActiveRecord, 3. Orquestração, 4. Escritores que rodam hoje, 5. Escritores que aguardam a fatia dona, 6. Testes, 7. Prova de execução (+3 more)
 
-### Community 591 - ".migration-ai9/tools"
+### Community 587 - ".migration-ai9/tools"
 Cohesion: 0.33
 Nodes (5): Ferramentas de verificação visual, `browser.js` — use este, Quatro armadilhas que custaram tempo, `cdp.js` — o plano B, Contas do seed de demonstração
 
-### Community 399 - ".migration-ai9/tools - browser.js"
+### Community 389 - ".migration-ai9/tools - browser.js"
 Cohesion: 0.20
 Nodes (8): path, fs, { execFileSync }, { chromium }, CHROME, CONTAS, codigoDe(), login()
 
-### Community 168 - "backend/app/lib/sfg - attachments.rb"
+### Community 164 - "backend/app/lib/sfg - attachments.rb"
 Cohesion: 0.18
 Nodes (12): Sfg, Spec, model_key_for(), spec_for(), all_specs(), limits_payload(), readable?(), find_signed() (+4 more)
 
-### Community 379 - "backend/app/lib/sfg - Companies"
+### Community 370 - "backend/app/lib/sfg - Companies"
 Cohesion: 0.18
 Nodes (4): Sfg, Etl, Converters, Companies
 
-### Community 475 - "Backend Services / risk - static_pair_service.rb"
+### Community 468 - "Backend Services / risk - static_pair_service.rb"
 Cohesion: 0.29
 Nodes (5): Risk, StaticPairService, IncompleteSubtypes, call!(), build_static()
 
-### Community 69 - "Backend Services / authorization - Matrix"
+### Community 70 - "Backend Services / authorization - Matrix"
 Cohesion: 0.11
 Nodes (14): Authorization, Matrix, UnknownResource, Api, Auth, V1, Impersonate, Auth (+6 more)
 
-### Community 126 - "openspec/changes/s6-recebiveis-bordero"
+### Community 123 - "openspec/changes/s6-recebiveis-bordero"
 Cohesion: 0.08
 Nodes (23): Tasks: S6 — Recebíveis / borderô, com o motor de cálculo, 1. Dados — schema, índices e seeds, 2. Backend — motor de cálculo, serviços e endpoints, 2a. O motor (C2 / D-B1), 2b. Model, serviços de escrita e sincronia, 2c. Endpoints, 2d. Operação e suporte, 3. Frontend — biblioteca compartilhada e telas (+15 more)
 
-### Community 633 - "Frontend Components / ui - Tooltip.tsx"
+### Community 630 - "Frontend Components / ui - Tooltip.tsx"
 Cohesion: 0.40
 Nodes (3): TooltipProps, Lado, OPOSTO
 
-### Community 171 - "backend/app/lib/sfg - Renegotiations (2)"
+### Community 166 - "backend/app/lib/sfg - Renegotiations (2)"
 Cohesion: 0.20
 Nodes (4): Sfg, Etl, Fixups, Renegotiations
 
-### Community 291 - "API Controllers / api - Attachments"
+### Community 288 - "API Controllers / api - Attachments"
 Cohesion: 0.22
 Nodes (11): Attachments, url_expires_in(), url_for(), Api, V1, Attachments, resolve_attachment!(), authorize_attachment!() (+3 more)
 
-### Community 434 - "Backend Specs / requests/api - describe"
+### Community 422 - "Backend Specs / requests/api - describe"
 Cohesion: 0.25
 Nodes (4): describe(), describe_many(), sign_id(), attach_project_avatar()
 
-### Community 88 - "backend/app/lib/sfg - AuditTrail"
+### Community 91 - "backend/app/lib/sfg - AuditTrail"
 Cohesion: 0.09
 Nodes (12): Sfg, AuditTrail, Api, Entities, AuditVersion, Api, V1, AuditTrail (+4 more)
 
-### Community 487 - "Backend Specs / requests/api - contracts_spec.rb"
+### Community 477 - "Backend Specs / requests/api - contracts_spec.rb"
 Cohesion: 0.29
 Nodes (3): PublicHost, MissingHost, publicar()
 
-### Community 85 - "openspec/changes/s4-projeto-empresas"
+### Community 87 - "openspec/changes/s4-projeto-empresas"
 Cohesion: 0.07
 Nodes (28): Tasks: S4 — Projeto e empresas, 1. Dados — o tenant e seus satélites, 2. Backend — o escopo (o que tudo depende), 3. Backend — projeto, 4. Backend — membership, 5. Backend — empresas, fornecedores, conexões e garantias, 5.1 Empresas, 5.2 Fornecedores (+20 more)
 
-### Community 191 - "analise-dump-producao.md"
+### Community 187 - "analise-dump-producao.md"
 Cohesion: 0.11
 Nodes (18): Analise do dump de producao — 26/08/2026, 0. O dump e o certo, e e atual, 1. O ACHADO PRINCIPAL — 24 migrations do repositorio NUNCA rodaram em producao, Por que isso importa mais do que parece, 2. As oito consultas — respondidas, O que cada resposta destrava, 3. D-126 (novo) — `default_position` quebra a listagem de padroes de disponibilidade, 4. Contrato C3 confirmado com dado de producao (+10 more)
 
-### Community 120 - "openspec/changes/s9-renegociacoes"
+### Community 116 - "openspec/changes/s9-renegociacoes"
 Cohesion: 0.08
 Nodes (24): Tasks: S9 — Renegociações: parcelas, pagamentos, anexos, 1. Dados — schema, índices e configuração, 2. Backend — agregados, serviços, endpoints, anexos e realtime, 2a. Agregados (C2 / D-B3), 2b. Model e serviços de escrita, 2c. Endpoints, 2d. Anexos (D-82 / D-B7), 2e. Realtime e agendamento (+16 more)
 
-### Community 74 - "backend/app/lib/sfg - Renegotiations"
+### Community 79 - "backend/app/lib/sfg - Renegotiations"
 Cohesion: 0.14
 Nodes (5): Sfg, Etl, Parity, Renegotiations, Divergence
 
-### Community 34 - "backend/app/lib/sfg - SqlDump"
-Cohesion: 0.10
-Nodes (7): fonte(), cenario(), Sfg, Etl, Source, SqlDump, SortedRows
-
-### Community 306 - "API Controllers / api (2)"
+### Community 304 - "API Controllers / api (2)"
 Cohesion: 0.15
 Nodes (8): Api, Entities, Indicator, Api, Entities, Project, Sfg, RichText
 
-### Community 752 - "API Controllers / api - indicator_connection.rb"
+### Community 750 - "API Controllers / api - indicator_connection.rb"
 Cohesion: 0.50
 Nodes (3): Api, Entities, IndicatorConnection
 
-### Community 131 - "Backend Models - Indicator"
+### Community 130 - "Backend Models - Indicator"
 Cohesion: 0.11
 Nodes (3): Indicator, PropagateIndicatorFieldsJob, PurgeDiscardedIndicatorsJob
 
-### Community 420 - ".migration-ai9/tools - cdp.js"
+### Community 407 - ".migration-ai9/tools - cdp.js"
 Cohesion: 0.24
 Nodes (7): WebSocket, fs, ws, pend, send(), evalJs(), shot()
 
-### Community 767 - "API Controllers / api - structured_operation_type.rb"
+### Community 766 - "API Controllers / api - structured_operation_type.rb"
 Cohesion: 0.50
 Nodes (3): Api, Entities, StructuredOperationType
 
-### Community 377 - "Backend Services / structured - operation_type_service.rb"
+### Community 369 - "Backend Services / structured - operation_type_service.rb"
 Cohesion: 0.22
 Nodes (6): Api, V1, StructuredOperationTypes, Structured, OperationTypeService, update()
 
-### Community 352 - "Backend Services / help - help_spec.rb"
+### Community 347 - "Backend Services / help - help_spec.rb"
 Cohesion: 0.26
 Nodes (3): criar_item(), Help, FieldHelp
 
-### Community 112 - "openspec/changes/s1-autenticacao-conta"
+### Community 110 - "openspec/changes/s1-autenticacao-conta"
 Cohesion: 0.08
 Nodes (25): Tasks: S1 — Autenticação e conta, 1. Dados, 2. Backend — fechar a porta do cadastro público (faça isto primeiro), 3. Backend — identidade, 4. Backend — contas, perfil e bloqueio, 5. Backend — impersonation auditada, 6. Backend — e-mail transacional, 7. Frontend — identidade (+17 more)
 
-### Community 228 - "Backend Services / seeds - Runner"
+### Community 222 - "Backend Services / seeds - Runner"
 Cohesion: 0.21
 Nodes (3): Seeds, Reference, Runner
 
-### Community 431 - "API Controllers / api (3)"
+### Community 418 - "API Controllers / api (3)"
 Cohesion: 0.28
 Nodes (3): Api, V1, CatalogHelpers
 
-### Community 442 - "Backend Services / seeds"
+### Community 429 - "Backend Services / seeds (2)"
 Cohesion: 0.22
 Nodes (3): Seeds, Reference, StructuredOperationTypes
 
-### Community 445 - "Frontend Features / chat-builder - timeAgo"
+### Community 633 - "Frontend Hooks - useMyPermissions.ts"
+Cohesion: 0.40
+Nodes (4): MyPermission, MyPermissionsResponse, MY_PERMISSIONS_KEY, useMyPermissions()
+
+### Community 439 - "Dashboard KPIs & Flow Builder"
 Cohesion: 0.39
 Nodes (7): FlowExecutionStep, flowExecutionsApi, NODE_TYPE_CONFIG, ExecutionStepCard(), ExecutionDetailPage(), ExecutionViewerPage(), timeAgo()
 
-### Community 99 - "Frontend Components / chat - AIChatWidget.tsx"
-Cohesion: 0.12
-Nodes (20): chatFlowsApi, ChatMessage, MarkdownComponents, renderOneBlock(), RenderMessageOptions, renderMessageContent(), DEFAULT_PERSONA, AIChatWidgetProps (+12 more)
+### Community 74 - "Frontend Components / chat - AIChatWidget.tsx"
+Cohesion: 0.10
+Nodes (24): chatFlowsApi, ChatMessage, MarkdownComponents, renderOneBlock(), RenderMessageOptions, renderMessageContent(), DEFAULT_PERSONA, AIChatWidgetProps (+16 more)
 
-### Community 103 - "API Controllers / api - ControllerHelpers"
+### Community 102 - "API Controllers / api - ControllerHelpers"
 Cohesion: 0.11
 Nodes (3): Api, V1, ControllerHelpers
 
-### Community 61 - "Backend Models - LoginCode"
+### Community 72 - "Backend Models - LoginCode"
 Cohesion: 0.08
 Nodes (4): LoginCode, CleanupLoginCodesJob, Auth, MagicLinkVerifyService
 
-### Community 466 - "API Controllers / api - risk_movement.rb"
-Cohesion: 0.21
-Nodes (6): Api, Entities, RiskMovement, Api, Entities, RiskMovementType
+### Community 760 - "API Controllers / api - risk_movement.rb"
+Cohesion: 0.50
+Nodes (3): Api, Entities, RiskMovement
 
-### Community 615 - "API Controllers / api - risk_operation.rb"
+### Community 610 - "API Controllers / api - risk_operation.rb"
 Cohesion: 0.40
 Nodes (3): Api, Entities, RiskOperation
 
-### Community 763 - "API Controllers / api - risk_operation_extension.rb"
+### Community 762 - "API Controllers / api - risk_operation_extension.rb"
 Cohesion: 0.50
 Nodes (3): Api, Entities, RiskOperationExtension
 
-### Community 317 - "backend/app/lib/sfg - RiskMovements"
+### Community 315 - "backend/app/lib/sfg - RiskMovements"
 Cohesion: 0.15
 Nodes (4): Sfg, Etl, Converters, RiskMovements
 
-### Community 294 - "Backend Services / risk - ExposureCache"
+### Community 290 - "Backend Services / risk - ExposureCache"
 Cohesion: 0.21
 Nodes (6): Risk, BalanceReader, last_balances(), balance_for(), Risk, ExposureCache
 
-### Community 29 - "Database & Seeds / seeds/demo (2)"
-Cohesion: 0.06
-Nodes (13): Demo, Writers, AdminMessages, Base, Demo, Writers, Providers, Demo (+5 more)
+### Community 294 - "Database & Seeds / seeds/demo (4)"
+Cohesion: 0.19
+Nodes (3): Demo, Writers, AdminMessages
 
-### Community 229 - "Database & Seeds / seeds/demo - Stream"
+### Community 223 - "Database & Seeds / seeds/demo - Stream"
 Cohesion: 0.14
 Nodes (4): Demo, Support, Rng, Stream
 
-### Community 396 - "Database & Seeds / seeds/demo - base.rb"
-Cohesion: 0.25
-Nodes (7): Demo, Writers, Result, owner_slice(), writer_name(), missing_models(), table_ready?()
+### Community 224 - "Database & Seeds / seeds/demo - Base"
+Cohesion: 0.15
+Nodes (8): Demo, Writers, Base, Result, owner_slice(), writer_name(), missing_models(), table_ready?()
 
-### Community 525 - "Database & Seeds / seeds/demo - Observers"
+### Community 432 - "Database & Seeds / seeds/demo (6)"
+Cohesion: 0.25
+Nodes (3): Demo, Writers, Segments
+
+### Community 256 - "Database & Seeds / seeds/demo (3)"
+Cohesion: 0.12
+Nodes (6): Demo, Writers, Providers, Demo, Writers, Companies
+
+### Community 516 - "Database & Seeds / seeds/demo - Observers"
 Cohesion: 0.29
 Nodes (3): Demo, Writers, Observers
 
-### Community 321 - "Database & Seeds / seeds/demo - ReceivableEntries"
+### Community 320 - "Database & Seeds / seeds/demo - ReceivableEntries"
 Cohesion: 0.22
 Nodes (3): Demo, Writers, ReceivableEntries
 
-### Community 488 - "Database & Seeds / seeds/demo - Scaffolding"
+### Community 479 - "Database & Seeds / seeds/demo - RiskMovements"
+Cohesion: 0.29
+Nodes (3): Demo, Writers, RiskMovements
+
+### Community 480 - "Database & Seeds / seeds/demo - Scaffolding"
 Cohesion: 0.32
 Nodes (3): Demo, Writers, Scaffolding
 
-### Community 497 - "Frontend Features / risk - riskOperations.test.tsx"
+### Community 489 - "Frontend Features / risk - riskOperations.test.tsx"
 Cohesion: 0.25
 Nodes (5): RAIZ, RISCO, FONTES, ARQUIVOS_S7, FONTES_S7
 
-### Community 299 - "removed-features.md (3)"
+### Community 297 - "removed-features.md (3)"
 Cohesion: 0.14
 Nodes (13): Fechamento do Phase 1b — tarefas 9.1 a 9.4 (26/08/2026), 9.1 — O commit de cada bloco, 9.2 — QA pelo avesso: o que eu **procurei**, não só o que achei, Resultado — o que está limpo, com a prova, As 2 falhas do `rspec` — nenhuma é do trim, Resíduo NOVO encontrado — arquivo e linha, A. Da natureza do `public_brand` — regra que diz "sim" sem dono, B. Superfície viva de feature removida (+5 more)
 
-### Community 54 - "removed-features.md"
+### Community 61 - "removed-features.md"
 Cohesion: 0.06
 Nodes (35): Features removidas da base ai9 (Phase 1b — trim para o Safegold), Referências residuais conhecidas (varredura do repo inteiro), Notas do bloco, Decisão: `Purchase` **FICA** (revoga a linha 83 do `design.md`), O que NÃO saiu, de propósito (recusas com evidência), Dívida deixada: o `DashboardPage` perde a fonte de dados, Verificação do Bloco 2, Notas de ambiente (para quem pegar o próximo bloco) (+27 more)
 
-### Community 363 - "removed-features.md (4)"
+### Community 355 - "removed-features.md (4)"
 Cohesion: 0.17
 Nodes (12): Bloco 1 — Folhas visuais + landing (24/08/2026), AI9-022 — Cenas 3D / WebGL (tarefa 1.1), AI9-023 — UI de terminal / typewriter (tarefa 1.2), AI9-024 — Easter egg sazonal (tarefa 1.3), AI9-031 — Audio visualizer / componentes áudio-reativos (tarefa 1.4), AI9-028 — Design demo / playground de tokens (tarefa 1.5), AI9-029 — Guia de rastreamento (tarefa 1.6), AI9-027 — Preview de site / "Vem com site" (tarefa 1.7) (+4 more)
 
-### Community 669 - "removed-features.md (8)"
+### Community 667 - "removed-features.md (8)"
 Cohesion: 0.40
 Nodes (5): Bloco 2 — Analytics (24/08/2026), AI9-011 — Painel TV (tarefa 2.1), AI9-012 — Logger de eventos ao vivo + Heatmap de cliques (tarefa 2.2), AI9-013 — Espelhamento no hub "brsw" (tarefa 2.3), AI9-010 — Analytics próprio (o hub `TrackedEvent`) (tarefa 2.4)
 
-### Community 419 - "removed-features.md (5)"
+### Community 406 - "removed-features.md (5)"
 Cohesion: 0.20
 Nodes (10): Bloco 3 — Conteúdo (24/08/2026), AI9-019 — Transcrição de áudio/vídeo por IA (tarefa 3.1), AI9-020 — Agenda / Google Calendar / Plane / Drive / briefing diário (tarefa 3.2), AI9-015 — Showrooms (tarefas 3.3 e 3.3b), AI9-017 — Pedidos, entregas, milestones, requisitos e especificações (tarefa 3.4), AI9-004 — Blog: posts, rascunhos, categorias, tags, comentários, curadoria e ingestão (tarefa 3.5), AI9-005 — WhatsApp / Evolution: **remoção PARCIAL** (tarefa 3.6 · DEC-14), Os 7 endpoints de auth continuam intactos (+2 more)
 
-### Community 589 - "removed-features.md (6)"
+### Community 585 - "removed-features.md (6)"
 Cohesion: 0.33
 Nodes (6): Bloco 4 — Comercial (24/08/2026), AI9-003 — Cupons e programa de parceiros/afiliados (tarefa 4.1), AI9-001 — Pagamentos e cobranças Asaas (tarefa 4.2), AI9-018 — Onboarding guiado + templates (tarefa 4.3), Tarefa 4.4 — a navegação deixou de depender de `plan_features`, AI9-002 — Planos, assinaturas, checkout e feature-gating (tarefa 4.5)
 
@@ -3283,7 +3278,7 @@ Nodes (6): Bloco 4 — Comercial (24/08/2026), AI9-003 — Cupons e programa de 
 Cohesion: 0.67
 Nodes (3): Bloco 5 — Meta / Instagram (24/08/2026), AI9-009 — Integrações Meta (Instagram / Facebook / WABA) (tarefas 5.1 e 5.2), AI9-019 (herdado do Bloco 3) — `ai/audio_transcription_service.rb`
 
-### Community 814 - "removed-features.md (9)"
+### Community 813 - "removed-features.md (9)"
 Cohesion: 0.50
 Nodes (4): Bloco 6 — Leads e omnichannel (24/08/2026), AI9-006 — Leads e omnichannel (tarefa 6.1), Herdado do Bloco 4 — a `DashboardPage` (tarefa 6.1), Herdado do Bloco 4 — as 7 colunas `leads.checkout_*_at`
 
@@ -3295,155 +3290,127 @@ Nodes (3): Bloco 7 — Operations + base de conhecimento e embeddings (24/08/202
 Cohesion: 0.67
 Nodes (3): Verificação do Bloco 7 — **o `rspec` ZEROU**, Conferido EXECUTANDO — servidor de pé, `curl` de verdade, O menu do console ao fim dos três blocos
 
-### Community 237 - "removed-features.md (2)"
+### Community 232 - "removed-features.md (2)"
 Cohesion: 0.12
 Nodes (17): Bloco 8 — Desacoplar o chatbot: AI9-007 fica, **adaptado** (25/08/2026), O que eu confirmei que já estava feito (e não refiz), A 8.3 estava marcada como resolvida e não estava, O que sobrou da 8.4: a prosa dos 3 providers, 1. O histórico de conversa — DEC-20, o coração do bloco, O que o chatbot perdeu de propósito, 2. Telemetria: `channel = 'console'` (DEC-20), 3. Religar o widget — os 3 endpoints que respondiam 404 (+9 more)
 
-### Community 590 - "removed-features.md (7)"
+### Community 586 - "removed-features.md (7)"
 Cohesion: 0.33
 Nodes (6): Conferido EXECUTANDO — servidor de pé, `curl` de verdade, O portão que mais importa: **o assistente lembra**, E o de B não vê nada de A, As quatro provas de isolamento, O resto do sistema, E no navegador — o widget conversando de verdade
 
-### Community 338 - "API Controllers / api - me.rb"
-Cohesion: 0.18
-Nodes (6): Api, Auth, V1, Me, Auth, MeService
+### Community 111 - "Auth Services & Entities"
+Cohesion: 0.09
+Nodes (12): Api, Auth, V1, Me, Auth, MeService, Api, Auth (+4 more)
 
-### Community 755 - "API Controllers / api - movement_kind.rb"
+### Community 753 - "API Controllers / api - movement_kind.rb"
 Cohesion: 0.50
 Nodes (3): Api, Entities, MovementKind
 
-### Community 759 - "API Controllers / api - receipt.rb"
+### Community 756 - "API Controllers / api - receipt.rb"
 Cohesion: 0.50
 Nodes (3): Api, Entities, Receipt
 
-### Community 760 - "API Controllers / api - receivable_kind.rb"
+### Community 757 - "API Controllers / api - receivable_kind.rb"
 Cohesion: 0.50
 Nodes (3): Api, Entities, ReceivableKind
 
-### Community 761 - "API Controllers / api - receivable_tax.rb"
+### Community 758 - "API Controllers / api - receivable_tax.rb"
 Cohesion: 0.50
 Nodes (3): Api, Entities, ReceivableTax
 
-### Community 762 - "API Controllers / api - resource_source.rb"
+### Community 759 - "API Controllers / api - resource_source.rb"
 Cohesion: 0.50
 Nodes (3): Api, Entities, ResourceSource
 
-### Community 769 - "API Controllers / api - wallet.rb"
+### Community 768 - "API Controllers / api - wallet.rb"
 Cohesion: 0.50
 Nodes (3): Api, Entities, Wallet
 
-### Community 408 - "API Controllers / api - movement_kind_service.rb"
+### Community 398 - "API Controllers / api - movement_kind_service.rb"
 Cohesion: 0.22
 Nodes (4): Api, V1, MovementKinds, MovementKindService
 
-### Community 468 - "API Controllers / api - receivable_kinds.rb"
+### Community 462 - "API Controllers / api - receivable_kinds.rb"
 Cohesion: 0.29
 Nodes (4): Api, V1, ReceivableKinds, ReceivableKindService
 
-### Community 565 - "API Controllers / api - uploads.rb"
+### Community 560 - "API Controllers / api - uploads.rb"
 Cohesion: 0.40
 Nodes (3): Api, V1, Uploads
 
-### Community 183 - "Background Jobs - GlobalAvailabilityTemplate"
-Cohesion: 0.16
-Nodes (5): PropagateGlobalTemplateJob, PropagateGlobalTemplateToProjectJob, GlobalAvailabilityTemplate, sync_attributes!(), enqueue_propagation()
-
-### Community 378 - "Background Jobs / receivables"
-Cohesion: 0.24
-Nodes (5): Receivables, BulkRecalculateJob, IofRate, effective_on(), effective_record_on()
-
-### Community 308 - "backend/app/lib/sfg - dkim_signer.rb"
+### Community 306 - "backend/app/lib/sfg - dkim_signer.rb"
 Cohesion: 0.24
 Nodes (10): Sfg, DkimSigner, domain(), selector(), enabled?(), private_key(), status(), sign!() (+2 more)
 
-### Community 309 - "backend/app/lib/sfg - ActionTextRichTexts"
+### Community 307 - "backend/app/lib/sfg - ActionTextRichTexts"
 Cohesion: 0.15
 Nodes (4): Sfg, Etl, Converters, ActionTextRichTexts
 
-### Community 342 - "backend/app/lib/sfg - Charges"
+### Community 339 - "backend/app/lib/sfg - Charges"
 Cohesion: 0.17
 Nodes (4): Sfg, Etl, Converters, Charges
 
-### Community 380 - "backend/app/lib/sfg - MovementKinds"
+### Community 371 - "backend/app/lib/sfg - MovementKinds"
 Cohesion: 0.18
 Nodes (4): Sfg, Etl, Converters, MovementKinds
 
-### Community 345 - "backend/app/lib/sfg - Receipts"
+### Community 342 - "backend/app/lib/sfg - Receipts"
 Cohesion: 0.18
 Nodes (4): Sfg, Etl, Converters, Receipts
 
-### Community 383 - "backend/app/lib/sfg - ReceivableKinds"
+### Community 374 - "backend/app/lib/sfg - ReceivableKinds"
 Cohesion: 0.18
 Nodes (4): Sfg, Etl, Converters, ReceivableKinds
 
-### Community 389 - "backend/app/lib/sfg - Wallets"
+### Community 380 - "backend/app/lib/sfg - Wallets"
 Cohesion: 0.18
 Nodes (4): Sfg, Etl, Converters, Wallets
 
-### Community 348 - "backend/app/lib/sfg - Introspection"
+### Community 345 - "backend/app/lib/sfg - Introspection"
 Cohesion: 0.18
 Nodes (3): Sfg, Etl, Introspection
 
-### Community 390 - "backend/app/lib/sfg - LegacySchema"
+### Community 381 - "backend/app/lib/sfg - LegacySchema"
 Cohesion: 0.22
 Nodes (4): Sfg, Etl, LegacySchema, UnknownDsl
 
-### Community 617 - "backend/app/lib/sfg - pipeline.rb"
+### Community 612 - "backend/app/lib/sfg - pipeline.rb"
 Cohesion: 0.40
 Nodes (3): Sfg, Etl, Missing
 
-### Community 276 - "backend/app/lib/sfg - Scan"
+### Community 274 - "backend/app/lib/sfg - Scan"
 Cohesion: 0.20
 Nodes (3): Sfg, Etl, Scan
 
-### Community 185 - "backend/app/lib/sfg - Base"
+### Community 179 - "backend/app/lib/sfg - Base"
 Cohesion: 0.13
 Nodes (5): Sfg, Etl, Source, Base, UnavailableSource
 
-### Community 227 - "backend/app/lib/sfg - Connection"
+### Community 221 - "backend/app/lib/sfg - Connection"
 Cohesion: 0.18
 Nodes (4): Sfg, Etl, Source, Connection
 
-### Community 167 - "backend/app/mailers - AuthMailer"
+### Community 53 - "backend/app/lib/sfg - SqlDump"
 Cohesion: 0.12
-Nodes (5): ApplicationMailer, LoggedMailDeliveryJob, AuthMailer, EmailDeliveryLogger, EmailLog
+Nodes (5): Sfg, Etl, Source, SqlDump, SortedRows
 
-### Community 121 - "Auth Services & Entities"
-Cohesion: 0.10
-Nodes (12): process_service_response(), Api, Auth, V1, Sessions, process_service_response(), Api, V1 (+4 more)
-
-### Community 106 - "Backend Services / receivables - persist"
-Cohesion: 0.11
-Nodes (20): Receivables, CreateService, call(), Receivables, TaxService, build(), persist!(), Receivables (+12 more)
-
-### Community 522 - "Backend Services / receivables - help_texts.rb"
-Cohesion: 0.29
-Nodes (3): Receivables, HelpTexts, all()
-
-### Community 439 - "Backend Services / seeds - iof_rates.rb"
+### Community 426 - "Backend Services / seeds - iof_rates.rb"
 Cohesion: 0.22
 Nodes (3): Seeds, Reference, IofRates
 
-### Community 440 - "Backend Services / seeds - movement_kinds.rb"
+### Community 427 - "Backend Services / seeds - movement_kinds.rb"
 Cohesion: 0.22
 Nodes (3): Seeds, Reference, MovementKinds
 
-### Community 481 - "Backend Services / seeds - receivable_kinds.rb"
-Cohesion: 0.25
-Nodes (4): Seeds, Reference, ReceivableKinds, entries()
-
-### Community 483 - "Backend Services / seeds - resource_sources.rb"
+### Community 475 - "Backend Services / seeds - resource_sources.rb"
 Cohesion: 0.25
 Nodes (3): Seeds, Reference, ResourceSources
 
-### Community 485 - "Backend Services / seeds - wallets.rb"
-Cohesion: 0.25
-Nodes (4): Seeds, Reference, Wallets, entries()
-
-### Community 155 - "Backend Specs / lib/sfg - engine_spec.rb"
+### Community 154 - "Backend Specs / lib/sfg - engine_spec.rb"
 Cohesion: 0.11
 Nodes (3): Legacy, RoleMap, UnknownLegacyRole
 
-### Community 413 - "Frontend Pages / pages - faqPage.test.tsx"
+### Community 402 - "Frontend Pages / pages - faqPage.test.tsx"
 Cohesion: 0.20
 Nodes (6): tree, items, search, CATEGORIA, paginaVazia, montar()
 
@@ -3451,471 +3418,491 @@ Nodes (6): tree, items, search, CATEGORIA, paginaVazia, montar()
 Cohesion: 0.10
 Nodes (18): FaqPage(), Linha, LINHAS, COLUNAS, OPCOES, PESSOAS, FieldHelp(), scope (+10 more)
 
-### Community 576 - "Frontend Pages / pages - availability.test.tsx"
+### Community 571 - "Frontend Pages / pages - availability.test.tsx"
 Cohesion: 0.33
 Nodes (4): RAIZ, PAGINAS, TELAS, formatarValor()
 
-### Community 208 - "Frontend Lib / api - types.ts"
-Cohesion: 0.13
-Nodes (16): LoginRequest, LoginResponse, RefreshTokenResponse, SafegoldRole, UserStats, WhatsappMessage, ConnectionStatus, ConnectionUpdateEvent (+8 more)
+### Community 226 - "Frontend Lib / api - types.ts"
+Cohesion: 0.14
+Nodes (15): LoginRequest, LoginResponse, RefreshTokenResponse, SafegoldRole, UserStats, WhatsappMessage, ConnectionStatus, ConnectionUpdateEvent (+7 more)
 
-### Community 330 - "openspec/changes/s13-jobs-integracoes (2)"
+### Community 328 - "openspec/changes/s13-jobs-integracoes (2)"
 Cohesion: 0.15
 Nodes (12): Tasks: S13 — jobs agendados e integrações, 1. Decisões e portões (nada de código antes), 2. Dados, 3. Backend — fila, agendamento e os 7 jobs, 4. Backend — motor único de anexos, 5. Backend — e-mail, 6. Backend — integrações externas e geolocalização, 7. Realtime (+4 more)
 
-### Community 213 - "openspec/changes/s14-etl-producao - Decisions"
+### Community 207 - "openspec/changes/s14-etl-producao - Decisions"
 Cohesion: 0.11
 Nodes (17): Design: S14 — o ETL de produção, Context, Goals / Non-Goals, Decisions, E1. Cinco fases, e cada uma tem um artefato, E2. Introspecção: o baseline é o schema das migrations, não o `schema.rb`, E3. De-para persistido é o que torna tudo o resto possível, E4. Lotes e retomada: o cutover não pode depender de a conexão sobreviver (+9 more)
 
-### Community 249 - "openspec/changes/trim-ai9-safegold"
+### Community 244 - "openspec/changes/trim-ai9-safegold"
 Cohesion: 0.12
 Nodes (16): Tasks: trim da base ai9 para o Safegold, Bloco 1 — Folhas visuais + landing (risco baixo), Bloco 2 — Analytics, Bloco 3 — Conteúdo, Bloco 4 — Comercial, Bloco 5 — Meta, Bloco 6 — Leads, Bloco 7 — Operations (+8 more)
 
-### Community 262 - "Frontend Features / chat-builder - AIAgentConfigPanel.tsx"
-Cohesion: 0.17
-Nodes (11): PageHeaderProps, PageHeader(), FlowKind, AgentConfig, ChatFlowData, AI_MODELS, PARAM_DEFAULTS, PARAM_CONFIG (+3 more)
+### Community 20 - "Frontend Features / chat-builder - ChatBuilderPage.tsx"
+Cohesion: 0.05
+Nodes (29): PageHeaderProps, PageHeader(), nodeTypes, initialNodes, initialEdges, ChatBuilderPage(), IMPORTANT: Skip for AI agents — they manage state directly via AIAgentConfigPane, FlowKind (+21 more)
 
-### Community 357 - "Frontend Lib - sidebarModes.ts"
-Cohesion: 0.26
-Nodes (8): SidebarModeToggleProps, SidebarModeToggle(), MobileTopBar(), ModeEntry, TODOS, MODE_ENTRIES, modeEntryFor(), MODE_GROUPS
+### Community 199 - "Frontend Stores - sidebarModeStore.ts"
+Cohesion: 0.18
+Nodes (13): SidebarModeToggleProps, SidebarModeToggle(), MobileTopBar(), ModeEntry, TODOS, MODE_ENTRIES, modeEntryFor(), MODE_GROUPS (+5 more)
 
-### Community 91 - "Frontend Components - Button.tsx"
+### Community 81 - "Frontend Components / ui - Button.tsx"
 Cohesion: 0.09
-Nodes (18): ButtonVariant, ButtonSize, ButtonProps, variants, sizes, spinnerSize, Button, SideDrawerProps (+10 more)
+Nodes (19): ButtonVariant, ButtonSize, ButtonProps, variants, sizes, spinnerSize, Button, InputProps (+11 more)
 
-### Community 528 - "Frontend Components / ui - PhoneInputGroup.tsx"
-Cohesion: 0.38
-Nodes (5): InputProps, Input, Country, PhoneInputGroupProps, PhoneInputGroup()
+### Community 184 - "Frontend Components / ui - Autocomplete.tsx"
+Cohesion: 0.15
+Nodes (14): SearchInputProps, SearchInput, AutocompleteOption, BaseProps, AutocompleteSingleProps, AutocompleteMultipleProps, AutocompleteProps, Autocomplete() (+6 more)
 
-### Community 100 - "Frontend Components / ui - Autocomplete.tsx"
-Cohesion: 0.10
-Nodes (20): SearchInputProps, SearchInput, StateShellProps, LoadingStateProps, EmptyStateProps, EmptyState(), ErrorStateProps, ErrorState() (+12 more)
-
-### Community 447 - "ai9-conventions.md"
+### Community 441 - "ai9-conventions.md"
 Cohesion: 0.22
 Nodes (8): Convenções do ai9 (base de destino da migração sfg → ai9), 2. Layout de pastas (caminhos reais), 4. Dados — padrões, 7. Comandos verificados, 8. Nomenclatura e estilo, 9. Lacunas do ai9 para um app financeiro / de risco de crédito (`sfg`), 10. Checklist para escrever uma feature nova no ai9, Regra de fronteira — antes de remover ou renomear qualquer coisa de contrato
 
-### Community 799 - "ai9-conventions.md - 1. Stack e versões exatas"
+### Community 798 - "ai9-conventions.md - 1. Stack e versões exatas"
 Cohesion: 0.50
 Nodes (4): 1. Stack e versões exatas, Backend (`backend/`), Frontend (`frontend/`), Infra
 
-### Community 358 - "ai9-conventions.md - 3. Backend — padrões"
+### Community 350 - "ai9-conventions.md - 3. Backend — padrões"
 Cohesion: 0.17
 Nodes (12): 3. Backend — padrões, 3.1 Endpoint Grape, 3.2 Duas formas de responder (as duas existem no repo), 3.3 Formato de erro, 3.4 Paginação, 3.5 Grape::Entity (serializer), 3.6 Service object, 3.7 Job (+4 more)
 
-### Community 498 - "ai9-conventions.md - 5. Frontend — padrões"
+### Community 490 - "ai9-conventions.md - 5. Frontend — padrões"
 Cohesion: 0.25
 Nodes (8): 5. Frontend — padrões, 5.1 Bootstrap e roteamento, 5.2 Camada de dados — **NÃO é RTK Query** ✅ verificado, 5.3 Formulários e validação, 5.5 i18n, 5.6 Acessibilidade, 5.7 Realtime (Action Cable) — **polling é proibido nesta migração**, 5.8 Proxy de dev
 
-### Community 499 - "ai9-conventions.md (2)"
+### Community 491 - "ai9-conventions.md (2)"
 Cohesion: 0.25
 Nodes (8): 5.4 Marca Safegold, tokens e tema — **leia antes de estilizar qualquer coisa**, 5.4.1 A marca, 5.4.2 Tokens — a regra de ouro, 5.4.3 Botão — existe UM, com CINCO variantes, 5.4.4 Superfície flutuante — as duas armadilhas que já morderam, 5.4.5 Onde a cor literal ainda é permitida, 5.4.6 Como o tema é aplicado, 5.4.7 Checklist antes de abrir PR de tela
 
-### Community 652 - "ai9-conventions.md (3)"
+### Community 650 - "ai9-conventions.md (3)"
 Cohesion: 0.40
 Nodes (5): 5.4.8 Mobile — **views próprias, não responsivo por breakpoint** (DEC-100), O que "sensação nativa" significa aqui, em termos concretos, Qual componente para qual caso, O que **não** fazer, Como verificar antes de fechar a tarefa
 
-### Community 653 - "ai9-conventions.md (4)"
+### Community 651 - "ai9-conventions.md (4)"
 Cohesion: 0.40
 Nodes (5): 5.4.9 Campo monetário — preenchimento da **direita para a esquerda**, O que mudou, e por que o comentário antigo não vale mais, A moeda vem da configuração, não do componente, Contrato preservado, Percentual é diferente — e continua diferente
 
-### Community 654 - "ai9-conventions.md - 6. Qualidade e testes"
+### Community 652 - "ai9-conventions.md - 6. Qualidade e testes"
 Cohesion: 0.40
 Nodes (5): 6. Qualidade e testes, Backend — RSpec, Frontend — Vitest, Lint / format, CI
 
-### Community 493 - "frontend/scripts - mobile-audit.mjs"
+### Community 486 - "frontend/scripts - mobile-audit.mjs"
 Cohesion: 0.36
 Nodes (7): IDS, TODAS, getCode(), SONDA(), SONDA_FIM(), relatorio, rodar()
 
-### Community 575 - "frontend/scripts - mobile-surfaces.mjs"
+### Community 570 - "frontend/scripts - mobile-surfaces.mjs"
 Cohesion: 0.47
 Nodes (5): ROTAS, getCode(), MEDIR(), achados, rodar()
 
-### Community 109 - "Frontend Components / mobile - mobileLibrary.test.tsx"
-Cohesion: 0.10
-Nodes (16): MobileBottomBar(), MobileCardTone, MobileCardProps, MobileCard(), MobileChartPoint, MobileChartCardProps, FORMATO_MOEDA, FORMATO_SIMPLES (+8 more)
+### Community 29 - "Frontend Components / mobile - mobileLibrary.test.tsx"
+Cohesion: 0.06
+Nodes (31): MobileBottomBar(), MobileCardTone, MobileCardProps, MobileChartPoint, MobileChartCardProps, FORMATO_MOEDA, FORMATO_SIMPLES, MobileChartCard() (+23 more)
 
-### Community 323 - "Frontend Components / mobile - AsyncSection.tsx"
-Cohesion: 0.22
-Nodes (10): MobileListSkeletonProps, MobileListSkeleton(), MobileEmptyStateProps, MobileEmptyState(), MobileErrorStateProps, MobileErrorState(), AsyncSectionProps, vazioPadrao() (+2 more)
+### Community 629 - "Frontend Components / ui - Select.tsx"
+Cohesion: 0.50
+Nodes (4): SelectOption, SelectProps, textoDe(), Select()
 
-### Community 313 - "backend/app/lib/sfg - Memberships"
+### Community 311 - "backend/app/lib/sfg - Memberships"
 Cohesion: 0.15
 Nodes (4): Sfg, Etl, Converters, Memberships
 
-### Community 404 - "ai9-feature-selection.md"
+### Community 394 - "ai9-feature-selection.md"
 Cohesion: 0.18
 Nodes (10): ai9 feature selection — Safegold (`sfg`), Metadata, ai9-only features, Bulk decision (opcional), Risco de remoção, Alto — remover **não é recomendado** (mesmo se o cliente pedir), Médio — tem dependentes, removível junto com o bloco, Baixo — folha isolada, remoção segura em 1 commit (+2 more)
 
-### Community 335 - "feature-inventory.md"
+### Community 333 - "feature-inventory.md"
 Cohesion: 0.15
 Nodes (12): Feature inventory — sfg (legado), Metadata, Backend (BE), Frontend (FE), Data (DB), Operational / other (OPS), Category checklist, Resumo da consolidação (+4 more)
 
-### Community 511 - "graph-crosscheck.md"
+### Community 503 - "graph-crosscheck.md"
 Cohesion: 0.25
 Nodes (7): Graph crosscheck — sfg (legado) × `feature-inventory.md`, Método, Totais, Lacuna conhecida do grafo — não é lacuna de inventário, Lacunas encontradas e fechadas — 47 arquivos → 12 IDs (11 novos + DB-734), Fora de escopo — 34 arquivos, com motivo, Leitura do resultado
 
-### Community 554 - ".migration-ai9/inventory (7)"
+### Community 549 - ".migration-ai9/inventory (7)"
 Cohesion: 0.29
 Nodes (6): Inventário — auth & users (IDs 001–049), Backend (BE), Frontend (FE), Data (DB), Operacional (OPS), Cobertura
 
-### Community 555 - ".migration-ai9/inventory (8)"
+### Community 550 - ".migration-ai9/inventory (8)"
 Cohesion: 0.29
 Nodes (6): Inventário — availability (IDs 120–149), Backend (BE), Frontend (FE), Data (DB), Operacional (OPS), Cobertura
 
-### Community 460 - ".migration-ai9/inventory (3)"
+### Community 454 - ".migration-ai9/inventory (3)"
 Cohesion: 0.22
 Nodes (8): Inventário — companies, providers, carriers, segments (IDs 050–079), Backend (BE), Frontend (FE), Data (DB), Operacional (OPS), Cobertura, arquivos lidos (todos em `~/workspace/sfg`), lacunas / dúvidas para o Phase 2
 
-### Community 461 - ".migration-ai9/inventory (4)"
+### Community 455 - ".migration-ai9/inventory (4)"
 Cohesion: 0.22
 Nodes (8): Inventário — console admin, dash, admin_messages, observers (IDs 390–429), Backend (BE), Frontend (FE), Data (DB), Operacional (OPS), Cobertura, Arquivos lidos, Lacunas / dúvidas para o Phase 2
 
-### Community 86 - ".migration-ai9/inventory - Data (DB"
+### Community 88 - ".migration-ai9/inventory - Data (DB"
 Cohesion: 0.07
 Nodes (28): Inventário — esquema de dados (IDs 540–599), Visão geral, Legenda de fontes, Data (DB), Auth & identidade, Núcleo do domínio — projetos, empresas, cedentes, Recebíveis, Renegociações (+20 more)
 
-### Community 405 - ".migration-ai9/inventory"
+### Community 395 - ".migration-ai9/inventory"
 Cohesion: 0.18
 Nodes (10): Inventário — engines livetat (IDs 500–539), Visão geral por engine, Backend (BE), Frontend (FE), Modelo de navegação do console do SFG (o que o ai9 precisa reproduzir), Data (DB), Operacional (OPS), Cobertura (+2 more)
 
-### Community 556 - ".migration-ai9/inventory (9)"
+### Community 551 - ".migration-ai9/inventory (9)"
 Cohesion: 0.29
 Nodes (6): Inventário — indicators (310–329) & contracts (330–349), Backend (BE), Frontend (FE), Data (DB), Operacional (OPS), Cobertura
 
-### Community 557 - ".migration-ai9/inventory (10)"
+### Community 552 - ".migration-ai9/inventory (10)"
 Cohesion: 0.29
 Nodes (6): Inventário — jobs & cron (460–479) e integrações (480–499), Operacional (OPS)  ← tabela principal desta unidade, Backend (BE), Frontend (FE), Data (DB), Cobertura
 
-### Community 406 - ".migration-ai9/inventory (2)"
+### Community 396 - ".migration-ai9/inventory (2)"
 Cohesion: 0.18
 Nodes (10): Inventário — domínio residual (430–459) & operacional/config (600–639), Backend (BE), Frontend (FE), Data (DB), Operacional (OPS), Chaves de configuração do legado (viram ENV no ai9), Feature flags e chaves que ligam/desligam comportamento, Cobertura (+2 more)
 
-### Community 558 - ".migration-ai9/inventory (11)"
+### Community 553 - ".migration-ai9/inventory (11)"
 Cohesion: 0.29
 Nodes (6): Inventário — projects (IDs 080–119), Backend (BE), Frontend (FE), Data (DB), Operacional (OPS), Cobertura
 
-### Community 597 - ".migration-ai9/inventory (15)"
+### Community 593 - ".migration-ai9/inventory (15)"
 Cohesion: 0.33
 Nodes (5): Inventário — site público / landing (IDs 640–659) — **DROPPED**, Frontend (FE), Evidência de que o drop é seguro, ATENÇÃO — o que NÃO está dropado, Cobertura
 
-### Community 559 - ".migration-ai9/inventory (12)"
+### Community 554 - ".migration-ai9/inventory (12)"
 Cohesion: 0.29
 Nodes (6): Inventário — receivables, wallets, charges, receipts (IDs 150–189), Backend (BE), Frontend (FE), Data (DB), Operacional (OPS), Cobertura
 
-### Community 560 - ".migration-ai9/inventory (13)"
+### Community 555 - ".migration-ai9/inventory (13)"
 Cohesion: 0.29
 Nodes (6): Inventário — renegotiations (IDs 190–229), Backend (BE), Frontend (FE), Data (DB), Operacional (OPS), Cobertura
 
-### Community 561 - ".migration-ai9/inventory (14)"
+### Community 556 - ".migration-ai9/inventory (14)"
 Cohesion: 0.29
 Nodes (6): Inventário — risk (IDs 230–279), Backend (BE), Frontend (FE), Data (DB), Operacional (OPS), Cobertura
 
-### Community 462 - ".migration-ai9/inventory (5)"
+### Community 456 - ".migration-ai9/inventory (5)"
 Cohesion: 0.22
 Nodes (8): Inventário — structured operations, remunerations, resources (IDs 280–309), Backend (BE), Frontend (FE), Data (DB), Operacional (OPS), Cobertura, arquivos lidos, lacunas/dúvidas para o Phase 2
 
-### Community 463 - ".migration-ai9/inventory (6)"
+### Community 457 - ".migration-ai9/inventory (6)"
 Cohesion: 0.22
 Nodes (8): Inventário — help/FAQ (350–369) & themes (370–389), Backend (BE), Frontend (FE), Data (DB), Operacional (OPS), Cobertura, Arquivos lidos (todos relativos a `../sfg`), Lacunas / dúvidas para o Phase 2
 
-### Community 87 - ".migration-ai9/map"
+### Community 89 - ".migration-ai9/map"
 Cohesion: 0.07
 Nodes (28): Migration map — sfg → ai9 · bloco **RISCO, OPERAÇÕES ESTRUTURADAS E INDICADORES**, Legenda das estratégias, 0. As cinco coisas que este bloco decide antes de qualquer linha de código, 0.1 O domínio inteiro é `build`. O ganho de reuso está na infra, e é grande., 0.2 A convenção de sinal (DEC-01) e o float (DEC-02) são **replicados**, e eu não discuto, 0.3 Não existe gráfico no legado. Nem em risco, nem em indicador, 0.4 Polling: **o legado não faz polling em nenhuma tela deste bloco.** Verificado, 0.5 O saldo é resultado dos movimentos. Se o mapa não travar isso, a tela mente (+20 more)
 
-### Community 598 - "project-options.md"
+### Community 594 - "project-options.md"
 Cohesion: 0.33
 Nodes (5): Opções do projeto — migração sfg → ai9, Marca (branding), Mobile / PWA, Site público, Ferramentas
 
-### Community 373 - "backend/app/lib/sfg (3)"
+### Community 365 - "backend/app/lib/sfg (3)"
 Cohesion: 0.25
 Nodes (5): Api, Entities, AvailabilityEntry, Sfg, BusinessDays
 
-### Community 340 - "API Controllers / api - IndicatorEntries"
+### Community 336 - "API Controllers / api - IndicatorEntries"
 Cohesion: 0.20
 Nodes (9): Api, Entities, IndicatorEntry, Api, Entities, IndicatorGridRow, Api, V1 (+1 more)
 
-### Community 60 - "Backend Services / renegotiations - attachment_service.rb"
+### Community 193 - "API Controllers / api - provider_service.rb"
+Cohesion: 0.13
+Nodes (9): Api, Entities, Provider, Api, V1, Providers, ProviderService, attach_logo_file() (+1 more)
+
+### Community 66 - "Backend Services / renegotiations - attachment_service.rb"
 Cohesion: 0.09
 Nodes (20): Api, Entities, RenegotiationAttachment, Api, V1, RenegotiationAttachments, fetch_renegotiation!(), fetch_attachment!() (+12 more)
 
-### Community 56 - "Backend Services (2)"
+### Community 62 - "Backend Services"
 Cohesion: 0.10
 Nodes (22): Api, Entities, RenegotiationPayment, Api, V1, RenegotiationPayments, fetch_payment!(), RenegotiationPayment (+14 more)
 
-### Community 764 - "API Controllers / api - risk_operation_subtype.rb"
+### Community 761 - "API Controllers / api - risk_movement_type.rb"
+Cohesion: 0.50
+Nodes (3): Api, Entities, RiskMovementType
+
+### Community 763 - "API Controllers / api - risk_operation_subtype.rb"
 Cohesion: 0.50
 Nodes (3): Api, Entities, RiskOperationSubtype
 
-### Community 765 - "API Controllers / api - risk_operation_type.rb"
+### Community 764 - "API Controllers / api - risk_operation_type.rb"
 Cohesion: 0.50
 Nodes (3): Api, Entities, RiskOperationType
 
-### Community 165 - "Backend Services / indicators - connection_service.rb"
+### Community 160 - "Backend Services / indicators - connection_service.rb"
 Cohesion: 0.18
 Nodes (17): Api, V1, IndicatorConnections, Indicators, ConnectionService, connectable(), connected_ids(), connect() (+9 more)
 
-### Community 129 - "Backend Services / indicators - indicator_service.rb"
+### Community 128 - "Backend Services / indicators - indicator_service.rb"
 Cohesion: 0.18
 Nodes (19): Api, V1, Indicators, Indicators, index(), entry_counts(), connection_counts(), show() (+11 more)
 
-### Community 200 - "Backend Services / renegotiations - criar!"
+### Community 195 - "Backend Services / renegotiations - criar!"
 Cohesion: 0.16
 Nodes (13): build_draft_dates(), Renegotiations, BatchColor, Renegotiations, CreateInstallmentsBatch, call(), build_dates(), avancar() (+5 more)
 
-### Community 376 - "Backend Services / risk - movement_type_service.rb"
+### Community 368 - "Backend Services / risk - movement_type_service.rb"
 Cohesion: 0.20
 Nodes (5): Api, V1, RiskMovementTypes, Risk, MovementTypeService
 
-### Community 307 - "Backend Services / risk - operation_type_service.rb"
+### Community 305 - "Backend Services / risk - operation_type_service.rb"
 Cohesion: 0.18
 Nodes (6): Api, V1, RiskOperationTypes, Risk, OperationTypeService, create()
 
-### Community 57 - "Backend Services / availability"
-Cohesion: 0.09
-Nodes (16): SeedGlobalTemplatesJob, GlobalSeeder, Availability, AlreadyLocked, around(), lock!(), unlock!(), start!() (+8 more)
-
-### Community 122 - "backend/app/lib/sfg - AvailabilityTemplates"
+### Community 118 - "backend/app/lib/sfg - AvailabilityTemplates"
 Cohesion: 0.12
 Nodes (4): Sfg, Etl, Converters, AvailabilityTemplates
 
-### Community 312 - "backend/app/lib/sfg - Indicators"
+### Community 310 - "backend/app/lib/sfg - Indicators"
 Cohesion: 0.17
 Nodes (4): Sfg, Etl, Converters, Indicators
 
-### Community 382 - "backend/app/lib/sfg - ProjectIndicatorConnections"
+### Community 373 - "backend/app/lib/sfg - ProjectIndicatorConnections"
 Cohesion: 0.18
 Nodes (4): Sfg, Etl, Converters, ProjectIndicatorConnections
 
-### Community 203 - "backend/app/lib/sfg - RenegotiationInstallments"
+### Community 196 - "backend/app/lib/sfg - RenegotiationInstallments"
 Cohesion: 0.12
 Nodes (4): Sfg, Etl, Converters, RenegotiationInstallments
 
-### Community 292 - "backend/app/lib/sfg - RenegotiationPayments"
+### Community 289 - "backend/app/lib/sfg - RenegotiationPayments"
 Cohesion: 0.14
 Nodes (4): Sfg, Etl, Converters, RenegotiationPayments
 
-### Community 293 - "backend/app/lib/sfg - RiskMovementTypes"
-Cohesion: 0.15
-Nodes (4): Sfg, Etl, Converters, RiskMovementTypes
-
-### Community 385 - "backend/app/lib/sfg - RiskOperationTypes"
+### Community 376 - "backend/app/lib/sfg - RiskOperationTypes"
 Cohesion: 0.18
 Nodes (4): Sfg, Etl, Converters, RiskOperationTypes
 
-### Community 226 - "backend/app/lib/sfg - RiskOperations"
+### Community 219 - "backend/app/lib/sfg - RiskOperations"
 Cohesion: 0.12
 Nodes (4): Sfg, Etl, Converters, RiskOperations
 
-### Community 98 - "Backend Services / indicators - IndicatorEntry"
+### Community 100 - "Backend Services / indicators - IndicatorEntry"
 Cohesion: 0.13
 Nodes (17): IndicatorEntry, Indicators, EntryService, grid(), grid_indicators(), upsert(), update(), destroy() (+9 more)
 
-### Community 624 - "Backend Services / indicators - backfill_service.rb"
+### Community 85 - "Backend Services / availability"
+Cohesion: 0.11
+Nodes (14): Availability, AlreadyLocked, around(), lock!(), unlock!(), start!(), step!(), finish!() (+6 more)
+
+### Community 620 - "Backend Services / indicators - backfill_service.rb"
 Cohesion: 0.50
 Nodes (4): Indicators, BackfillService, call(), pending_changes()
 
-### Community 480 - "Backend Services / renegotiations"
+### Community 473 - "Backend Services / renegotiations"
 Cohesion: 0.29
 Nodes (5): Renegotiations, RenumberInstallments, aplicar(), Renegotiations, RenumberPayments
 
-### Community 441 - "Backend Services / seeds - risk_operation_types.rb"
+### Community 428 - "Backend Services / seeds - risk_operation_types.rb"
 Cohesion: 0.22
 Nodes (3): Seeds, Reference, RiskOperationTypes
 
-### Community 524 - "Database & Seeds / seeds/demo (3)"
+### Community 515 - "Database & Seeds / seeds/demo (7)"
 Cohesion: 0.33
 Nodes (3): Demo, Writers, Memberships
 
-### Community 259 - "Database & Seeds / seeds/demo - Renegotiations"
+### Community 257 - "Database & Seeds / seeds/demo - Renegotiations"
 Cohesion: 0.19
 Nodes (3): Demo, Writers, Renegotiations
 
-### Community 281 - "Frontend Components / ui - RichTextField.tsx"
+### Community 478 - "Database & Seeds / seeds/demo - RiskControls"
+Cohesion: 0.29
+Nodes (3): Demo, Writers, RiskControls
+
+### Community 278 - "Frontend Components / ui - RichTextField.tsx"
 Cohesion: 0.20
 Nodes (12): TAGS_PERMITIDAS, ATRIBUTOS_PERMITIDOS, PROTOCOLOS_PERMITIDOS, hrefSeguro(), sanitizeRichText(), RichTextFieldProps, RichTextField(), RichTextViewProps (+4 more)
 
-### Community 160 - "Frontend Features / indicators - periodo.ts"
-Cohesion: 0.18
-Nodes (16): EntryFiltersProps, EntryFilters(), MonthlyGridProps, MonthlyGrid(), FORMATADOR_LONGO, FORMATADOR_CURTO, capitalizar(), MESES (+8 more)
+### Community 201 - "Frontend Features / indicators - periodo.ts"
+Cohesion: 0.21
+Nodes (14): EntryFiltersProps, EntryFilters(), MonthlyGrid(), FORMATADOR_LONGO, FORMATADOR_CURTO, capitalizar(), MESES, nomeDoMes() (+6 more)
 
-### Community 286 - "openspec/changes/s16-pwa-minimo - Tasks: S16 — PWA mínimo"
+### Community 283 - "openspec/changes/s16-pwa-minimo - Tasks: S16 — PWA mínimo"
 Cohesion: 0.13
 Nodes (14): Tasks: S16 — PWA mínimo, 1. Pré-requisito, 2. Ícones, 3. Manifest e HTML, 4. Verificação, 5. Registro, Registro de execução — 25/08/2026 (`mobile-pwa engineer`), O que já estava pronto, e não foi refeito (+6 more)
 
-### Community 283 - "openspec/changes/s10-indicadores (3)"
+### Community 280 - "openspec/changes/s10-indicadores (3)"
 Cohesion: 0.13
 Nodes (14): Tasks: S10 — Indicadores e séries mensais, Bloco 0 — Decisões que destravam trabalho (não produzem código), Bloco 1 — Dados, Bloco 2 — Backend: catálogo global (I1), Bloco 3 — Backend: exclusão lógica, o fechamento do D-66 (I1), Bloco 4 — Backend: conexões e indicadores específicos (I2), Bloco 5 — Backend: grade mensal e lançamentos (I3), Bloco 6 — Backend: autorização (transversal do módulo) (+6 more)
 
-### Community 174 - "Frontend Pages / pages - routing.test.tsx"
+### Community 170 - "Frontend Pages / pages - routing.test.tsx"
 Cohesion: 0.16
 Nodes (11): comRota(), montar(), ErrorScreenProps, useDestinoDeVolta(), NotFoundPage(), UnprocessablePage(), ServerErrorPage(), ClientCrashPage() (+3 more)
 
-### Community 435 - "backend/app/lib/sfg - Checkpoint"
+### Community 388 - "Frontend Components / ui - currency.ts"
+Cohesion: 0.27
+Nodes (4): MoneyInputProps, MoneyInput, CurrencyConfig, minorFactor()
+
+### Community 423 - "backend/app/lib/sfg - Checkpoint"
 Cohesion: 0.22
 Nodes (3): Sfg, Etl, Checkpoint
 
-### Community 310 - "backend/app/lib/sfg - Carriers"
+### Community 308 - "backend/app/lib/sfg - Carriers"
 Cohesion: 0.15
 Nodes (4): Sfg, Etl, Converters, Carriers
 
-### Community 386 - "backend/app/lib/sfg - Segments"
+### Community 377 - "backend/app/lib/sfg - Segments"
 Cohesion: 0.18
 Nodes (4): Sfg, Etl, Converters, Segments
 
-### Community 349 - "backend/app/lib/sfg - Fixture"
+### Community 346 - "backend/app/lib/sfg - Fixture"
 Cohesion: 0.20
 Nodes (4): Sfg, Etl, Source, Fixture
 
-### Community 532 - "frontend/src/__tests__ - marca-fonte-unica.test.ts"
+### Community 526 - "frontend/src/__tests__ - marca-fonte-unica.test.ts"
 Cohesion: 0.38
 Nodes (5): SRC, ISENTOS, semComentarios(), ocorrencias(), varrer()
 
-### Community 495 - "Frontend Components / brand - Logo.tsx"
+### Community 487 - "Frontend Components / brand - Logo.tsx"
 Cohesion: 0.32
 Nodes (6): LogoVariant, LogoTone, LOGO_SRC, LogoProps, SEOProps, SEO()
 
-### Community 365 - "openspec/changes/s17-temas (2)"
+### Community 357 - "openspec/changes/s17-temas (2)"
 Cohesion: 0.17
 Nodes (11): Tasks: S17 — Temas → **Marca em fonte única**, 1. Dados e seed, 2. Resolução do tema efetivo, 3. Autorização, 4. Endpoints, 5. Tokens e marca — **a fatia inteira mora aqui**, 6. Dois modos, 7. Telas (+3 more)
 
-### Community 423 - "openspec/changes/s16-pwa-minimo - Design: S16 — PWA mínimo"
+### Community 410 - "openspec/changes/s16-pwa-minimo - Design: S16 — PWA mínimo"
 Cohesion: 0.20
 Nodes (9): Design: S16 — PWA mínimo, Context, Goals / Non-Goals, Decisions, P1. Manifest estático em `public/`, não plugin, P2. Ícone maskable não é detalhe, P3. Sem service worker: o que isso custa, dito na cara, P4. Ordem com OPS-635, porque as duas fatias escrevem no mesmo `index.html` (+1 more)
 
-### Community 257 - "Backend Services - whats_app_webhook_service.rb"
+### Community 253 - "Backend Services - whats_app_webhook_service.rb"
 Cohesion: 0.23
 Nodes (15): WhatsAppWebhookService, process_connection_update(), process_logout_instance(), process_qrcode_updated(), find_instance_by_identifier(), validate_connection_update_payload(), validate_logout_payload(), validate_qrcode_payload() (+7 more)
 
-### Community 92 - "authorization-matrix.md"
+### Community 93 - "authorization-matrix.md"
 Cohesion: 0.07
 Nodes (27): Matriz de autorizacao — Safegold no ai9, Como esta matriz foi derivada, Papeis, Papeis fantasma (D-36) — registro, Matriz recurso x papel, Grupo "Inicio" — sem gate, Grupo "Gestao" — gate `projects.count > 0`, sem gate de papel, Grupo "Projeto" — gate `projects.count > 0`, sem gate de papel (+19 more)
 
-### Community 747 - "API Controllers / api - carrier.rb"
+### Community 745 - "API Controllers / api - carrier.rb"
 Cohesion: 0.50
 Nodes (3): Api, Entities, Carrier
 
-### Community 278 - "Backend Services / seeds - guarantee_types.rb"
+### Community 276 - "Backend Services / seeds - guarantee_types.rb"
 Cohesion: 0.13
 Nodes (8): Demo, Writers, GuaranteeTypes, Catalog, Seeds, Reference, GuaranteeTypes, entries()
 
-### Community 177 - "Frontend Lib / api - contracts.ts"
-Cohesion: 0.12
-Nodes (16): ContractCard(), ContractVersionRow(), avisos, CATALOGO, ContractKind, Contract, PendingContract, DealSource (+8 more)
+### Community 521 - "Frontend Pages / pages - helpCenterPage.test.tsx"
+Cohesion: 0.29
+Nodes (5): tree, updateGroup, createGroup, items, montar()
 
-### Community 496 - "Frontend Components / help - helpItemEditor.test.tsx"
-Cohesion: 0.25
-Nodes (6): items, getItem, updateItem, CATEGORIA, DA_LISTA, COMPLETO
+### Community 156 - "Frontend Lib / api - contracts.ts"
+Cohesion: 0.11
+Nodes (17): ContractCard(), ContractVersionRow(), avisos, CATALOGO, ContractKind, Contract, PendingContract, DealSource (+9 more)
 
-### Community 284 - "openspec/changes/s12-contratos-ajuda-faq (3)"
+### Community 573 - "Frontend Components / contracts - termsBanner.test.tsx"
+Cohesion: 0.33
+Nodes (4): pending, acceptAllPending, PENDENTE, montar()
+
+### Community 437 - "Frontend Components / help - helpItemEditor.test.tsx"
+Cohesion: 0.22
+Nodes (7): items, getItem, updateItem, CATEGORIA, DA_LISTA, COMPLETO, montar()
+
+### Community 281 - "openspec/changes/s12-contratos-ajuda-faq (3)"
 Cohesion: 0.13
 Nodes (14): Tasks: S12 — Contratos, ajuda e FAQ, 1. Dados — schema e seeds, 2. Backend — contratos, 2a. Documento e versionamento (SC-1 — não bloqueada), 2b. Superfície pública (SC-1 — não bloqueada), 2c. Ciclo de aceite — BLOQUEADO por Q-B1/Q-B2, 3. Backend — ajuda e FAQ, 4. Frontend (+6 more)
 
-### Community 670 - "API Controllers / api - base.rb (2)"
+### Community 668 - "API Controllers / api - base.rb (2)"
 Cohesion: 0.50
 Nodes (4): Api, Auth, V1, Base
 
-### Community 745 - "API Controllers / api - attachment.rb"
+### Community 743 - "API Controllers / api - attachment.rb"
 Cohesion: 0.50
 Nodes (3): Api, Entities, Attachment
 
-### Community 748 - "API Controllers / api - carrier_group.rb"
+### Community 746 - "API Controllers / api - carrier_group.rb"
 Cohesion: 0.50
 Nodes (3): Api, Entities, CarrierGroup
 
-### Community 83 - "Chat Flows & Deliveries API"
-Cohesion: 0.13
-Nodes (16): Api, Entities, ChatFlow, Api, V1, ChatFlows, ChatFlow, ChatFlowsService (+8 more)
+### Community 105 - "Chat Flows & Deliveries API"
+Cohesion: 0.15
+Nodes (14): ChatFlow, Api, V1, ChatFlows, ChatFlow, ChatFlowsService, index(), show() (+6 more)
 
-### Community 272 - "API Controllers / api - Contracts"
+### Community 271 - "API Controllers / api - Contracts"
 Cohesion: 0.16
 Nodes (9): Api, Entities, Contract, Api, V1, Public, Contracts, Contracts (+1 more)
 
-### Community 749 - "API Controllers / api - contract_deal.rb"
+### Community 747 - "API Controllers / api - contract_deal.rb"
 Cohesion: 0.50
 Nodes (3): Api, Entities, ContractDeal
 
-### Community 751 - "API Controllers / api - help_category.rb"
+### Community 749 - "API Controllers / api - help_category.rb"
 Cohesion: 0.50
 Nodes (3): Api, Entities, HelpCategory
 
-### Community 339 - "Backend Services / help - Help"
+### Community 335 - "Backend Services / help - Help"
 Cohesion: 0.24
 Nodes (6): Api, Entities, HelpGroup, Help, Help, Tree
 
-### Community 614 - "API Controllers / api - help_item.rb"
+### Community 609 - "API Controllers / api - help_item.rb"
 Cohesion: 0.40
 Nodes (3): Api, Entities, HelpItem
 
-### Community 822 - "API Controllers / api - permission_audit_log.rb"
+### Community 821 - "API Controllers / api - permission_audit_log.rb"
 Cohesion: 0.50
 Nodes (3): Api, Entities, PermissionAuditLog
 
-### Community 758 - "API Controllers / api - project_guarantee_type.rb"
+### Community 755 - "API Controllers / api - project_guarantee_type.rb"
 Cohesion: 0.50
 Nodes (3): Api, Entities, ProjectGuaranteeType
 
-### Community 766 - "API Controllers / api - segment.rb"
+### Community 765 - "API Controllers / api - segment.rb"
 Cohesion: 0.50
 Nodes (3): Api, Entities, Segment
 
-### Community 768 - "API Controllers / api - sub_segment.rb"
+### Community 767 - "API Controllers / api - sub_segment.rb"
 Cohesion: 0.50
 Nodes (3): Api, Entities, SubSegment
 
-### Community 770 - "API Controllers / api - br_states.rb"
+### Community 769 - "API Controllers / api - br_states.rb"
 Cohesion: 0.67
 Nodes (3): Api, V1, BrStates
 
-### Community 467 - "API Controllers / api - carrier_groups.rb"
+### Community 461 - "API Controllers / api - carrier_groups.rb"
 Cohesion: 0.29
 Nodes (4): Api, V1, CarrierGroups, CarrierGroupService
 
-### Community 341 - "API Controllers / api - carrier_service.rb"
+### Community 337 - "API Controllers / api - carrier_service.rb"
 Cohesion: 0.20
 Nodes (5): Api, V1, Carriers, CarrierService, remove_logo()
 
-### Community 427 - "API Controllers / api - Chat"
+### Community 414 - "API Controllers / api - Chat"
 Cohesion: 0.27
 Nodes (7): Api, V1, Chat, Ai, FlowMatcher, match(), match_by_keyword()
 
-### Community 114 - "Backend Services / sfg - lookup_service.rb"
+### Community 112 - "Backend Services / sfg - lookup_service.rb"
 Cohesion: 0.14
 Nodes (21): Api, V1, CnpjLookup, Sfg, ReceitaWs, LookupService, call(), remaining_quota() (+13 more)
 
-### Community 104 - "Backend Services / contracts - Contract"
+### Community 103 - "Backend Services / contracts - Contract"
 Cohesion: 0.11
 Nodes (10): Api, V1, ContractVersions, find_version!(), Contract, Contracts, PrefillService, Contracts (+2 more)
 
-### Community 164 - "Backend Services / contracts - Contracts"
+### Community 159 - "Backend Services / contracts - Contracts"
 Cohesion: 0.16
 Nodes (9): Api, V1, Contracts, find_contract!(), Contracts, AcceptService, Result, Contracts (+1 more)
 
-### Community 437 - "API Controllers / api - FlowExecution"
-Cohesion: 0.25
-Nodes (4): Api, V1, FlowExecutions, FlowExecution
+### Community 316 - "API Controllers / api - FlowExecution"
+Cohesion: 0.17
+Nodes (6): Api, V1, FlowExecutions, ApplicationRecord, FlowExecution, PermissionConflict
 
-### Community 374 - "API Controllers / api - HelpCategory"
+### Community 366 - "API Controllers / api - HelpCategory"
 Cohesion: 0.18
 Nodes (5): Api, V1, find_category!(), find_item!(), HelpCategory
 
-### Community 432 - "API Controllers / api (4)"
+### Community 419 - "API Controllers / api (4)"
 Cohesion: 0.25
 Nodes (4): Api, V1, ProjectGuaranteeTypes, ProjectGuaranteeTypeService
 
-### Community 671 - "API Controllers / api - chat.rb"
+### Community 669 - "API Controllers / api - chat.rb"
 Cohesion: 0.50
 Nodes (4): Api, V1, Public, Chat
 
-### Community 469 - "API Controllers / api - sub_segments.rb"
+### Community 463 - "API Controllers / api - sub_segments.rb"
 Cohesion: 0.29
 Nodes (4): Api, V1, SubSegments, SubSegmentService
 
-### Community 551 - "API Controllers / api - base.rb"
+### Community 546 - "API Controllers / api - base.rb"
 Cohesion: 0.33
 Nodes (5): Api, Whats, V1, Base, process_service_response()
 
-### Community 428 - "Backend Services / ai - conversation_memory.rb"
+### Community 338 - "backend/app/mailers - EmailDeliveryLogger"
+Cohesion: 0.21
+Nodes (3): LoggedMailDeliveryJob, EmailDeliveryLogger, EmailLog
+
+### Community 415 - "Backend Services / ai - conversation_memory.rb"
 Cohesion: 0.27
 Nodes (7): AgentRun, Ai, ConversationMemory, history_for(), append(), clear(), key_for()
 
@@ -3923,531 +3910,543 @@ Nodes (7): AgentRun, Ai, ConversationMemory, history_for(), append(), clear(), k
 Cohesion: 0.19
 Nodes (3): ContractDeal, Contracts, ProofExport
 
-### Community 218 - "Backend Services / ai"
+### Community 212 - "Backend Services / ai"
 Cohesion: 0.14
 Nodes (5): Ai, FlowEngine, Ai, Nodes, BaseNode
 
-### Community 552 - "Backend Services / ai - Input"
+### Community 547 - "Backend Services / ai - Input"
 Cohesion: 0.29
 Nodes (3): Ai, Nodes, Input
 
-### Community 372 - "Backend Services / ai - AnthropicProvider"
+### Community 364 - "Backend Services / ai - AnthropicProvider"
 Cohesion: 0.29
 Nodes (3): Ai, Providers, AnthropicProvider
 
-### Community 429 - "Backend Services / ai - GoogleProvider"
+### Community 416 - "Backend Services / ai - GoogleProvider"
 Cohesion: 0.33
 Nodes (3): Ai, Providers, GoogleProvider
 
-### Community 395 - "Backend Services / ai - OpenaiProvider"
+### Community 386 - "Backend Services / ai - OpenaiProvider"
 Cohesion: 0.27
 Nodes (4): Ai, Providers, OpenaiProvider, connection()
 
-### Community 553 - "Backend Services / ai - telemetry.rb"
+### Community 548 - "Backend Services / ai - telemetry.rb"
 Cohesion: 0.48
 Nodes (6): Ai, Telemetry, record(), log(), summary_for(), format_value()
 
-### Community 672 - "Backend Services / ai - tool_executor.rb"
+### Community 670 - "Backend Services / ai - tool_executor.rb"
 Cohesion: 0.40
 Nodes (3): Ai, Tools, ToolExecutor
 
-### Community 595 - "Backend Services / ai - tool_registry.rb"
+### Community 591 - "Backend Services / ai - tool_registry.rb"
 Cohesion: 0.40
 Nodes (3): Ai, Tools, ToolRegistry
 
-### Community 438 - "Backend Services / contracts - LegacyImport"
+### Community 425 - "Backend Services / contracts - LegacyImport"
 Cohesion: 0.31
 Nodes (3): Contracts, LegacyImport, Report
 
-### Community 596 - "Backend Services - evolution_connection.rb"
+### Community 592 - "Backend Services - evolution_connection.rb"
 Cohesion: 0.33
 Nodes (3): ConnectionError, TimeoutError, InvalidResponseError
 
-### Community 479 - "Backend Services / help"
+### Community 472 - "Backend Services / help"
 Cohesion: 0.32
 Nodes (3): Help, LegacyImport, Report
 
-### Community 412 - "Backend Services / seeds - catalog.rb"
+### Community 401 - "Backend Services / seeds - catalog.rb"
 Cohesion: 0.20
 Nodes (3): Seeds, Reference, call!()
 
-### Community 394 - "Backend Services / seeds - Contracts"
+### Community 385 - "Backend Services / seeds - Contracts"
 Cohesion: 0.22
 Nodes (3): Seeds, Reference, Contracts
 
-### Community 482 - "Backend Services / seeds - Report"
+### Community 474 - "Backend Services / seeds - Report"
 Cohesion: 0.25
 Nodes (3): Seeds, Reference, Report
 
-### Community 151 - "API Controllers / api - AuthHelpers"
-Cohesion: 0.12
+### Community 158 - "API Controllers / api - AuthHelpers"
+Cohesion: 0.13
 Nodes (4): Api, Auth, V1, AuthHelpers
 
-### Community 744 - "API Controllers / api - admin_message.rb"
+### Community 742 - "API Controllers / api - admin_message.rb"
 Cohesion: 0.50
 Nodes (3): Api, Entities, AdminMessage
 
-### Community 754 - "API Controllers / api - message_note.rb"
+### Community 752 - "API Controllers / api - message_note.rb"
 Cohesion: 0.50
 Nodes (3): Api, Entities, MessageNote
 
-### Community 756 - "API Controllers / api - observer.rb"
+### Community 754 - "API Controllers / api - observer.rb"
 Cohesion: 0.50
 Nodes (3): Api, Entities, Observer
 
-### Community 222 - "Backend Services - admin_messages_service.rb"
+### Community 215 - "Backend Services - admin_messages_service.rb"
 Cohesion: 0.27
 Nodes (14): AdminMessages, AdminMessagesService, index(), show(), create(), update(), close(), destroy() (+6 more)
 
-### Community 771 - "API Controllers / api - countries.rb"
+### Community 770 - "API Controllers / api - countries.rb"
 Cohesion: 0.67
 Nodes (3): Api, V1, Countries
 
-### Community 166 - "Backend Services - Observer"
+### Community 161 - "Backend Services - Observer"
 Cohesion: 0.16
 Nodes (12): Api, V1, Observers, Observer, ObserversService, index(), create(), update() (+4 more)
 
-### Community 295 - "Backend Services / ai - agent_service.rb"
+### Community 291 - "Backend Services / ai - agent_service.rb"
 Cohesion: 0.29
 Nodes (13): Ai, AgentService, respond(), extract_options(), shorten_label(), tool_instructions_for(), call_simple(), call_with_tools() (+5 more)
 
-### Community 296 - "Backend Services / ai - Redirect"
+### Community 292 - "Backend Services / ai - Redirect"
 Cohesion: 0.19
 Nodes (3): Ai, Nodes, Redirect
 
-### Community 572 - "Database & Seeds / seeds/demo - CarrierConnections"
+### Community 567 - "Database & Seeds / seeds/demo - CarrierConnections"
 Cohesion: 0.33
 Nodes (3): Demo, Writers, CarrierConnections
 
-### Community 573 - "Database & Seeds / seeds/demo - Guarantees"
+### Community 568 - "Database & Seeds / seeds/demo - Guarantees"
 Cohesion: 0.33
 Nodes (3): Demo, Writers, Guarantees
 
-### Community 578 - "Frontend Features / auth - LoginPage.tsx"
-Cohesion: 0.73
-Nodes (3): LoginPage(), LoginNotice(), safeNextPath()
+### Community 436 - "Frontend Features / auth - LoginPage.tsx"
+Cohesion: 0.42
+Nodes (5): LoginPage(), AuthStep, AuthFlow(), LoginNotice(), safeNextPath()
 
-### Community 188 - "Frontend Lib / api - ApiClient"
+### Community 185 - "Frontend Lib / api - ApiClient"
 Cohesion: 0.14
 Nodes (4): ApiClient, downloadBasic(), downloadFull(), triggerDownload()
 
-### Community 189 - "Frontend Lib / utils - date.ts"
+### Community 202 - "Frontend Lib / utils - date.ts"
 Cohesion: 0.20
-Nodes (15): DateLike, toDate(), formatDateLong(), nomeDoMes(), nomeDoDiaDaSemana(), toIsoDate(), dinosaurs(), mars() (+7 more)
+Nodes (14): DateLike, toDate(), formatDateLong(), nomeDoMes(), nomeDoDiaDaSemana(), dinosaurs(), mars(), dateRange() (+6 more)
 
-### Community 366 - "openspec/changes/s19-trilha-transversais (2)"
+### Community 358 - "openspec/changes/s19-trilha-transversais (2)"
 Cohesion: 0.17
 Nodes (11): Tasks: S19 — Trilha de auditoria e transversais, 0. A decisão que esta fatia tomou: `Tracking` × `paper_trail`, 1. Esquema da trilha, 2. Serviço e imutabilidade, 3. Emissão, 4. Leitura, 5. Tela, 6. Utilitários de formatação — um por conceito (+3 more)
 
-### Community 334 - "openspec/changes/s20-seed-demonstracao"
+### Community 332 - "openspec/changes/s20-seed-demonstracao"
 Cohesion: 0.15
 Nodes (12): Design: S20 — Seed de demonstração, 0. A decisão central: razão separado dos escritores, Por que não usar factories (FactoryBot), 1. O contrato de um escritor, 2. Idempotência: chave natural, nunca `create`, 3. `demo:reset` — o que ele pode apagar, 4. Determinismo e datas, 5. Como a aritmética fecha — as 7 regras, e onde cada uma mora (+4 more)
 
-### Community 456 - "openspec/changes/s20-seed-demonstracao (3)"
+### Community 450 - "openspec/changes/s20-seed-demonstracao (3)"
 Cohesion: 0.22
 Nodes (8): Proposal: S20 — Seed de demonstração, Why, O problema de ordem, e a resposta desta fatia, What Changes, O que esta fatia **não** faz, Impact, Dependências, por módulo, Riscos
 
-### Community 182 - "openspec/changes/s20-seed-demonstracao/specs - ADDED Requirements"
+### Community 176 - "openspec/changes/s20-seed-demonstracao/specs - ADDED Requirements"
 Cohesion: 0.10
 Nodes (19): Delta: data-schema — o seed de demonstração, ADDED Requirements, Requirement: S20-01 — O seed de demonstração é separado do seed de produção, Scenario: `db:seed` num ambiente limpo, Scenario: `demo:seed` é explícito, Requirement: S20-02 — O seed é idempotente por chave natural, Scenario: Segunda execução consecutiva, Scenario: Execução interrompida no meio (+11 more)
 
-### Community 448 - "brand-and-metadata.md"
+### Community 442 - "brand-and-metadata.md"
 Cohesion: 0.22
 Nodes (8): Marca & metadados canônicos do legado (Safegold / SFG), Identidade, Cores canônicas (`SFG::Theme`), ⚠ Divergência a resolver no Phase 2 — são TRÊS primários, não dois, Dark mode: o legado **não tem**, Logos (`SFG::Theme`), Constantes de negócio (`SFG::Metadata`) — viram configuração no ai9, 🔒 Achado de segurança (não propagar para o ai9)
 
-### Community 202 - "Background Jobs / purge_audit_versions_job.rb - scripts"
-Cohesion: 0.11
-Nodes (15): PurgeAuditVersionsJob, name, private, version, type, scripts, dev, build (+7 more)
+### Community 421 - "Background Jobs - package.json"
+Cohesion: 0.22
+Nodes (6): PurgeAuditVersionsJob, name, private, version, type, packageManager
 
-### Community 22 - "Frontend NPM Dependencies"
+### Community 270 - "API Controllers / api - defaults.rb"
+Cohesion: 0.14
+Nodes (10): Api, Auth, V1, MagicLink, process_service_response(), process_service_response(), Api, V1 (+2 more)
+
+### Community 435 - "package.json - scripts"
+Cohesion: 0.22
+Nodes (9): scripts, dev, build, lint, type-check, preview, test, test:ui (+1 more)
+
+### Community 24 - "Frontend NPM Dependencies"
 Cohesion: 0.04
 Nodes (50): dependencies, @radix-ui/react-accordion, @radix-ui/react-avatar, @radix-ui/react-dialog, @radix-ui/react-progress, @radix-ui/react-slider, @radix-ui/react-switch, @rails/actioncable (+42 more)
 
-### Community 260 - "Frontend Components / ui - FloatingPanel.tsx"
-Cohesion: 0.12
-Nodes (14): react, FloatingSide, FloatingAlign, AnchorRect, UseAnchoredPanelOptions, useAnchoredPanel(), FloatingPanelProps, FloatingPanel (+6 more)
+### Community 434 - "Frontend Components / ui - react"
+Cohesion: 0.22
+Nodes (8): react, useAnchoredPanel(), RadioGroupContextValue, RadioGroupContext, RadioGroupProps, RadioGroup(), RadioProps, Radio
 
-### Community 156 - "package.json - devDependencies"
+### Community 155 - "package.json - devDependencies"
 Cohesion: 0.10
 Nodes (21): devDependencies, @testing-library/jest-dom, @testing-library/react, @types/canvas-confetti, @types/node, @types/rails__actioncable, @types/react, @types/react-dom (+13 more)
 
-### Community 527 - "frontend/scripts - check-coercion-golden.mjs"
+### Community 519 - "frontend/scripts - check-coercion-golden.mjs"
 Cohesion: 0.29
 Nodes (5): here, goldenPath, golden, failures, declarados
 
-### Community 492 - "frontend/scripts - csp-console-sweep.mjs"
+### Community 485 - "frontend/scripts - csp-console-sweep.mjs"
 Cohesion: 0.29
 Nodes (7): ROUTES, getCode(), findings, sweep(), relevantes, csp, duros
 
-### Community 579 - "Frontend Components / ui - DetailList.tsx"
+### Community 574 - "Frontend Components / ui - DetailList.tsx"
 Cohesion: 0.40
 Nodes (5): DetailItem, DetailListProps, colunas, vazio(), DetailList()
 
-### Community 530 - "Frontend Components / ui - UserAvatar.tsx"
+### Community 523 - "Frontend Components / ui - FloatingPanel.tsx"
+Cohesion: 0.29
+Nodes (6): FloatingSide, FloatingAlign, AnchorRect, UseAnchoredPanelOptions, FloatingPanelProps, FloatingPanel
+
+### Community 524 - "Frontend Components / ui - UserAvatar.tsx"
 Cohesion: 0.48
 Nodes (5): UserAvatarProps, TONS, avatarTone(), initialsOf(), UserAvatar()
 
-### Community 635 - "Frontend Hooks - useJobProgress.ts"
+### Community 632 - "Frontend Hooks - useJobProgress.ts"
 Cohesion: 0.40
 Nodes (4): JobStatus, JobProgress, UseJobProgressOptions, INICIAL
 
-### Community 636 - "Frontend Lib / utils - address.ts"
+### Community 634 - "Frontend Lib / utils - address.ts"
 Cohesion: 0.60
 Nodes (4): EnderecoParcial, preenchido(), enderecoEmLinhas(), enderecoEmTexto()
 
-### Community 540 - "openspec/changes/s0-fundacao"
+### Community 535 - "openspec/changes/s0-fundacao"
 Cohesion: 0.29
 Nodes (6): S0 — Inventário dos módulos JS do legado importados de fato (FE-538), 1. Os 13 módulos de vendor importados, Os 3 módulos proprietários do vendor (DEC-10 — usar as libs do ai9), 2. Os 6 módulos próprios do pack do app, 3. As duas peças de CSS puro (FE-413, FE-419), 4. `Rating` (FE-429) — **dropped**, com a evidência
 
-### Community 329 - "openspec/changes/s0-fundacao - Tasks: S0 — Fundação"
+### Community 327 - "openspec/changes/s0-fundacao - Tasks: S0 — Fundação"
 Cohesion: 0.15
 Nodes (12): Tasks: S0 — Fundação, 1. Dados, 2. Backend — escopo por projeto (C1), 3. Backend — papéis, hierarquia (C3) e autorização, 4. Frontend — primitivos da biblioteca compartilhada, 5. Testes, 5.1 Hierarquia (C3) — **sempre os dois lados**, 5.2 Escopo por projeto (C1) (+4 more)
 
-### Community 215 - "openspec/changes/s18-plataforma-config (2)"
+### Community 209 - "openspec/changes/s18-plataforma-config (2)"
 Cohesion: 0.11
 Nodes (17): Tasks: S18 — Plataforma: configuração, segredos, boot, i18n e assets, 1. Ambiente reproduzível, 2. Segredos e o contrato de boot, 3. Segurança de plataforma, 4. Banco de dados e SQL, 5. Coerção e sentinelas (o initializer com regra de negócio), 6. i18n, 7. Runtime e processos (+9 more)
 
-### Community 451 - "help-texts-review.md"
+### Community 445 - "help-texts-review.md"
 Cohesion: 0.22
 Nodes (8): Textos de ajuda dos formulários financeiros — para revisão, Os 4 TODO, Onde a fórmula contradiz o nome do campo, Recebíveis — 65 campos, Operações de risco — 13 campos, Operações estruturadas — 13 campos, Notas de leitura que não couberam no tooltip, Defeitos novos encontrados ao ler as fórmulas
 
-### Community 362 - "perguntas-rodada-1-pos-dec30.md (3)"
+### Community 354 - "perguntas-rodada-1-pos-dec30.md (3)"
 Cohesion: 0.17
 Nodes (11): Perguntas da rodada 1 — depois do DEC-30, 1. Placar, De 108, **69 ainda precisam de você**., 2. `RESOLVIDA-30` — 39 fechadas pelo princípio, 3. `EXCEÇÃO-1` — replicar gravaria dado errado do zero (2), P-031 — Excluir tarifa já gravada tem efeito imediato, mesmo se o usuário cancelar, P-055 — Na tela de mensagens, pedir "Concluído" grava "Fechado" (e vice-versa), 6. O que o DEC-30 custa (+3 more)
 
-### Community 539 - "perguntas-rodada-1-pos-dec30.md (4)"
+### Community 533 - "perguntas-rodada-1-pos-dec30.md (4)"
 Cohesion: 0.29
 Nodes (7): 4. `EXCEÇÃO-2` — segurança e autorização (6), P-022 — Quem pode publicar uma versão de contrato? (hoje: qualquer autenticado), P-048 — ETL: o que acontece com `is_active` e com `legacy_password`?, P-056 — O envio anônimo de mensagem de feedback é usado?, P-061 — Os papéis do Safegold colidem com os `hierarchy_level` que a base já semeia (contrato C3), P-105 — Guardamos o corpo de todo e-mail enviado?, P-106 — Quem assina DKIM no ai9: a aplicação ou o provedor de envio?
 
-### Community 32 - "perguntas-rodada-1-pos-dec30.md"
+### Community 34 - "perguntas-rodada-1-pos-dec30.md"
 Cohesion: 0.05
 Nodes (44): 5. `EXCEÇÃO-3` — não existe legado a replicar (43), P-012 — Correção monetária e carência: a tela promete, o cálculo ignora, P-018 — Sobrou limite de risco no formato pré-2022, sem tipo?, P-047 — O login por Facebook continua existindo?, P-049 — Alguém entra hoje digitando **username** em vez de e-mail?, P-050 — "Verificação: {nível}" — o telefone verificado volta a existir?, P-051 — Onde ficam os arquivos em produção?, P-052 — Com DEC-14 (sem senha), o que dizem os e-mails "Perdeu a senha?" e "Nova senha configurada"? (+36 more)
 
-### Community 194 - "perguntas-rodada-1-pos-dec30.md (2)"
+### Community 190 - "perguntas-rodada-1-pos-dec30.md (2)"
 Cohesion: 0.11
 Nodes (19): 7. `AINDA-PRECISA` — 18 perguntas, ordenadas por impacto, P-015 — Subtipo da operação de risco: o formulário não pergunta e o código escolhe "o primeiro", P-020 — Aceite de contrato volta a ser explícito?, P-021 — O que fazer com os aceites implícitos que já estão gravados?, P-024 — Os 91 textos de ajuda dos formulários são todos o mesmo placeholder, P-037 — Na grade de indicadores, "não lançado" e "lançado como zero" são o mesmo `0`, P-038 — O título do indicador continua em CAIXA ALTA sem acento?, P-041 — `resource_kinds` e `resource_sources` são indistinguíveis (+11 more)
 
-### Community 298 - "perguntas-rodada-1.md (4)"
+### Community 296 - "perguntas-rodada-1.md (4)"
 Cohesion: 0.14
 Nodes (13): Perguntas ao usuário — rodada 1 (documento único), 1. Como responder, 2. Placar, Por impacto, e é nesta ordem que elas estão, 3. Comece por aqui, 3.1 As que travam código HOJE — alguém não consegue começar sem elas, 3.2 As que mudam um número que o cliente JÁ vê, 4. Achados que não são pergunta (+5 more)
 
-### Community 193 - "perguntas-rodada-1.md (3)"
+### Community 189 - "perguntas-rodada-1.md (3)"
 Cohesion: 0.11
 Nodes (19): `muda número na tela` — P-001 a P-018, P-001 — Correção por dias úteis: o valor decai a cada salvamento repetido, P-002 — Consolidação geral: passa a respeitar cumulatividade e sinal?, P-003 — "Total" quer dizer duas coisas na mesma tela, P-004 — Dias úteis passam a considerar feriados?, P-005 — Borderô: recalcular ou copiar o valor das operações de risco históricas?, P-006 — `calc_valor_liq_correto`: desconto linear é a regra pretendida?, P-007 — CET do banco: a guarda olha o prazo da **empresa** (+11 more)
 
-### Community 23 - "perguntas-rodada-1.md"
+### Community 25 - "perguntas-rodada-1.md"
 Cohesion: 0.04
 Nodes (49): `muda comportamento observável` — P-019 a P-066, P-019 — `has_safegold_management`: carimbo histórico ou derivado do projeto?, P-020 — Aceite de contrato volta a ser explícito?, P-021 — O que fazer com os aceites implícitos que já estão gravados?, P-022 — Quem pode publicar uma versão de contrato? (hoje: qualquer autenticado), P-023 — `receipts` herda o gate de `charges` ou merece linha própria na matriz?, P-024 — Os 91 textos de ajuda dos formulários são todos o mesmo placeholder, P-025 — Introduzir as validações de faixa que o legado não tem? (+41 more)
 
-### Community 49 - "perguntas-rodada-1.md (2)"
+### Community 54 - "perguntas-rodada-1.md (2)"
 Cohesion: 0.05
 Nodes (38): `muda escopo` — P-067 a P-103, P-067 — Qual é a prova mínima exigida de um aceite?, P-068 — Existe estado de baixa, liquidação ou vencimento do recebível?, P-069 — `is_title` e `is_liquidation` em `movement_kinds`: campos vivos ou resíduo?, P-070 — `resource_kinds`: portar ou descartar? Uma contagem decide 9 IDs, P-071 — `receivable_entries.observacoes`: campo visível, fundido ou descartado?, P-072 — Renomear anexo de renegociação entra no escopo?, P-073 — A aba PAGAMENTOS da renegociação entra no escopo? (+30 more)
 
-### Community 234 - "perguntas-rodada-1.md - `só interno` — P-104 a P-117"
+### Community 229 - "perguntas-rodada-1.md - `só interno` — P-104 a P-117"
 Cohesion: 0.12
 Nodes (17): `só interno` — P-104 a P-117, P-104 — Por quanto tempo guardamos IP e user-agent das tentativas de login?, P-105 — Guardamos o corpo de todo e-mail enviado?, P-106 — Quem assina DKIM no ai9: a aplicação ou o provedor de envio?, P-107 — Chaves de terceiro vivem em ENV/credentials ou no model `Credential`?, P-108 — O logo da marca precisa de versões branca e monocromática de verdade?, P-109 — Logos: model `Medium` ou `has_one_attached` direto nos models?, P-110 — Uma trilha de auditoria só, e qual: `AuditEvent`, `paper_trail` ou `permission_audit_logs`? (+9 more)
 
-### Community 667 - "perguntas-rodada-1.md - De-para: origem → `P-xxx`"
+### Community 665 - "perguntas-rodada-1.md - De-para: origem → `P-xxx`"
 Cohesion: 0.40
 Nodes (5): De-para: origem → `P-xxx`, Metade dos mapas (`Q-01` … `Q-98`), Metade do empacotamento (`F-01` … `F-51`), Recuperadas (não estavam em nenhuma das duas metades como pergunta), Colisão de nomes `Q-B*` — desambiguada por assunto, não por número
 
-### Community 668 - "perguntas-rodada-1-fatias.md - perguntas-rodada-1-fatias.md"
+### Community 666 - "perguntas-rodada-1-fatias.md - perguntas-rodada-1-fatias.md"
 Cohesion: 0.40
 Nodes (4): Perguntas da rodada 1 — metade nascida no empacotamento (20 openspec changes), Contagem, Quebra por impacto, As que travam código AGORA
 
-### Community 361 - "perguntas-rodada-1-fatias.md - `muda número na tela`"
+### Community 353 - "perguntas-rodada-1-fatias.md - `muda número na tela`"
 Cohesion: 0.17
 Nodes (12): `muda número na tela`, F-01 — Borderôs históricos: recalcular o valor da operação de risco, ou copiar o do legado?, F-02 — Correção por dias úteis: aplicar uma vez ou replicar o decaimento composto?, F-03 — Consolidação geral: passa a respeitar `is_cumulative` e `is_debit`?, F-04 — "Total": o total geral usa `value` e os cards usam `virtual_value`. Qual vale?, F-05 — Dias úteis passam a considerar feriados?, F-06 — T-D3 (Q-R6): tipo com pré-faturamento sem subtipo informado — recusar ou escolher o primeiro?, F-07 — T-D1: quantos `risk_controls` existem sem tipo (formato pré-2022)? (+4 more)
 
-### Community 148 - "perguntas-rodada-1-fatias.md"
+### Community 147 - "perguntas-rodada-1-fatias.md"
 Cohesion: 0.09
 Nodes (22): `muda comportamento observável`, F-12 — Q-B1: o aceite de Termos volta a ser explícito?, F-13 — Q-B1a: o que fazer com os aceites implícitos que já estão na base?, F-14 — Q-B2: qual é o conjunto mínimo de prova do aceite?, F-15 — Q-B3: quem pode publicar nova versão de contrato? A matriz aprovada diz "todos"., F-16 — T-D4 (Q-R8): "Encerrar" bloqueia movimento e prorrogação?, F-17 — T-D5 (Q-R10): as datas de operação existente são editáveis?, F-18 — T-D9 (Q-R16): a taxa de remuneração aceita valor fora de 0–100? (+14 more)
 
-### Community 233 - "perguntas-rodada-1-fatias.md - `muda escopo`"
+### Community 228 - "perguntas-rodada-1-fatias.md - `muda escopo`"
 Cohesion: 0.12
 Nodes (17): `muda escopo`, F-33 — URGENTE: o seed de demonstração não tem fatia. Ninguém o constrói, F-34 — T-D7 (Q-R5): `resource_kinds` é portado ou descartado? Uma contagem decide 9 IDs, F-35 — Q-04: `geolocations` tem linhas? Um `SELECT count(*)` decide 12 IDs, F-36 — T-D2 (Q-R4): a posição diária de risco (`RiskEntry`) volta a ter tela?, F-37 — Ordem: o motor de anexos (S13) está declarado depois de S9, que tem 4 anexos, F-38 — Dono de `Tracking`/`trackings` (BE-430, DB-591): S2, S13 ou S19?, F-39 — `BE-445` (`Entry`, classe base abstrata): fica em S6 ou vai para S19? (+9 more)
 
-### Community 538 - "perguntas-rodada-1-fatias.md - `só interno`"
+### Community 532 - "perguntas-rodada-1-fatias.md - `só interno`"
 Cohesion: 0.29
 Nodes (7): `só interno`, F-49 — DS0-1: uma trilha de auditoria só, e é a genérica. Reversível barato agora, caro depois, F-50 — DS0-4: os papéis do Safegold colidem com os `hierarchy_level` que a base já semeia, F-51 — `polemk_webhooks`: renomear o campo exige coordenar front e backend, Já decididas — removidas desta rodada, Duplicatas — deixadas para a metade dos mapas, Divergências entre proposal e fonte que encontrei
 
-### Community 326 - "perguntas-rodada-1-mapas.md (3)"
+### Community 324 - "perguntas-rodada-1-mapas.md (3)"
 Cohesion: 0.15
 Nodes (12): Perguntas ao usuário — rodada 1, **metade dos mapas de bloco**, Contagem, Por impacto — **e é nesta ordem que elas estão**, As sete consultas ao dump que resolvem sozinhas 20+ IDs, Já decididas, removidas desta rodada, Onde o mapa e o legado divergiram, De-para: ID original do mapa → `Q-xx` deste documento, `map/auth-admin.md` (+4 more)
 
-### Community 235 - "perguntas-rodada-1-mapas.md (2)"
+### Community 230 - "perguntas-rodada-1-mapas.md (2)"
 Cohesion: 0.12
 Nodes (17): `muda número na tela` — Q-01 a Q-16, Q-01 — Correção por dias úteis: o valor decai a cada salvamento repetido, Q-02 — Consolidação de disponibilidades: duas regras de soma na mesma tela (e dois "Total"), Q-03 — Dias úteis passam a considerar feriados?, Q-04 — Borderô: recalcular ou copiar o valor das operações de risco históricas?, Q-05 — `calc_valor_liq_correto`: desconto linear é a regra pretendida?, Q-06 — CET do banco: a guarda olha o prazo da **empresa**, Q-07 — CET: 2 casas num campo, 4 no outro, com a mesma base (+9 more)
 
-### Community 39 - "perguntas-rodada-1-mapas.md"
+### Community 38 - "perguntas-rodada-1-mapas.md"
 Cohesion: 0.05
 Nodes (42): `muda comportamento observável` — Q-17 a Q-57, Q-17 — `has_safegold_management`: carimbo histórico ou derivado do projeto?, Q-18 — Aceite de contrato: volta a ser explícito?, Q-19 — O que fazer com os aceites implícitos que já estão gravados?, Q-20 — Quem pode publicar uma versão de contrato?, Q-21 — `receipts` herda o gate de `charges` ou merece linha própria na matriz?, Q-22 — Textos de ajuda dos formulários: são 91 placeholders idênticos, Q-23 — Introduzir as validações de faixa que o legado não tem? (+34 more)
 
-### Community 76 - "perguntas-rodada-1-mapas.md - `muda escopo` — Q-58 a Q-86"
+### Community 82 - "perguntas-rodada-1-mapas.md - `muda escopo` — Q-58 a Q-86"
 Cohesion: 0.07
 Nodes (30): `muda escopo` — Q-58 a Q-86, Q-58 — Qual é a prova mínima exigida de um aceite?, Q-59 — Existe estado de baixa, liquidação ou vencimento do recebível?, Q-60 — `is_title` e `is_liquidation` em `movement_kinds`: campos vivos ou resíduo?, Q-61 — `resource_kinds`: portar ou descartar?, Q-62 — `receivable_entries.observacoes`: campo visível, fundido ou descartado?, Q-63 — Renomear anexo de renegociação entra no escopo?, Q-64 — A aba PAGAMENTOS da renegociação entra no escopo? (+22 more)
 
-### Community 327 - "perguntas-rodada-1-mapas.md - `só interno` — Q-87 a Q-98"
+### Community 325 - "perguntas-rodada-1-mapas.md - `só interno` — Q-87 a Q-98"
 Cohesion: 0.15
 Nodes (13): `só interno` — Q-87 a Q-98, Q-87 — Por quanto tempo guardamos IP e user-agent das tentativas de login?, Q-88 — Guardamos o corpo de todo e-mail enviado?, Q-89 — Quem assina DKIM no ai9: a aplicação ou o provedor de envio?, Q-90 — Chaves de terceiro vivem em ENV/credentials ou no model `Credential`?, Q-91 — O logo da marca precisa de versões branca e monocromática de verdade?, Q-92 — Logos: `Medium` ou `has_one_attached` direto nos models?, Q-93 — Ativar `paper_trail` na base ou criar `AuditEvent` só do Safegold? (+5 more)
 
-### Community 325 - "migration-map.md"
+### Community 323 - "migration-map.md"
 Cohesion: 0.15
 Nodes (12): Migration map — Safegold -> ai9 (consolidado), Cobertura — verificada por script, nao por relatorio, Placar por estrategia, Os quatro contratos transversais (valem para todos os blocos), C1 — Escopo por projeto: **no endpoint, nunca `default_scope`**, C2 — Calculo financeiro: **um servico, chamado pela tela E pela gravacao**, C3 — Hierarquia de papel: **a escala e INVERTIDA entre os dois sistemas**, C4 — Propriedade de `Membership`: nasce em `projects` (+4 more)
 
-### Community 502 - "openspec/changes/s0-fundacao - Design: S0 — Fundação"
+### Community 494 - "openspec/changes/s0-fundacao - Design: S0 — Fundação"
 Cohesion: 0.25
 Nodes (7): Design: S0 — Fundação, 1. Contrato C1 — escopo por projeto, no endpoint, 2. Contrato C3 — a escala de hierarquia é invertida, 3. Autorização — o achado que rebaixa a peça central de `build` para `adapt`, 4. Decisões que tomei porque os dois mapas divergiam, 5. Onde cada grupo aterrissa, 6. O que **não** se faz aqui (Princípio 6b)
 
-### Community 328 - "openspec/changes/s0-fundacao - What Changes"
+### Community 326 - "openspec/changes/s0-fundacao - What Changes"
 Cohesion: 0.15
 Nodes (12): Proposal: S0 — Fundação (projeto, participação, papéis e primitivos), Why, What Changes, Grupo A — Biblioteca compartilhada e primitivos que faltam, Grupo B — Papéis, hierarquia (C3) e autorização declarativa, Grupo C — Projeto, participação e escopo (C1), Grupo D — Infra transversal consumida por todas as fatias, Contagem (+4 more)
 
-### Community 282 - "openspec/changes/s0-fundacao/specs"
+### Community 279 - "openspec/changes/s0-fundacao/specs"
 Cohesion: 0.13
 Nodes (14): Delta: auth-users — hierarquia de papel (C3) e readonly no servidor, ADDED Requirements, Requirement: C3-01 — Hierarquia de papel na convenção do ai9 (menor = mais poder), Scenario: Admin não alcança papel superior, Scenario: Admin alcança papel inferior, Scenario: Admin não alcança papel lateral, Scenario: Valor de hierarquia desconhecido na conversão, Requirement: C3-02 — Listagem de usuários filtrada pela hierarquia do solicitante (+6 more)
 
-### Community 300 - "openspec/changes/s0-fundacao/specs - ADDED Requirements"
+### Community 298 - "openspec/changes/s0-fundacao/specs - ADDED Requirements"
 Cohesion: 0.14
 Nodes (13): Delta: projects — contrato de escopo por projeto (C1), ADDED Requirements, Requirement: C1-01 — O projeto corrente é revalidado a cada requisição, Scenario: Participação revogada com projeto corrente ainda gravado, Scenario: Troca de projeto por cabeçalho, com participação, Scenario: Troca de projeto por cabeçalho, sem participação, Requirement: C1-02 — Projeto inexistente e projeto sem participação respondem igual, Scenario: Projeto inexistente (+5 more)
 
-### Community 332 - "openspec/changes/s1-autenticacao-conta (2)"
+### Community 330 - "openspec/changes/s1-autenticacao-conta (2)"
 Cohesion: 0.15
 Nodes (12): Design: S1 — Autenticação e conta, 1. A decisão que governa tudo: não existe senha, 2. O D-39 tem duas portas, e a segunda não veio do legado, 3. Aplicação dos contratos transversais nesta fatia, C1 — escopo por projeto, C3 — hierarquia invertida, 4. Perfil estendido: uma tabela a menos, tipos que dizem a verdade, 5. Bloqueio de conta: um campo, e ele revoga a sessão (+4 more)
 
-### Community 367 - "openspec/changes/s1-autenticacao-conta - What Changes"
+### Community 359 - "openspec/changes/s1-autenticacao-conta - What Changes"
 Cohesion: 0.17
 Nodes (11): Proposal: S1 — Autenticação e conta, Why, What Changes, Grupo A — Identidade: entrar, sair, recuperar acesso, Grupo B — Contas de usuário, perfil e bloqueio, Grupo C — Impersonation auditada, Grupo D — E-mail transacional do produto, Contagem (+3 more)
 
-### Community 333 - "openspec/changes/s1-autenticacao-conta/specs - ADDED Requirements"
+### Community 331 - "openspec/changes/s1-autenticacao-conta/specs - ADDED Requirements"
 Cohesion: 0.15
 Nodes (12): Delta: auth-users — a superfície pública da base ai9, ADDED Requirements, Requirement: SG-01 — Nenhuma rota de auto-cadastro na superfície pública, Scenario: Anônimo tenta se cadastrar, Scenario: Allowlist pública auditada, Scenario: Entrada por convite, Requirement: SG-02 — Bloqueio de conta encerra a sessão em vigor, Scenario: Sessão ativa no momento do bloqueio (+4 more)
 
-### Community 209 - "openspec/changes/s10-indicadores"
+### Community 203 - "openspec/changes/s10-indicadores"
 Cohesion: 0.11
 Nodes (17): Design: S10 — Indicadores e séries mensais em ai9, 1. `Indicators::EntryService` — o serviço único da grade (C2), O problema que ele resolve, Forma no ai9, Quem chama, Escopo (DEC-09) — o que este serviço NÃO faz, 2. Caracterização — os valores que travam o comportamento atual, 3. Exclusão lógica — como o D-66 é fechado (+9 more)
 
-### Community 210 - "openspec/changes/s10-indicadores (2)"
+### Community 204 - "openspec/changes/s10-indicadores (2)"
 Cohesion: 0.11
 Nodes (17): Proposal: S10 — Indicadores e séries mensais, Why, What Changes, Dependências, Decisões que governam esta fatia, Impact, IDs de inventário cobertos (62), `indicators` — catálogo global (I1) (+9 more)
 
-### Community 541 - "openspec/changes/s10-indicadores/specs"
+### Community 536 - "openspec/changes/s10-indicadores/specs"
 Cohesion: 0.29
 Nodes (6): ADDED Requirements, Requirement: S10-C2 — Serviço único da grade mensal e do lançamento, Scenario: Grade e gravação concordam, Scenario: Falha de gravação é sempre visível, Scenario: Não lançado é distinguível de zero, Scenario: Otimização de consulta não muda a grade
 
-### Community 238 - "openspec/changes/s11-disponibilidades-cobrancas (3)"
+### Community 233 - "openspec/changes/s11-disponibilidades-cobrancas (3)"
 Cohesion: 0.12
 Nodes (16): Design: S11 — Disponibilidades em ai9, 1. O contrato C1 nesta fatia, 2. A remodelagem que o resto depende: uma estrutura hierárquica ordenável, 3. Os quatro jobs — o bloqueio termina junto com a operação, 4. Progresso: Action Cable, nunca polling, 5. O motor de números — onde as quatro perguntas mordem, 5.1 Ler a grade nunca cria registro (DC-30) — decidido, sem pergunta, 5.2 Correção por dias úteis — aplicada **uma única vez** (DC-25, Q-07) (+8 more)
 
-### Community 180 - "openspec/changes/s11-disponibilidades-cobrancas (2)"
+### Community 174 - "openspec/changes/s11-disponibilidades-cobrancas (2)"
 Cohesion: 0.10
 Nodes (19): Proposal: S11 — Disponibilidades e cobranças (vivas, DEC-15.1), Why, Estas telas estão vivas em produção — e quase não foram portadas, É o módulo com mais dinheiro e mais defeito por linha, What Changes, IDs de inventário cobertos (101), Backend — 38, Frontend — 36 (+11 more)
 
-### Community 421 - "openspec/changes/s11-disponibilidades-cobrancas/specs"
+### Community 408 - "openspec/changes/s11-disponibilidades-cobrancas/specs"
 Cohesion: 0.20
 Nodes (9): ADDED Requirements, Requirement: C1-S11 — Disponibilidade e autenticacao: o IDOR nao e replicado, Scenario: Requisicao sem credencial e recusada, Scenario: Projeto de outro tenant na rota responde 404, Scenario: Lancamento de outro projeto nao e alcancavel por id, Scenario: Padrao pai de outro projeto e recusado, Scenario: Nenhum padrao de outro projeto viaja no payload, Scenario: Catalogo global de padroes nao e escopado (+1 more)
 
-### Community 211 - "openspec/changes/s12-contratos-ajuda-faq"
+### Community 205 - "openspec/changes/s12-contratos-ajuda-faq"
 Cohesion: 0.11
 Nodes (17): Design: S12 — Contratos, ajuda e FAQ em ai9, 1. O eixo comum: ActionText já está na base (C-5 / D-B15), 2. Contratos, 2.1 Versionamento — o que estava errado e como fica, 2.2 Superfície pública — dois problemas no mesmo parâmetro (D-69), 2.3 O ciclo de aceite — 🔒 bloqueado por Q-B1/Q-B2, 2.4 Autorização — a matriz é contrato aprovado, 3. Ajuda e FAQ (+9 more)
 
-### Community 263 - "openspec/changes/s12-contratos-ajuda-faq (2)"
+### Community 261 - "openspec/changes/s12-contratos-ajuda-faq (2)"
 Cohesion: 0.12
 Nodes (15): Proposal: S12 — Contratos, ajuda e FAQ, Why, What Changes, Dependências, ⚠️ Bloqueio declarado, Decisões que governam esta fatia, Impact, IDs de inventário cobertos (64 + 2 adotados no fechamento do Phase 2 = 66) (+7 more)
 
-### Community 400 - "openspec/changes/s12-contratos-ajuda-faq/specs"
+### Community 390 - "openspec/changes/s12-contratos-ajuda-faq/specs"
 Cohesion: 0.18
 Nodes (10): Contracts — deltas da fatia S12, ADDED Requirements, Requirement: VER-S12 — Versionamento append-only com numeração atribuída só na criação, Scenario: Re-salvar não cria versão nova, Scenario: A vigente é a maior versão, não o registro mais recente, Scenario: Publicações concorrentes recebem números distintos, Scenario: Versão publicada é imutável, Requirement: C1-S12 — Recurso identificado por parâmetro responde igual para inexistente e inacessível (+2 more)
 
-### Community 542 - "openspec/changes/s12-contratos-ajuda-faq/specs (2)"
+### Community 537 - "openspec/changes/s12-contratos-ajuda-faq/specs (2)"
 Cohesion: 0.29
 Nodes (6): Help/FAQ — deltas da fatia S12, ADDED Requirements, Requirement: EDT-S12 — Um único editor de rich text para contrato e item de ajuda, Scenario: As duas telas usam o mesmo editor, Scenario: O segundo editor não é introduzido, Scenario: O conteúdo salvo abre igual nas duas pontas
 
-### Community 212 - "openspec/changes/s13-jobs-integracoes - Decisions"
+### Community 206 - "openspec/changes/s13-jobs-integracoes - Decisions"
 Cohesion: 0.11
 Nodes (17): Design: S13 — jobs, anexos, e-mail e integrações sobre a infra do ai9, Context, Goals / Non-Goals, Decisions, D0. O agendamento nasce em **arquivo versionado** — e o Redis é compartilhado, D1. Job: a exceção propaga. Inclusive contra o exemplo da convenção, D2. Progresso vive na entidade, não numa tabela de fila, D3. Fan-out sai da requisição (OPS-466) (+9 more)
 
-### Community 140 - "openspec/changes/s13-jobs-integracoes"
+### Community 139 - "openspec/changes/s13-jobs-integracoes"
 Cohesion: 0.09
 Nodes (22): Proposal: S13 — Jobs agendados e integrações, Why, What Changes, A. Fila, agendamento e os 7 jobs — 23 IDs (`jobs-cron`), B. Motor único de anexos — 11 IDs + 6 descartes, C. E-mail — 14 IDs, D. Integrações externas — 6 IDs, E. Realtime — 4 IDs (+14 more)
 
-### Community 593 - "openspec/changes/s13-jobs-integracoes/specs"
+### Community 589 - "openspec/changes/s13-jobs-integracoes/specs"
 Cohesion: 0.33
 Nodes (5): ADDED Requirements, Requirement: SFG-S13-02 — Portão de decisão da família de geolocalização, Scenario: a tabela de origem está vazia, Scenario: a tabela de origem tem dados, Scenario: o catálogo brasileiro não depende do portão
 
-### Community 594 - "openspec/changes/s13-jobs-integracoes/specs (2)"
+### Community 590 - "openspec/changes/s13-jobs-integracoes/specs (2)"
 Cohesion: 0.33
 Nodes (5): ADDED Requirements, Requirement: SFG-S13-01 — Expurgo programado da trilha e do log de e-mails, Scenario: registro além do prazo é removido, Scenario: registro dentro do prazo é preservado, Scenario: falha do expurgo é visível
 
-### Community 264 - "openspec/changes/s14-etl-producao"
+### Community 262 - "openspec/changes/s14-etl-producao"
 Cohesion: 0.12
 Nodes (15): Proposal: S14 — ETL de produção: introspecção, dry-run, reconciliação e runbook, Why, What Changes, A. O motor de ETL — 7 IDs, todos `build`, B. Runbook do schema e do cutover — 3 IDs, C. Descartes com evidência — 15 IDs, Os `build?` desta fatia, Fronteiras — o que este change **não** cobre (+7 more)
 
-### Community 214 - "openspec/changes/s14-etl-producao/specs - ADDED Requirements"
+### Community 208 - "openspec/changes/s14-etl-producao/specs - ADDED Requirements"
 Cohesion: 0.11
 Nodes (17): ADDED Requirements, Requirement: SFG-S14-01 — Carga em lotes, idempotente e retomável, Scenario: segunda execução não duplica, Scenario: retomada depois de queda, Scenario: interrupção deixa o banco consistente, Requirement: SFG-S14-02 — Conversão de hierarquia de papel por tabela de-para explícita, Scenario: valor conhecido converte pela tabela, Scenario: valor desconhecido aborta em vez de aproximar (+9 more)
 
-### Community 285 - "openspec/changes/s15-graficos-dashboard"
+### Community 282 - "openspec/changes/s15-graficos-dashboard"
 Cohesion: 0.13
 Nodes (14): Proposal: S15 — Gráficos nos indicadores (`NEW-001`) e dashboard resumo (`NEW-002`), ⚠️ Esta fatia é FEATURE NOVA, não paridade, Why, What Changes, `NEW-001` — Gráficos nos indicadores, `NEW-002` — Dashboard resumo na tela inicial, A regra que segura a fatia inteira: nenhum número novo nasce aqui, Fronteiras — o que este change **não** cobre (+6 more)
 
-### Community 422 - "openspec/changes/s15-graficos-dashboard/specs"
+### Community 409 - "openspec/changes/s15-graficos-dashboard/specs"
 Cohesion: 0.20
 Nodes (9): ADDED Requirements, Requirement: NEW-002 — Dashboard resumo da tela inicial (FEATURE NOVA, não paridade), Scenario: resumo do projeto corrente, Scenario: número igual ao da tela de detalhe, Scenario: troca de projeto troca os números, Scenario: sem permissão o cartão some, Scenario: período sem operação, Scenario: falha de carregamento (+1 more)
 
-### Community 503 - "openspec/changes/s15-graficos-dashboard/specs (2)"
+### Community 495 - "openspec/changes/s15-graficos-dashboard/specs (2)"
 Cohesion: 0.25
 Nodes (7): ADDED Requirements, Requirement: NEW-001 — Gráficos de indicador (FEATURE NOVA, não paridade), Scenario: série mensal de um indicador, Scenario: o gráfico segue o filtro da tela, Scenario: período sem lançamento, Scenario: volume por portador é legível sem depender da cor, Scenario: tema claro e escuro
 
-### Community 364 - "openspec/changes/s16-pwa-minimo"
+### Community 356 - "openspec/changes/s16-pwa-minimo"
 Cohesion: 0.17
 Nodes (11): Proposal: S16 — PWA mínimo (`NEW-003`): manifest, ícones, instalável, ⚠️ Esta fatia é FEATURE NOVA, não paridade, Why, What Changes, Não faz parte desta fatia — e é decisão, não esquecimento, Fronteiras, Dependências, Capabilities (+3 more)
 
-### Community 504 - "openspec/changes/s16-pwa-minimo/specs"
+### Community 496 - "openspec/changes/s16-pwa-minimo/specs"
 Cohesion: 0.25
 Nodes (7): ADDED Requirements, Requirement: NEW-003 — Console instalável com manifest e ícones (FEATURE NOVA, não paridade), Scenario: instalação pelo desktop, Scenario: adicionar à tela de início no iOS, Scenario: ícone maskable no Android, Scenario: nenhum service worker é registrado, Scenario: manifest e HTML concordam na cor
 
-### Community 301 - "openspec/changes/s17-temas - Design: S17 — Temas"
+### Community 299 - "openspec/changes/s17-temas - Design: S17 — Temas"
 Cohesion: 0.14
 Nodes (13): Design: S17 — Temas, Context, Goals / Non-Goals, Decisões, D1 — Tokens em runtime, não folha de estilo gerada, D2 — Um padrão global, garantido por índice, não por callback, D3 — `override_css` renderizado, mas com gate **no servidor**, D4 — Precedência em fonte única (+5 more)
 
-### Community 239 - "openspec/changes/s17-temas"
+### Community 234 - "openspec/changes/s17-temas"
 Cohesion: 0.12
 Nodes (16): Proposal: S17 — Temas: o tema como produto (CRUD, precedência, tokens em runtime), Why, What Changes, A. Entidade, dados e seed — 4 IDs, B. Endpoints e regras — 13 IDs, C. Marca, tokens e dark mode — 5 IDs, D. Telas — 3 IDs, Mudanças visíveis, decididas e registradas (+8 more)
 
-### Community 454 - "openspec/changes/s17-temas/specs"
+### Community 448 - "openspec/changes/s17-temas/specs"
 Cohesion: 0.22
 Nodes (8): ADDED Requirements, Requirement: THEME-C1 — Tema efetivo resolvido em fonte única, com override_css sob gate de servidor, Scenario: precedência com tema de usuário definido, Scenario: precedência sem nenhum tema cadastrado, Scenario: dois padrões globais simultâneos são impossíveis, Scenario: `override_css` enviado por papel insuficiente, Scenario: endpoint de tema acessado sem sessão, Scenario: troca do tema padrão sem rebuild
 
-### Community 287 - "openspec/changes/s18-plataforma-config - Decisões"
+### Community 284 - "openspec/changes/s18-plataforma-config - Decisões"
 Cohesion: 0.13
 Nodes (14): Design: S18 — Plataforma: configuração, segredos, boot, i18n e assets, Context, Goals / Non-Goals, Decisões, D1 — Boot fail-fast, e a lista de obrigatórios é dado, D2 — TLS: o padrão vira seguro, o escape vira explícito, D3 — `type_casting.rb` vira helper, não monkey patch, D4 — `date_overload.rb`: sentinelas explícitas (+6 more)
 
-### Community 181 - "openspec/changes/s18-plataforma-config"
+### Community 175 - "openspec/changes/s18-plataforma-config"
 Cohesion: 0.10
 Nodes (19): Proposal: S18 — Plataforma: configuração, segredos, boot, i18n e pipeline de assets, Why, What Changes, A. Boot e ambiente — 7 IDs, B. Segredos e configuração — 7 IDs, C. Initializers com regra — 6 IDs, D. i18n — 1 ID, E. Runtime e processos — 2 IDs (+11 more)
 
-### Community 424 - "openspec/changes/s18-plataforma-config/specs"
+### Community 411 - "openspec/changes/s18-plataforma-config/specs"
 Cohesion: 0.20
 Nodes (9): ADDED Requirements, Requirement: CFG-C1 — Contrato de configuração: origem única, boot fail-fast e padrão seguro, Scenario: variável obrigatória ausente, Scenario: várias variáveis obrigatórias ausentes, Scenario: suíte de testes sem integração externa, Scenario: TLS verificado por padrão, Scenario: documento com CPF não vaza no log, Scenario: nenhum segredo versionado (+1 more)
 
-### Community 240 - "openspec/changes/s19-trilha-transversais - Decisões"
+### Community 235 - "openspec/changes/s19-trilha-transversais - Decisões"
 Cohesion: 0.12
 Nodes (16): Design: S19 — Trilha de auditoria e transversais de domínio e UI, Context, Goals / Non-Goals, Decisões, D1 — Evento nunca se perde: truncamento explícito, D2 — Campos estruturados **além** do texto, não em vez dele, D3 — Imutabilidade é regra do model, não convenção, D4 — A coluna `type` não vem (+8 more)
 
-### Community 266 - "openspec/changes/s19-trilha-transversais"
+### Community 264 - "openspec/changes/s19-trilha-transversais"
 Cohesion: 0.12
 Nodes (15): Proposal: S19 — Trilha de auditoria e transversais de domínio e UI, Why, What Changes, A. Trilha de auditoria — 11 IDs, B. Helpers de formatação e apresentação — 13 IDs, C. Utilitários de servidor compartilhados — 3 IDs, Mudanças visíveis, decididas e registradas, Descartes com evidência (+7 more)
 
-### Community 455 - "openspec/changes/s19-trilha-transversais/specs"
+### Community 449 - "openspec/changes/s19-trilha-transversais/specs"
 Cohesion: 0.22
 Nodes (8): ADDED Requirements, Requirement: TRK-C1 — Trilha imutável: o evento nunca se perde e nunca é editado, Scenario: resumo maior que o limite, Scenario: tentativa de editar um evento, Scenario: evento sem autor, Scenario: filtros combinados, Scenario: trilha global vista por papel insuficiente, Scenario: ciclo de vida completo de um job
 
-### Community 425 - "openspec/changes/s2-console-navegacao (2)"
+### Community 412 - "openspec/changes/s2-console-navegacao (2)"
 Cohesion: 0.20
 Nodes (9): Design: S2 — Console e navegação, 1. O roteamento: o que substitui o quê, 2. O menu é o documento de requisitos da navegação, 3. Aplicação dos contratos transversais, C1 — escopo por projeto, C3 — hierarquia invertida, 4. Não existe dashboard — e isso é uma decisão, não um esquecimento, 5. `feedback19` vira código do app (+1 more)
 
-### Community 401 - "openspec/changes/s2-console-navegacao - What Changes"
+### Community 391 - "openspec/changes/s2-console-navegacao - What Changes"
 Cohesion: 0.18
 Nodes (10): Proposal: S2 — Console e navegação, Why, What Changes, Grupo A — Casca, roteamento e navegação por papel, Grupo B — Mensagens administrativas e observadores (`feedback19`), Grupo C — Descarte com evidência, Contagem, Fronteiras (+2 more)
 
-### Community 369 - "openspec/changes/s2-console-navegacao/specs - ADDED Requirements"
+### Community 361 - "openspec/changes/s2-console-navegacao/specs - ADDED Requirements"
 Cohesion: 0.17
 Nodes (11): Delta: console-admin — o que a casca do ai9 ainda não tem, ADDED Requirements, Requirement: NAV-01 — O roteador tem rota curinga de não encontrado, Scenario: URL desconhecida, Scenario: Nada de rebaixamento silencioso, Requirement: NAV-02 — Pareamento de WhatsApp alcançável por rota, Scenario: Administrador pareia a instância, Scenario: Papel sem direito (+3 more)
 
-### Community 267 - "openspec/changes/s3-cadastros-globais - 3. Decisões por grupo de IDs"
+### Community 265 - "openspec/changes/s3-cadastros-globais - 3. Decisões por grupo de IDs"
 Cohesion: 0.12
 Nodes (15): Design: S3 — Cadastros globais em ai9, 1. A forma única dos cinco cadastros, Backend — o molde, Frontend — o molde, 2. O contrato C1 nesta fatia: catálogo global **não** recebe escopo, 3. Decisões por grupo de IDs, 3.1 Portador — é contraparte financiadora, não "fornecedor genérico", 3.2 Grupo de portadores — a contagem decide o botão (+7 more)
 
-### Community 241 - "openspec/changes/s3-cadastros-globais (2)"
+### Community 236 - "openspec/changes/s3-cadastros-globais (2)"
 Cohesion: 0.12
 Nodes (16): Proposal: S3 — Cadastros globais (portadores, grupos, segmentos, subsegmentos, tipos), Why, What Changes, IDs de inventário cobertos (51), Backend — 19, Frontend — 13, Dados — 12, Operação — 7 (+8 more)
 
-### Community 457 - "openspec/changes/s3-cadastros-globais/specs"
+### Community 451 - "openspec/changes/s3-cadastros-globais/specs"
 Cohesion: 0.22
 Nodes (8): ADDED Requirements, Requirement: C1-S3 — Catalogo global nao recebe escopo de projeto, Scenario: Usuario sem projeto corrente le o catalogo, Scenario: Colaborador le mas nao escreve, Scenario: Somente-leitura nao escreve nem sendo Admin, Scenario: Hierarquia verificada nos dois sentidos, Scenario: Anonimo nao le o catalogo de tipos de garantia, Scenario: Id por parametro nao amplia nem quebra o conjunto
 
-### Community 195 - "openspec/changes/s4-projeto-empresas (2)"
+### Community 191 - "openspec/changes/s4-projeto-empresas (2)"
 Cohesion: 0.11
 Nodes (18): Design: S4 — Projeto e empresas em ai9, 1. O contrato C1 — escopo por projeto **no endpoint**, nunca `default_scope`, As quatro peças, A forma canônica — copie esta, não invente outra, Por que **não** `default_scope`, As cinco regras que valem para os quatro blocos, As duas condições que o bloco de auth acrescentou, e que ficam valendo, Onde o projeto corrente mora (DC-03) (+10 more)
 
-### Community 216 - "openspec/changes/s4-projeto-empresas (3)"
+### Community 210 - "openspec/changes/s4-projeto-empresas (3)"
 Cohesion: 0.11
 Nodes (17): Proposal: S4 — Projeto e empresas (CRUD, membros, garantias, indicadores específicos), Why, What Changes, IDs de inventário cobertos (118 + 7 adotados no fechamento do Phase 2 = 125), Backend — 47, Frontend — 45, Dados — 20, Operação — 6 (+9 more)
 
-### Community 426 - "openspec/changes/s4-projeto-empresas/specs"
+### Community 413 - "openspec/changes/s4-projeto-empresas/specs"
 Cohesion: 0.20
 Nodes (9): ADDED Requirements, Requirement: C1-S4 — Nenhum id por parametro fura o escopo de projeto, Scenario: Busca com id de outro projeto devolve vazio, Scenario: Detalhe e escrita com id de outro projeto respondem 404, Scenario: project_id do corpo e ignorado na criacao, Scenario: project_id do corpo e ignorado na atualizacao, Scenario: Projeto inexistente e projeto sem membership respondem o mesmo status, Scenario: Membership revogada deixa de valer no request seguinte (+1 more)
 
-### Community 243 - "openspec/changes/s5-limites-risco"
+### Community 238 - "openspec/changes/s5-limites-risco"
 Cohesion: 0.12
 Nodes (16): Design: S5 — Limites de risco e motor de exposição em ai9, 1. `Risk::Calculator` — o coração da fatia (C2), O problema que ele resolve, Forma no ai9, Quem chama, Por que isto torna DEC-01 e DEC-02 auditáveis, 2. A forma correta do `RiskControl` (C-09) — o que vai para a migration, 3. Grupos de IDs → camada alvo em ai9 (+8 more)
 
-### Community 268 - "openspec/changes/s5-limites-risco (3)"
+### Community 266 - "openspec/changes/s5-limites-risco (3)"
 Cohesion: 0.12
 Nodes (15): Proposal: S5 — Limites de risco (`RiskControl`) e o motor de exposição, Why, What Changes, Dependências, Decisões que governam esta fatia, Impact, IDs de inventário cobertos (66), `risk` — catálogos, esquema e limites (mapa §2.1, R1 + R2) (+7 more)
 
-### Community 543 - "openspec/changes/s5-limites-risco/specs"
+### Community 538 - "openspec/changes/s5-limites-risco/specs"
 Cohesion: 0.29
 Nodes (6): ADDED Requirements, Requirement: S5-C2 — Serviço único de apuração de exposição, Scenario: A tela e a gravação usam o mesmo cálculo, Scenario: O front não recalcula, Scenario: Uma fórmula sem golden não entra, Scenario: Otimização não muda número
 
-### Community 270 - "openspec/changes/s6-recebiveis-bordero (2)"
+### Community 268 - "openspec/changes/s6-recebiveis-bordero (2)"
 Cohesion: 0.12
 Nodes (15): Design: S6 — Recebíveis / borderô em ai9, 1. O `Receivables::Calculator` — o coração da fatia (C2, D-B1), O problema que ele resolve, Forma no ai9, Quem chama, Por que isto torna o DEC-02 auditável, As 26 fórmulas e sua origem legada, 2. Escopo por projeto (C1) — como cai em cada endpoint (+7 more)
 
-### Community 303 - "openspec/changes/s6-recebiveis-bordero (3)"
+### Community 301 - "openspec/changes/s6-recebiveis-bordero (3)"
 Cohesion: 0.14
 Nodes (13): Proposal: S6 — Recebíveis / borderô, com o motor de cálculo, Why, What Changes, Dependências, Decisões que governam esta fatia, Impact, IDs de inventário cobertos (108), `receivables` — backend (§2.1) (+5 more)
 
-### Community 304 - "openspec/changes/s6-recebiveis-bordero/specs - ADDED Requirements"
+### Community 302 - "openspec/changes/s6-recebiveis-bordero/specs - ADDED Requirements"
 Cohesion: 0.14
 Nodes (13): Receivables — deltas da fatia S6, ADDED Requirements, Requirement: C2-S6 — Motor de cálculo único para prévia e gravação, Scenario: Prévia e gravação produzem exatamente os mesmos valores, Scenario: A prévia não persiste nada, Scenario: O frontend não recalcula, Requirement: GOLD-S6 — Golden test por fórmula do calculador, Scenario: Trocar a aritmética quebra os goldens (+5 more)
 
-### Community 244 - "openspec/changes/s7-operacoes-risco"
+### Community 239 - "openspec/changes/s7-operacoes-risco"
 Cohesion: 0.12
 Nodes (16): Design: S7 — Operações de risco, movimentos, prorrogação e renovação em ai9, 1. `Risk::Calculator#recalculate_chain` — o coração da fatia (C2), O algoritmo, medido na fonte, Forma no ai9, Quem chama, Três detalhes que parecem otimizáveis e não são, 2. Golden tests — os valores e de onde saem, 3. Escopo por projeto (C1) — onde estão as IDORs (+8 more)
 
-### Community 245 - "openspec/changes/s7-operacoes-risco (2)"
+### Community 240 - "openspec/changes/s7-operacoes-risco (2)"
 Cohesion: 0.12
 Nodes (16): Proposal: S7 — Operações de risco: movimentos, prorrogação e renovação, Why, What Changes, Dependências, Decisões que governam esta fatia, Impact, IDs de inventário cobertos (55), `risk` — operações: CRUD, model e dados (mapa §2.3, R5) (+8 more)
 
-### Community 544 - "openspec/changes/s7-operacoes-risco/specs"
+### Community 539 - "openspec/changes/s7-operacoes-risco/specs"
 Cohesion: 0.29
 Nodes (6): ADDED Requirements, Requirement: S7-C2 — Serviço único da cadeia de saldos, Scenario: Extrato e saldo gravado nunca divergem, Scenario: Uma regra da cadeia sem golden não entra, Scenario: Otimização não muda saldo, Scenario: O front não recalcula
 
-### Community 246 - "openspec/changes/s8-operacoes-estruturadas (2)"
+### Community 241 - "openspec/changes/s8-operacoes-estruturadas (2)"
 Cohesion: 0.12
 Nodes (16): Design: S8 — Operações estruturadas e remuneração em ai9, 1. `Structured::RemunerationCalculator` — a única fórmula de faturamento (C2), A sequência exata, medida na fonte, Forma no ai9, Quem chama, Por que a política de arredondamento passa a ser explícita, 2. Golden tests — os valores e de onde saem, 3. Escopo por projeto (C1) e a superfície sem autenticação (+8 more)
 
-### Community 247 - "openspec/changes/s8-operacoes-estruturadas (3)"
+### Community 242 - "openspec/changes/s8-operacoes-estruturadas (3)"
 Cohesion: 0.12
 Nodes (16): Proposal: S8 — Operações estruturadas e remuneração, Why, What Changes, Dependências, Decisões que governam esta fatia, Impact, IDs de inventário cobertos (98), `structured-operations` — backend (§2.4) (+8 more)
 
-### Community 545 - "openspec/changes/s8-operacoes-estruturadas/specs"
+### Community 540 - "openspec/changes/s8-operacoes-estruturadas/specs"
 Cohesion: 0.29
 Nodes (6): ADDED Requirements, Requirement: S8-C2 — Serviço único de cálculo da remuneração, Scenario: Prévia e recibo gravado são o mesmo número, Scenario: Cada fórmula tem golden, Scenario: Mudar o armazenamento não muda o resultado, Scenario: O front não recalcula
 
-### Community 271 - "openspec/changes/s9-renegociacoes (2)"
+### Community 269 - "openspec/changes/s9-renegociacoes (2)"
 Cohesion: 0.12
 Nodes (15): Design: S9 — Renegociações em ai9, 1. `Renegotiations::AggregateService` — o cálculo único (C2, D-B3), Onde a conta vive hoje, Forma no ai9, Quem chama, As fórmulas que ganham golden test, e as três que doem, 2. Escopo por projeto (C1) — como cai nesta fatia, 3. Grupos de IDs → camada alvo em ai9 (+7 more)
 
-### Community 289 - "openspec/changes/s9-renegociacoes (3)"
+### Community 286 - "openspec/changes/s9-renegociacoes (3)"
 Cohesion: 0.13
 Nodes (14): Proposal: S9 — Renegociações: parcelas, pagamentos, anexos, Why, What Changes, Dependências, Decisões que governam esta fatia, Impact, IDs de inventário cobertos (98), `renegotiations` — backend (§2.5) (+6 more)
 
-### Community 217 - "openspec/changes/s9-renegociacoes/specs - ADDED Requirements"
+### Community 211 - "openspec/changes/s9-renegociacoes/specs - ADDED Requirements"
 Cohesion: 0.11
 Nodes (17): Renegotiations — deltas da fatia S9, ADDED Requirements, Requirement: C2-S9 — Agregados calculados por um serviço único, chamado pela tela e pela gravação, Scenario: Prévia e gravação produzem os mesmos derivados, Scenario: Falha de recálculo é revertida e reportada, Scenario: A cascata roda uma vez por operação, Requirement: GOLD-S9 — Golden test por agregado da renegociação, Scenario: As três assimetrias conhecidas ficam travadas (+9 more)
 
-### Community 562 - "openspec/changes/trim-ai9-safegold (2)"
+### Community 557 - "openspec/changes/trim-ai9-safegold (2)"
 Cohesion: 0.29
 Nodes (6): Design: como o trim é executado com segurança, Linha de base medida antes de remover qualquer coisa, Ordem de remoção — por dependência, folhas primeiro, Regras que valem para todo bloco, Armadilhas já identificadas (não descobrir na hora), Avisos de ambiente (descobertos executando os blocos)
 
-### Community 673 - "openspec/changes/trim-ai9-safegold (3)"
+### Community 671 - "openspec/changes/trim-ai9-safegold (3)"
 Cohesion: 0.40
 Nodes (4): Proposal: enxugar a base ai9 para o Safegold (Phase 1b), Why, What Changes, Impact
 
-### Community 8 - "openspec/specs/auth-users - Requirements"
+### Community 9 - "openspec/specs/auth-users - Requirements"
 Cohesion: 0.03
 Nodes (72): Requirements, Requirement: BE-004 — Contrato de login por token da engine (descontinuado), Scenario: Chamada ao contrato antigo, Requirement: BE-011 — Formulário/rota de cadastro público, Scenario: Cadastro público desabilitado, Requirement: BE-034 — Lista de projetos de um usuário para associação, Scenario: Listagem marcando os projetos do usuário, Requirement: FE-001 — Tela de login do produto (+64 more)
 
@@ -4455,11 +4454,11 @@ Nodes (72): Requirements, Requirement: BE-004 — Contrato de login por token da
 Cohesion: 0.67
 Nodes (3): Requirement: BE-001 — Tela de login (`GET /users/sign_in`), Scenario: Usuário anônimo abre a tela de login, Scenario: Usuário já autenticado abre a tela de login
 
-### Community 824 - "openspec/specs/auth-users (7)"
+### Community 823 - "openspec/specs/auth-users (7)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-002 — Autenticação por `login` (username ou e-mail) + senha, Scenario: Login com e-mail e senha corretos, Scenario: Login com username e senha corretos, Scenario: Senha incorreta
 
-### Community 825 - "openspec/specs/auth-users (8)"
+### Community 824 - "openspec/specs/auth-users (8)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-003 — Login da aplicação web devolve o payload do usuário, Scenario: Login bem-sucedido devolve o payload canônico, Scenario: Conta desativada, Scenario: Credencial inválida devolve erro estruturado
 
@@ -4475,7 +4474,7 @@ Nodes (3): Requirement: BE-006 — Revogação de token de API, Scenario: Revoga
 Cohesion: 0.67
 Nodes (3): Requirement: BE-007 — Tela de login forçado com retorno (`redirect_url`), Scenario: Retorno ao destino original, Scenario: Destino de retorno externo é rejeitado
 
-### Community 826 - "openspec/specs/auth-users (9)"
+### Community 825 - "openspec/specs/auth-users (9)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-009 — Listagem e busca de usuários (API), Scenario: Busca com paginação, Scenario: `offset` sem `limit`, Scenario: Escopo por autorização
 
@@ -4483,15 +4482,15 @@ Nodes (4): Requirement: BE-009 — Listagem e busca de usuários (API), Scenario
 Cohesion: 0.67
 Nodes (3): Requirement: BE-010 — Detalhe de um usuário, Scenario: Usuário existente, Scenario: Usuário inexistente
 
-### Community 674 - "openspec/specs/auth-users"
+### Community 672 - "openspec/specs/auth-users"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-012 — Criação de usuário, Scenario: Operador autorizado cria usuário, Scenario: Tentativa de escalar privilégio na criação, Scenario: Cadastro público habilitado, Scenario: Erros de validação em pt-BR
 
-### Community 675 - "openspec/specs/auth-users (2)"
+### Community 673 - "openspec/specs/auth-users (2)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-013 — Atualização de usuário e troca de senha, Scenario: Usuário altera a própria senha, Scenario: Senha atual incorreta, Scenario: Nova senha igual à anterior, Scenario: Alteração de outro usuário sem autorização
 
-### Community 827 - "openspec/specs/auth-users (10)"
+### Community 826 - "openspec/specs/auth-users (10)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-014 — Remoção da própria conta exigindo a senha, Scenario: Remoção com senha correta, Scenario: Remoção com senha incorreta, Scenario: Remoção da conta de terceiro por essa via
 
@@ -4499,7 +4498,7 @@ Nodes (4): Requirement: BE-014 — Remoção da própria conta exigindo a senha,
 Cohesion: 0.67
 Nodes (3): Requirement: BE-015 — Leitura do perfil estendido (`UserInfo`), Scenario: Perfil existente, Scenario: Perfil ainda não preenchido
 
-### Community 828 - "openspec/specs/auth-users (11)"
+### Community 827 - "openspec/specs/auth-users (11)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-016 — Atualização do perfil estendido, Scenario: Usuário atualiza o próprio perfil, Scenario: Tentativa de atualizar o perfil de outro usuário, Scenario: Campo inválido
 
@@ -4507,11 +4506,11 @@ Nodes (4): Requirement: BE-016 — Atualização do perfil estendido, Scenario: 
 Cohesion: 0.67
 Nodes (3): Requirement: BE-017 — Avatar do usuário servido por URL, Scenario: Usuário com avatar, Scenario: Usuário sem avatar
 
-### Community 676 - "openspec/specs/auth-users (3)"
+### Community 674 - "openspec/specs/auth-users (3)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-018 — Alteração de uma permissão individual do usuário, Scenario: Operador autorizado altera a permissão de um subordinado, Scenario: Ability não pertence ao usuário da URL, Scenario: Operador tenta alterar as próprias permissões, Scenario: Ability inexistente
 
-### Community 677 - "openspec/specs/auth-users (4)"
+### Community 675 - "openspec/specs/auth-users (4)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-020 — Solicitação de recuperação de senha (geração do token), Scenario: Solicitação para e-mail existente, Scenario: Solicitação para e-mail inexistente, Scenario: Segunda solicitação rotaciona o token, Scenario: Formato de e-mail inválido
 
@@ -4519,7 +4518,7 @@ Nodes (5): Requirement: BE-020 — Solicitação de recuperação de senha (gera
 Cohesion: 0.67
 Nodes (3): Requirement: BE-021 — Tela de definição de nova senha a partir do token, Scenario: Token válido, Scenario: Token expirado, já usado ou inexistente
 
-### Community 829 - "openspec/specs/auth-users (12)"
+### Community 828 - "openspec/specs/auth-users (12)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-022 — Gravação da nova senha, Scenario: Nova senha aceita, Scenario: Confirmação diferente, Scenario: Reuso do mesmo link
 
@@ -4539,7 +4538,7 @@ Nodes (3): Requirement: BE-027 — Detalhe do usuário no console, Scenario: Det
 Cohesion: 0.67
 Nodes (3): Requirement: BE-030 — Remoção de usuário pelo console, Scenario: Operador autorizado remove usuário, Scenario: Operador sem permissão
 
-### Community 678 - "openspec/specs/auth-users (5)"
+### Community 676 - "openspec/specs/auth-users (5)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-031 — Impersonation (assumir a identidade de outro usuário), Scenario: Administrador impersona um subordinado, Scenario: Usuário comum tenta impersonar, Scenario: Tentativa de impersonar alguém de hierarquia igual ou superior, Scenario: Alvo inexistente
 
@@ -4551,11 +4550,11 @@ Nodes (3): Requirement: BE-032 — Encerrar a impersonation, Scenario: Voltar ao
 Cohesion: 0.67
 Nodes (3): Requirement: BE-033 — Autocomplete de usuários para impersonation, Scenario: Busca por nome com acento, Scenario: Operador sem direito a impersonar
 
-### Community 679 - "openspec/specs/auth-users (6)"
+### Community 677 - "openspec/specs/auth-users (6)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-035 — Validação de CPF em tempo real (formato e unicidade), Scenario: CPF válido e livre, Scenario: CPF já registrado, Scenario: CPF inválido, Scenario: CPF em branco
 
-### Community 830 - "openspec/specs/auth-users (13)"
+### Community 829 - "openspec/specs/auth-users (13)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-036 — Bloquear (desativar) uma conta, Scenario: Operador autorizado bloqueia uma conta, Scenario: Falha ao gravar o bloqueio, Scenario: Operador sem permissão
 
@@ -4567,11 +4566,11 @@ Nodes (3): Requirement: BE-038 — Sessão de conta desativada é encerrada em q
 Cohesion: 0.67
 Nodes (3): Requirement: BE-039 — Autenticação obrigatória em todo o domínio autenticado, Scenario: Rota autenticada sem sessão, Scenario: Rota pública explicitamente marcada
 
-### Community 831 - "openspec/specs/auth-users (14)"
+### Community 830 - "openspec/specs/auth-users (14)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-041 — Listagem dos tipos de usuário e suas permissões, Scenario: Operador não-OG lista os tipos, Scenario: Impersonation não amplia a visibilidade, Scenario: Busca e paginação aplicadas
 
-### Community 832 - "openspec/specs/auth-users (15)"
+### Community 831 - "openspec/specs/auth-users (15)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-042 — Alterar uma permissão de um tipo de usuário, Scenario: Revogar uma permissão do tipo, Scenario: Override individual prevalece, Scenario: Operador sem permissão
 
@@ -4583,7 +4582,7 @@ Nodes (3): Requirement: BE-043 — Remoção de uma ability, Scenario: Tentativa
 Cohesion: 0.67
 Nodes (3): Requirement: BE-044 — Busca de candidatos a membro de um projeto, Scenario: Candidato já membro não aparece, Scenario: Busca vazia
 
-### Community 833 - "openspec/specs/auth-users (16)"
+### Community 832 - "openspec/specs/auth-users (16)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-045 — Vincular usuário a um projeto, Scenario: Vínculo criado, Scenario: Vínculo duplicado, Scenario: Operador sem autorização no projeto
 
@@ -4591,7 +4590,7 @@ Nodes (4): Requirement: BE-045 — Vincular usuário a um projeto, Scenario: Ví
 Cohesion: 0.67
 Nodes (3): Requirement: BE-046 — Desvincular usuário de um projeto, Scenario: Remoção do vínculo, Scenario: Remoção repetida
 
-### Community 834 - "openspec/specs/auth-users (17)"
+### Community 833 - "openspec/specs/auth-users (17)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-047 — Autenticação de API por token de usuário e de aplicação cliente, Scenario: Chamada autenticada válida, Scenario: Tenant da claim sem membership, Scenario: Credencial de aplicação inválida
 
@@ -4599,11 +4598,11 @@ Nodes (4): Requirement: BE-047 — Autenticação de API por token de usuário e
 Cohesion: 0.67
 Nodes (3): Requirement: BE-048 — Identificador público de 6 caracteres por usuário, Scenario: Identificador atribuído na criação, Scenario: Colisão de identificador
 
-### Community 835 - "openspec/specs/auth-users (18)"
+### Community 834 - "openspec/specs/auth-users (18)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-049 — Esqueleto criado junto com o usuário, Scenario: Criação completa o esqueleto, Scenario: Criação sem papel informado, Scenario: Usuário marcado como membro padrão
 
-### Community 836 - "openspec/specs/auth-users (19)"
+### Community 835 - "openspec/specs/auth-users (19)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-002 — Painel "Entrar", Scenario: Login por Enter, Scenario: Sucesso, Scenario: Falha
 
@@ -4727,19 +4726,19 @@ Nodes (3): Requirement: OPS-006 — Reprocessamento a cada atualização do usu�
 Cohesion: 0.67
 Nodes (3): Requirement: OPS-009 — Seeds de tipos de usuário e permissões, Scenario: Seed executado duas vezes, Scenario: Ordem de execução
 
-### Community 18 - "openspec/specs/availability - Requirements"
+### Community 22 - "openspec/specs/availability - Requirements"
 Cohesion: 0.04
 Nodes (57): Requirements, Requirement: BE-121 — Acesso a tela de lancamentos, Scenario: Abrir o painel de disponibilidade, Requirement: BE-141 — Formularios de padrao de disponibilidade do projeto, Scenario: Usuario sem projeto corrente, Scenario: Campos imutaveis na edicao, Requirement: FE-121 — Seletor de visao por empresa, Scenario: Trocar de empresa (+49 more)
 
-### Community 599 - "openspec/specs/availability"
+### Community 595 - "openspec/specs/availability"
 Cohesion: 0.33
 Nodes (6): Requirement: BE-120 — Busca de lancamentos de disponibilidade de uma data, Scenario: Data nao informada, Scenario: Busca e paginacao aplicadas, Scenario: Empresa inexistente no filtro, Scenario: Projeto inexistente, Scenario: Montagem da grade em projeto grande
 
-### Community 837 - "openspec/specs/availability (8)"
+### Community 836 - "openspec/specs/availability (8)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-122 — Criar lancamento de disponibilidade, Scenario: Lancamento duplicado, Scenario: Lancamento valido, Scenario: Falha de validacao nao deixa residuo
 
-### Community 838 - "openspec/specs/availability (9)"
+### Community 837 - "openspec/specs/availability (9)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-123 — Atualizar lancamento de disponibilidade, Scenario: Gravacao unica, Scenario: Lancamento de consolidacao geral, Scenario: Padrao bloqueado por operacao em andamento
 
@@ -4747,19 +4746,19 @@ Nodes (4): Requirement: BE-123 — Atualizar lancamento de disponibilidade, Scen
 Cohesion: 0.67
 Nodes (3): Requirement: BE-124 — Excluir lancamento de disponibilidade, Scenario: Exclusao reconsolida sem criar registro, Scenario: Exclusao de lancamento de primeiro nivel
 
-### Community 839 - "openspec/specs/availability (10)"
+### Community 838 - "openspec/specs/availability (10)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-125 — Consolidacao geral do projeto (mirror), Scenario: Consolidacao acompanha as empresas, Scenario: Projeto sem empresas, Scenario: Consolidacao de itens nao cumulativos e de debito
 
-### Community 680 - "openspec/specs/availability (2)"
+### Community 678 - "openspec/specs/availability (2)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-126 — Valor de um padrao com filhos, Scenario: Filho nao cumulativo, Scenario: Filho de debito, Scenario: No intermediario marcado como debito, Scenario: Filho de padrao bloqueado
 
-### Community 681 - "openspec/specs/availability (3)"
+### Community 679 - "openspec/specs/availability (3)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-127 — Correcao por dias uteis, Scenario: Correcao aplicada uma unica vez, Scenario: Dias uteis e feriados, Scenario: Data no primeiro dia do mes em fim de semana, Scenario: Padrao marcado como corrigido depois de ja ter lancamentos
 
-### Community 840 - "openspec/specs/availability (11)"
+### Community 839 - "openspec/specs/availability (11)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-128 — Saldo acumulado nos padroes de primeiro nivel, Scenario: Acumulado nao depende de quais lancamentos ja existem, Scenario: Saldo nos niveis 2 e 3, Scenario: Padroes desativados no acumulado
 
@@ -4775,11 +4774,11 @@ Nodes (3): Requirement: BE-130 — Materializacao de lancamentos derivados, Scen
 Cohesion: 0.67
 Nodes (3): Requirement: BE-131 — Validacoes do lancamento de disponibilidade, Scenario: Unicidade garantida sob concorrencia, Scenario: Titulo derivado do padrao
 
-### Community 841 - "openspec/specs/availability (12)"
+### Community 840 - "openspec/specs/availability (12)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-132 — Busca dos padroes globais, Scenario: Busca por texto, Scenario: Catalogo global vazio, Scenario: Paginacao aplicada
 
-### Community 842 - "openspec/specs/availability (13)"
+### Community 841 - "openspec/specs/availability (13)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-134 — Criar padrao global, Scenario: Obrigatoriedade informada e respeitada, Scenario: Titulo repetido no mesmo nivel, Scenario: Propagacao para projetos existentes
 
@@ -4791,11 +4790,11 @@ Nodes (3): Requirement: BE-135 — Atualizar padrao global, Scenario: Alterar a 
 Cohesion: 0.67
 Nodes (3): Requirement: BE-136 — Excluir padrao global, Scenario: Desvinculo completo em cascata, Scenario: Falha na exclusao e comunicada
 
-### Community 843 - "openspec/specs/availability (14)"
+### Community 842 - "openspec/specs/availability (14)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-137 — Numeracao e posicionamento hierarquico dos padroes, Scenario: Nivel derivado do pai, Scenario: Pai inexistente, Scenario: Criacao concorrente de irmaos
 
-### Community 844 - "openspec/specs/availability (15)"
+### Community 843 - "openspec/specs/availability (15)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-138 — Reordenacao de padroes, Scenario: Mover um padrao para outra posicao, Scenario: Movimento invalido, Scenario: Reordenacao em projeto grande
 
@@ -4803,11 +4802,11 @@ Nodes (4): Requirement: BE-138 — Reordenacao de padroes, Scenario: Mover um pa
 Cohesion: 0.67
 Nodes (3): Requirement: BE-139 — Obrigatoriedade hierarquica dos padroes, Scenario: Cadeia superior nao obrigatoria, Scenario: Cadeia superior obrigatoria
 
-### Community 682 - "openspec/specs/availability (4)"
+### Community 680 - "openspec/specs/availability (4)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-140 — Listar padroes de disponibilidade do projeto, Scenario: Projeto sem nenhum padrao, Scenario: Usuario sem projeto corrente, Scenario: Busca e paginacao aplicadas, Scenario: Padroes inativos permanecem visiveis
 
-### Community 683 - "openspec/specs/availability (5)"
+### Community 681 - "openspec/specs/availability (5)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-142 — Criar padrao de disponibilidade do projeto, Scenario: Projeto definido pelo servidor, Scenario: Identificador nao pode ser imposto pelo cliente, Scenario: Erros identificados em pt-BR, Scenario: Titulos iguais entre netos irmaos
 
@@ -4815,15 +4814,15 @@ Nodes (5): Requirement: BE-142 — Criar padrao de disponibilidade do projeto, S
 Cohesion: 0.67
 Nodes (3): Requirement: BE-143 — Atualizar padrao de disponibilidade do projeto, Scenario: Padrao bloqueado, Scenario: Renomear nao renumera o padrao
 
-### Community 684 - "openspec/specs/availability (6)"
+### Community 682 - "openspec/specs/availability (6)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-144 — Ativar padrao de disponibilidade do projeto, Scenario: Ativacao ja em andamento, Scenario: Falha ao enfileirar, Scenario: Falha no processamento libera o bloqueio, Scenario: Ativar com o pai inativo
 
-### Community 845 - "openspec/specs/availability (16)"
+### Community 844 - "openspec/specs/availability (16)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-145 — Desativar padrao de disponibilidade do projeto, Scenario: Padrao obrigatorio nao pode ser desativado, Scenario: Padrao com dependentes obrigatorios, Scenario: Desativacao valida reconsolida os totais
 
-### Community 846 - "openspec/specs/availability (17)"
+### Community 845 - "openspec/specs/availability (17)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-146 — Remover padrao de disponibilidade do projeto, Scenario: Padrao com lancamentos vinculados, Scenario: Falha no meio da remocao, Scenario: Padrao global nao e removivel pela tela do projeto
 
@@ -4831,11 +4830,11 @@ Nodes (4): Requirement: BE-146 — Remover padrao de disponibilidade do projeto,
 Cohesion: 0.67
 Nodes (3): Requirement: BE-147 — Bloqueio de padroes durante operacoes, Scenario: Falha da operacao nao deixa padrao travado, Scenario: Bloqueio vale tambem no servidor
 
-### Community 847 - "openspec/specs/availability (18)"
+### Community 846 - "openspec/specs/availability (18)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-148 — Consolidacao por padrao base e indicadores do painel, Scenario: Datas com lancamento no mes, Scenario: Consulta por dia especifico, Scenario: Total geral e total por padrao base
 
-### Community 685 - "openspec/specs/availability (7)"
+### Community 683 - "openspec/specs/availability (7)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-149 — API de disponibilidade do projeto, Scenario: Requisicao sem autenticacao, Scenario: Projeto fora do escopo do solicitante, Scenario: Mes invalido, Scenario: Formato da resposta
 
@@ -4859,7 +4858,7 @@ Nodes (3): Requirement: FE-128 — Estados da grade de lancamentos, Scenario: Fa
 Cohesion: 0.67
 Nodes (3): Requirement: FE-129 — Campo de valor do lancamento, Scenario: Mais de um separador decimal, Scenario: Natureza da operacao no campo
 
-### Community 848 - "openspec/specs/availability (19)"
+### Community 847 - "openspec/specs/availability (19)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-130 — Salvamento do valor na grade, Scenario: Salvar um valor, Scenario: Guarda de envio duplo nao trava outros formularios, Scenario: Mensagem coerente com a acao
 
@@ -4875,7 +4874,7 @@ Nodes (3): Requirement: FE-138 — Linha de padrao global e acoes, Scenario: Usu
 Cohesion: 0.67
 Nodes (3): Requirement: FE-139 — Formulario de padrao global, Scenario: Opcao de obrigatoriedade disponivel, Scenario: Dados de outros projetos nao sao expostos
 
-### Community 849 - "openspec/specs/availability (20)"
+### Community 848 - "openspec/specs/availability (20)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-144 — Ligar e desligar padrao pela lista do projeto, Scenario: Duas acoes em sequencia, Scenario: Mensagem de resultado, Scenario: Usuario somente-leitura
 
@@ -4899,11 +4898,11 @@ Nodes (3): Requirement: FE-148 — Preenchimento automatico dos niveis pelo padr
 Cohesion: 0.67
 Nodes (3): Requirement: DB-122 — Padrao de projeto no modelo de dados, Scenario: Titulo unico no mesmo caminho da arvore, Scenario: Um padrao de projeto por padrao global
 
-### Community 850 - "openspec/specs/availability (21)"
+### Community 849 - "openspec/specs/availability (21)"
 Cohesion: 0.50
 Nodes (4): Requirement: OPS-120 — Semeadura dos padroes globais em projeto novo, Scenario: Falha no meio da semeadura, Scenario: Reexecucao nao duplica, Scenario: Correcao por dias uteis replicada
 
-### Community 851 - "openspec/specs/availability (22)"
+### Community 850 - "openspec/specs/availability (22)"
 Cohesion: 0.50
 Nodes (4): Requirement: OPS-121 — Propagacao de um padrao global novo para projetos existentes, Scenario: Progresso por projeto nao se atropela, Scenario: Atributos copiados fielmente, Scenario: Falha na propagacao
 
@@ -4919,15 +4918,15 @@ Nodes (3): Requirement: OPS-126 — Trilha de auditoria do modulo de disponibili
 Cohesion: 0.67
 Nodes (3): Requirement: OPS-128 — Politica de retentativa e retencao das tarefas, Scenario: Falha transitoria, Scenario: Falha definitiva
 
-### Community 35 - "openspec/specs/companies-carriers - Requirements"
+### Community 36 - "openspec/specs/companies-carriers - Requirements"
 Cohesion: 0.05
 Nodes (43): Requirements, Requirement: BE-051 — Modo "dash" da busca de empresas, Scenario: Resumo ordenado por titulo, Requirement: BE-057 — Rotas de listagem e detalhe de empresa, Scenario: Detalhe de empresa, Requirement: BE-068 — Formulario e detalhe de portador, Scenario: Detalhe de portador, Requirement: FE-054 — Filtros de Empresas (+35 more)
 
-### Community 852 - "openspec/specs/companies-carriers (3)"
+### Community 851 - "openspec/specs/companies-carriers (3)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-050 — Busca de empresas do projeto corrente, Scenario: Busca com termo e paginacao, Scenario: Empresa de outro tenant nao e alcancavel por id, Scenario: Busca textual insensivel a caixa
 
-### Community 853 - "openspec/specs/companies-carriers (4)"
+### Community 852 - "openspec/specs/companies-carriers (4)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-052 — Resumo de limites de risco por empresa, Scenario: Resumo do projeto quando nenhuma empresa e informada, Scenario: Divisao por zero no percentual utilizado, Scenario: Data invalida
 
@@ -4947,7 +4946,7 @@ Nodes (3): Requirement: BE-055 — Atualizacao de empresa, Scenario: Atualizacao
 Cohesion: 0.67
 Nodes (3): Requirement: BE-056 — Exclusao de empresa, Scenario: Exclusao bloqueada por dependentes responde erro, Scenario: Exclusao permitida
 
-### Community 854 - "openspec/specs/companies-carriers (5)"
+### Community 853 - "openspec/specs/companies-carriers (5)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-058 — Regras de dominio de `Company`, Scenario: Titulo unico por projeto, Scenario: Projeto inexistente, Scenario: Agregados de limite retornam numeros
 
@@ -4967,15 +4966,15 @@ Nodes (3): Requirement: BE-062 — Atualizacao de fornecedor, Scenario: Projeto 
 Cohesion: 0.67
 Nodes (3): Requirement: BE-064 — Consulta de CNPJ na ReceitaWS, Scenario: Consulta de CNPJ valido, Scenario: CNPJ nao encontrado
 
-### Community 686 - "openspec/specs/companies-carriers"
+### Community 684 - "openspec/specs/companies-carriers"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-066 — Regras de dominio de `Provider`, Scenario: Documento invalido e rejeitado, Scenario: Documento duplicado no mesmo projeto, Scenario: Chave de integracao unica, Scenario: Fornecedor sem documento
 
-### Community 855 - "openspec/specs/companies-carriers (6)"
+### Community 854 - "openspec/specs/companies-carriers (6)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-067 — Busca de portadores, Scenario: Busca insensivel a caixa e a acento nos dois ramos, Scenario: Paginacao de portadores, Scenario: Portadores sao globais
 
-### Community 856 - "openspec/specs/companies-carriers (7)"
+### Community 855 - "openspec/specs/companies-carriers (7)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-069 — Criacao e atualizacao de portador, Scenario: Valores monetarios rejeitam formato invalido, Scenario: Agente financeiro fora da lista, Scenario: Codigo de banco preserva zeros a esquerda
 
@@ -4999,7 +4998,7 @@ Nodes (3): Requirement: BE-073 — CRUD de grupo de portadores, Scenario: Exclus
 Cohesion: 0.67
 Nodes (3): Requirement: BE-075 — Busca de segmentos, Scenario: Ordenacao por chave de integracao, Scenario: Paginacao de segmentos
 
-### Community 857 - "openspec/specs/companies-carriers (8)"
+### Community 856 - "openspec/specs/companies-carriers (8)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-076 — CRUD de segmento, Scenario: Criacao de segmento funciona, Scenario: Exclusao de segmento em uso, Scenario: Titulo unico global
 
@@ -5011,7 +5010,7 @@ Nodes (3): Requirement: BE-077 — Busca de subsegmentos, Scenario: Ordenacao pr
 Cohesion: 0.67
 Nodes (3): Requirement: BE-078 — CRUD de subsegmento, Scenario: Exclusao de subsegmento em uso, Scenario: Detalhe de subsegmento
 
-### Community 687 - "openspec/specs/companies-carriers (2)"
+### Community 685 - "openspec/specs/companies-carriers (2)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-079 — Comportamentos transversais dos seis cadastros, Scenario: Requisicao sem autenticacao, Scenario: Usuario somente-leitura tenta escrever, Scenario: Usuario desativado, Scenario: Parametro de apresentacao nao escolhe caminho de arquivo
 
@@ -5023,7 +5022,7 @@ Nodes (3): Requirement: FE-050 — Navegacao do console para os seis cadastros, 
 Cohesion: 0.67
 Nodes (3): Requirement: FE-053 — Paginacao de Empresas, Scenario: Navegar para a proxima pagina, Scenario: Limpar o campo de limite
 
-### Community 858 - "openspec/specs/companies-carriers (9)"
+### Community 857 - "openspec/specs/companies-carriers (9)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-055 — Linha de Empresa e menu de contexto, Scenario: Usuario somente-leitura, Scenario: Remover so aparece quando a empresa pode ser removida, Scenario: Cadastrar sem projeto padrao
 
@@ -5059,7 +5058,7 @@ Nodes (3): Requirement: FE-078 — Lista, linha e painel de Subsegmentos, Scenar
 Cohesion: 0.67
 Nodes (3): Requirement: FE-079 — Estados de container e identidade visual dos seis cadastros, Scenario: Estado vazio do painel lateral, Scenario: Falha de carregamento
 
-### Community 10 - "openspec/specs/console-admin - Requirements"
+### Community 13 - "openspec/specs/console-admin - Requirements"
 Cohesion: 0.03
 Nodes (66): Requirements, Requirement: BE-393 — Resolucao da tela de listagem por area, Scenario: Area sem tela, Requirement: BE-394 — Visualizacao no contexto de outro usuario, Scenario: Identificador em formato inesperado, Requirement: BE-395 — Area de usuarios, Scenario: Usuario inexistente, Requirement: BE-396 — Area de changelog (+58 more)
 
@@ -5067,7 +5066,7 @@ Nodes (66): Requirements, Requirement: BE-393 — Resolucao da tela de listagem 
 Cohesion: 0.67
 Nodes (3): Requirement: BE-390 — Areas do console e deep-link, Scenario: URL de area e compartilhavel, Scenario: Area desconhecida
 
-### Community 859 - "openspec/specs/console-admin (4)"
+### Community 858 - "openspec/specs/console-admin (4)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-391 — Projeto corrente do usuario, Scenario: Projeto invalido no estado do cliente, Scenario: Leitura nao grava, Scenario: Usuario sem projeto
 
@@ -5107,15 +5106,15 @@ Nodes (3): Requirement: BE-419 — Areas bloqueadas na navegacao, Scenario: Area
 Cohesion: 0.67
 Nodes (3): Requirement: BE-423 — Padroes de listagem e teto de paginacao, Scenario: Pedido de pagina gigante, Scenario: Parametros ausentes
 
-### Community 860 - "openspec/specs/console-admin (5)"
+### Community 859 - "openspec/specs/console-admin (5)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-424 — Busca de mensagens administrativas, Scenario: Total respeita o filtro, Scenario: Ordem por recencia, Scenario: Busca vazia
 
-### Community 861 - "openspec/specs/console-admin (6)"
+### Community 860 - "openspec/specs/console-admin (6)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-426 — Busca de observadores, Scenario: Anonimo e recusado, Scenario: Usuario sem papel administrativo, Scenario: Paginacao aplicada
 
-### Community 688 - "openspec/specs/console-admin"
+### Community 686 - "openspec/specs/console-admin"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-429 — Gravacao de observador, Scenario: Ao menos um tipo de mensagem, Scenario: E-mail unico, Scenario: Notificacao ao observador, Scenario: Ultimo editor registrado
 
@@ -5131,15 +5130,15 @@ Nodes (3): Requirement: FE-391 — Tela de abertura e inicializacao, Scenario: A
 Cohesion: 0.67
 Nodes (3): Requirement: FE-392 — Topbar do console, Scenario: Indicador de carregamento, Scenario: Nenhum componente sem produtor
 
-### Community 862 - "openspec/specs/console-admin (7)"
+### Community 861 - "openspec/specs/console-admin (7)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-393 — Seletor de projeto na topbar, Scenario: Troca de projeto, Scenario: Remocao do projeto selecionado, Scenario: Um unico projeto
 
-### Community 863 - "openspec/specs/console-admin (8)"
+### Community 862 - "openspec/specs/console-admin (8)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-394 — Busca global da topbar, Scenario: Estados da busca, Scenario: Visibilidade por papel, Scenario: Requisicao repetida
 
-### Community 864 - "openspec/specs/console-admin (9)"
+### Community 863 - "openspec/specs/console-admin (9)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-395 — Navegacao lateral do console, Scenario: Item ativo, Scenario: Fechamento automatico em tela pequena, Scenario: Estado de bloqueio visivel
 
@@ -5147,7 +5146,7 @@ Nodes (4): Requirement: FE-395 — Navegacao lateral do console, Scenario: Item 
 Cohesion: 0.67
 Nodes (3): Requirement: FE-396 — Resumo do usuario na navegacao, Scenario: Cor estavel do avatar, Scenario: Nenhum bloco vazio
 
-### Community 865 - "openspec/specs/console-admin (10)"
+### Community 864 - "openspec/specs/console-admin (10)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-397 — Area de conteudo e navegacao entre areas, Scenario: Botao Voltar, Scenario: Falha ao carregar a area, Scenario: Titulo da aba
 
@@ -5159,7 +5158,7 @@ Nodes (3): Requirement: FE-398 — Estado de navegacao do console, Scenario: Dad
 Cohesion: 0.67
 Nodes (3): Requirement: FE-399 — Gaveta lateral de formularios, Scenario: Edicao em andamento ao navegar, Scenario: Rolagem bloqueada
 
-### Community 866 - "openspec/specs/console-admin (11)"
+### Community 865 - "openspec/specs/console-admin (11)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-400 — Barra de acoes pendentes, Scenario: Falha ao salvar, Scenario: Descartar alteracoes, Scenario: Alteracoes descartadas ao navegar
 
@@ -5171,19 +5170,19 @@ Nodes (3): Requirement: FE-401 — Estados padrao de bloco assincrono, Scenario:
 Cohesion: 0.67
 Nodes (3): Requirement: FE-402 — Contrato de listagem das areas, Scenario: Nenhum parametro de cliente vira caminho de arquivo, Scenario: Resposta de dados
 
-### Community 867 - "openspec/specs/console-admin (12)"
+### Community 866 - "openspec/specs/console-admin (12)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-403 — Navegacao entre paginas nas listagens, Scenario: Ultima pagina com filtro, Scenario: Tamanho de pagina, Scenario: Valor inicial coerente
 
-### Community 689 - "openspec/specs/console-admin (2)"
+### Community 687 - "openspec/specs/console-admin (2)"
 Cohesion: 0.40
 Nodes (5): Requirement: FE-404 — Tela de Inicio como redirecionador por papel, Scenario: Papel de operacao geral, Scenario: Papel administrativo ou de gestao, Scenario: Demais papeis, Scenario: Sem conteudo intermediario
 
-### Community 868 - "openspec/specs/console-admin (13)"
+### Community 867 - "openspec/specs/console-admin (13)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-405 — Tela de mensagens administrativas, Scenario: Acesso pelo menu, Scenario: Recarregar mantem a tela, Scenario: Estados da lista
 
-### Community 869 - "openspec/specs/console-admin (14)"
+### Community 868 - "openspec/specs/console-admin (14)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-406 — Item de mensagem administrativa, Scenario: Nenhuma acao indisponivel e anunciada, Scenario: Campos personalizados, Scenario: Remocao
 
@@ -5191,11 +5190,11 @@ Nodes (4): Requirement: FE-406 — Item de mensagem administrativa, Scenario: Ne
 Cohesion: 0.67
 Nodes (3): Requirement: FE-407 — Busca e filtros de mensagens administrativas, Scenario: Troca de filtro na pagina 5, Scenario: Busca so com espacos
 
-### Community 870 - "openspec/specs/console-admin (15)"
+### Community 869 - "openspec/specs/console-admin (15)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-409 — Formulario de observador, Scenario: Abrir edicao pelo item da lista, Scenario: Tipos de mensagem, Scenario: Erros do servidor
 
-### Community 871 - "openspec/specs/console-admin (16)"
+### Community 870 - "openspec/specs/console-admin (16)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-411 — Componente reutilizavel: botao de acao, Scenario: Variantes de intencao, Scenario: Estado de carregamento, Scenario: Estado desabilitado
 
@@ -5211,7 +5210,7 @@ Nodes (3): Requirement: FE-414 — Componente reutilizavel: cartao de detalhe, S
 Cohesion: 0.67
 Nodes (3): Requirement: FE-415 — Componente reutilizavel: cartao de listagem, Scenario: Progresso em qualquer valor, Scenario: Area acionavel
 
-### Community 872 - "openspec/specs/console-admin (17)"
+### Community 871 - "openspec/specs/console-admin (17)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-416 — Componente reutilizavel: tabela, Scenario: Tela estreita, Scenario: Conteudo largo, Scenario: Tipos de coluna
 
@@ -5239,7 +5238,7 @@ Nodes (3): Requirement: FE-421 — Componente reutilizavel: sugestoes de busca, 
 Cohesion: 0.67
 Nodes (3): Requirement: FE-422 — Componente reutilizavel: item de resultado de busca, Scenario: Carregando por item, Scenario: Acao rapida
 
-### Community 873 - "openspec/specs/console-admin (18)"
+### Community 872 - "openspec/specs/console-admin (18)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-423 — Componente reutilizavel: abas, Scenario: Aba inicial, Scenario: Dois conjuntos de abas na mesma tela, Scenario: Abas que nao cabem
 
@@ -5259,7 +5258,7 @@ Nodes (3): Requirement: FE-427 — Componente reutilizavel: avatar, Scenario: Se
 Cohesion: 0.67
 Nodes (3): Requirement: FE-428 — Componente reutilizavel: indicador de progresso, Scenario: Implementacao unica, Scenario: Anuncio de carregamento
 
-### Community 874 - "openspec/specs/console-admin (19)"
+### Community 873 - "openspec/specs/console-admin (19)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-429 — Componentes reutilizaveis auxiliares, Scenario: Carregamento sob demanda, Scenario: Avaliacao por estrelas, Scenario: Estilos de titulo
 
@@ -5295,7 +5294,7 @@ Nodes (3): Requirement: OPS-394 — Notificacao por e-mail aos observadores, Sce
 Cohesion: 0.67
 Nodes (3): Requirement: OPS-395 — Personificacao de usuario, Scenario: Indicacao permanente, Scenario: Auditoria
 
-### Community 875 - "openspec/specs/console-admin (20)"
+### Community 874 - "openspec/specs/console-admin (20)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-740 — Componente reutilizavel: barra de contexto, Scenario: Variantes, Scenario: Colapso na rolagem, Scenario: Adaptacao ao container
 
@@ -5303,11 +5302,11 @@ Nodes (4): Requirement: FE-740 — Componente reutilizavel: barra de contexto, S
 Cohesion: 0.67
 Nodes (3): Requirement: FE-742 — Utilitarios de interface do cliente, Scenario: Formatacao consistente, Scenario: Nenhum script carregado em tempo de execucao
 
-### Community 876 - "openspec/specs/console-admin (21)"
+### Community 875 - "openspec/specs/console-admin (21)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-743 — Componente reutilizavel: dialogo, Scenario: Variantes de intencao, Scenario: Confirmacao de exclusao, Scenario: Teclado e foco
 
-### Community 690 - "openspec/specs/console-admin (3)"
+### Community 688 - "openspec/specs/console-admin (3)"
 Cohesion: 0.40
 Nodes (5): Requirement: FE-744 — Componente reutilizavel: grafico de rosca, Scenario: Series e legenda, Scenario: Valor central acionavel, Scenario: Interacao por serie, Scenario: Sem dados
 
@@ -5315,7 +5314,7 @@ Nodes (5): Requirement: FE-744 — Componente reutilizavel: grafico de rosca, Sc
 Cohesion: 0.67
 Nodes (3): Requirement: FE-745 — Localizacao do seletor de datas, Scenario: Formato e idioma, Scenario: Entrada digitada
 
-### Community 96 - "openspec/specs/contracts - Requirements"
+### Community 97 - "openspec/specs/contracts - Requirements"
 Cohesion: 0.07
 Nodes (28): Requirements, Requirement: BE-339 — Tipos de contrato suportados, Scenario: Catalogo fechado, Requirement: BE-346 — Codigo morto de contrato nao e portado, Scenario: Ausencia verificada, Requirement: BE-347 — Criacao do registro de aceite, Scenario: Falha propagada, Requirement: BE-348 — Superficie de rotas de contrato (+20 more)
 
@@ -5331,7 +5330,7 @@ Nodes (3): Requirement: BE-331 — Resolucao do contrato vigente pelo tipo, Scen
 Cohesion: 0.67
 Nodes (3): Requirement: BE-332 — Calculo do sinalizador de aceitabilidade, Scenario: Usuario logado com pendencia, Scenario: Anonimo
 
-### Community 691 - "openspec/specs/contracts"
+### Community 689 - "openspec/specs/contracts"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-333 — Registrar o aceite de contrato, Scenario: Aceite e sempre do usuario da sessao, Scenario: Aceite exige sessao, Scenario: Aceite duplicado, Scenario: So a versao vigente e aceitavel
 
@@ -5339,11 +5338,11 @@ Nodes (5): Requirement: BE-333 — Registrar o aceite de contrato, Scenario: Ace
 Cohesion: 0.67
 Nodes (3): Requirement: BE-334 — Lista de contratos no console, Scenario: Paginacao correta com agrupamento por tipo, Scenario: Contrato de tipo inesperado continua visivel
 
-### Community 877 - "openspec/specs/contracts (2)"
+### Community 876 - "openspec/specs/contracts (2)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-335 — Publicar nova versao de contrato, Scenario: Publicacao exige papel administrativo, Scenario: Versoes anteriores sao imutaveis, Scenario: Autor da versao
 
-### Community 878 - "openspec/specs/contracts (3)"
+### Community 877 - "openspec/specs/contracts (3)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-336 — Numeracao automatica de versao, Scenario: Numeracao na criacao, Scenario: Re-salvar nao renumera, Scenario: Publicacoes concorrentes
 
@@ -5355,11 +5354,11 @@ Nodes (3): Requirement: BE-337 — Unicidade de tipo e versao, Scenario: Duplica
 Cohesion: 0.67
 Nodes (3): Requirement: BE-338 — Pre-preenchimento da nova versao, Scenario: Copia do conteudo anterior, Scenario: Primeiro contrato de um tipo
 
-### Community 879 - "openspec/specs/contracts (4)"
+### Community 878 - "openspec/specs/contracts (4)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-340 — Aceite no cadastro do usuario, Scenario: Consentimento lido pelo servidor, Scenario: Aceite gravado com o cadastro, Scenario: Sem contrato publicado
 
-### Community 880 - "openspec/specs/contracts (5)"
+### Community 879 - "openspec/specs/contracts (5)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-341 — Calculo de contratos pendentes, Scenario: Contrato publicado depois da conta, Scenario: Nova versao reabre a pendencia, Scenario: Consulta sem N+1
 
@@ -5367,7 +5366,7 @@ Nodes (4): Requirement: BE-341 — Calculo de contratos pendentes, Scenario: Con
 Cohesion: 0.67
 Nodes (3): Requirement: BE-342 — Janela de tolerancia de contrato pendente, Scenario: Dentro da tolerancia, Scenario: Fora da tolerancia
 
-### Community 881 - "openspec/specs/contracts (6)"
+### Community 880 - "openspec/specs/contracts (6)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-343 — Bloqueio de acesso por contrato pendente expirado, Scenario: Usuario com pendencia expirada, Scenario: Sem laco de redirecionamento, Scenario: Chamadas de API
 
@@ -5387,7 +5386,7 @@ Nodes (3): Requirement: FE-330 — Tela publica do contrato, Scenario: Versao vi
 Cohesion: 0.67
 Nodes (3): Requirement: FE-332 — Acao de aceite na barra da tela de contrato, Scenario: Acao visivel quando pendente, Scenario: Acao oculta quando nao ha pendencia
 
-### Community 883 - "openspec/specs/contracts (7)"
+### Community 882 - "openspec/specs/contracts (7)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-334 — Retorno apos leitura ou aceite, Scenario: Confirmacao de sucesso, Scenario: Destino de retorno hostil, Scenario: Falha no aceite
 
@@ -5395,7 +5394,7 @@ Nodes (4): Requirement: FE-334 — Retorno apos leitura ou aceite, Scenario: Con
 Cohesion: 0.67
 Nodes (3): Requirement: FE-337 — Consentimento no cadastro publico, Scenario: Caixa desmarcada por padrao, Scenario: Gate validado no servidor
 
-### Community 884 - "openspec/specs/contracts (8)"
+### Community 883 - "openspec/specs/contracts (8)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-338 — Tela de lista de contratos no console, Scenario: Acesso pelo menu, Scenario: Busca utilizavel, Scenario: Falha de carga
 
@@ -5407,7 +5406,7 @@ Nodes (3): Requirement: FE-339 — Cartao de contrato na lista, Scenario: Acoes 
 Cohesion: 0.67
 Nodes (3): Requirement: FE-340 — Tela de detalhe do contrato com historico de versoes, Scenario: Historico completo, Scenario: Identificador invalido
 
-### Community 885 - "openspec/specs/contracts (9)"
+### Community 884 - "openspec/specs/contracts (9)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-342 — Formulario de nova versao de contrato, Scenario: Aviso de impacto antes de publicar, Scenario: Comparacao com a versao anterior, Scenario: Salvamento explicito
 
@@ -5415,7 +5414,7 @@ Nodes (4): Requirement: FE-342 — Formulario de nova versao de contrato, Scenar
 Cohesion: 0.67
 Nodes (3): Requirement: DB-330 — Modelo de dados de contrato, Scenario: Historico preservado na migracao, Scenario: Autor orfao detectado
 
-### Community 882 - "openspec/specs/contracts (10)"
+### Community 881 - "openspec/specs/contracts (10)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-331 — Modelo de dados do aceite de contrato, Scenario: Trilha de auditoria completa, Scenario: Texto aceito e imutavel, Scenario: Unicidade garantida pelo banco
 
@@ -5423,11 +5422,11 @@ Nodes (4): Requirement: DB-331 — Modelo de dados do aceite de contrato, Scenar
 Cohesion: 0.67
 Nodes (3): Requirement: OPS-330 — Carga inicial dos contratos, Scenario: Carga cria apenas os documentos, Scenario: Carga e idempotente
 
-### Community 219 - "openspec/specs/data-schema - Requirements"
+### Community 213 - "openspec/specs/data-schema - Requirements"
 Cohesion: 0.11
 Nodes (17): Purpose, Requirements, Requirement: DB-565 — receivable_taxes, Scenario: leitura das tarifas de um borderô, Scenario: exclusão do borderô leva as tarifas, Requirement: DB-575 — risk_operation_subtypes, Scenario: par pré/pós-faturamento, Scenario: subtipo duplicado no mesmo tipo (+9 more)
 
-### Community 886 - "openspec/specs/data-schema (2)"
+### Community 885 - "openspec/specs/data-schema (2)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-540 — livetat_auth_users, Scenario: unicidade de e-mail, Scenario: dois flags de desativação concorrentes, Scenario: manager inexistente
 
@@ -5463,7 +5462,7 @@ Nodes (3): Requirement: DB-547 — contract_deals, Scenario: aceite único por u
 Cohesion: 0.67
 Nodes (3): Requirement: DB-548 — app_themes, Scenario: CSS cacheado não é migrado como dado, Scenario: título de tema único
 
-### Community 887 - "openspec/specs/data-schema (3)"
+### Community 886 - "openspec/specs/data-schema (3)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-549 — projects, Scenario: responsible_id com tipo errado no legado, Scenario: exclusão de projeto com dado financeiro, Scenario: estado de processamento sem FK para a fila
 
@@ -5475,7 +5474,7 @@ Nodes (3): Requirement: DB-550 — segments, Scenario: segmento em uso não pode
 Cohesion: 0.67
 Nodes (3): Requirement: DB-551 — sub_segments, Scenario: ausência de legacy_id, Scenario: subsegmento em uso
 
-### Community 888 - "openspec/specs/data-schema (4)"
+### Community 887 - "openspec/specs/data-schema (4)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-552 — carriers, Scenario: exclusão de cedente apaga controles de risco, Scenario: cedente com recebível não pode ser excluído, Scenario: precisão mista de patrimônio e percentual
 
@@ -5523,11 +5522,11 @@ Nodes (3): Requirement: DB-562 — resource_sources, Scenario: origem em uso, Sc
 Cohesion: 0.67
 Nodes (3): Requirement: DB-563 — movement_kinds, Scenario: associação inexistente removida, Scenario: seed de 17 tipos de tarifa
 
-### Community 889 - "openspec/specs/data-schema (5)"
+### Community 888 - "openspec/specs/data-schema (5)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-564 — receivable_entries, Scenario: precisão financeira replicada, Scenario: divisão por zero não corrompe o registro, Scenario: busca por projeto e data usa índice
 
-### Community 890 - "openspec/specs/data-schema (6)"
+### Community 889 - "openspec/specs/data-schema (6)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-566 — availability_templates, Scenario: quatro representações da mesma árvore, Scenario: valor mágico zero em top_parent_id, Scenario: template bloqueado sem referência à fila
 
@@ -5535,7 +5534,7 @@ Nodes (4): Requirement: DB-566 — availability_templates, Scenario: quatro repr
 Cohesion: 0.67
 Nodes (3): Requirement: DB-567 — availability_entries, Scenario: duplicata sob concorrência, Scenario: três valores preservados
 
-### Community 891 - "openspec/specs/data-schema (7)"
+### Community 890 - "openspec/specs/data-schema (7)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-568 — renegotiations, Scenario: company_id obrigatório com relação declarada, Scenario: contador de anexos sem NULL, Scenario: precisão dos totais preservada
 
@@ -5563,7 +5562,7 @@ Nodes (3): Requirement: DB-573 — risk_entries, Scenario: duas posições no me
 Cohesion: 0.67
 Nodes (3): Requirement: DB-574 — risk_operation_types, Scenario: seed presente no dia 1, Scenario: user_id hardcoded no seed
 
-### Community 892 - "openspec/specs/data-schema (8)"
+### Community 891 - "openspec/specs/data-schema (8)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-576 — risk_operations, Scenario: relação com o controle de risco declarada, Scenario: renovação não encerra a original, Scenario: recibo consistente nas duas direções
 
@@ -5591,7 +5590,7 @@ Nodes (3): Requirement: DB-581 — structured_operations, Scenario: operação d
 Cohesion: 0.67
 Nodes (3): Requirement: DB-582 — remunerations, Scenario: taxa em float multiplicando decimal, Scenario: remuneração duplicada
 
-### Community 893 - "openspec/specs/data-schema (9)"
+### Community 892 - "openspec/specs/data-schema (9)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-584 — receipts, Scenario: valor faturado com fee em float, Scenario: recibo duplicado para a mesma operação, Scenario: temp_id de interface
 
@@ -5687,47 +5686,47 @@ Nodes (3): Requirement: DB-737 — action_text_rich_texts, Scenario: descarte co
 Cohesion: 0.67
 Nodes (3): Requirement: DB-738 — ar_internal_metadata, Scenario: ambiente do banco de origem conferido, Scenario: nenhuma linha importada
 
-### Community 894 - "openspec/specs/data-schema (10)"
+### Community 893 - "openspec/specs/data-schema (10)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-ETL-01 — Etapa de introspecção do schema real, Scenario: coluna desconhecida encontrada, Scenario: as duas provas conhecidas, Scenario: surpresa aparece no dry-run, não no cutover
 
-### Community 895 - "openspec/specs/data-schema (11)"
+### Community 894 - "openspec/specs/data-schema (11)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-ETL-02 — Tabela de-para `legacy_id → uuid`, Scenario: religamento por de-para e não por id numérico, Scenario: referência sem correspondência, Scenario: de-para auditável depois do cutover
 
-### Community 896 - "openspec/specs/data-schema (12)"
+### Community 895 - "openspec/specs/data-schema (12)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-ETL-03 — Contagem de órfãos e duplicatas antes de inserir, Scenario: órfãos detectados no dry-run, Scenario: duplicatas de unicidade composta, Scenario: decisão registrada libera a carga
 
-### Community 692 - "openspec/specs/data-schema"
+### Community 690 - "openspec/specs/data-schema"
 Cohesion: 0.40
 Nodes (5): Requirement: DB-ETL-04 — Conversão de timestamps para UTC por faixa de data, Scenario: registro anterior a 2019 dentro do horário de verão, Scenario: registro posterior a 2019 sem horário de verão, Scenario: hora ambígua na virada do horário de verão, Scenario: reconciliação amostral por ano
 
-### Community 897 - "openspec/specs/data-schema (13)"
+### Community 896 - "openspec/specs/data-schema (13)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-ETL-05 — Colunas `legacy_*` preservadas, ETL Django descartado, Scenario: proveniência preservada, Scenario: código do ETL antigo não é portado, Scenario: verificação da suposição de que o pipeline não roda
 
-### Community 898 - "openspec/specs/data-schema (14)"
+### Community 897 - "openspec/specs/data-schema (14)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-ETL-06 — Precisão financeira replicada, Scenario: total do borderô bate com o legado, Scenario: valor faturado do recibo bate com o legado, Scenario: divergência de centavo é falha de teste
 
-### Community 899 - "openspec/specs/data-schema (15)"
+### Community 898 - "openspec/specs/data-schema (15)"
 Cohesion: 0.50
 Nodes (4): Requirement: OPS-540 — Semeadura da aplicação é versionada e idempotente, Scenario: seed rodado duas vezes, Scenario: dado obrigatório no dia 1, Scenario: dado de demonstração fora de produção
 
-### Community 900 - "openspec/specs/data-schema (16)"
+### Community 899 - "openspec/specs/data-schema (16)"
 Cohesion: 0.50
 Nodes (4): Requirement: OPS-541 — Papéis e permissões nascem de configuração versionada, Scenario: configuração aponta para papel inexistente, Scenario: papéis do produto sem ciclo de criar e destruir, Scenario: repetição da semeadura de permissões
 
-### Community 901 - "openspec/specs/data-schema (17)"
+### Community 900 - "openspec/specs/data-schema (17)"
 Cohesion: 0.50
 Nodes (4): Requirement: OPS-542 — Estados e contextos de mensagem como dado de referência, Scenario: estados presentes antes do primeiro uso, Scenario: repetição da semeadura, Scenario: registros históricos sem estado
 
-### Community 902 - "openspec/specs/data-schema (18)"
+### Community 901 - "openspec/specs/data-schema (18)"
 Cohesion: 0.50
 Nodes (4): Requirement: OPS-543 — Tema padrão obrigatório no dia 1, Scenario: ambiente novo sem tema, Scenario: tema padrão não pertence a usuário, Scenario: um único padrão
 
-### Community 903 - "openspec/specs/data-schema (19)"
+### Community 902 - "openspec/specs/data-schema (19)"
 Cohesion: 0.50
 Nodes (4): Requirement: OPS-544 — Textos de contrato semeados e versionados, Scenario: primeiro provisionamento, Scenario: contratos já existentes, Scenario: arquivo órfão
 
@@ -5735,7 +5734,7 @@ Nodes (4): Requirement: OPS-544 — Textos de contrato semeados e versionados, S
 Cohesion: 0.67
 Nodes (3): Requirement: OPS-546 — Dump do banco pré-Rails não é portado, Scenario: repositório do ai9 sem dump, Scenario: pergunta sobre origem de um registro de 2016
 
-### Community 904 - "openspec/specs/data-schema (20)"
+### Community 903 - "openspec/specs/data-schema (20)"
 Cohesion: 0.50
 Nodes (4): Requirement: OPS-547 — ETL Django→Rails não é portado, mas sua proveniência é preservada, Scenario: identificador legado sobrevive à migração, Scenario: código do ETL antigo ausente, Scenario: verificação da suposição antes do cutover
 
@@ -5743,11 +5742,11 @@ Nodes (4): Requirement: OPS-547 — ETL Django→Rails não é portado, mas sua 
 Cohesion: 0.67
 Nodes (3): Requirement: OPS-548 — Conexão secundária com o banco do sistema anterior não existe, Scenario: configuração de banco do ai9, Scenario: ausência do banco antigo não afeta o boot
 
-### Community 905 - "openspec/specs/data-schema (21)"
+### Community 904 - "openspec/specs/data-schema (21)"
 Cohesion: 0.50
 Nodes (4): Requirement: OPS-549 — Esquema reprodutível a partir do repositório, Scenario: esquema versionado, Scenario: divergência entre repositório e banco real, Scenario: ordem de montagem não define mais o esquema
 
-### Community 36 - "openspec/specs/engines - Requirements"
+### Community 37 - "openspec/specs/engines - Requirements"
 Cohesion: 0.05
 Nodes (43): Requirements, Requirement: BE-502 — Token de API por usuário, Scenario: Emissão de token, Requirement: BE-515 — Hierarquia de controllers base da engine de auth, Scenario: Rota que aceita usuário ou aplicação, Requirement: BE-523 — Efeitos colaterais globais da engine de UX de auth, Scenario: Exibição de erro de campo, Requirement: BE-535 — Mailer com anexos inline (+35 more)
 
@@ -5759,7 +5758,7 @@ Nodes (3): Requirement: ENG-navkit — A engine `navkit` é código morto (desca
 Cohesion: 0.67
 Nodes (3): Requirement: ENG-auth_omni19 — A engine `auth_omni19` é código morto (descarte com evidência), Scenario: Login social no ai9, Scenario: Dados do provedor social
 
-### Community 600 - "openspec/specs/engines"
+### Community 596 - "openspec/specs/engines"
 Cohesion: 0.33
 Nodes (6): Requirement: NAV-001 — Menu do console (a especificação de fato da navegação), Scenario: Usuário sem projetos, Scenario: Colaborador não vê "Cadastro" nem "Admin", Scenario: Operador somente-leitura, Scenario: Item de menu escondido não é rota aberta, Scenario: Item ativo
 
@@ -5779,7 +5778,7 @@ Nodes (3): Requirement: BE-506 — Resolução de permissões do usuário, Scena
 Cohesion: 0.67
 Nodes (3): Requirement: BE-526 — Mensagem (ticket) com campos extras e tokens de acesso, Scenario: Campo extra habilitado sem valor, Scenario: Tokens de acesso
 
-### Community 693 - "openspec/specs/engines (2)"
+### Community 691 - "openspec/specs/engines (2)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-527 — Máquina de estados da mensagem, Scenario: Primeira leitura pelo atendente, Scenario: Resposta do atendente, Scenario: Resposta do usuário, Scenario: Boot sem dados de referência
 
@@ -5795,7 +5794,7 @@ Nodes (3): Requirement: BE-529 — Contextos, observadores e vínculo observador
 Cohesion: 0.67
 Nodes (3): Requirement: BE-530 — Notificações por e-mail do módulo de mensagens, Scenario: Mensagem interna, Scenario: Nova resposta
 
-### Community 906 - "openspec/specs/engines (3)"
+### Community 905 - "openspec/specs/engines (3)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-531 — Endpoints de mensagens, Scenario: Envio público, Scenario: Acesso à conversa por token privado sem sessão, Scenario: Listagem sem permissão
 
@@ -5815,11 +5814,11 @@ Nodes (3): Requirement: BE-534 — API de alto nível de envio de e-mail e regis
 Cohesion: 0.67
 Nodes (3): Requirement: BE-539 — A engine de navegação matricial não carrega, Scenario: Registro de engines no ai9, Scenario: Erro de carregamento silencioso
 
-### Community 907 - "openspec/specs/engines (4)"
+### Community 906 - "openspec/specs/engines (4)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-747 — Controllers de autenticação vazios são apenas ponto de ancoragem das rotas, Scenario: nenhum comportamento perdido no descarte, Scenario: fluxos de autenticação existem no ai9, Scenario: rota residual apontando para a engine
 
-### Community 908 - "openspec/specs/engines (5)"
+### Community 907 - "openspec/specs/engines (5)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-748 — Herança de permissões vira dado, não metaprogramação, Scenario: catálogo de permissões inspecionável, Scenario: nenhuma avaliação de código gerado em string, Scenario: mudança na permissão de um papel base
 
@@ -5855,19 +5854,19 @@ Nodes (3): Requirement: OPS-502 — Processamento assíncrono de e-mails e jobs,
 Cohesion: 0.67
 Nodes (3): Requirement: OPS-509 — Carregamento de extensões de classe com erro silencioso, Scenario: Extensão que não carrega, Scenario: Auditoria das extensões do legado
 
-### Community 909 - "openspec/specs/engines (6)"
+### Community 908 - "openspec/specs/engines (6)"
 Cohesion: 0.50
 Nodes (4): Requirement: OPS-749 — O bootstrap das engines desaparece, Scenario: origem de uma tabela do esquema, Scenario: extensão de comportamento que não carrega, Scenario: dependências do produto declaradas onde se lê
 
-### Community 407 - "openspec/specs/help-faq - Requirements"
+### Community 397 - "openspec/specs/help-faq - Requirements"
 Cohesion: 0.18
 Nodes (10): Help & FAQ Specification, Purpose, Requirements, Requirement: BE-351 — Busca de itens na Central de ajuda administrativa, Scenario: Instalacao com mais itens que a pagina, Scenario: Busca administrativa nao filtra por categoria, Requirement: BE-359 — Editar grupo de ajuda, Scenario: Grupo inexistente (+2 more)
 
-### Community 694 - "openspec/specs/help-faq (2)"
+### Community 692 - "openspec/specs/help-faq (2)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-350 — Busca de itens de ajuda no FAQ, Scenario: Busca por conteudo encontra item recente, Scenario: Categoria obrigatoria, Scenario: Termo numerico nao vira coringa, Scenario: Ordem estavel e paginada
 
-### Community 910 - "openspec/specs/help-faq (5)"
+### Community 909 - "openspec/specs/help-faq (5)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-352 — Criar item de ajuda, Scenario: Corpo vazio e rejeitado, Scenario: Titulo duplicado na mesma categoria, Scenario: Rotulos de erro em pt-BR
 
@@ -5899,11 +5898,11 @@ Nodes (3): Requirement: BE-358 — Criar grupo de ajuda, Scenario: Titulo unico 
 Cohesion: 0.67
 Nodes (3): Requirement: BE-360 — Excluir grupo de ajuda em cascata dupla, Scenario: Confirmacao quantifica a subarvore, Scenario: Cascata dupla efetiva
 
-### Community 911 - "openspec/specs/help-faq (6)"
+### Community 910 - "openspec/specs/help-faq (6)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-361 — Navegacao e deep-link das areas de ajuda, Scenario: Deep-link para um item de ajuda, Scenario: Criar item dentro de uma categoria, Scenario: Categoria inexistente na URL
 
-### Community 912 - "openspec/specs/help-faq (7)"
+### Community 911 - "openspec/specs/help-faq (7)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-362 — Conteudo rico do item de ajuda como fonte unica, Scenario: Conteudo antigo e novo no mesmo campo, Scenario: Busca cobre os dois acervos, Scenario: Imagem dentro do conteudo
 
@@ -5911,15 +5910,15 @@ Nodes (4): Requirement: BE-362 — Conteudo rico do item de ajuda como fonte uni
 Cohesion: 0.67
 Nodes (3): Requirement: BE-363 — Autenticacao e autorizacao das areas de ajuda, Scenario: Anonimo e recusado, Scenario: Usuario comum le mas nao escreve
 
-### Community 601 - "openspec/specs/help-faq"
+### Community 597 - "openspec/specs/help-faq"
 Cohesion: 0.33
 Nodes (6): Requirement: FE-364 — Tela de FAQ do usuario final, Scenario: Selecao inicial, Scenario: Troca de categoria nao filtra por engano, Scenario: Busca sem resultado, Scenario: Falha de rede na busca, Scenario: Grupos e categorias vazios
 
-### Community 695 - "openspec/specs/help-faq (3)"
+### Community 693 - "openspec/specs/help-faq (3)"
 Cohesion: 0.40
 Nodes (5): Requirement: FE-365 — Tela da Central de ajuda administrativa, Scenario: Estado vazio aparece, Scenario: Renomeacao inline sem corrida, Scenario: Busca filtra a arvore, Scenario: Ordenacao da arvore
 
-### Community 696 - "openspec/specs/help-faq (4)"
+### Community 694 - "openspec/specs/help-faq (4)"
 Cohesion: 0.40
 Nodes (5): Requirement: FE-366 — Formulario e detalhe do item de ajuda, Scenario: Autoria preservada na edicao, Scenario: Mensagem correta por operacao, Scenario: Detalhe de item inexistente, Scenario: Avatar de fallback estavel
 
@@ -5931,11 +5930,11 @@ Nodes (3): Requirement: DB-367 — Modelo de dados de grupo de ajuda, Scenario: 
 Cohesion: 0.67
 Nodes (3): Requirement: DB-368 — Modelo de dados de categoria de ajuda, Scenario: Slug estavel e unico, Scenario: Integridade com o grupo
 
-### Community 913 - "openspec/specs/help-faq (8)"
+### Community 912 - "openspec/specs/help-faq (8)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-369 — Modelo de dados do item de ajuda e do conteudo rico, Scenario: Unificacao dos dois acervos, Scenario: Unicidade de titulo por categoria no banco, Scenario: Anexos do conteudo migrados
 
-### Community 45 - "openspec/specs/indicators - Requirements"
+### Community 47 - "openspec/specs/indicators - Requirements"
 Cohesion: 0.05
 Nodes (40): Requirements, Requirement: BE-310 — Superficie de rotas do catalogo de indicadores, Scenario: Rota sem tela nao existe, Requirement: BE-322 — Denormalizacao do indicador nos lancamentos, Scenario: Edicao de indicador nao trava o request, Requirement: BE-323 — Superficie de rotas dos lancamentos, Scenario: Rota morta ausente, Requirement: BE-328 — Excluir lancamento (+32 more)
 
@@ -5967,7 +5966,7 @@ Nodes (3): Requirement: BE-316 — Criar indicador, Scenario: Indicador especifi
 Cohesion: 0.67
 Nodes (3): Requirement: BE-317 — Editar indicador, Scenario: Uma unica gravacao, Scenario: Mudanca de escopo mantem a conexao coerente
 
-### Community 914 - "openspec/specs/indicators (2)"
+### Community 913 - "openspec/specs/indicators (2)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-318 — Excluir indicador, Scenario: Exclusao nao apaga lancamentos, Scenario: Confirmacao diz o que sera perdido, Scenario: Indicador conectado a projeto
 
@@ -5975,23 +5974,23 @@ Nodes (4): Requirement: BE-318 — Excluir indicador, Scenario: Exclusao nao apa
 Cohesion: 0.67
 Nodes (3): Requirement: BE-319 — Ativar e desativar indicador, Scenario: Valor invalido de estado, Scenario: Indicador inexistente
 
-### Community 915 - "openspec/specs/indicators (3)"
+### Community 914 - "openspec/specs/indicators (3)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-320 — Unicidade de titulo entre indicadores globais e especificos, Scenario: Global colide com especifico, Scenario: Especifico colide com global, Scenario: Especificos de projetos diferentes coexistem
 
-### Community 916 - "openspec/specs/indicators (4)"
+### Community 915 - "openspec/specs/indicators (4)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-321 — Normalizacao de titulo, geracao de chave e tipo de valor padrao, Scenario: Titulo ausente, Scenario: Titulo preserva o que o usuario digitou, Scenario: Chave gerada
 
-### Community 697 - "openspec/specs/indicators"
+### Community 695 - "openspec/specs/indicators"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-324 — Grade de lancamentos por projeto, Scenario: Consulta unica, Scenario: Ordem alfabetica respeitada, Scenario: Projeto invalido, Scenario: Indicador desativado
 
-### Community 917 - "openspec/specs/indicators (5)"
+### Community 916 - "openspec/specs/indicators (5)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-326 — Criar lancamento, Scenario: Autoria e sempre do usuario da sessao, Scenario: Projeto fora do escopo do usuario, Scenario: Lancamento ja existente para o periodo
 
-### Community 918 - "openspec/specs/indicators (6)"
+### Community 917 - "openspec/specs/indicators (6)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-327 — Editar lancamento, Scenario: Autor preservado, Scenario: Mover lancamento de periodo, Scenario: Payload sem indicador
 
@@ -6019,7 +6018,7 @@ Nodes (3): Requirement: FE-313 — Cartao de indicador com instrucao expansivel,
 Cohesion: 0.67
 Nodes (3): Requirement: FE-315 — Confirmacao de exclusao de indicador, Scenario: Texto da confirmacao, Scenario: Falha visivel
 
-### Community 922 - "openspec/specs/indicators (7)"
+### Community 921 - "openspec/specs/indicators (7)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-316 — Formulario de indicador, Scenario: Titulo por modo, Scenario: Mensagens pertencem ao dominio, Scenario: Reflexo nas outras telas
 
@@ -6055,7 +6054,7 @@ Nodes (3): Requirement: FE-326 — Grade de ano inteiro, Scenario: Mes nao lanca
 Cohesion: 0.67
 Nodes (3): Requirement: FE-328 — Entrada e formatacao do valor monetario, Scenario: Mais de um separador decimal, Scenario: Valor negativo
 
-### Community 923 - "openspec/specs/indicators (8)"
+### Community 922 - "openspec/specs/indicators (8)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-329 — Gravacao automatica do lancamento, Scenario: Falha de gravacao e visivel, Scenario: Edicoes sucessivas na mesma celula, Scenario: Cor por sinal do valor
 
@@ -6063,7 +6062,7 @@ Nodes (4): Requirement: FE-329 — Gravacao automatica do lancamento, Scenario: 
 Cohesion: 0.67
 Nodes (3): Requirement: DB-310 — Modelo de dados de indicador, Scenario: Escopo por projeto integro, Scenario: Estado ativo binario
 
-### Community 921 - "openspec/specs/indicators (9)"
+### Community 920 - "openspec/specs/indicators (9)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-311 — Modelo de dados do lancamento, Scenario: Duplicata recusada pelo banco, Scenario: Faixa de mes validada na migracao, Scenario: Ausencia de linha e o unico "nao lancado"
 
@@ -6075,7 +6074,7 @@ Nodes (3): Requirement: BE-707 — Listar indicadores conectaveis ao projeto, Sc
 Cohesion: 0.67
 Nodes (3): Requirement: BE-709 — Conectar indicadores globais ao projeto, Scenario: Resultado por item, Scenario: Projeto fora do escopo do usuario
 
-### Community 919 - "openspec/specs/indicators (10)"
+### Community 918 - "openspec/specs/indicators (10)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-710 — Desconectar indicador global do projeto, Scenario: Desconexao preserva o historico, Scenario: Reconexao recupera o historico, Scenario: Par inexistente
 
@@ -6091,7 +6090,7 @@ Nodes (3): Requirement: BE-715 — Tipo de valor do indicador, Scenario: Formata
 Cohesion: 0.67
 Nodes (3): Requirement: BE-716 — Consultas de lancamento por periodo e por indicador, Scenario: Consulta de um mes para um indicador, Scenario: Nenhuma agregacao inventada
 
-### Community 920 - "openspec/specs/indicators (11)"
+### Community 919 - "openspec/specs/indicators (11)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-717 — Autorizacao de indicadores e lancamentos, Scenario: Escrita sem papel, Scenario: Somente-leitura no servidor, Scenario: Leitura da grade por membro do projeto
 
@@ -6099,19 +6098,19 @@ Nodes (4): Requirement: BE-717 — Autorizacao de indicadores e lancamentos, Sce
 Cohesion: 0.67
 Nodes (3): Requirement: FE-719 — Expansao do card de indicador na grade, Scenario: Expansao exclusiva, Scenario: Expansao no modo de mes unico
 
-### Community 336 - "openspec/specs/integrations - Requirements"
+### Community 334 - "openspec/specs/integrations - Requirements"
 Cohesion: 0.15
 Nodes (13): Requirements, Requirement: OPS-487 — Redis, Scenario: Redis indisponível, Scenario: prefixo de canal por ambiente, Requirement: BE-484 — E-mail de confirmação de conta, Scenario: e-mail de destino inexistente, Scenario: token de sessão não vaza, Requirement: BE-487 — E-mail de remoção como observador (+5 more)
 
-### Community 931 - "openspec/specs/integrations (3)"
+### Community 930 - "openspec/specs/integrations (3)"
 Cohesion: 0.50
 Nodes (4): Requirement: OPS-480 — ReceitaWS (consulta de CNPJ), Scenario: limite de requisições da API, Scenario: consulta repetida do mesmo CNPJ, Scenario: token fora do código
 
-### Community 932 - "openspec/specs/integrations (4)"
+### Community 931 - "openspec/specs/integrations (4)"
 Cohesion: 0.50
 Nodes (4): Requirement: OPS-481 — Geocodificação reversa, Scenario: serviço externo pendurado, Scenario: timeout em segundos, Scenario: coordenada já consultada
 
-### Community 933 - "openspec/specs/integrations (5)"
+### Community 932 - "openspec/specs/integrations (5)"
 Cohesion: 0.50
 Nodes (4): Requirement: OPS-482 — Google Maps JavaScript API (mapa e autocomplete de endereço), Scenario: carga do script mais lenta que a espera fixa, Scenario: chave inválida ou quota estourada, Scenario: viés de localidade aplicado
 
@@ -6119,19 +6118,19 @@ Nodes (4): Requirement: OPS-482 — Google Maps JavaScript API (mapa e autocompl
 Cohesion: 0.67
 Nodes (3): Requirement: OPS-483 — Catálogo de estados e cidades do Brasil, Scenario: nome de estado que não casa exatamente, Scenario: dados disponíveis sem depender de rede
 
-### Community 699 - "openspec/specs/integrations - Requirement: OPS-484 — SMTP"
+### Community 697 - "openspec/specs/integrations - Requirement: OPS-484 — SMTP"
 Cohesion: 0.40
 Nodes (5): Requirement: OPS-484 — SMTP, Scenario: falha de SMTP não é silenciosa, Scenario: porta correta usada, Scenario: certificado do servidor verificado, Scenario: senha fora do repositório
 
-### Community 934 - "openspec/specs/integrations (6)"
+### Community 933 - "openspec/specs/integrations (6)"
 Cohesion: 0.50
 Nodes (4): Requirement: OPS-485 — Assinatura DKIM, Scenario: chave ausente na inicialização, Scenario: chave fora do repositório, Scenario: assinatura aplicada a todo e-mail
 
-### Community 935 - "openspec/specs/integrations (7)"
+### Community 934 - "openspec/specs/integrations (7)"
 Cohesion: 0.50
 Nodes (4): Requirement: OPS-486 — Google Analytics, Scenario: identificador e snippet compatíveis, Scenario: script bloqueado, Scenario: carregamento único por página
 
-### Community 700 - "openspec/specs/integrations"
+### Community 698 - "openspec/specs/integrations"
 Cohesion: 0.40
 Nodes (5): Requirement: OPS-488 — Action Cable substitui todo polling, Scenario: progresso de job em tempo real, Scenario: bloqueio de conta reflete na sessão aberta, Scenario: assinatura sem permissão é recusada, Scenario: nenhum polling remanescente
 
@@ -6143,7 +6142,7 @@ Nodes (3): Requirement: OPS-489 — Login social (Facebook) permanece desativado
 Cohesion: 0.67
 Nodes (3): Requirement: OPS-490 — Geração de PDF não é portada, Scenario: nenhuma dependência de PDF no bundle, Scenario: evidência do descarte registrada
 
-### Community 936 - "openspec/specs/integrations (8)"
+### Community 935 - "openspec/specs/integrations (8)"
 Cohesion: 0.50
 Nodes (4): Requirement: OPS-491 — Motor de anexos e armazenamento privado, Scenario: arquivo não é acessível por URL adivinhada, Scenario: conteúdo não corresponde à extensão, Scenario: URL assinada expira
 
@@ -6159,7 +6158,7 @@ Nodes (3): Requirement: OPS-493 — Upload de avatar de usuário, Scenario: usu�
 Cohesion: 0.67
 Nodes (3): Requirement: OPS-494 — Upload de avatar de projeto, Scenario: arquivo não-imagem recusado, Scenario: derivados gerados
 
-### Community 937 - "openspec/specs/integrations (9)"
+### Community 936 - "openspec/specs/integrations (9)"
 Cohesion: 0.50
 Nodes (4): Requirement: OPS-495 — Anexos de renegociação, Scenario: POST direto ignorando a interface, Scenario: documento financeiro não é público, Scenario: limites vêm de configuração
 
@@ -6179,7 +6178,7 @@ Nodes (3): Requirement: OPS-498 — Upload de logo de cedente, Scenario: limite 
 Cohesion: 0.67
 Nodes (3): Requirement: OPS-499 — Identidade visual do tema (4 anexos), Scenario: tema sem logo carregado, Scenario: anexos de tema seguem as regras de storage
 
-### Community 924 - "openspec/specs/integrations (10)"
+### Community 923 - "openspec/specs/integrations (10)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-480 — E-mail de boas-vindas / primeiro acesso, Scenario: senha nunca trafega, Scenario: token expirado, Scenario: manager inválido não derruba o cadastro
 
@@ -6195,7 +6194,7 @@ Nodes (3): Requirement: BE-482 — E-mail de confirmação de nova senha, Scenar
 Cohesion: 0.67
 Nodes (3): Requirement: BE-483 — E-mail de confirmação de recebimento de feedback, Scenario: confirmação enviada ao autor, Scenario: durabilidade
 
-### Community 925 - "openspec/specs/integrations (11)"
+### Community 924 - "openspec/specs/integrations (11)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-485 — E-mail de convite para a conta, Scenario: convite chega ao destinatário, Scenario: administrador sem avatar, Scenario: convite expirado
 
@@ -6203,7 +6202,7 @@ Nodes (4): Requirement: BE-485 — E-mail de convite para a conta, Scenario: con
 Cohesion: 0.67
 Nodes (3): Requirement: BE-486 — E-mail de inclusão como observador, Scenario: notificação de inclusão, Scenario: inclusão inválida não notifica
 
-### Community 926 - "openspec/specs/integrations (12)"
+### Community 925 - "openspec/specs/integrations (12)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-488 — E-mail aos observadores sobre nova mensagem, Scenario: mensagem interna só vai a observadores internos, Scenario: conteúdo do usuário escapado, Scenario: um e-mail por observador
 
@@ -6219,27 +6218,27 @@ Nodes (3): Requirement: BE-490 — Mensagem genérica com link (código morto), 
 Cohesion: 0.67
 Nodes (3): Requirement: FE-481 — Estado do usuário na sessão aberta chega por evento, Scenario: conta desativada com sessão aberta, Scenario: nenhum monitor por temporizador
 
-### Community 698 - "openspec/specs/integrations (2)"
+### Community 696 - "openspec/specs/integrations (2)"
 Cohesion: 0.40
 Nodes (5): Requirement: FE-483 — Autocomplete de endereço e selects encadeados Estado/Cidade, Scenario: seleção de endereço pelo autocomplete, Scenario: endereço digitado sem escolher sugestão, Scenario: troca de estado recarrega as cidades, Scenario: script externo ainda não carregado
 
-### Community 930 - "openspec/specs/integrations (13)"
+### Community 929 - "openspec/specs/integrations (13)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-484 — Limites de anexo da renegociação na interface, Scenario: quinto arquivo, Scenario: arquivo acima do limite de tamanho, Scenario: contagem reflete exclusões
 
-### Community 927 - "openspec/specs/integrations (14)"
+### Community 926 - "openspec/specs/integrations (14)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-480 — Geolocalização por entidade (`geolocations`), Scenario: entidade salva com endereço a resolver, Scenario: endereço digitado é preservado, Scenario: segunda geolocalização para a mesma entidade
 
-### Community 928 - "openspec/specs/integrations (15)"
+### Community 927 - "openspec/specs/integrations (15)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-481 — Registro de e-mails enviados (`livetat_mailer_contacts`), Scenario: e-mail que falha na entrega, Scenario: navegação entre páginas do log, Scenario: busca pelo destinatário
 
-### Community 929 - "openspec/specs/integrations (16)"
+### Community 928 - "openspec/specs/integrations (16)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-482 — Colunas de anexo dos modelos migram para o motor único, Scenario: anexo com registro mas sem arquivo, Scenario: acesso ao arquivo migrado, Scenario: esquema sem colunas de anexo
 
-### Community 563 - "openspec/specs/jobs-cron - Requirements"
+### Community 558 - "openspec/specs/jobs-cron - Requirements"
 Cohesion: 0.29
 Nodes (6): Jobs & Cron Specification, Purpose, Requirements, Requirement: OPS-460 — Backend de fila, Scenario: job enfileirado sem worker disponível, Scenario: fila nova registrada
 
@@ -6247,7 +6246,7 @@ Nodes (6): Jobs & Cron Specification, Purpose, Requirements, Requirement: OPS-46
 Cohesion: 0.67
 Nodes (3): Requirement: OPS-461 — Execução do worker, Scenario: worker morto é reiniciado, Scenario: fila observável
 
-### Community 941 - "openspec/specs/jobs-cron"
+### Community 940 - "openspec/specs/jobs-cron"
 Cohesion: 0.50
 Nodes (4): Requirement: OPS-462 — Política de retentativa e falha, Scenario: job falha e é retentado, Scenario: tentativas esgotadas, Scenario: job travado
 
@@ -6291,7 +6290,7 @@ Nodes (3): Requirement: OPS-471 — ProjectAvailabilityTemplateRemovalJob, Scena
 Cohesion: 0.67
 Nodes (3): Requirement: OPS-472 — Agendamento declarado em um único lugar, Scenario: deploy não perde o agendamento, Scenario: horário em UTC com equivalente local documentado
 
-### Community 942 - "openspec/specs/jobs-cron (2)"
+### Community 941 - "openspec/specs/jobs-cron (2)"
 Cohesion: 0.50
 Nodes (4): Requirement: OPS-473 — Contadores de renegociação sem varredura diária, Scenario: parcela vence hoje, Scenario: uma renegociação com erro não afeta as outras, Scenario: edição concorrente não perde dado
 
@@ -6299,7 +6298,7 @@ Nodes (4): Requirement: OPS-473 — Contadores de renegociação sem varredura d
 Cohesion: 0.67
 Nodes (3): Requirement: OPS-474 — NotificationFacade (porta assíncrona dos e-mails transacionais), Scenario: worker parado não perde o e-mail, Scenario: falha de envio é observável
 
-### Community 943 - "openspec/specs/jobs-cron (3)"
+### Community 942 - "openspec/specs/jobs-cron (3)"
 Cohesion: 0.50
 Nodes (4): Requirement: OPS-475 — TrackingFacade (trilha de auditoria dos jobs), Scenario: quatro momentos registrados, Scenario: falha ao gravar a trilha, Scenario: histórico legado preservado
 
@@ -6315,35 +6314,35 @@ Nodes (3): Requirement: OPS-477 — FileToStringDecoder, Scenario: arquivo inexi
 Cohesion: 0.67
 Nodes (3): Requirement: OPS-478 — Falha de autenticação responde no formato da requisição, Scenario: requisição de API sem sessão válida, Scenario: mensagem de erro estruturada
 
-### Community 944 - "openspec/specs/jobs-cron (4)"
+### Community 943 - "openspec/specs/jobs-cron (4)"
 Cohesion: 0.50
 Nodes (4): Requirement: OPS-479 — Entrega de e-mail durável, Scenario: deploy no meio de uma fila de e-mails, Scenario: modo de entrega comparado corretamente, Scenario: e-mail com falha é retentado
 
-### Community 940 - "openspec/specs/jobs-cron (5)"
+### Community 939 - "openspec/specs/jobs-cron (5)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-482 — Progresso de job visível ao usuário, Scenario: progresso avança com a tela aberta, Scenario: job termina, Scenario: entidade sem job em andamento
 
-### Community 938 - "openspec/specs/jobs-cron (6)"
+### Community 937 - "openspec/specs/jobs-cron (6)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-460 — Fila e progresso saem da tabela `delayed_jobs`, Scenario: entidade referencia execução, não linha de fila, Scenario: fila com trabalho pendente no cutover, Scenario: jobs falhos não se acumulam
 
-### Community 939 - "openspec/specs/jobs-cron (7)"
+### Community 938 - "openspec/specs/jobs-cron (7)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-461 — Trilha de auditoria de jobs e ações (`trackings`), Scenario: job falha com mensagem de erro longa, Scenario: consulta da trilha de um objeto, Scenario: eventos de job distinguíveis
 
-### Community 149 - "openspec/specs/misc-domain - Requirements"
+### Community 148 - "openspec/specs/misc-domain - Requirements"
 Cohesion: 0.09
 Nodes (22): Requirements, Requirement: BE-434 — Evento de trilha na criacao de projeto, Scenario: Criacao de projeto registrada, Requirement: BE-439 — Uma geolocalizacao por entidade, Scenario: Segunda coordenada recusada, Requirement: BE-440 — Clonagem de geolocalizacao, Scenario: Copia nao consulta o servico externo, Requirement: BE-444 — Clonagem de imagem anexada (+14 more)
 
-### Community 945 - "openspec/specs/misc-domain (2)"
+### Community 944 - "openspec/specs/misc-domain (2)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-430 — Registro de trilha de atividade, Scenario: Resumo longo nao perde o evento, Scenario: Destinatario opcional, Scenario: Retencao
 
-### Community 946 - "openspec/specs/misc-domain (3)"
+### Community 945 - "openspec/specs/misc-domain (3)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-431 — Eventos de ciclo de vida das operacoes de template, Scenario: Quarteto completo por operacao, Scenario: Operacao disparada pelo sistema, Scenario: Falha carrega o motivo
 
-### Community 947 - "openspec/specs/misc-domain (4)"
+### Community 946 - "openspec/specs/misc-domain (4)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-432 — Consulta da trilha de atividade, Scenario: Escopo obrigatorio, Scenario: Teto de pagina, Scenario: Filtro por objeto ou por pai do objeto
 
@@ -6351,7 +6350,7 @@ Nodes (4): Requirement: BE-432 — Consulta da trilha de atividade, Scenario: Es
 Cohesion: 0.67
 Nodes (3): Requirement: BE-433 — Detalhe do evento de trilha, Scenario: Detalhe carrega, Scenario: Evento inexistente ou fora do escopo
 
-### Community 948 - "openspec/specs/misc-domain (5)"
+### Community 947 - "openspec/specs/misc-domain (5)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-435 — Geocodificacao reversa do endereco, Scenario: Servico externo indisponivel, Scenario: Preenchimento automatico ligado, Scenario: Preenchimento automatico desligado
 
@@ -6367,11 +6366,11 @@ Nodes (3): Requirement: BE-437 — Distancia ate um ponto de referencia, Scenari
 Cohesion: 0.67
 Nodes (3): Requirement: BE-438 — Sigla da unidade federativa, Scenario: Variacao de acentuacao, Scenario: Estado desconhecido
 
-### Community 949 - "openspec/specs/misc-domain (6)"
+### Community 948 - "openspec/specs/misc-domain (6)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-441 — Anexo de imagem polimorfico, Scenario: Arquivo que se passa por imagem, Scenario: Acesso ao arquivo, Scenario: Transparencia
 
-### Community 950 - "openspec/specs/misc-domain (7)"
+### Community 949 - "openspec/specs/misc-domain (7)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-442 — Limites de envio de imagem, Scenario: Limite de tamanho, Scenario: Limite de quantidade, Scenario: Entidade sem configuracao propria
 
@@ -6411,11 +6410,11 @@ Nodes (3): Requirement: BE-452 — Regras costuradas nos adaptadores de importac
 Cohesion: 0.67
 Nodes (3): Requirement: BE-453 — Senhas geradas na importacao de usuarios, Scenario: Redefinicao obrigatoria, Scenario: Senha antiga eliminada
 
-### Community 951 - "openspec/specs/misc-domain (8)"
+### Community 950 - "openspec/specs/misc-domain (8)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-455 — Validacao de faixa de valores, Scenario: Valores invertidos, Scenario: Valores iguais, Scenario: Valor numerico do formulario
 
-### Community 952 - "openspec/specs/misc-domain (9)"
+### Community 951 - "openspec/specs/misc-domain (9)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-456 — Validacao de URL, Scenario: URL de rede interna, Scenario: URL de formato invalido, Scenario: Servico externo fora do ar nao bloqueia a gravacao
 
@@ -6423,7 +6422,7 @@ Nodes (4): Requirement: BE-456 — Validacao de URL, Scenario: URL de rede inter
 Cohesion: 0.67
 Nodes (3): Requirement: BE-457 — Consulta de dados cadastrais por CNPJ, Scenario: Servico indisponivel, Scenario: Consulta repetida
 
-### Community 953 - "openspec/specs/misc-domain (10)"
+### Community 952 - "openspec/specs/misc-domain (10)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-458 — Filtros globais da area autenticada, Scenario: Padrao e exigir sessao, Scenario: Usuario desativado em requisicao HTML, Scenario: Personificacao registrada
 
@@ -6431,7 +6430,7 @@ Nodes (4): Requirement: BE-458 — Filtros globais da area autenticada, Scenario
 Cohesion: 0.67
 Nodes (3): Requirement: FE-430 — Tempo relativo em pt-BR, Scenario: Data futura, Scenario: Data passada
 
-### Community 954 - "openspec/specs/misc-domain (11)"
+### Community 953 - "openspec/specs/misc-domain (11)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-431 — Formatacao de valor monetario, Scenario: Valor ausente, Scenario: Valor zero, Scenario: Formato brasileiro
 
@@ -6439,7 +6438,7 @@ Nodes (4): Requirement: FE-431 — Formatacao de valor monetario, Scenario: Valo
 Cohesion: 0.67
 Nodes (3): Requirement: FE-432 — Concordancia de genero em textos, Scenario: Genero desconhecido, Scenario: Usuario sem perfil
 
-### Community 955 - "openspec/specs/misc-domain (12)"
+### Community 954 - "openspec/specs/misc-domain (12)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-433 — Iniciais para avatar, Scenario: Nome com uma palavra, Scenario: Nome com varias palavras, Scenario: Nome ausente
 
@@ -6459,7 +6458,7 @@ Nodes (3): Requirement: FE-438 — Pluralizacao de textos, Scenario: Plural irre
 Cohesion: 0.67
 Nodes (3): Requirement: FE-439 — Distribuicao de itens em colunas, Scenario: Ordem de leitura, Scenario: Colunas equilibradas com filtro
 
-### Community 701 - "openspec/specs/misc-domain"
+### Community 699 - "openspec/specs/misc-domain"
 Cohesion: 0.40
 Nodes (5): Requirement: FE-441 — Navegacao principal por papel e permissao, Scenario: Usuario sem projeto, Scenario: Areas bloqueadas, Scenario: Portao por papel, Scenario: Custo de montagem
 
@@ -6503,11 +6502,11 @@ Nodes (3): Requirement: DB-433 — Modelo de dados do tipo de movimentacao, Scen
 Cohesion: 0.67
 Nodes (3): Requirement: DB-434 — Conexao com o banco do sistema antigo, Scenario: Uma unica conexao, Scenario: Rastreabilidade sem a conexao
 
-### Community 956 - "openspec/specs/misc-domain (13)"
+### Community 955 - "openspec/specs/misc-domain (13)"
 Cohesion: 0.50
 Nodes (4): Requirement: OPS-746 — Shims de vendor do empacotador, Scenario: Dependencia resolvida por importacao, Scenario: Arquivo solto na pasta de vendor, Scenario: Bibliotecas sem consumidor
 
-### Community 430 - "openspec/specs/ops-config - Requirements"
+### Community 417 - "openspec/specs/ops-config - Requirements"
 Cohesion: 0.20
 Nodes (10): Requirements, Requirement: OPS-604 — Configuração do domínio de autenticação, Scenario: usuário novo tem papel, Scenario: tetos configuráveis, Requirement: OPS-615 — Ambiente de desenvolvimento, Scenario: tradução ausente, Scenario: recarga só do que mudou, Requirement: OPS-621 — Timeout de geocoding (+2 more)
 
@@ -6515,7 +6514,7 @@ Nodes (10): Requirements, Requirement: OPS-604 — Configuração do domínio de
 Cohesion: 0.67
 Nodes (3): Requirement: OPS-600 — Boot da aplicação, Scenario: associação obrigatória por padrão, Scenario: framework completo disponível
 
-### Community 958 - "openspec/specs/ops-config (2)"
+### Community 957 - "openspec/specs/ops-config (2)"
 Cohesion: 0.50
 Nodes (4): Requirement: OPS-601 — Locale, fuso e formatação de data, Scenario: gravação em UTC, Scenario: formatos de data em pt-BR, Scenario: caminho de locale inexistente descartado
 
@@ -6555,11 +6554,11 @@ Nodes (3): Requirement: OPS-610 — Nenhum segredo de assinatura versionado, Sce
 Cohesion: 0.67
 Nodes (3): Requirement: OPS-611 — Falha no boot quando o segredo obrigatório falta, Scenario: produção sem chave mestra, Scenario: inventário de segredos obrigatórios
 
-### Community 959 - "openspec/specs/ops-config (3)"
+### Community 958 - "openspec/specs/ops-config (3)"
 Cohesion: 0.50
 Nodes (4): Requirement: OPS-612 — Configuração por ambiente, não por plataforma, Scenario: um arquivo de exemplo, valores fora do repositório, Scenario: chave morta descartada, Scenario: nenhum token versionado
 
-### Community 960 - "openspec/specs/ops-config (4)"
+### Community 959 - "openspec/specs/ops-config (4)"
 Cohesion: 0.50
 Nodes (4): Requirement: OPS-613 — Configuração de banco por ambiente, Scenario: banco próprio da branch de migração, Scenario: nenhuma conexão secundária ao legado, Scenario: nenhuma senha versionada
 
@@ -6567,7 +6566,7 @@ Nodes (4): Requirement: OPS-613 — Configuração de banco por ambiente, Scenar
 Cohesion: 0.67
 Nodes (3): Requirement: OPS-614 — Dependências reprodutíveis, Scenario: build reprodutível, Scenario: ambiente de referência de paridade
 
-### Community 961 - "openspec/specs/ops-config (5)"
+### Community 960 - "openspec/specs/ops-config (5)"
 Cohesion: 0.50
 Nodes (4): Requirement: OPS-616 — Ambiente de produção, Scenario: cache compartilhado entre workers, Scenario: conexão sem TLS, Scenario: chave morta de estáticos descartada
 
@@ -6579,7 +6578,7 @@ Nodes (3): Requirement: OPS-617 — Suíte de testes, Scenario: paridade finance
 Cohesion: 0.67
 Nodes (3): Requirement: OPS-618 — Sentinelas de data do domínio, Scenario: registro criado às 23:59:30, Scenario: limites abertos de intervalo
 
-### Community 962 - "openspec/specs/ops-config (6)"
+### Community 961 - "openspec/specs/ops-config (6)"
 Cohesion: 0.50
 Nodes (4): Requirement: OPS-619 — Coerção booleana e formatação de moeda, Scenario: valor em português coagido, Scenario: valor inesperado, Scenario: formatação monetária única
 
@@ -6655,23 +6654,23 @@ Nodes (3): Requirement: OPS-637 — Build de assets, Scenario: dev server não a
 Cohesion: 0.67
 Nodes (3): Requirement: OPS-638 — Sem dependência de Ruby no build de frontend, Scenario: frontend compila sem backend, Scenario: chunks razoáveis
 
-### Community 963 - "openspec/specs/ops-config (7)"
+### Community 962 - "openspec/specs/ops-config (7)"
 Cohesion: 0.50
 Nodes (4): Requirement: OPS-639 — Biblioteca de componentes do frontend, Scenario: gráfico do produto substituído, Scenario: build de frontend reprodutível, Scenario: nenhum gerenciador de pacotes como dependência de runtime
 
-### Community 702 - "openspec/specs/ops-config"
+### Community 700 - "openspec/specs/ops-config"
 Cohesion: 0.40
 Nodes (5): Requirement: CFG-01 — Chaves de configuração que viram ENV no ai9, Scenario: chave obrigatória ausente, Scenario: chave opcional ausente, Scenario: chaves mortas não são recriadas, Scenario: segredos rotacionados antes do cutover
 
-### Community 957 - "openspec/specs/ops-config (8)"
+### Community 956 - "openspec/specs/ops-config (8)"
 Cohesion: 0.50
 Nodes (4): Requirement: CFG-02 — Constantes de negócio viram configuração, Scenario: limite de anexos ajustado sem deploy, Scenario: auto-cadastro público controlado por configuração, Scenario: viés de geolocalização configurável
 
-### Community 24 - "openspec/specs/projects - Requirements"
+### Community 26 - "openspec/specs/projects - Requirements"
 Cohesion: 0.04
 Nodes (49): Requirements, Requirement: BE-081 — Modo "dash" da busca de projetos, Scenario: Resumo por data de atualizacao, Requirement: BE-086 — Criar projeto sem responsavel, Scenario: Projeto sem responsavel, Requirement: BE-094 — Marca "BI contratado", Scenario: Alternar a marca de BI, Requirement: BE-101 — Rotas mortas do dominio de projetos (+41 more)
 
-### Community 964 - "openspec/specs/projects (2)"
+### Community 963 - "openspec/specs/projects (2)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-080 — Busca de projetos do usuario, Scenario: Escopo de membership, Scenario: Paginacao aplicada, Scenario: Busca insensivel a caixa
 
@@ -6695,7 +6694,7 @@ Nodes (3): Requirement: BE-089 — Atualizar projeto, Scenario: Troca de respons
 Cohesion: 0.67
 Nodes (3): Requirement: BE-091 — Remover projeto, Scenario: Remocao bloqueada por dados dependentes, Scenario: Remocao permitida
 
-### Community 965 - "openspec/specs/projects (3)"
+### Community 964 - "openspec/specs/projects (3)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-092 — Limpar projeto de treinamento, Scenario: Limpeza de projeto de treinamento, Scenario: Segmento apos a limpeza, Scenario: Projeto de treinamento nao pode ser removido
 
@@ -6711,7 +6710,7 @@ Nodes (3): Requirement: BE-096 — Validacoes e logo do projeto, Scenario: Nome 
 Cohesion: 0.67
 Nodes (3): Requirement: BE-098 — Projeto corrente do usuario, Scenario: Tentativa de assumir projeto sem membership, Scenario: Usuario sem projeto corrente definido
 
-### Community 966 - "openspec/specs/projects (4)"
+### Community 965 - "openspec/specs/projects (4)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-099 — Membros do projeto, Scenario: Busca de membros sem termo, Scenario: Remocao de vinculo inexistente, Scenario: Vinculo duplicado
 
@@ -6719,7 +6718,7 @@ Nodes (4): Requirement: BE-099 — Membros do projeto, Scenario: Busca de membro
 Cohesion: 0.67
 Nodes (3): Requirement: BE-102 — Listar conexoes projeto-portador, Scenario: Tipo de entidade fora do conjunto permitido, Scenario: Marcacao de conectados sem consulta por linha
 
-### Community 967 - "openspec/specs/projects (5)"
+### Community 966 - "openspec/specs/projects (5)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-103 — Conectar e desconectar portadores do projeto, Scenario: Lote vazio, Scenario: Lote parcialmente invalido, Scenario: Desconectar item que ja nao esta conectado
 
@@ -6731,7 +6730,7 @@ Nodes (3): Requirement: BE-109 — Excluir indicador especifico do projeto, Scen
 Cohesion: 0.67
 Nodes (3): Requirement: BE-110 — Listar padroes de disponibilidade do projeto, Scenario: Usuario sem projeto corrente, Scenario: Ordenacao da arvore em base grande
 
-### Community 703 - "openspec/specs/projects"
+### Community 701 - "openspec/specs/projects"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-112 — Criar e editar padrao de disponibilidade, Scenario: Hierarquia limitada a tres niveis, Scenario: Titulo repetido no mesmo nivel, Scenario: Padrao obrigatorio exige cadeia obrigatoria, Scenario: Nivel numerico derivado do pai
 
@@ -6739,7 +6738,7 @@ Nodes (5): Requirement: BE-112 — Criar e editar padrao de disponibilidade, Sce
 Cohesion: 0.67
 Nodes (3): Requirement: BE-113 — Ativar padrao de disponibilidade, Scenario: Falha no processamento libera o bloqueio, Scenario: Enfileiramento recusado
 
-### Community 968 - "openspec/specs/projects (6)"
+### Community 967 - "openspec/specs/projects (6)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-114 — Desativar padrao de disponibilidade, Scenario: Padrao obrigatorio nao pode ser desativado, Scenario: Padrao com dependentes obrigatorios, Scenario: Desativacao valida
 
@@ -6751,15 +6750,15 @@ Nodes (3): Requirement: BE-115 — Remover padrao de disponibilidade, Scenario: 
 Cohesion: 0.67
 Nodes (3): Requirement: BE-116 — Reordenacao e recalculo em cascata dos padroes, Scenario: Reordenacao em projeto grande, Scenario: Mover um padrao de posicao
 
-### Community 969 - "openspec/specs/projects (7)"
+### Community 968 - "openspec/specs/projects (7)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-117 — API de disponibilidades por projeto, Scenario: Requisicao sem autenticacao, Scenario: Projeto fora do escopo do solicitante, Scenario: Empresa inexistente no filtro
 
-### Community 970 - "openspec/specs/projects (8)"
+### Community 969 - "openspec/specs/projects (8)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-118 — Buscar, filtrar e ordenar garantias do projeto, Scenario: Ordenar por titulo, Scenario: Garantia de outro projeto nao e alcancavel por id, Scenario: Paginacao aplicada sem ordenacao explicita
 
-### Community 971 - "openspec/specs/projects (9)"
+### Community 970 - "openspec/specs/projects (9)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-119 — CRUD de garantias do projeto, Scenario: Campos obrigatorios, Scenario: Abrir a edicao de uma garantia, Scenario: Remocao bloqueada e comunicada
 
@@ -6811,7 +6810,7 @@ Nodes (3): Requirement: OPS-081 — Replicacao dos padroes globais para o projet
 Cohesion: 0.67
 Nodes (3): Requirement: OPS-086 — Trilha de auditoria do dominio de projetos, Scenario: Consulta da trilha de um projeto, Scenario: Trilha exige autorizacao
 
-### Community 972 - "openspec/specs/projects (10)"
+### Community 971 - "openspec/specs/projects (10)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-700 — Buscar e ordenar tipos de garantia, Scenario: Paginacao aplicada, Scenario: Requisicao sem autenticacao, Scenario: Tipo desativado na edicao de garantia existente
 
@@ -6823,19 +6822,19 @@ Nodes (3): Requirement: BE-703 — Criar tipo de garantia, Scenario: Usuario res
 Cohesion: 0.67
 Nodes (3): Requirement: BE-705 — Excluir tipo de garantia, Scenario: Tipo em uso, Scenario: Tipo sem uso
 
-### Community 97 - "openspec/specs/receivables - Requirements"
+### Community 98 - "openspec/specs/receivables - Requirements"
 Cohesion: 0.07
 Nodes (28): Requirements, Requirement: BE-152 — Atualizar recebível, Scenario: Upsert de tarifas, Scenario: Payload sem tarifas preserva as tarifas existentes, Requirement: BE-154 — Rotas REST mortas de recebível, Scenario: Telas de recebível são servidas pela navegação do console, Requirement: BE-157 — Quantidade final de títulos, Scenario: Cálculo da quantidade final (+20 more)
 
-### Community 602 - "openspec/specs/receivables"
+### Community 598 - "openspec/specs/receivables"
 Cohesion: 0.33
 Nodes (6): Requirement: BE-150 — Buscar e listar recebíveis, Scenario: Listagem escopada ao projeto corrente, Scenario: Busca por id não escapa do projeto, Scenario: Paginação e ordenação por coluna funcionam de verdade, Scenario: Período ausente não limita a busca, Scenario: Data inválida é rejeitada com erro de validação
 
-### Community 973 - "openspec/specs/receivables (6)"
+### Community 972 - "openspec/specs/receivables (6)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-151 — Criar recebível, Scenario: Criação com tarifas em uma única transação, Scenario: Tarifa inválida aborta a criação, Scenario: Autoria é sempre do usuário da sessão
 
-### Community 974 - "openspec/specs/receivables (7)"
+### Community 973 - "openspec/specs/receivables (7)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-153 — Excluir recebível, Scenario: Exclusão bem-sucedida, Scenario: Usuário somente-leitura é barrado no servidor, Scenario: Exclusão barrada é reportada como erro
 
@@ -6855,7 +6854,7 @@ Nodes (3): Requirement: BE-158 — Float calculado, Scenario: Float positivo, Sc
 Cohesion: 0.67
 Nodes (3): Requirement: BE-159 — Diferença de float com piso em zero, Scenario: Diferença positiva, Scenario: Diferença negativa é zerada
 
-### Community 975 - "openspec/specs/receivables (8)"
+### Community 974 - "openspec/specs/receivables (8)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-160 — Checagem de IOF, Scenario: Cálculo do IOF esperado, Scenario: Alíquota vigente na data da operação, Scenario: Base de cálculo negativa
 
@@ -6867,7 +6866,7 @@ Nodes (3): Requirement: BE-161 — Valor total das tarifas, Scenario: Soma dos b
 Cohesion: 0.67
 Nodes (3): Requirement: BE-162 — Valor líquido, Scenario: Cálculo do líquido, Scenario: Valor líquido zero é rejeitado pelo servidor
 
-### Community 976 - "openspec/specs/receivables (9)"
+### Community 975 - "openspec/specs/receivables (9)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-163 — Percentuais das deduções, Scenario: Percentual de uma dedução, Scenario: Dedução em branco, Scenario: Valor líquido negativo produz percentual negativo
 
@@ -6879,7 +6878,7 @@ Nodes (3): Requirement: BE-164 — Total das deduções, Scenario: Soma das quat
 Cohesion: 0.67
 Nodes (3): Requirement: BE-165 — Valor líquido recebido, Scenario: Líquido recebido, Scenario: Deduções maiores que o líquido
 
-### Community 977 - "openspec/specs/receivables (10)"
+### Community 976 - "openspec/specs/receivables (10)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-166 — Taxas de desconto nominal na visão do banco, Scenario: Variante deságio + ad valorem, Scenario: Guarda pelo limiar de um real, Scenario: Variante sem guarda com prazo zero
 
@@ -6939,39 +6938,39 @@ Nodes (3): Requirement: BE-179 — Checagem da taxa nominal sem float, Scenario:
 Cohesion: 0.67
 Nodes (3): Requirement: BE-180 — Checagem da taxa nominal com float, Scenario: Cálculo com float, Scenario: Taxa nominal informada divergente da checagem
 
-### Community 978 - "openspec/specs/receivables (11)"
+### Community 977 - "openspec/specs/receivables (11)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-181 — Validações do recebível e limite de risco cadastrado, Scenario: Campos obrigatórios ausentes, Scenario: Subtipo de risco sem limite cadastrado, Scenario: Data de operação em passado remoto ou futuro
 
-### Community 979 - "openspec/specs/receivables (12)"
+### Community 978 - "openspec/specs/receivables (12)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-182 — Derivações automáticas e defaults, Scenario: Tipo derivado do subtipo, Scenario: Carimbo do projeto, Scenario: Registro legado com quantidades nulas
 
-### Community 980 - "openspec/specs/receivables (13)"
+### Community 979 - "openspec/specs/receivables (13)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-183 — Integração automática com o controle de risco, Scenario: Subtipo com pré-faturamento gera movimento de liberação, Scenario: Subtipo sem pré-faturamento cria operação de risco com o valor final, Scenario: Operação estática ausente é reportada
 
-### Community 981 - "openspec/specs/receivables (14)"
+### Community 980 - "openspec/specs/receivables (14)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-184 — Tarifa do recebível: denormalização e exclusão, Scenario: Título e flags copiados do tipo de movimentação, Scenario: Exclusão de tarifa recalcula o recebível no servidor, Scenario: Tarifa de valor zero
 
-### Community 603 - "openspec/specs/receivables (2)"
+### Community 599 - "openspec/specs/receivables (2)"
 Cohesion: 0.33
 Nodes (6): Requirement: BE-185 — Carteiras e tipos de recebível: CRUD e busca, Scenario: Criação com chave de integração derivada do título, Scenario: Título duplicado é rejeitado com resposta consistente, Scenario: Exclusão bloqueada por uso, Scenario: Ordenação por chave desconhecida, Scenario: Catálogo desativado
 
-### Community 982 - "openspec/specs/receivables (15)"
+### Community 981 - "openspec/specs/receivables (15)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-186 — Tipos de movimentação: CRUD, busca e classificador único, Scenario: Classificação única, Scenario: Coluna de classificação nula em registro legado, Scenario: Somente tipos de operação aparecem no formulário de tarifas
 
-### Community 704 - "openspec/specs/receivables (3)"
+### Community 702 - "openspec/specs/receivables (3)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-187 — Cobranças: CRUD e busca, Scenario: Busca por mês e ano, Scenario: Paginação da lista de cobranças funciona, Scenario: Estado inválido é rejeitado, Scenario: Exclusão bloqueada por recibos
 
-### Community 705 - "openspec/specs/receivables (4)"
+### Community 703 - "openspec/specs/receivables (4)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-188 — Recibo: geração a partir da operação e fórmula do valor, Scenario: Cálculo do valor do recibo, Scenario: Operação estruturada, Scenario: Tipo de operação desconhecido, Scenario: Operação já com recibo ou sem remuneração cadastrada
 
-### Community 983 - "openspec/specs/receivables (16)"
+### Community 982 - "openspec/specs/receivables (16)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-189 — Consolidação da cobrança e atualização em lote de recibos, Scenario: Consolidação dos totais, Scenario: Cobrança faturada não aceita alteração de recibos, Scenario: Falha no meio do lote não deixa estado parcial
 
@@ -6991,11 +6990,11 @@ Nodes (3): Requirement: FE-152 — Estado vazio da lista sem busca, Scenario: Pr
 Cohesion: 0.67
 Nodes (3): Requirement: FE-154 — Estado de erro da lista de recebíveis, Scenario: Falha ao excluir, Scenario: Falha ao carregar a lista
 
-### Community 988 - "openspec/specs/receivables (17)"
+### Community 987 - "openspec/specs/receivables (17)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-155 — Busca textual de recebíveis, Scenario: Debounce da digitação, Scenario: Entrada só com espaços é ignorada, Scenario: Escopo da busca é comunicado
 
-### Community 989 - "openspec/specs/receivables (18)"
+### Community 988 - "openspec/specs/receivables (18)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-156 — Filtro de período por intervalo de datas, Scenario: Seleção de intervalo, Scenario: Seleção de um dia só, Scenario: Intervalo que cruza o ano
 
@@ -7011,7 +7010,7 @@ Nodes (3): Requirement: FE-158 — Filtro por portador, Scenario: Filtrar por po
 Cohesion: 0.67
 Nodes (3): Requirement: FE-159 — Ordenação multi-coluna, Scenario: Ciclo de ordenação de uma coluna, Scenario: Ordenação por duas colunas
 
-### Community 990 - "openspec/specs/receivables (19)"
+### Community 989 - "openspec/specs/receivables (19)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-160 — Paginação da lista de recebíveis, Scenario: Navegação entre páginas, Scenario: Última página com contagem correta, Scenario: Campo de limite vazio
 
@@ -7019,7 +7018,7 @@ Nodes (4): Requirement: FE-160 — Paginação da lista de recebíveis, Scenario
 Cohesion: 0.67
 Nodes (3): Requirement: FE-161 — Botão "Cadastrar" com guarda de portador, Scenario: Usuário somente-leitura, Scenario: Projeto sem portador
 
-### Community 991 - "openspec/specs/receivables (20)"
+### Community 990 - "openspec/specs/receivables (20)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-162 — Widget de linha do recebível, Scenario: Formatação de data e moeda, Scenario: Formatação dos percentuais de CET, Scenario: Recebível com descrição
 
@@ -7031,7 +7030,7 @@ Nodes (3): Requirement: FE-163 — Menu de ações do recebível, Scenario: Conf
 Cohesion: 0.67
 Nodes (3): Requirement: FE-164 — Modo somente leitura nas telas de recebíveis, Scenario: Ações escondidas, Scenario: Servidor também recusa a escrita
 
-### Community 706 - "openspec/specs/receivables (5)"
+### Community 704 - "openspec/specs/receivables (5)"
 Cohesion: 0.40
 Nodes (5): Requirement: FE-165 — Formulário de recebível, Scenario: Campos calculados não são editáveis, Scenario: Tipo de operação é imutável na edição, Scenario: Catálogo vazio não quebra a tela, Scenario: Textos de ajuda dos campos
 
@@ -7063,15 +7062,15 @@ Nodes (3): Requirement: FE-171 — Prévia de cálculo em tempo real, Scenario: 
 Cohesion: 0.67
 Nodes (3): Requirement: FE-172 — Bloqueio de salvamento por incongruência, Scenario: Combinações bloqueadas, Scenario: Mesma guarda no servidor
 
-### Community 992 - "openspec/specs/receivables (21)"
+### Community 991 - "openspec/specs/receivables (21)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-175 — Tarifas: adicionar linha, Scenario: Nova linha de tarifa, Scenario: Adicionar várias linhas seguidas, Scenario: Tipo de tarifa duplicado
 
-### Community 993 - "openspec/specs/receivables (22)"
+### Community 992 - "openspec/specs/receivables (22)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-176 — Tarifas: remover linha, Scenario: Remover linha não salva, Scenario: Remover tarifa persistida, Scenario: Cancelar a edição depois de remover
 
-### Community 994 - "openspec/specs/receivables (23)"
+### Community 993 - "openspec/specs/receivables (23)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-177 — Seletores de data de operação e de crédito, Scenario: Restrição mútua das datas, Scenario: Pré-preenchimento no cadastro, Scenario: Data em passado remoto ou futuro
 
@@ -7127,7 +7126,7 @@ Nodes (3): Requirement: FE-189 — Tela de tipos de movimentação, Scenario: Ca
 Cohesion: 0.67
 Nodes (3): Requirement: DB-150 — Tabela `receivable_entries`, Scenario: Migração completa dos borderôs, Scenario: Consulta de um borderô
 
-### Community 984 - "openspec/specs/receivables (24)"
+### Community 983 - "openspec/specs/receivables (24)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-151 — Chaves e identificação de `receivable_entries`, Scenario: Integridade referencial garantida pelo banco, Scenario: Número do borderô como texto, Scenario: Coluna `resource_kind_id` sem consumidor
 
@@ -7163,15 +7162,15 @@ Nodes (3): Requirement: DB-158 — Tabela `wallets`, Scenario: Unicidade garanti
 Cohesion: 0.67
 Nodes (3): Requirement: DB-159 — Tabela `receivable_kinds`, Scenario: Migração dos tipos legados, Scenario: Unicidade e bloqueio de exclusão
 
-### Community 985 - "openspec/specs/receivables (25)"
+### Community 984 - "openspec/specs/receivables (25)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-160 — Tabela `movement_kinds`, Scenario: Migração dos tipos de tarifa, Scenario: Associação morta não é portada, Scenario: Campo `kind` com domínio fechado
 
-### Community 986 - "openspec/specs/receivables (26)"
+### Community 985 - "openspec/specs/receivables (26)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-161 — Tabela `receivable_taxes`, Scenario: Leitura das tarifas de um borderô é indexada, Scenario: Tarifa órfã na carga, Scenario: Título denormalizado preservado
 
-### Community 987 - "openspec/specs/receivables (27)"
+### Community 986 - "openspec/specs/receivables (27)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-162 — Tabela `charges`, Scenario: Cobrança nunca referencia operações diretamente, Scenario: Totais são cache derivado, Scenario: Estado com domínio fechado
 
@@ -7215,19 +7214,19 @@ Nodes (3): Requirement: OPS-157 — Portabilidade da busca textual entre bancos,
 Cohesion: 0.67
 Nodes (3): Requirement: OPS-158 — Filtros de período sem limite informado, Scenario: Limite ausente omite a cláusula, Scenario: Apenas um dos limites informado
 
-### Community 995 - "openspec/specs/receivables (28)"
+### Community 994 - "openspec/specs/receivables (28)"
 Cohesion: 0.50
 Nodes (4): Requirement: OPS-159 — Formatação monetária em reais, Scenario: Formatação padrão, Scenario: Valor nulo e valor zero são distinguíveis, Scenario: Arredondamento de exibição coincide com o de cálculo
 
-### Community 68 - "openspec/specs/renegotiations - Requirements"
+### Community 69 - "openspec/specs/renegotiations - Requirements"
 Cohesion: 0.06
 Nodes (33): Requirements, Requirement: BE-197 — Rotas REST mortas de renegociação, parcela e pagamento, Scenario: Navegação servida pelas rotas do console, Requirement: BE-210 — Valor a lançar e consistência do lançamento, Scenario: Lançamento consistente, Scenario: Lançamento a maior, Scenario: Renegociação sem parcelas e sem dívida, Requirement: BE-228 — Renomear anexo (+25 more)
 
-### Community 996 - "openspec/specs/renegotiations (15)"
+### Community 995 - "openspec/specs/renegotiations (15)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-190 — Buscar e listar renegociações, Scenario: Listagem escopada ao projeto corrente, Scenario: Busca por id não escapa do projeto, Scenario: Busca textual cobre nome e fornecedor
 
-### Community 997 - "openspec/specs/renegotiations (16)"
+### Community 996 - "openspec/specs/renegotiations (16)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-191 — Filtro por estado, Scenario: Filtro por estado liquidado, Scenario: Filtro "Sem parcela cadastrada", Scenario: Estado desconhecido
 
@@ -7239,11 +7238,11 @@ Nodes (3): Requirement: BE-192 — Filtro por tipo de renegociação, Scenario: 
 Cohesion: 0.67
 Nodes (3): Requirement: BE-193 — Ordenação multi-coluna da lista, Scenario: Ordenação por duas chaves, Scenario: Chave de ordenação desconhecida
 
-### Community 998 - "openspec/specs/renegotiations (17)"
+### Community 997 - "openspec/specs/renegotiations (17)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-194 — Paginação da lista de renegociações, Scenario: Paginação aplicada de verdade, Scenario: Paginação combinada com ordenação, Scenario: Parâmetros ausentes
 
-### Community 999 - "openspec/specs/renegotiations (18)"
+### Community 998 - "openspec/specs/renegotiations (18)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-195 — Recálculo e leitura dos valores gerais da renegociação, Scenario: Valores recalculados na leitura, Scenario: Renegociação inexistente, Scenario: Renegociação de outro projeto
 
@@ -7255,11 +7254,11 @@ Nodes (3): Requirement: BE-196 — Representação da renegociação com o statu
 Cohesion: 0.67
 Nodes (3): Requirement: BE-198 — Criar renegociação, Scenario: Criação bem-sucedida, Scenario: Mensagem distingue criação de atualização
 
-### Community 707 - "openspec/specs/renegotiations (4)"
+### Community 705 - "openspec/specs/renegotiations (4)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-199 — Derivações, validações e normalização da renegociação, Scenario: Derivações na criação, Scenario: Campos obrigatórios ausentes, Scenario: Chave de integração duplicada, Scenario: Valores zerados ou negativos
 
-### Community 1000 - "openspec/specs/renegotiations (19)"
+### Community 999 - "openspec/specs/renegotiations (19)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-200 — Editar renegociação, Scenario: Edição recalcula os agregados, Scenario: Edição de renegociação de outro projeto, Scenario: Edição inválida não altera os agregados
 
@@ -7267,7 +7266,7 @@ Nodes (4): Requirement: BE-200 — Editar renegociação, Scenario: Edição rec
 Cohesion: 0.67
 Nodes (3): Requirement: BE-201 — Excluir renegociação, Scenario: Exclusão de renegociação sem parcelas, Scenario: Exclusão barrada por parcela existente
 
-### Community 708 - "openspec/specs/renegotiations (5)"
+### Community 706 - "openspec/specs/renegotiations (5)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-202 — Exclusão de parcelas em lote, Scenario: Exclusão de um lote válido, Scenario: Lote com parcela que tem pagamento, Scenario: Lote vazio, Scenario: Identificadores de outra renegociação
 
@@ -7283,55 +7282,55 @@ Nodes (3): Requirement: BE-204 — Agregados de principal, juros e correção mo
 Cohesion: 0.67
 Nodes (3): Requirement: BE-205 — Agregados de valor pago, mora e pendente, Scenario: Soma dos pagamentos, Scenario: Pagamento a maior deixa o pendente negativo
 
-### Community 1001 - "openspec/specs/renegotiations (20)"
+### Community 1000 - "openspec/specs/renegotiations (20)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-206 — Percentual pago, Scenario: Percentual pago, Scenario: Valor total zerado, Scenario: Percentual acima de 100
 
-### Community 1002 - "openspec/specs/renegotiations (21)"
+### Community 1001 - "openspec/specs/renegotiations (21)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-207 — Valor remanescente e contadores de parcelas, Scenario: Contadores das parcelas, Scenario: Excedente de uma parcela não abate outra, Scenario: Contagem de vencidas sempre atual
 
-### Community 709 - "openspec/specs/renegotiations (6)"
+### Community 707 - "openspec/specs/renegotiations (6)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-208 — Valor corrigido, deságio, datas e contagem de parcelas, Scenario: Datas e contagem, Scenario: Valor após deságio, Scenario: Deságio maior que o valor original, Scenario: Valor corrigido sem correção monetária real
 
-### Community 710 - "openspec/specs/renegotiations (7)"
+### Community 708 - "openspec/specs/renegotiations (7)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-209 — Estado da renegociação, Scenario: Renegociação sem parcelas, Scenario: Renegociação quitada, Scenario: Renegociação inconsistente permanece inconsistente, Scenario: Estado apresentado com percentual
 
-### Community 711 - "openspec/specs/renegotiations (8)"
+### Community 709 - "openspec/specs/renegotiations (8)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-211 — Parcela do mês corrente e próxima parcela, Scenario: Parcela do mês corrente, Scenario: Próxima parcela, Scenario: Sem parcela futura em aberto, Scenario: Cálculo da lista não multiplica consultas
 
-### Community 712 - "openspec/specs/renegotiations (9)"
+### Community 710 - "openspec/specs/renegotiations (9)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-212 — Valor presente da dívida, Scenario: Valor presente com juros, Scenario: Sem saldo remanescente, Scenario: Taxa acordada zero, Scenario: Valor da parcela sobrescrito pelo valor presente
 
-### Community 1003 - "openspec/specs/renegotiations (22)"
+### Community 1002 - "openspec/specs/renegotiations (22)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-213 — Listar parcelas e abrir o formulário de parcela, Scenario: Parcelas ordenadas por vencimento, Scenario: Paginação das parcelas, Scenario: Renegociação inexistente
 
-### Community 1004 - "openspec/specs/renegotiations (23)"
+### Community 1003 - "openspec/specs/renegotiations (23)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-214 — Criar parcelas, Scenario: Modo de criação, Scenario: Data ausente, Scenario: Repetições não numéricas
 
-### Community 1005 - "openspec/specs/renegotiations (24)"
+### Community 1004 - "openspec/specs/renegotiations (24)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-215 — Criação de parcela única, Scenario: Criação de uma parcela, Scenario: Data já ocupada, Scenario: Falha de criação não dispara recálculo
 
-### Community 604 - "openspec/specs/renegotiations (2)"
+### Community 600 - "openspec/specs/renegotiations (2)"
 Cohesion: 0.33
 Nodes (6): Requirement: BE-216 — Criação de parcelas em lote, Scenario: Geração mensal, Scenario: Fim de mês, Scenario: Colisão com parcelas existentes, Scenario: Intervalo zero gera datas repetidas, Scenario: Período desconhecido
 
-### Community 1006 - "openspec/specs/renegotiations (25)"
+### Community 1005 - "openspec/specs/renegotiations (25)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-217 — Derivações da parcela, identidade do lote e reporte de erros, Scenario: Derivação dos valores da parcela, Scenario: Identidade do lote, Scenario: Parcela inválida é reportada
 
-### Community 1007 - "openspec/specs/renegotiations (26)"
+### Community 1006 - "openspec/specs/renegotiations (26)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-218 — Validações e derivações do modelo de parcela, Scenario: Principal maior que zero, Scenario: Unicidade da data de vencimento, Scenario: Mudança de data redefine mês e ano
 
-### Community 1008 - "openspec/specs/renegotiations (27)"
+### Community 1007 - "openspec/specs/renegotiations (27)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-219 — Recálculo da parcela a partir dos pagamentos, Scenario: Quitação parcial, Scenario: Mora aumenta o total devido e o valor pago, Scenario: Pagamento a maior não vira crédito
 
@@ -7339,19 +7338,19 @@ Nodes (4): Requirement: BE-219 — Recálculo da parcela a partir dos pagamentos
 Cohesion: 0.67
 Nodes (3): Requirement: BE-220 — Cascata de recálculo da parcela para a renegociação, Scenario: Cascata completa, Scenario: Falha de gravação da parcela é reportada
 
-### Community 713 - "openspec/specs/renegotiations (10)"
+### Community 711 - "openspec/specs/renegotiations (10)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-221 — Editar e excluir parcela, Scenario: Edição de valores, Scenario: Edição do vencimento renumera o conjunto, Scenario: Exclusão barrada por pagamento, Scenario: Aumento de valor reabre parcela quitada
 
-### Community 1009 - "openspec/specs/renegotiations (28)"
+### Community 1008 - "openspec/specs/renegotiations (28)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-222 — Listar pagamentos e abrir o formulário de pagamento, Scenario: Pagamentos com ordem determinística, Scenario: Pré-seleção da parcela, Scenario: Edição não muda a parcela pela URL
 
-### Community 512 - "openspec/specs/renegotiations"
+### Community 504 - "openspec/specs/renegotiations"
 Cohesion: 0.25
 Nodes (8): Requirement: BE-223 — Registrar pagamento, Scenario: Pagamento com atraso, Scenario: Pagamento em dia, Scenario: Pagamento maior que a parcela é recusado, Scenario: Mora negativa é recusada, Scenario: Renegociação divergente da parcela, Scenario: Data ou parcela ausente, Scenario: Não existe imputação automática
 
-### Community 1010 - "openspec/specs/renegotiations (29)"
+### Community 1009 - "openspec/specs/renegotiations (29)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-224 — Editar e excluir pagamento, Scenario: Edição recalcula uma única vez, Scenario: Exclusão reabre a parcela, Scenario: Pagamento de outro projeto
 
@@ -7359,19 +7358,19 @@ Nodes (4): Requirement: BE-224 — Editar e excluir pagamento, Scenario: Ediçã
 Cohesion: 0.67
 Nodes (3): Requirement: BE-225 — Listar anexos da renegociação, Scenario: Listagem de anexos, Scenario: Filtro e limite aplicados
 
-### Community 605 - "openspec/specs/renegotiations (3)"
+### Community 601 - "openspec/specs/renegotiations (3)"
 Cohesion: 0.33
 Nodes (6): Requirement: BE-226 — Enviar anexos da renegociação, Scenario: Envio de arquivos válidos, Scenario: Limite de quantidade aplicado no servidor, Scenario: Limite de tamanho aplicado no servidor, Scenario: Tipo de arquivo validado pelo conteúdo, Scenario: Envio sem arquivos
 
-### Community 714 - "openspec/specs/renegotiations (11)"
+### Community 712 - "openspec/specs/renegotiations (11)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-227 — Baixar e visualizar anexo, Scenario: Download autorizado, Scenario: Anexo de outro projeto, Scenario: Conteúdo não é renderizado na origem da aplicação, Scenario: Arquivo ausente no armazenamento
 
-### Community 1011 - "openspec/specs/renegotiations (30)"
+### Community 1010 - "openspec/specs/renegotiations (30)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-229 — Excluir anexo, Scenario: Exclusão pelo autor, Scenario: Exclusão por quem não é o autor, Scenario: Registro cujo arquivo já sumiu
 
-### Community 1015 - "openspec/specs/renegotiations (31)"
+### Community 1014 - "openspec/specs/renegotiations (31)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-191 — Estados do container da lista, Scenario: Carregando e vazio, Scenario: Vazio com termo de busca, Scenario: Falha ao carregar
 
@@ -7379,7 +7378,7 @@ Nodes (4): Requirement: FE-191 — Estados do container da lista, Scenario: Carr
 Cohesion: 0.67
 Nodes (3): Requirement: FE-192 — Busca incremental na lista, Scenario: Debounce e reexecução, Scenario: Busca pelo nome da renegociação
 
-### Community 1016 - "openspec/specs/renegotiations (32)"
+### Community 1015 - "openspec/specs/renegotiations (32)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-193 — Filtros de estado e tipo, Scenario: Filtros ocultos por padrão, Scenario: Filtro "Sem parcela cadastrada", Scenario: Filtro "Inconsistente"
 
@@ -7387,11 +7386,11 @@ Nodes (4): Requirement: FE-193 — Filtros de estado e tipo, Scenario: Filtros o
 Cohesion: 0.67
 Nodes (3): Requirement: FE-194 — Ordenação pelo cabeçalho da lista, Scenario: Ciclo de ordenação, Scenario: Ordenação acumulada
 
-### Community 1017 - "openspec/specs/renegotiations (33)"
+### Community 1016 - "openspec/specs/renegotiations (33)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-195 — Navegação e paginação da lista, Scenario: Navegação altera o conteúdo, Scenario: Campo de tamanho de página vazio, Scenario: Botões desabilitados nos extremos
 
-### Community 1018 - "openspec/specs/renegotiations (34)"
+### Community 1017 - "openspec/specs/renegotiations (34)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-196 — Widget da renegociação e menu de ações, Scenario: Abrir o detalhe, Scenario: Remover só sem parcelas, Scenario: Título da navegação
 
@@ -7403,7 +7402,7 @@ Nodes (3): Requirement: FE-197 — Botão "Cadastrar" com guarda de fornecedor, 
 Cohesion: 0.67
 Nodes (3): Requirement: FE-198 — Exclusão de renegociação com confirmação, Scenario: Confirmação, Scenario: Exclusão barrada mostra erro
 
-### Community 1019 - "openspec/specs/renegotiations (35)"
+### Community 1018 - "openspec/specs/renegotiations (35)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-199 — Formulário de cadastro e edição de renegociação, Scenario: Campos do formulário, Scenario: Título na edição, Scenario: Campos de carência e taxa de correção
 
@@ -7411,7 +7410,7 @@ Nodes (4): Requirement: FE-199 — Formulário de cadastro e edição de renegoc
 Cohesion: 0.67
 Nodes (3): Requirement: FE-200 — Estados de bloqueio do formulário, Scenario: Projeto sem fornecedor, Scenario: Projeto sem empresa
 
-### Community 715 - "openspec/specs/renegotiations (12)"
+### Community 713 - "openspec/specs/renegotiations (12)"
 Cohesion: 0.40
 Nodes (5): Requirement: FE-201 — Máscaras de dinheiro e percentual, Scenario: Formatação monetária, Scenario: Mais de um separador decimal, Scenario: Terceira casa decimal, Scenario: Campo vazio
 
@@ -7423,19 +7422,19 @@ Nodes (3): Requirement: FE-204 — Tela de detalhe da renegociação, Scenario: 
 Cohesion: 0.67
 Nodes (3): Requirement: FE-206 — Cards de resumo financeiro do detalhe, Scenario: Conteúdo dos quatro cards, Scenario: Status antes da resposta
 
-### Community 1020 - "openspec/specs/renegotiations (36)"
+### Community 1019 - "openspec/specs/renegotiations (36)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-207 — Atualização assíncrona dos cards, Scenario: Atualização após registrar pagamento, Scenario: Campo ausente na resposta, Scenario: Falha na atualização é sinalizada
 
-### Community 716 - "openspec/specs/renegotiations (13)"
+### Community 714 - "openspec/specs/renegotiations (13)"
 Cohesion: 0.40
 Nodes (5): Requirement: FE-208 — Galeria de imagens dos anexos, Scenario: Galeria com imagens, Scenario: Sem anexos de imagem, Scenario: Imagem ausente ou corrompida, Scenario: Miniatura em tamanho adequado
 
-### Community 1021 - "openspec/specs/renegotiations (37)"
+### Community 1020 - "openspec/specs/renegotiations (37)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-209 — Seção de arquivos do detalhe, Scenario: Lista de arquivos, Scenario: Renegociação sem arquivos, Scenario: Limite de anexos atingido
 
-### Community 1022 - "openspec/specs/renegotiations (38)"
+### Community 1021 - "openspec/specs/renegotiations (38)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-210 — Envio de anexos por arrastar e soltar, Scenario: Envio bem-sucedido, Scenario: Arquivo acima do tamanho permitido, Scenario: Quantidade acima do permitido
 
@@ -7447,7 +7446,7 @@ Nodes (3): Requirement: FE-212 — Visualizar e baixar anexo pela tela, Scenario
 Cohesion: 0.67
 Nodes (3): Requirement: FE-213 — Aba de previsões: cabeçalho e colunas, Scenario: Colunas das previsões, Scenario: Usuário somente-leitura
 
-### Community 1023 - "openspec/specs/renegotiations (39)"
+### Community 1022 - "openspec/specs/renegotiations (39)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-214 — Lista de parcelas, Scenario: Carregamento e estado vazio, Scenario: Parcela com pagamento não é selecionável, Scenario: Falha ao carregar as parcelas
 
@@ -7455,15 +7454,15 @@ Nodes (4): Requirement: FE-214 — Lista de parcelas, Scenario: Carregamento e e
 Cohesion: 0.67
 Nodes (3): Requirement: FE-215 — Pagamentos aninhados na parcela, Scenario: Expandir e recolher, Scenario: Clique ignorado no modo de seleção
 
-### Community 1024 - "openspec/specs/renegotiations (40)"
+### Community 1023 - "openspec/specs/renegotiations (40)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-216 — Menu de ações da parcela, Scenario: Gerar pagamento, Scenario: Remover só sem pagamento, Scenario: Remoção confirmada
 
-### Community 1025 - "openspec/specs/renegotiations (41)"
+### Community 1024 - "openspec/specs/renegotiations (41)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-217 — Modo de seleção múltipla de parcelas, Scenario: Entrar e sair do modo, Scenario: Selecionar todos, Scenario: Rótulo do botão de remoção
 
-### Community 1026 - "openspec/specs/renegotiations (42)"
+### Community 1025 - "openspec/specs/renegotiations (42)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-218 — Remoção de parcelas em lote pela tela, Scenario: Nada selecionado, Scenario: Confirmação sem expiração, Scenario: Remoção concluída
 
@@ -7471,7 +7470,7 @@ Nodes (4): Requirement: FE-218 — Remoção de parcelas em lote pela tela, Scen
 Cohesion: 0.67
 Nodes (3): Requirement: FE-219 — Bloqueio de seleção para parcela com pagamento, Scenario: Parcela com pagamento sem caixa de seleção, Scenario: Tentativa de remover parcela bloqueada
 
-### Community 717 - "openspec/specs/renegotiations (14)"
+### Community 715 - "openspec/specs/renegotiations (14)"
 Cohesion: 0.40
 Nodes (5): Requirement: FE-220 — Painel lateral de parcela, Scenario: Modo parcela única, Scenario: Modo múltiplas parcelas, Scenario: Modo edição, Scenario: Campos de repetição inteiros
 
@@ -7487,11 +7486,11 @@ Nodes (3): Requirement: FE-222 — Habilitação do salvar no painel de parcela,
 Cohesion: 0.67
 Nodes (3): Requirement: FE-223 — Envio e estados do painel de parcela, Scenario: Salvamento bem-sucedido, Scenario: Falha mantém o painel aberto
 
-### Community 1027 - "openspec/specs/renegotiations (43)"
+### Community 1026 - "openspec/specs/renegotiations (43)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-224 — Painel lateral de pagamento, Scenario: Campos do painel, Scenario: Parcela pré-selecionada, Scenario: Pagamento retroativo
 
-### Community 1028 - "openspec/specs/renegotiations (44)"
+### Community 1027 - "openspec/specs/renegotiations (44)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-225 — Cálculo e habilitação do salvar no painel de pagamento, Scenario: Total pago, Scenario: Valor zerado, Scenario: Pagamento maior que o pendente da parcela
 
@@ -7499,7 +7498,7 @@ Nodes (4): Requirement: FE-225 — Cálculo e habilitação do salvar no painel 
 Cohesion: 0.67
 Nodes (3): Requirement: FE-226 — Envio e fechamento do painel de pagamento, Scenario: Painel fecha após salvar, Scenario: Mensagem correta de pagamento
 
-### Community 1029 - "openspec/specs/renegotiations (45)"
+### Community 1028 - "openspec/specs/renegotiations (45)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-227 — Editar e excluir pagamento pela lista, Scenario: Editar pagamento, Scenario: Confirmação com o rótulo correto, Scenario: Usuário somente-leitura
 
@@ -7507,15 +7506,15 @@ Nodes (4): Requirement: FE-227 — Editar e excluir pagamento pela lista, Scenar
 Cohesion: 0.67
 Nodes (3): Requirement: FE-229 — Superfícies desabilitadas do detalhe, Scenario: Pagamentos visíveis apenas aninhados, Scenario: Ação de excluir todas as parcelas
 
-### Community 1012 - "openspec/specs/renegotiations (46)"
+### Community 1011 - "openspec/specs/renegotiations (46)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-190 — Tabela `renegotiations`, Scenario: Integridade referencial garantida pelo banco, Scenario: Agregados sempre coerentes com as parcelas, Scenario: Estado e tipo com domínio fechado
 
-### Community 1013 - "openspec/specs/renegotiations (47)"
+### Community 1012 - "openspec/specs/renegotiations (47)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-191 — Tabela `renegotiation_installments`, Scenario: Unicidade da data por renegociação no banco, Scenario: Consultas de parcela indexadas, Scenario: Semântica de saldo e pendente
 
-### Community 1014 - "openspec/specs/renegotiations (48)"
+### Community 1013 - "openspec/specs/renegotiations (48)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-192 — Tabela `renegotiation_payments`, Scenario: Consultas de pagamento indexadas, Scenario: Renegociação do pagamento coerente com a da parcela, Scenario: Ausência de forma de pagamento
 
@@ -7543,7 +7542,7 @@ Nodes (3): Requirement: DB-198 — Índices e chaves estrangeiras do domínio de
 Cohesion: 0.67
 Nodes (3): Requirement: DB-199 — Integridade referencial e auditoria antes da carga, Scenario: Auditoria de divergências antes da carga, Scenario: Bloqueios preservados
 
-### Community 1030 - "openspec/specs/renegotiations (49)"
+### Community 1029 - "openspec/specs/renegotiations (49)"
 Cohesion: 0.50
 Nodes (4): Requirement: OPS-190 — Recálculo periódico dos contadores de renegociação, Scenario: Contagem de vencidas sempre atual, Scenario: Renegociação liquidada volta a ser reprocessada, Scenario: Falha de recálculo é visível
 
@@ -7567,31 +7566,31 @@ Nodes (3): Requirement: OPS-195 — Escritas em massa sem callbacks, Scenario: R
 Cohesion: 0.67
 Nodes (3): Requirement: OPS-196 — Geração da cor do lote de parcelas, Scenario: Cores distintas por lote, Scenario: Espaço de cores esgotado
 
-### Community 1031 - "openspec/specs/renegotiations (50)"
+### Community 1030 - "openspec/specs/renegotiations (50)"
 Cohesion: 0.50
 Nodes (4): Requirement: OPS-197 — Rotinas de correção de dados do domínio, Scenario: Renegociação sem empresa, Scenario: Recálculo geral pós-carga em lotes, Scenario: Renumeração de pagamentos pós-carga
 
-### Community 42 - "openspec/specs/risk - Requirements"
+### Community 44 - "openspec/specs/risk - Requirements"
 Cohesion: 0.05
 Nodes (41): Requirements, Requirement: BE-235 — Atualizar limite, Scenario: Edição do teto e da taxa, Scenario: Tentativa de trocar empresa, portador ou tipo, Requirement: BE-245 — Limite de pré-faturamento numa data, Scenario: Tipo com pré-faturamento, Scenario: Tipo sem pré-faturamento, Requirement: BE-246 — Limite disponível numa data (+33 more)
 
-### Community 1032 - "openspec/specs/risk (18)"
+### Community 1031 - "openspec/specs/risk (18)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-230 — Buscar e listar limites, Scenario: Listagem escopada ao projeto corrente, Scenario: Filtros combinados, Scenario: Busca textual por portador
 
-### Community 718 - "openspec/specs/risk (6)"
+### Community 716 - "openspec/specs/risk (6)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-231 — Resumo de exposição por limite numa data, Scenario: Resumo do projeto inteiro, Scenario: Resumo de uma empresa, Scenario: Portador informado troca o recorte, Scenario: Portador inexistente
 
-### Community 1033 - "openspec/specs/risk (19)"
+### Community 1032 - "openspec/specs/risk (19)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-232 — Combos auxiliares de limite, Scenario: Portadores para o formulário de limite, Scenario: Portadores para o filtro, Scenario: Empresa inexistente
 
-### Community 1034 - "openspec/specs/risk (20)"
+### Community 1033 - "openspec/specs/risk (20)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-233 — Abrir o formulário de limite e rotas REST mortas, Scenario: Formulário de novo limite, Scenario: Formulário de edição, Scenario: Rotas REST mortas não são portadas
 
-### Community 1035 - "openspec/specs/risk (21)"
+### Community 1034 - "openspec/specs/risk (21)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-234 — Criar limite, Scenario: Criação bem-sucedida, Scenario: Erros com nomes de campo corretos, Scenario: Falha de criação não deixa efeitos
 
@@ -7607,23 +7606,23 @@ Nodes (3): Requirement: BE-237 — Desativar limite, Scenario: Desativação, Sc
 Cohesion: 0.67
 Nodes (3): Requirement: BE-238 — Excluir limite, Scenario: Exclusão de limite sem dependências, Scenario: Exclusão barrada por dependências
 
-### Community 1036 - "openspec/specs/risk (22)"
+### Community 1035 - "openspec/specs/risk (22)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-239 — Normalização automática do limite, Scenario: Derivações na gravação, Scenario: Empresa ausente, Scenario: Portador renomeado
 
-### Community 1037 - "openspec/specs/risk (23)"
+### Community 1036 - "openspec/specs/risk (23)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-240 — Validações e unicidade do limite, Scenario: Trinca duplicada, Scenario: Campos obrigatórios, Scenario: Limite zero
 
-### Community 1038 - "openspec/specs/risk (24)"
+### Community 1037 - "openspec/specs/risk (24)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-241 — Abertura automática do par de operações estáticas, Scenario: Par criado com os saldos do limite, Scenario: Operações estáticas ficam sempre dentro da janela, Scenario: Tipo sem os dois subtipos
 
-### Community 1039 - "openspec/specs/risk (25)"
+### Community 1038 - "openspec/specs/risk (25)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-242 — Janela temporal das operações vigentes numa data, Scenario: Data dentro da janela, Scenario: Data nos extremos, Scenario: Operação encerrada continua na janela
 
-### Community 1040 - "openspec/specs/risk (26)"
+### Community 1039 - "openspec/specs/risk (26)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-243 — Limite utilizado numa data, Scenario: Cálculo do utilizado, Scenario: Operação com saldo devedor positivo, Scenario: Nenhuma operação vigente
 
@@ -7639,15 +7638,15 @@ Nodes (3): Requirement: BE-247 — Vencidos numa data, Scenario: Soma dos encerr
 Cohesion: 0.67
 Nodes (3): Requirement: BE-248 — A vencer numa data, Scenario: Soma dos não encerrados, Scenario: Apuração disponível para consumo
 
-### Community 719 - "openspec/specs/risk (7)"
+### Community 717 - "openspec/specs/risk (7)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-249 — Agregados de limite por tipo, na empresa e no projeto, Scenario: Agregado por tipo, Scenario: Teto total zero com utilização, Scenario: Teto total zero sem utilização, Scenario: Limites inativos fora do agregado
 
-### Community 720 - "openspec/specs/risk (8)"
+### Community 718 - "openspec/specs/risk (8)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-250 — Payload detalhado do resumo de risco, Scenario: Estrutura do resumo, Scenario: Percentuais por limite, Scenario: Teto zero na linha, Scenario: Colunas liquidável e pré mostram o utilizado
 
-### Community 1041 - "openspec/specs/risk (27)"
+### Community 1040 - "openspec/specs/risk (27)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-251 — Totais consolidados de limite, Scenario: Totais do projeto ou da empresa, Scenario: Indicador de limites disponíveis para lançamento, Scenario: Campos de liquidável e pré do payload
 
@@ -7655,11 +7654,11 @@ Nodes (4): Requirement: BE-251 — Totais consolidados de limite, Scenario: Tota
 Cohesion: 0.67
 Nodes (3): Requirement: BE-252 — Limites livres para lançamento de posição numa data, Scenario: Limite sem operação na data, Scenario: Limite de tipo com pré-faturamento
 
-### Community 606 - "openspec/specs/risk (2)"
+### Community 602 - "openspec/specs/risk (2)"
 Cohesion: 0.33
 Nodes (6): Requirement: BE-253 — Buscar e listar operações de risco, Scenario: Listagem escopada e filtrada, Scenario: Busca por id não escapa do projeto, Scenario: Total correto com paginação, Scenario: Busca textual, Scenario: Período ausente
 
-### Community 1042 - "openspec/specs/risk (28)"
+### Community 1041 - "openspec/specs/risk (28)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-254 — Cascata de filtros do formulário de operação, Scenario: Portadores da empresa, Scenario: Tipos do portador, Scenario: Modo desconhecido ou identificador inválido
 
@@ -7667,35 +7666,35 @@ Nodes (4): Requirement: BE-254 — Cascata de filtros do formulário de operaç�
 Cohesion: 0.67
 Nodes (3): Requirement: BE-255 — Última movimentação da operação, Scenario: Operação com movimentos, Scenario: Operação sem movimentos
 
-### Community 1043 - "openspec/specs/risk (29)"
+### Community 1042 - "openspec/specs/risk (29)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-257 — Atualizar operação de risco, Scenario: Edição com recálculo único, Scenario: Encolher a janela deixando movimentos fora, Scenario: Alteração do capital não regenera o movimento de liberação
 
-### Community 1044 - "openspec/specs/risk (30)"
+### Community 1043 - "openspec/specs/risk (30)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-258 — Excluir operação de risco, Scenario: Exclusão de operação sem recibo, Scenario: Exclusão barrada por recibo, Scenario: Prorrogações não ficam órfãs
 
-### Community 607 - "openspec/specs/risk (3)"
+### Community 603 - "openspec/specs/risk (3)"
 Cohesion: 0.33
 Nodes (6): Requirement: BE-260 — Efetivar renovação de operação, Scenario: Dados copiados na renovação, Scenario: Encadeamento sempre na raiz, Scenario: Original é encerrada e sai da exposição, Scenario: Renovar operação já encerrada, Scenario: Vencimento anterior à emissão
 
-### Community 1045 - "openspec/specs/risk (31)"
+### Community 1044 - "openspec/specs/risk (31)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-261 — Resolução do limite e carimbo inicial da operação, Scenario: Limite resolvido, Scenario: Nenhum limite para a quádrupla, Scenario: Limite existente porém desativado
 
-### Community 1046 - "openspec/specs/risk (32)"
+### Community 1045 - "openspec/specs/risk (32)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-262 — Sincronização entre tipo e subtipo da operação, Scenario: Subtipo informado define o tipo, Scenario: Tipo com pré-faturamento sem subtipo informado, Scenario: Tipo sem nenhum subtipo
 
-### Community 721 - "openspec/specs/risk (9)"
+### Community 719 - "openspec/specs/risk (9)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-263 — Convenção de sinal do saldo inicial da operação, Scenario: Valor positivo digitado, Scenario: Valor negativo digitado, Scenario: Saldo inicial zero, Scenario: Exibição do mesmo valor em telas diferentes
 
-### Community 1047 - "openspec/specs/risk (33)"
+### Community 1046 - "openspec/specs/risk (33)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-264 — Movimento automático de liberação do recurso, Scenario: Movimento criado, Scenario: Operação de tipo com pré-faturamento, Scenario: Tipo de movimento de liberação ausente
 
-### Community 722 - "openspec/specs/risk (10)"
+### Community 720 - "openspec/specs/risk (10)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-265 — Recálculo da cadeia de saldos da operação, Scenario: Cadeia com débito e crédito, Scenario: Ordenação e numeração dos movimentos, Scenario: Movimentos fora da janela não são gravados sem validação, Scenario: Movimento em operação encerrada
 
@@ -7703,51 +7702,51 @@ Nodes (5): Requirement: BE-265 — Recálculo da cadeia de saldos da operação,
 Cohesion: 0.67
 Nodes (3): Requirement: BE-266 — Saldo da operação numa data, Scenario: Data posterior a movimentos, Scenario: Data anterior a qualquer movimento
 
-### Community 1048 - "openspec/specs/risk (34)"
+### Community 1047 - "openspec/specs/risk (34)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-267 — Validações de presença da operação, Scenario: Campos obrigatórios ausentes, Scenario: Vencimento anterior à emissão, Scenario: Capital zero
 
-### Community 1049 - "openspec/specs/risk (35)"
+### Community 1048 - "openspec/specs/risk (35)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-268 — Estados da operação, Scenario: Marcar como encerrada, Scenario: Tipo com pré-faturamento, Scenario: Considerar no variável
 
-### Community 1050 - "openspec/specs/risk (36)"
+### Community 1049 - "openspec/specs/risk (36)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-269 — Posições diárias de risco, Scenario: Regras que sobrevivem no modelo, Scenario: Unicidade por data, limite e empresa, Scenario: Telas de posição diária
 
-### Community 723 - "openspec/specs/risk (11)"
+### Community 721 - "openspec/specs/risk (11)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-270 — Listar movimentações de uma operação, Scenario: Movimentos em ordem, Scenario: Paginação da lista de movimentos, Scenario: Operação de outro projeto, Scenario: Rotas REST mortas de movimentação
 
-### Community 1051 - "openspec/specs/risk (37)"
+### Community 1050 - "openspec/specs/risk (37)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-271 — Abrir o formulário de movimentação, Scenario: Cadastro comum, Scenario: Modo transferência, Scenario: Operação inexistente
 
-### Community 1052 - "openspec/specs/risk (38)"
+### Community 1051 - "openspec/specs/risk (38)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-272 — Criar movimentação, Scenario: Criação e herança de contexto, Scenario: Tipos oferecidos, Scenario: Valor zero é recusado
 
-### Community 1053 - "openspec/specs/risk (39)"
+### Community 1052 - "openspec/specs/risk (39)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-273 — Atualizar e excluir movimentação, Scenario: Alteração recalcula a cadeia, Scenario: Exclusão recalcula e renumera, Scenario: Exclusão do movimento de liberação
 
-### Community 724 - "openspec/specs/risk (12)"
+### Community 722 - "openspec/specs/risk (12)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-274 — Validação da janela do movimento, Scenario: Data dentro da janela, Scenario: Data fora da janela, Scenario: Operação estática, Scenario: Movimento sem operação
 
-### Community 725 - "openspec/specs/risk (13)"
+### Community 723 - "openspec/specs/risk (13)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-275 — Transferência entre a operação de pré e sua par, Scenario: Transferência com contrapartida, Scenario: Efeito nos saldos, Scenario: Operação de pré sem par, Scenario: Transferência a partir da operação de antecipação
 
-### Community 608 - "openspec/specs/risk (4)"
+### Community 604 - "openspec/specs/risk (4)"
 Cohesion: 0.33
 Nodes (6): Requirement: BE-277 — Prorrogações de operação, Scenario: Prorrogação registrada, Scenario: Listagem das prorrogações, Scenario: Retroceder o vencimento, Scenario: Prorrogar operação encerrada, Scenario: Prorrogar operação estática
 
-### Community 513 - "openspec/specs/risk"
+### Community 505 - "openspec/specs/risk"
 Cohesion: 0.25
 Nodes (8): Requirement: BE-278 — Tipos de limite e seus subtipos, Scenario: Criação de tipo com pré-faturamento, Scenario: Criação de tipo sem pré-faturamento, Scenario: Propagação das flags para os subtipos, Scenario: Pré-faturamento é imutável, Scenario: Exclusão bloqueada, Scenario: Chave de integração derivada do título, Scenario: Estrutura de subtipos limitada a dois
 
-### Community 609 - "openspec/specs/risk (5)"
+### Community 605 - "openspec/specs/risk (5)"
 Cohesion: 0.33
 Nodes (6): Requirement: BE-279 — Tipos de movimentação, Scenario: Criação de tipo, Scenario: Alteração do sinal mantém a descrição coerente, Scenario: Exclusão de tipo padrão, Scenario: Tipos usados pelos fluxos automáticos são protegidos, Scenario: Listagem do catálogo
 
@@ -7763,11 +7762,11 @@ Nodes (3): Requirement: FE-231 — Filtro de grupo econômico, Scenario: Filtro 
 Cohesion: 0.67
 Nodes (3): Requirement: FE-233 — Filtro de data do painel, Scenario: Consultar uma data passada, Scenario: Data futura
 
-### Community 726 - "openspec/specs/risk (14)"
+### Community 724 - "openspec/specs/risk (14)"
 Cohesion: 0.40
 Nodes (5): Requirement: FE-235 — Resumo de limites agrupado por tipo, Scenario: Estrutura do resumo, Scenario: Tipo sem pré-faturamento, Scenario: Colunas liquidável e pré do cabeçalho, Scenario: Formatação dos valores
 
-### Community 1060 - "openspec/specs/risk (40)"
+### Community 1059 - "openspec/specs/risk (40)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-236 — Resumo em modo de portador único, Scenario: Layout de portador único, Scenario: Cabeçalho não recolhe, Scenario: Mais de um limite do mesmo tipo para o portador
 
@@ -7791,7 +7790,7 @@ Nodes (3): Requirement: FE-241 — Filtros da tela de limites, Scenario: Filtro 
 Cohesion: 0.67
 Nodes (3): Requirement: FE-242 — Paginação da tela de limites, Scenario: Navegação entre páginas, Scenario: Alterar o tamanho da página
 
-### Community 1061 - "openspec/specs/risk (41)"
+### Community 1060 - "openspec/specs/risk (41)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-243 — Widget de limite, Scenario: Conteúdo da linha, Scenario: Limite desativado, Scenario: Limite sem tipo de operação
 
@@ -7799,19 +7798,19 @@ Nodes (4): Requirement: FE-243 — Widget de limite, Scenario: Conteúdo da linh
 Cohesion: 0.67
 Nodes (3): Requirement: FE-244 — Painel de criar e editar limite, Scenario: Cascata empresa para portador, Scenario: Edição com identidade travada
 
-### Community 1062 - "openspec/specs/risk (42)"
+### Community 1061 - "openspec/specs/risk (42)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-245 — Campo de saldo inicial condicional, Scenario: Tipo com pré-faturamento, Scenario: Tipo sem pré-faturamento, Scenario: Edição de limite
 
-### Community 1063 - "openspec/specs/risk (43)"
+### Community 1062 - "openspec/specs/risk (43)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-246 — Máscaras do formulário de limite, Scenario: Máscara monetária, Scenario: Máscara percentual, Scenario: Mais de um separador decimal
 
-### Community 1064 - "openspec/specs/risk (44)"
+### Community 1063 - "openspec/specs/risk (44)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-247 — Ações do limite na lista, Scenario: Ativar e desativar, Scenario: Exclusão confirmada, Scenario: Exclusão barrada por dependências
 
-### Community 1065 - "openspec/specs/risk (45)"
+### Community 1064 - "openspec/specs/risk (45)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-248 — Guardas do cadastro de limite, Scenario: Projeto sem empresa, Scenario: Projeto sem portador, Scenario: Usuário somente-leitura
 
@@ -7831,7 +7830,7 @@ Nodes (3): Requirement: FE-251 — Busca textual de operações, Scenario: Busca
 Cohesion: 0.67
 Nodes (3): Requirement: FE-252 — Filtros de empresa, portador e tipo de operação, Scenario: Filtros combinados, Scenario: Tipos oferecidos
 
-### Community 1066 - "openspec/specs/risk (46)"
+### Community 1065 - "openspec/specs/risk (46)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-253 — Filtro de período de operações, Scenario: Seleção de intervalo, Scenario: Um dia só, Scenario: Intervalo que cruza o ano
 
@@ -7843,7 +7842,7 @@ Nodes (3): Requirement: FE-254 — Ordenação multi-coluna de operações, Scen
 Cohesion: 0.67
 Nodes (3): Requirement: FE-255 — Paginação de operações, Scenario: Navegação com total correto, Scenario: Alterar o tamanho da página
 
-### Community 727 - "openspec/specs/risk (15)"
+### Community 725 - "openspec/specs/risk (15)"
 Cohesion: 0.40
 Nodes (5): Requirement: FE-256 — Widget de operação e menu de ações, Scenario: Ações disponíveis, Scenario: Operação de tipo com pré-faturamento, Scenario: Confirmação de remoção com o rótulo correto, Scenario: Usuário somente-leitura
 
@@ -7855,7 +7854,7 @@ Nodes (3): Requirement: FE-257 — Guardas do cadastro de operação, Scenario: 
 Cohesion: 0.67
 Nodes (3): Requirement: FE-258 — Cascata do formulário de operação, Scenario: Cascata na criação, Scenario: Edição trava a identidade
 
-### Community 1067 - "openspec/specs/risk (47)"
+### Community 1066 - "openspec/specs/risk (47)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-259 — Campos do formulário de operação, Scenario: Blocos do formulário, Scenario: Capital travado na edição, Scenario: Textos de ajuda dos campos
 
@@ -7875,19 +7874,19 @@ Nodes (3): Requirement: FE-262 — Máscaras numéricas do formulário de opera�
 Cohesion: 0.67
 Nodes (3): Requirement: FE-263 — Estados vazios do formulário de operação, Scenario: Sem portador com limite manual, Scenario: Sem empresa
 
-### Community 1068 - "openspec/specs/risk (48)"
+### Community 1067 - "openspec/specs/risk (48)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-264 — Casca do detalhe da operação, Scenario: Abas disponíveis, Scenario: Operação estática, Scenario: Endereço da tela
 
-### Community 1069 - "openspec/specs/risk (49)"
+### Community 1068 - "openspec/specs/risk (49)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-265 — Cartão de cadastro do detalhe da operação, Scenario: Campos do cartão, Scenario: Operação estática, Scenario: Saldo inicial exibido com sinal
 
-### Community 1070 - "openspec/specs/risk (50)"
+### Community 1069 - "openspec/specs/risk (50)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-266 — Cartão de última movimentação, Scenario: Movimento de débito, Scenario: Movimento de crédito, Scenario: Operação sem movimentação
 
-### Community 1071 - "openspec/specs/risk (51)"
+### Community 1070 - "openspec/specs/risk (51)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-267 — Cartão de renovações, Scenario: Operação com renovações, Scenario: Operação sem renovações, Scenario: Cadeia de renovações
 
@@ -7895,19 +7894,19 @@ Nodes (4): Requirement: FE-267 — Cartão de renovações, Scenario: Operação
 Cohesion: 0.67
 Nodes (3): Requirement: FE-268 — Navegação para o recebível e para a operação original, Scenario: Operação originada de recebível, Scenario: Operação sem vínculos
 
-### Community 1072 - "openspec/specs/risk (52)"
+### Community 1071 - "openspec/specs/risk (52)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-269 — Aba de movimentações, Scenario: Colunas da lista, Scenario: Lista paginada, Scenario: Estado vazio
 
-### Community 1073 - "openspec/specs/risk (53)"
+### Community 1072 - "openspec/specs/risk (53)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-270 — Widget de movimentação, Scenario: Movimento de crédito, Scenario: Movimento de débito, Scenario: Observação vazia
 
-### Community 728 - "openspec/specs/risk (16)"
+### Community 726 - "openspec/specs/risk (16)"
 Cohesion: 0.40
 Nodes (5): Requirement: FE-271 — Painel de cadastrar e editar movimentação, Scenario: Campos e modos, Scenario: Valor zero, Scenario: Datas permitidas no seletor, Scenario: Mensagem de confirmação correta
 
-### Community 1074 - "openspec/specs/risk (54)"
+### Community 1073 - "openspec/specs/risk (54)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-272 — Ação de transferir, Scenario: Operação de pré, Scenario: Demais operações, Scenario: Usuário somente-leitura
 
@@ -7915,27 +7914,27 @@ Nodes (4): Requirement: FE-272 — Ação de transferir, Scenario: Operação de
 Cohesion: 0.67
 Nodes (3): Requirement: FE-273 — Excluir movimentação pela tela, Scenario: Confirmação com o rótulo correto, Scenario: Exclusão concluída
 
-### Community 1075 - "openspec/specs/risk (55)"
+### Community 1074 - "openspec/specs/risk (55)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-274 — Aba de prorrogações e painel de prorrogar, Scenario: Colunas da lista, Scenario: Nova data restrita, Scenario: Prorrogação registrada
 
-### Community 1076 - "openspec/specs/risk (56)"
+### Community 1075 - "openspec/specs/risk (56)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-275 — Painel de renovar operação, Scenario: Datas padrão, Scenario: Vencimento anterior à emissão, Scenario: Mensagem de confirmação correta
 
-### Community 729 - "openspec/specs/risk (17)"
+### Community 727 - "openspec/specs/risk (17)"
 Cohesion: 0.40
 Nodes (5): Requirement: FE-277 — Tela de tipos de limite, Scenario: Lista e formulário, Scenario: Campos travados na edição, Scenario: Tipo padrão do sistema, Scenario: Permissão para cadastrar
 
-### Community 1077 - "openspec/specs/risk (57)"
+### Community 1076 - "openspec/specs/risk (57)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-278 — Tela de tipos de movimentação, Scenario: Lista e formulário, Scenario: Tipo de crédito na edição, Scenario: Permissão para cadastrar
 
-### Community 1078 - "openspec/specs/risk (58)"
+### Community 1077 - "openspec/specs/risk (58)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-279 — Permissões de interface no módulo de risco, Scenario: Usuário somente-leitura em todas as telas de risco, Scenario: Servidor recusa a escrita, Scenario: Regras de papel uniformes entre os catálogos
 
-### Community 1054 - "openspec/specs/risk (59)"
+### Community 1053 - "openspec/specs/risk (59)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-230 — Tabela `risk_controls`, Scenario: Integridade referencial e unicidade no banco, Scenario: Consultas do painel indexadas, Scenario: Colunas do modelo anterior
 
@@ -7947,19 +7946,19 @@ Nodes (3): Requirement: DB-232 — Tabela `risk_operation_types`, Scenario: Unic
 Cohesion: 0.67
 Nodes (3): Requirement: DB-233 — Tabela `risk_operation_subtypes`, Scenario: Vínculo entre subtipos irmãos, Scenario: Um subtipo pré e um não-pré por tipo
 
-### Community 1055 - "openspec/specs/risk (60)"
+### Community 1054 - "openspec/specs/risk (60)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-234 — Tabela `risk_movement_types`, Scenario: Sinal com domínio fechado, Scenario: Identificação estável dos tipos funcionais, Scenario: Tipos padrão migrados
 
-### Community 1056 - "openspec/specs/risk (61)"
+### Community 1055 - "openspec/specs/risk (61)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-235 — Tabela `risk_operations`, Scenario: Consultas de exposição indexadas, Scenario: Sinal do saldo inicial na carga, Scenario: Operações estáticas identificadas
 
-### Community 1057 - "openspec/specs/risk (62)"
+### Community 1056 - "openspec/specs/risk (62)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-236 — Tabela `risk_movements`, Scenario: Ordenação estável da cadeia, Scenario: Recálculo indexado, Scenario: Coluna de ordem com nome válido
 
-### Community 1058 - "openspec/specs/risk (63)"
+### Community 1057 - "openspec/specs/risk (63)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-237 — Tabela `risk_operation_extensions`, Scenario: Prorrogação vinculada à operação, Scenario: Registro imutável, Scenario: Nova data sempre posterior
 
@@ -7967,7 +7966,7 @@ Nodes (4): Requirement: DB-237 — Tabela `risk_operation_extensions`, Scenario:
 Cohesion: 0.67
 Nodes (3): Requirement: DB-238 — Índices e integridade referencial do módulo de risco, Scenario: Índices das consultas quentes, Scenario: Painel escala com o volume
 
-### Community 1059 - "openspec/specs/risk (64)"
+### Community 1058 - "openspec/specs/risk (64)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-239 — Fronteiras do módulo de risco com outros domínios, Scenario: Recebível exige limite ativo, Scenario: Recibo trava a exclusão da operação, Scenario: Exclusão do recebível remove a operação vinculada
 
@@ -7999,27 +7998,27 @@ Nodes (3): Requirement: OPS-234 — Busca textual insensível a maiúsculas, Sce
 Cohesion: 0.67
 Nodes (3): Requirement: OPS-237 — Textos de ajuda do formulário de operação, Scenario: Ajuda servida de cache, Scenario: Conteúdo dos textos
 
-### Community 1079 - "openspec/specs/risk (65)"
+### Community 1078 - "openspec/specs/risk (65)"
 Cohesion: 0.50
 Nodes (4): Requirement: OPS-238 — Integração de recebível com o módulo de risco, Scenario: Subtipo com pré-faturamento, Scenario: Subtipo sem pré-faturamento, Scenario: Recebível sem limite ativo
 
-### Community 59 - "openspec/specs/structured-operations - Requirements"
+### Community 65 - "openspec/specs/structured-operations - Requirements"
 Cohesion: 0.06
 Nodes (33): Structured Operations Specification, Purpose, Requirements, Requirement: BE-289 — Rotas REST mortas da unidade, Scenario: Navegação servida por rotas reais, Requirement: BE-309 — Rotas órfãs de taxas de operação estruturada, Scenario: Rotas não são portadas, Requirement: BE-720 — Abrir o formulário de novo tipo de recurso (+25 more)
 
-### Community 1080 - "openspec/specs/structured-operations (15)"
+### Community 1079 - "openspec/specs/structured-operations (15)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-280 — Buscar e listar operações estruturadas, Scenario: Listagem escopada ao projeto corrente, Scenario: Busca por id não escapa do projeto, Scenario: Operação com relacionamento ausente continua visível
 
-### Community 1081 - "openspec/specs/structured-operations (16)"
+### Community 1080 - "openspec/specs/structured-operations (16)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-281 — Filtros combináveis da busca de operações, Scenario: Filtros combinados, Scenario: Escopo da busca textual, Scenario: Filtro em branco
 
-### Community 730 - "openspec/specs/structured-operations (3)"
+### Community 728 - "openspec/specs/structured-operations (3)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-282 — Filtro de período da busca de operações, Scenario: Operação vigente no período, Scenario: Operação encerrada antes do período, Scenario: Período não informado, Scenario: Data malformada
 
-### Community 1082 - "openspec/specs/structured-operations (17)"
+### Community 1081 - "openspec/specs/structured-operations (17)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-283 — Ordenação multi-coluna da busca de operações, Scenario: Ordenação por duas chaves, Scenario: Chave de ordenação desconhecida, Scenario: Busca sem ordenação informada
 
@@ -8027,7 +8026,7 @@ Nodes (4): Requirement: BE-283 — Ordenação multi-coluna da busca de operaç�
 Cohesion: 0.67
 Nodes (3): Requirement: BE-284 — Paginação e contagem total da busca de operações, Scenario: Total correto com paginação, Scenario: Limite acima do teto permitido
 
-### Community 1083 - "openspec/specs/structured-operations (18)"
+### Community 1082 - "openspec/specs/structured-operations (18)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-285 — Criar operação estruturada, Scenario: Criação bem-sucedida, Scenario: Identificador informado no payload, Scenario: Usuário somente-leitura
 
@@ -8035,11 +8034,11 @@ Nodes (4): Requirement: BE-285 — Criar operação estruturada, Scenario: Cria�
 Cohesion: 0.67
 Nodes (3): Requirement: BE-286 — Atualizar operação estruturada, Scenario: Edição com gravação única, Scenario: Operação de outro projeto
 
-### Community 1084 - "openspec/specs/structured-operations (19)"
+### Community 1083 - "openspec/specs/structured-operations (19)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-287 — Excluir operação estruturada, Scenario: Exclusão de operação sem recibo, Scenario: Exclusão barrada por recibo, Scenario: Operação de outro projeto
 
-### Community 1085 - "openspec/specs/structured-operations (20)"
+### Community 1084 - "openspec/specs/structured-operations (20)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-288 — Abrir o formulário de operação estruturada, Scenario: Formulário de nova operação, Scenario: Somente tipos ativos são oferecidos, Scenario: Ações duplicadas do controller dedicado
 
@@ -8047,19 +8046,19 @@ Nodes (4): Requirement: BE-288 — Abrir o formulário de operação estruturada
 Cohesion: 0.67
 Nodes (3): Requirement: BE-290 — Título padrão da operação, Scenario: Título derivado do portador, Scenario: Portador inválido
 
-### Community 1086 - "openspec/specs/structured-operations (21)"
+### Community 1085 - "openspec/specs/structured-operations (21)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-291 — Projeto derivado da empresa, Scenario: Projeto derivado, Scenario: Empresa ausente ou inválida, Scenario: Troca de empresa move a operação de projeto
 
-### Community 1087 - "openspec/specs/structured-operations (22)"
+### Community 1086 - "openspec/specs/structured-operations (22)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-292 — Saldo inicial e saldo corrente da operação, Scenario: Sinal do saldo inicial, Scenario: Qualquer edição reseta o saldo corrente, Scenario: Apresentação do saldo inicial
 
-### Community 731 - "openspec/specs/structured-operations (4)"
+### Community 729 - "openspec/specs/structured-operations (4)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-293 — Validações da operação estruturada, Scenario: Campos obrigatórios ausentes, Scenario: Vencimento anterior à emissão, Scenario: Capital negativo e taxa fora da faixa, Scenario: Número de contrato repetido
 
-### Community 1088 - "openspec/specs/structured-operations (23)"
+### Community 1087 - "openspec/specs/structured-operations (23)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-294 — Elegibilidade da operação a recibo, Scenario: Operação sem recibo é candidata, Scenario: Operação já faturada, Scenario: Recibo excluído libera a operação
 
@@ -8067,31 +8066,31 @@ Nodes (4): Requirement: BE-294 — Elegibilidade da operação a recibo, Scenari
 Cohesion: 0.67
 Nodes (3): Requirement: BE-295 — Indicadores de negócio da operação estruturada, Scenario: Rótulos dos indicadores, Scenario: Operação encerrada continua ativa
 
-### Community 1089 - "openspec/specs/structured-operations (24)"
+### Community 1088 - "openspec/specs/structured-operations (24)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-296 — Buscar e listar tipos de operação estruturada, Scenario: Listagem paginada e ordenada, Scenario: Tipos desativados, Scenario: Chave de ordenação desconhecida
 
-### Community 610 - "openspec/specs/structured-operations"
+### Community 606 - "openspec/specs/structured-operations"
 Cohesion: 0.33
 Nodes (6): Requirement: BE-297 — Criar tipo de operação estruturada, Scenario: Chave derivada do título, Scenario: Título duplicado, Scenario: Chave de integração duplicada, Scenario: Falha de criação não deixa efeitos, Scenario: Indicadores sem tela
 
-### Community 1090 - "openspec/specs/structured-operations (25)"
+### Community 1089 - "openspec/specs/structured-operations (25)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-298 — Atualizar tipo de operação estruturada, Scenario: Título e indicador de padrão são imutáveis, Scenario: Alteração da chave de integração, Scenario: Desativação pela API
 
-### Community 1091 - "openspec/specs/structured-operations (26)"
+### Community 1090 - "openspec/specs/structured-operations (26)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-299 — Excluir tipo de operação estruturada, Scenario: Tipo padrão do sistema, Scenario: Tipo com operações vinculadas, Scenario: Tipo removível
 
-### Community 1092 - "openspec/specs/structured-operations (27)"
+### Community 1091 - "openspec/specs/structured-operations (27)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-300 — Buscar e listar remunerações, Scenario: Listagem escopada ao projeto, Scenario: Lista ordenada e paginada, Scenario: Busca textual
 
-### Community 611 - "openspec/specs/structured-operations (2)"
+### Community 607 - "openspec/specs/structured-operations (2)"
 Cohesion: 0.33
 Nodes (6): Requirement: BE-301 — Criar remuneração, Scenario: Criação bem-sucedida, Scenario: Combinação duplicada, Scenario: Projeto forçado ao do usuário, Scenario: Classe de operação inválida, Scenario: Taxa fora da faixa
 
-### Community 1093 - "openspec/specs/structured-operations (28)"
+### Community 1092 - "openspec/specs/structured-operations (28)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-302 — Atualizar remuneração, Scenario: Alteração da taxa, Scenario: Troca da combinação, Scenario: Remuneração de outro projeto
 
@@ -8099,23 +8098,23 @@ Nodes (4): Requirement: BE-302 — Atualizar remuneração, Scenario: Alteraçã
 Cohesion: 0.67
 Nodes (3): Requirement: BE-303 — Excluir remuneração, Scenario: Exclusão barrada por recibos, Scenario: Exclusão de remuneração sem recibos
 
-### Community 732 - "openspec/specs/structured-operations (5)"
+### Community 730 - "openspec/specs/structured-operations (5)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-304 — Título, classe e sigla da remuneração, Scenario: Título derivado, Scenario: Sigla por classe de operação, Scenario: Tipo de operação inválido, Scenario: Renomear o tipo não altera recibos emitidos
 
-### Community 733 - "openspec/specs/structured-operations (6)"
+### Community 731 - "openspec/specs/structured-operations (6)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-305 — Fórmula da remuneração, Scenario: Cálculo do valor, Scenario: Operação já faturada, Scenario: Projeto sem remuneração para o tipo, Scenario: Política de arredondamento explícita
 
-### Community 734 - "openspec/specs/structured-operations (7)"
+### Community 732 - "openspec/specs/structured-operations (7)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-306 — Candidatos a recibo por remuneração, Scenario: Candidatos com valores já calculados, Scenario: Operação já faturada, Scenario: Lista de candidatos paginada, Scenario: Operação encerrada continua candidata
 
-### Community 1094 - "openspec/specs/structured-operations (29)"
+### Community 1093 - "openspec/specs/structured-operations (29)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-307 — Buscar tipos de recurso, Scenario: Listagem paginada, Scenario: Tipos desativados aparecem com sua situação, Scenario: Escopo da entidade
 
-### Community 1095 - "openspec/specs/structured-operations (30)"
+### Community 1094 - "openspec/specs/structured-operations (30)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-308 — Buscar fontes de recurso, Scenario: Listagem ordenada e paginada, Scenario: Fonte desativada continua selecionável em recebíveis, Scenario: Papel classificatório
 
@@ -8123,7 +8122,7 @@ Nodes (4): Requirement: BE-308 — Buscar fontes de recurso, Scenario: Listagem 
 Cohesion: 0.67
 Nodes (3): Requirement: BE-721 — Abrir o formulário de edição de tipo de recurso, Scenario: Painel preenchido, Scenario: Identificador inexistente
 
-### Community 735 - "openspec/specs/structured-operations (8)"
+### Community 733 - "openspec/specs/structured-operations (8)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-722 — Criar tipo de recurso, Scenario: Criação com chave derivada, Scenario: Título duplicado, Scenario: Falha de criação não deixa efeitos, Scenario: Indicadores de conta corrente e registro único
 
@@ -8139,7 +8138,7 @@ Nodes (3): Requirement: BE-724 — Excluir tipo de recurso, Scenario: Exclusão 
 Cohesion: 0.67
 Nodes (3): Requirement: BE-726 — Abrir o formulário de edição de fonte de recurso, Scenario: Painel preenchido, Scenario: Identificador inexistente
 
-### Community 736 - "openspec/specs/structured-operations (9)"
+### Community 734 - "openspec/specs/structured-operations (9)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-727 — Criar fonte de recurso, Scenario: Criação com chave derivada, Scenario: Título duplicado, Scenario: Falha de criação não deixa efeitos, Scenario: Situação da fonte
 
@@ -8151,7 +8150,7 @@ Nodes (3): Requirement: BE-728 — Atualizar fonte de recurso, Scenario: Ediçã
 Cohesion: 0.67
 Nodes (3): Requirement: BE-729 — Excluir fonte de recurso, Scenario: Exclusão bem-sucedida, Scenario: Exclusão bloqueada é reportada
 
-### Community 1101 - "openspec/specs/structured-operations (31)"
+### Community 1100 - "openspec/specs/structured-operations (31)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-280 — Tela de lista de operações estruturadas, Scenario: Colunas da lista, Scenario: Identificação correta da tela, Scenario: Acesso pelo menu
 
@@ -8159,7 +8158,7 @@ Nodes (4): Requirement: FE-280 — Tela de lista de operações estruturadas, Sc
 Cohesion: 0.67
 Nodes (3): Requirement: FE-281 — Estado de carregamento da lista de operações, Scenario: Carregamento inicial, Scenario: Recarga silenciosa
 
-### Community 1102 - "openspec/specs/structured-operations (32)"
+### Community 1101 - "openspec/specs/structured-operations (32)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-282 — Estados vazios da lista de operações, Scenario: Vazio sem busca, Scenario: Vazio com termo, Scenario: Projeto sem nenhuma operação
 
@@ -8171,15 +8170,15 @@ Nodes (3): Requirement: FE-283 — Estado de erro da lista de operações, Scena
 Cohesion: 0.67
 Nodes (3): Requirement: FE-284 — Busca textual da lista de operações, Scenario: Debounce, Scenario: Entrada só com espaços
 
-### Community 1103 - "openspec/specs/structured-operations (33)"
+### Community 1102 - "openspec/specs/structured-operations (33)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-285 — Filtro de período da lista de operações, Scenario: Seleção de intervalo, Scenario: Um dia só, Scenario: Intervalo que cruza o ano
 
-### Community 1104 - "openspec/specs/structured-operations (34)"
+### Community 1103 - "openspec/specs/structured-operations (34)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-286 — Filtros de empresa, portador e tipo de operação, Scenario: Filtros combinados, Scenario: Tipos oferecidos no filtro, Scenario: Filtro limpo
 
-### Community 1105 - "openspec/specs/structured-operations (35)"
+### Community 1104 - "openspec/specs/structured-operations (35)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-287 — Ordenação pelo cabeçalho da lista de operações, Scenario: Ciclo de ordenação, Scenario: Uma requisição por clique, Scenario: Colunas ordenáveis correspondem às exibidas
 
@@ -8187,7 +8186,7 @@ Nodes (4): Requirement: FE-287 — Ordenação pelo cabeçalho da lista de opera
 Cohesion: 0.67
 Nodes (3): Requirement: FE-288 — Navegação e paginação da lista de operações, Scenario: Navegação com total correto, Scenario: Campo de tamanho vazio
 
-### Community 737 - "openspec/specs/structured-operations (10)"
+### Community 735 - "openspec/specs/structured-operations (10)"
 Cohesion: 0.40
 Nodes (5): Requirement: FE-289 — Widget de linha da operação estruturada, Scenario: Formatação da linha, Scenario: Contrato vazio, Scenario: Datas nulas, Scenario: Tipo com pré-faturamento
 
@@ -8195,7 +8194,7 @@ Nodes (5): Requirement: FE-289 — Widget de linha da operação estruturada, Sc
 Cohesion: 0.67
 Nodes (3): Requirement: FE-290 — Menu de ações da linha de operação, Scenario: Abrir o detalhe, Scenario: Usuário somente-leitura
 
-### Community 1106 - "openspec/specs/structured-operations (36)"
+### Community 1105 - "openspec/specs/structured-operations (36)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-291 — Guarda do cadastro de operação estruturada, Scenario: Projeto sem portador, Scenario: Rótulo da tela de cadastro, Scenario: Usuário somente-leitura
 
@@ -8203,15 +8202,15 @@ Nodes (4): Requirement: FE-291 — Guarda do cadastro de operação estruturada,
 Cohesion: 0.67
 Nodes (3): Requirement: FE-292 — Remoção de operação estruturada pela tela, Scenario: Confirmação com o rótulo correto, Scenario: Exclusão barrada por recibo
 
-### Community 1107 - "openspec/specs/structured-operations (37)"
+### Community 1106 - "openspec/specs/structured-operations (37)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-293 — Formulário de operação estruturada, Scenario: Campos do formulário, Scenario: Título dinâmico, Scenario: Textos de ajuda dos campos
 
-### Community 1108 - "openspec/specs/structured-operations (38)"
+### Community 1107 - "openspec/specs/structured-operations (38)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-294 — Máscaras do formulário de operação estruturada, Scenario: Máscara monetária, Scenario: Mais de um separador decimal, Scenario: Campo esvaziado
 
-### Community 1109 - "openspec/specs/structured-operations (39)"
+### Community 1108 - "openspec/specs/structured-operations (39)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-295 — Salvamento e campos obrigatórios do formulário, Scenario: Campos obrigatórios pendentes, Scenario: Vencimento obrigatório, Scenario: Salvamento concluído
 
@@ -8219,35 +8218,35 @@ Nodes (4): Requirement: FE-295 — Salvamento e campos obrigatórios do formulá
 Cohesion: 0.67
 Nodes (3): Requirement: FE-296 — Prévia de saldo no formulário, Scenario: Prévia coerente com a gravação, Scenario: Aviso de incongruência
 
-### Community 1110 - "openspec/specs/structured-operations (40)"
+### Community 1109 - "openspec/specs/structured-operations (40)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-297 — Datas do formulário de operação estruturada, Scenario: Restrição mútua, Scenario: Datas na edição, Scenario: Operação legada com datas nulas
 
-### Community 1111 - "openspec/specs/structured-operations (41)"
+### Community 1110 - "openspec/specs/structured-operations (41)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-298 — Estados vazios bloqueantes do formulário, Scenario: Projeto sem portador, Scenario: Projeto sem empresa, Scenario: Precedência das mensagens
 
-### Community 1112 - "openspec/specs/structured-operations (42)"
+### Community 1111 - "openspec/specs/structured-operations (42)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-299 — Detalhe da operação estruturada, Scenario: Campos do detalhe, Scenario: Operação inexistente, Scenario: Saldos exibidos com sinal
 
-### Community 738 - "openspec/specs/structured-operations (11)"
+### Community 736 - "openspec/specs/structured-operations (11)"
 Cohesion: 0.40
 Nodes (5): Requirement: FE-300 — Tela de tipos de operação estruturada, Scenario: Lista e estados, Scenario: Estado de erro, Scenario: Tipo padrão do sistema, Scenario: Permissão para cadastrar
 
-### Community 739 - "openspec/specs/structured-operations (12)"
+### Community 737 - "openspec/specs/structured-operations (12)"
 Cohesion: 0.40
 Nodes (5): Requirement: FE-301 — Painel de tipo de operação estruturada, Scenario: Campos do painel, Scenario: Confirmação de sucesso, Scenario: Erros legíveis, Scenario: Indicadores sem tela
 
-### Community 740 - "openspec/specs/structured-operations (13)"
+### Community 738 - "openspec/specs/structured-operations (13)"
 Cohesion: 0.40
 Nodes (5): Requirement: FE-303 — Tela de remunerações, Scenario: Colunas da lista, Scenario: Lista ordenável e paginada, Scenario: Estado de erro, Scenario: Permissão para cadastrar
 
-### Community 1113 - "openspec/specs/structured-operations (43)"
+### Community 1112 - "openspec/specs/structured-operations (43)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-304 — Painel de remuneração, Scenario: Escolha da classe e do tipo, Scenario: Edição só da taxa, Scenario: Tipo desativado depois de cadastrado
 
-### Community 1114 - "openspec/specs/structured-operations (44)"
+### Community 1113 - "openspec/specs/structured-operations (44)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-305 — Máscara de percentual da remuneração, Scenario: Formatação, Scenario: Taxa fora da faixa, Scenario: Campo vazio
 
@@ -8255,19 +8254,19 @@ Nodes (4): Requirement: FE-305 — Máscara de percentual da remuneração, Scen
 Cohesion: 0.67
 Nodes (3): Requirement: FE-306 — Acesso direto às telas de remuneração, Scenario: Abrir a edição pelo endereço, Scenario: Endereço exibido após abrir o editor
 
-### Community 741 - "openspec/specs/structured-operations (14)"
+### Community 739 - "openspec/specs/structured-operations (14)"
 Cohesion: 0.40
 Nodes (5): Requirement: FE-307 — Tela de tipos de recurso, Scenario: Acesso pelo menu, Scenario: Campos do painel, Scenario: Permissão de escrita, Scenario: Ordenação da lista
 
-### Community 1115 - "openspec/specs/structured-operations (45)"
+### Community 1114 - "openspec/specs/structured-operations (45)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-308 — Tela de fontes de recurso, Scenario: Lista e ordenação, Scenario: Nomenclatura distinta de tipos de recurso, Scenario: Textos do painel
 
-### Community 1116 - "openspec/specs/structured-operations (46)"
+### Community 1115 - "openspec/specs/structured-operations (46)"
 Cohesion: 0.50
 Nodes (4): Requirement: FE-309 — Permissões e sessão nas telas da unidade, Scenario: Sem sessão, Scenario: Usuário desativado, Scenario: Usuário somente-leitura
 
-### Community 1096 - "openspec/specs/structured-operations (47)"
+### Community 1095 - "openspec/specs/structured-operations (47)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-280 — Tabela `structured_operations`, Scenario: Integridade referencial garantida pelo banco, Scenario: Consultas da lista indexadas, Scenario: Sinal do saldo inicial na carga
 
@@ -8283,7 +8282,7 @@ Nodes (3): Requirement: DB-282 — Índices e integridade referencial da unidade
 Cohesion: 0.67
 Nodes (3): Requirement: DB-283 — Tabela `structured_operation_types`, Scenario: Unicidade no banco, Scenario: Filtro por situação
 
-### Community 1097 - "openspec/specs/structured-operations (48)"
+### Community 1096 - "openspec/specs/structured-operations (48)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-284 — Tabela `remunerations`, Scenario: Unicidade da combinação no banco, Scenario: Consulta por projeto indexada, Scenario: Precisão da taxa
 
@@ -8295,7 +8294,7 @@ Nodes (3): Requirement: DB-285 — Título da remuneração, Scenario: Título a
 Cohesion: 0.67
 Nodes (3): Requirement: DB-286 — Tabela `resource_kinds`, Scenario: Unicidade no banco, Scenario: Origem dos registros
 
-### Community 1098 - "openspec/specs/structured-operations (49)"
+### Community 1097 - "openspec/specs/structured-operations (49)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-287 — Tabela `resource_sources`, Scenario: Unicidade no banco, Scenario: Exclusão bloqueada por uso, Scenario: Papel na modelagem
 
@@ -8307,11 +8306,11 @@ Nodes (3): Requirement: DB-288 — Proveniência das fontes de recurso, Scenario
 Cohesion: 0.67
 Nodes (3): Requirement: DB-289 — Coluna órfã de tipo de recurso em recebíveis, Scenario: Verificação antes do descarte, Scenario: Coluna sem consumidor
 
-### Community 1099 - "openspec/specs/structured-operations (50)"
+### Community 1098 - "openspec/specs/structured-operations (50)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-290 — Tabela `receipts` como materialização da remuneração, Scenario: Valores congelados, Scenario: Unicidade por operação e projeto no banco, Scenario: Precisão do valor
 
-### Community 1100 - "openspec/specs/structured-operations (51)"
+### Community 1099 - "openspec/specs/structured-operations (51)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-292 — Carga inicial dos tipos de operação estruturada, Scenario: Tipos e chaves preservados, Scenario: Nenhum tipo padrão é removível, Scenario: Autoria dos registros semeados
 
@@ -8335,7 +8334,7 @@ Nodes (3): Requirement: DB-296 — Precisão de valores monetários e de taxas, 
 Cohesion: 0.67
 Nodes (3): Requirement: DB-297 — Autoria dos registros da unidade, Scenario: Autoria não forjável, Scenario: Autoria e última edição
 
-### Community 1117 - "openspec/specs/structured-operations (52)"
+### Community 1116 - "openspec/specs/structured-operations (52)"
 Cohesion: 0.50
 Nodes (4): Requirement: OPS-285 — Importação das fontes de recurso do sistema anterior, Scenario: ETL não é portado, Scenario: Autoria artificial dos importados, Scenario: Tipos de recurso fora da importação
 
@@ -8347,11 +8346,11 @@ Nodes (3): Requirement: OPS-286 — Presença das telas da unidade no menu do co
 Cohesion: 0.67
 Nodes (3): Requirement: OPS-288 — Parâmetros de ordenação das listas da unidade, Scenario: Chave desconhecida, Scenario: Parâmetro em formato inesperado
 
-### Community 1118 - "openspec/specs/structured-operations (53)"
+### Community 1117 - "openspec/specs/structured-operations (53)"
 Cohesion: 0.50
 Nodes (4): Requirement: OPS-289 — Formatação de valores e percentuais da unidade, Scenario: Formatação monetária, Scenario: Formatação da taxa, Scenario: Falha de formatação
 
-### Community 464 - "openspec/specs/themes - Requirements"
+### Community 458 - "openspec/specs/themes - Requirements"
 Cohesion: 0.22
 Nodes (9): Requirements, Requirement: BE-372 — Editar tema, Scenario: Edicao salva todos os campos, inclusive o estilo de fundo, Scenario: Edicao rejeitada, Requirement: BE-382 — Marca canonica como semente do tema padrao, Scenario: Seed do tema padrao, Requirement: FE-387 — Tela de detalhe do tema, Scenario: Chips de cor no detalhe (+1 more)
 
@@ -8359,15 +8358,15 @@ Nodes (9): Requirements, Requirement: BE-372 — Editar tema, Scenario: Edicao s
 Cohesion: 0.67
 Nodes (3): Requirement: BE-370 — Listar e buscar temas, Scenario: Busca por titulo com paginacao, Scenario: Lista mistura tipos de tema
 
-### Community 742 - "openspec/specs/themes (2)"
+### Community 740 - "openspec/specs/themes (2)"
 Cohesion: 0.40
 Nodes (5): Requirement: BE-371 — Criar tema, Scenario: Criacao com defaults, Scenario: Titulo duplicado, Scenario: Tentativa de forjar o id, Scenario: Upload de arquivo que se passa por imagem
 
-### Community 1119 - "openspec/specs/themes (4)"
+### Community 1118 - "openspec/specs/themes (4)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-373 — Excluir tema, Scenario: Tema padrao nao pode ser excluido, Scenario: Tema em uso por usuarios, Scenario: Anexos removidos junto
 
-### Community 1120 - "openspec/specs/themes (5)"
+### Community 1119 - "openspec/specs/themes (5)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-374 — Ativar tema (tornar padrao), Scenario: Promocao troca o padrao atomicamente, Scenario: Ativar nao muda o tema de quem ja tem um, Scenario: Promocao exige papel de admin
 
@@ -8383,7 +8382,7 @@ Nodes (3): Requirement: BE-376 — Navegacao e deep-link da area de temas, Scena
 Cohesion: 0.67
 Nodes (3): Requirement: BE-377 — Geracao do CSS do tema, Scenario: Cores do tema chegam a tela, Scenario: Telas publicas de sessao
 
-### Community 1121 - "openspec/specs/themes (6)"
+### Community 1120 - "openspec/specs/themes (6)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-378 — CSS customizado do tema (`override_css`), Scenario: CSS customizado tem efeito, Scenario: Gate por papel e consistente, Scenario: Fontes do tema sao aplicadas
 
@@ -8391,7 +8390,7 @@ Nodes (4): Requirement: BE-378 — CSS customizado do tema (`override_css`), Sce
 Cohesion: 0.67
 Nodes (3): Requirement: BE-379 — Tipos de tema (global e por usuario), Scenario: Tipo e obrigatorio e rotulado, Scenario: Tipo desconhecido
 
-### Community 1122 - "openspec/specs/themes (7)"
+### Community 1121 - "openspec/specs/themes (7)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-380 — Precedencia e atribuicao de tema, Scenario: Usuario sem tema proprio, Scenario: Cadastro publico herda o tema do gestor, Scenario: Nao existe tema por projeto
 
@@ -8399,7 +8398,7 @@ Nodes (4): Requirement: BE-380 — Precedencia e atribuicao de tema, Scenario: U
 Cohesion: 0.67
 Nodes (3): Requirement: BE-381 — Modo claro e modo escuro, Scenario: Escolha do modo tem efeito, Scenario: Default e claro
 
-### Community 1123 - "openspec/specs/themes (8)"
+### Community 1122 - "openspec/specs/themes (8)"
 Cohesion: 0.50
 Nodes (4): Requirement: BE-383 — Onde o tema aparece: logos, nome de exibicao e copyright, Scenario: Logos por contexto, Scenario: E-mail transacional sem logo no tema, Scenario: Textos de apresentacao
 
@@ -8407,319 +8406,315 @@ Nodes (4): Requirement: BE-383 — Onde o tema aparece: logos, nome de exibicao 
 Cohesion: 0.67
 Nodes (3): Requirement: BE-384 — Autenticacao e autorizacao dos endpoints de tema, Scenario: Anonimo e recusado, Scenario: Usuario autenticado sem papel administrativo
 
-### Community 743 - "openspec/specs/themes (3)"
+### Community 741 - "openspec/specs/themes (3)"
 Cohesion: 0.40
 Nodes (5): Requirement: FE-385 — Tela de lista de temas, Scenario: Card sem logo, Scenario: Chips de cor, Scenario: Autoria do tema, Scenario: Falha de carga e visivel
 
-### Community 612 - "openspec/specs/themes"
+### Community 608 - "openspec/specs/themes"
 Cohesion: 0.33
 Nodes (6): Requirement: FE-386 — Formulario de tema, Scenario: Rotulos de cor corretos no primeiro paint, Scenario: Estilo de fundo de login, Scenario: Extracao automatica de paleta, Scenario: Recorte de imagem por tipo, Scenario: Erro de validacao preserva os anexos
 
-### Community 1124 - "openspec/specs/themes (9)"
+### Community 1123 - "openspec/specs/themes (9)"
 Cohesion: 0.50
 Nodes (4): Requirement: DB-388 — Modelo de dados de tema, Scenario: Um unico padrao garantido pelo banco, Scenario: Referencia do usuario ao tema, Scenario: Titulo unico
 
-### Community 1125 - "openspec/specs/themes (10)"
+### Community 1124 - "openspec/specs/themes (10)"
 Cohesion: 0.50
 Nodes (4): Requirement: OPS-389 — Pipeline de imagem dos anexos de tema, Scenario: Derivadas geradas por tipo de anexo, Scenario: Limite de tamanho, Scenario: Acesso ao arquivo
 
-### Community 1126 - "openspec/specs/themes (11)"
+### Community 1125 - "openspec/specs/themes (11)"
 Cohesion: 0.50
 Nodes (4): Requirement: OPS-750 — Nome da aplicacao e cor da marca com fonte unica, Scenario: Cor primaria consultada, Scenario: Nome de exibicao consultado, Scenario: Varredura por cor literal
 
-### Community 577 - "Frontend Pages / pages - dictionaries.ts"
+### Community 572 - "Frontend Pages / pages - dictionaries.ts"
 Cohesion: 0.33
 Nodes (5): Chunk, NicheParams, RISCADO, REALCE, dictionaries
 
-### Community 261 - "Frontend Components - useTheme"
+### Community 260 - "Frontend Components - useTheme"
 Cohesion: 0.17
 Nodes (10): LightGlassEffect(), corDoTema(), ParticlesBackground(), ThemeProviderProps, ThemeProvider(), useTheme(), AudioPlayerState, useAudioPlayerStore (+2 more)
 
-### Community 159 - "Frontend Components - RichTextEditor.tsx"
+### Community 157 - "Frontend Components - RichTextEditor.tsx"
 Cohesion: 0.14
 Nodes (20): CustomText, ParagraphElement, H1Element, H2Element, BulletedListElement, ListItemElement, LinkElement, CodeBlockElement (+12 more)
 
-### Community 397 - "Frontend Components / charts - theme.ts"
+### Community 387 - "Frontend Components / charts - theme.ts"
 Cohesion: 0.29
 Nodes (7): RechartsBar(), RechartsLine(), getThemeVars(), SERIES, vibrantPalette(), LEAD_SOURCE_ORDER, leadSourceColor()
 
-### Community 175 - "Frontend Components / chat - ChatCTA.tsx"
-Cohesion: 0.12
-Nodes (11): BaseCTAProps, TriggerAgentProps, SendIntentProps, ChatCTA, TriggerFlowOptions, ViewMode, ChatContextType, ChatContext (+3 more)
-
-### Community 176 - "Frontend Components / chat - MobileChatBar.tsx"
+### Community 171 - "Frontend Components / chat - MobileChatBar.tsx"
 Cohesion: 0.15
 Nodes (15): DataSphereProps, PALETA_TOKENS, lerPaleta(), DataSphere(), MobileChatBarProps, ROUTE_HINTS, getLastAgentPreview(), MobileChatBar() (+7 more)
 
-### Community 66 - "Frontend Features / chat-builder - ChatBuilderPage.tsx"
-Cohesion: 0.07
-Nodes (12): nodeTypes, initialNodes, initialEdges, ChatBuilderPage(), IMPORTANT: Skip for AI agents — they manage state directly via AIAgentConfigPane, chatBuilderApi, HandoffNode, NodesSidebar() (+4 more)
+### Community 438 - "Frontend Components / ui - Sheet.tsx"
+Cohesion: 0.22
+Nodes (6): SheetOverlay, sheetVariants, SheetContentProps, SheetContent, SheetTitle, SheetDescription
 
-### Community 111 - "Frontend Features / chat-builder - PropertiesPanel.tsx"
-Cohesion: 0.11
-Nodes (19): FlowSettingsModalProps, FlowSettingsData, FlowSettingsModal(), KeywordInputProps, KeywordInput(), PropertiesPanel(), SELECTOR_CATEGORIES, SelectorPickerProps (+11 more)
+### Community 488 - "Frontend Components / ui - drawer.tsx"
+Cohesion: 0.25
+Nodes (4): DrawerOverlay, DrawerContent, DrawerTitle, DrawerDescription
 
-### Community 95 - ".migration-ai9/map - 2. Mapa item por item"
+### Community 200 - "Frontend Lib / api - PropertiesPanel.tsx"
+Cohesion: 0.16
+Nodes (14): PropertiesPanel(), SELECTOR_CATEGORIES, SelectorPickerProps, SelectorPicker(), ChatMessage, ExecutionLog, readSession(), useChatFlow() (+6 more)
+
+### Community 96 - ".migration-ai9/map - 2. Mapa item por item"
 Cohesion: 0.07
 Nodes (27): Migration map — sfg → ai9 · bloco **AUTH E ADMINISTRAÇÃO**, Legenda das estratégias, 0. O item de maior risco deste mapa: **a escala de hierarquia está invertida**, 0.1 O que este bloco decide para o resto da migração, 1. Fatias verticais propostas, 2. Mapa item por item, 2.1 `auth-users` — Backend (BE-001 a BE-049), 2.2 `auth-users` — Frontend (FE-001 a FE-049) (+19 more)
 
-### Community 190 - "ai9-base-catalog.md - Backend — o que existe"
+### Community 186 - "ai9-base-catalog.md - Backend — o que existe"
 Cohesion: 0.11
 Nodes (18): Catalogo da base ai9 **depois do trim** — a referencia de reuso do Phase 2, O tamanho da base hoje, Backend — o que existe, Autenticacao e sessao — **reuse forte**, Autorizacao — **adapt**, e e o gancho do DEC-18, Anexos e arquivos — **CORRIGIDO em 25/08/2026, leia com atencao**, Outras pecas que faltavam neste catalogo (mesma correcao), Integracoes e credenciais — **CORRIGIDO em 25/08/2026** (+10 more)
 
-### Community 192 - ".migration-ai9/map (2)"
+### Community 188 - ".migration-ai9/map (2)"
 Cohesion: 0.11
 Nodes (18): Migration map — Safegold (`sfg`) → ai9 · **Bloco DADOS, INFRA E TRANSVERSAIS**, 0. Correções ao catálogo e ao inventário (feitas com evidência), 1. Fatias verticais propostas, 2. Mapa item por item, 2.1 `data-schema` — 85 IDs, 2.2 `ops-config` — 42 IDs, 2.3 `jobs-cron` — 23 IDs, 2.4 `integrations` — 38 IDs (+10 more)
 
-### Community 67 - ".migration-ai9/map - 2. Tabela item por item"
+### Community 68 - ".migration-ai9/map - 2. Tabela item por item"
 Cohesion: 0.06
 Nodes (32): Migration map — sfg → ai9 · bloco **PROJETOS E CADASTROS**, 0. Leitura obrigatória antes da tabela, 0.1 O veredito de uma frase, 0.2 Legenda de abreviações (cada uma é um arquivo real), 0.3 O que **cada** `build` de tela deste bloco herda, sem exceção, 0.4 O que **cada** `build` de endpoint deste bloco herda, sem exceção, 0.5 As quatro regras transversais que atravessam os 290 IDs, 0.6 O escopo por projeto — **desenho normativo** (contrato para os outros três blocos) (+24 more)
 
-### Community 124 - ".migration-ai9/map - 2. Mapa item por item (2)"
+### Community 121 - ".migration-ai9/map - 2. Mapa item por item (2)"
 Cohesion: 0.08
 Nodes (23): Migration map — sfg → ai9 · **Recebíveis, Renegociações e Contratos**, Resumo por estratégia, Legenda de infraestrutura reusada, 1. Fatias verticais propostas, 2. Mapa item por item, 2.1 `receivables` — backend (BE-150 … BE-189), 2.2 `receivables` — frontend (FE-150 … FE-189), 2.3 `receivables` — dados (DB-150 … DB-167) (+15 more)
 
-### Community 746 - "API Controllers / api - auth_response.rb"
+### Community 744 - "API Controllers / api - auth_response.rb"
 Cohesion: 0.50
 Nodes (3): Api, Entities, AuthResponse
 
-### Community 750 - "API Controllers / api - credential.rb"
+### Community 748 - "API Controllers / api - credential.rb"
 Cohesion: 0.50
 Nodes (3): Api, Entities, Credential
 
-### Community 753 - "API Controllers / api - login_code_response.rb"
+### Community 751 - "API Controllers / api - login_code_response.rb"
 Cohesion: 0.50
 Nodes (3): Api, Entities, LoginCodeResponse
 
-### Community 465 - "API Controllers / api - permission.rb"
+### Community 459 - "API Controllers / api - permission.rb"
 Cohesion: 0.25
 Nodes (6): Api, Entities, Permission, Api, Entities, UserPermission
 
-### Community 757 - "API Controllers / api - polemk_webhook.rb"
-Cohesion: 0.50
-Nodes (3): Api, Entities, PolemkWebhook
-
-### Community 772 - "API Controllers / api - downloads.rb"
+### Community 771 - "API Controllers / api - downloads.rb"
 Cohesion: 0.67
 Nodes (3): Api, V1, Downloads
 
-### Community 518 - "Backend Services / ai - Condition"
+### Community 510 - "Backend Services / ai - Condition"
 Cohesion: 0.29
 Nodes (3): Ai, Nodes, Condition
 
-### Community 476 - "Backend Services / ai - Handoff"
+### Community 469 - "Backend Services / ai - Handoff"
 Cohesion: 0.25
 Nodes (3): Ai, Nodes, Handoff
 
-### Community 519 - "Backend Services / ai - Text"
+### Community 511 - "Backend Services / ai - Text"
 Cohesion: 0.29
 Nodes (3): Ai, Nodes, Text
 
-### Community 477 - "Backend Services / ai - Trigger"
+### Community 470 - "Backend Services / ai - Trigger"
 Cohesion: 0.25
 Nodes (3): Ai, Nodes, Trigger
 
-### Community 520 - "Backend Services / ai - BaseProvider"
+### Community 512 - "Backend Services / ai - BaseProvider"
 Cohesion: 0.29
 Nodes (3): Ai, Providers, BaseProvider
 
-### Community 355 - "dev - dev"
+### Community 348 - "dev - dev"
 Cohesion: 0.38
 Nodes (11): dev script, log(), err(), cleanup(), check_cmd(), preflight(), start_backend(), start_sidekiq() (+3 more)
 
-### Community 187 - "prod - prod"
+### Community 181 - "prod - prod"
 Cohesion: 0.21
 Nodes (18): prod script, HOME, GEM_HOME, GEM_PATH, PATH, NVM_DIR, log(), err() (+10 more)
 
-### Community 490 - "switch_env - switch_env"
+### Community 483 - "switch_env - switch_env"
 Cohesion: 0.46
 Nodes (7): switch_env script, write_frontend_local(), write_backend_local(), write_frontend_ngrok(), write_backend_ngrok(), write_frontend_prod(), write_backend_prod()
 
-### Community 631 - "Frontend Components / chat - SequentialMessageBubble.tsx"
+### Community 626 - "Frontend Components / chat - SequentialMessageBubble.tsx"
 Cohesion: 0.40
 Nodes (3): Block, ChatMessage, SequentialMessageBubbleProps
 
-### Community 417 - "Frontend Features / chat-builder - nodes.ts"
+### Community 404 - "Frontend Features / chat-builder - nodes.ts"
 Cohesion: 0.20
 Nodes (9): TextNodeData, InputNodeData, OptionNodeData, ConditionNodeData, TriggerNodeData, HandoffNodeData, RedirectNodeData, ChatNodeData (+1 more)
 
-### Community 324 - "Frontend Lib / analytics - identidade.ts"
+### Community 322 - "Frontend Lib / analytics - identidade.ts"
 Cohesion: 0.42
 Nodes (11): temJanela(), novoId(), lerCookie(), gravarCookie(), lerLocal(), gravarLocal(), visitorId(), sessionId() (+3 more)
 
-### Community 147 - "tsconfig.json - compilerOptions"
+### Community 145 - "tsconfig.json - compilerOptions"
 Cohesion: 0.09
 Nodes (21): compilerOptions, target, useDefineForClassFields, lib, module, skipLibCheck, moduleResolution, allowImportingTsExtensions (+13 more)
 
-### Community 446 - "tsconfig.node.json - compilerOptions"
+### Community 440 - "tsconfig.node.json - compilerOptions"
 Cohesion: 0.22
 Nodes (8): compilerOptions, composite, skipLibCheck, module, moduleResolution, allowSyntheticDefaultImports, strict, include
 
-### Community 651 - "install.sh - install.sh"
+### Community 649 - "install.sh - install.sh"
 Cohesion: 0.40
 Nodes (4): install.sh script, GEM_HOME, GEM_PATH, PATH
 
-### Community 818 - "patch_sidebar.js - patch_sidebar.js"
+### Community 817 - "patch_sidebar.js - patch_sidebar.js"
 Cohesion: 0.50
 Nodes (3): fs, content, newContent
 
-### Community 370 - "setup.sh - setup.sh"
+### Community 362 - "setup.sh - setup.sh"
 Cohesion: 0.44
 Nodes (11): setup.sh script, normalize_scripts(), log_info(), log_warn(), log_error(), check_prerequisites(), setup_backend(), setup_frontend() (+3 more)
 
-### Community 821 - "tools/graphify/steps - 05_label.py"
+### Community 820 - "tools/graphify/steps - 05_label.py"
 Cohesion: 0.67
 Nodes (3): deepest_common(), fallback(), Step 05 - name every community, and rewrite GRAPH_REPORT.md with those names.
 
-### Community 638 - "graphify-out/memory"
+### Community 636 - "graphify-out/memory"
 Cohesion: 0.40
 Nodes (4): Q: Why does ConversionFunnel bridge three otherwise-separate communities with betweenness 0.124?, Answer, Outcome, Source Nodes
 
-### Community 639 - "graphify-out/memory (2)"
+### Community 637 - "graphify-out/memory (2)"
 Cohesion: 0.40
 Nodes (4): Q: Cross-language edge audit: how many graphify edges survive verification against source, and is the graph trustworthy for architecture questions?, Answer, Outcome, Source Nodes
 
-### Community 640 - "graphify-out/memory (3)"
+### Community 638 - "graphify-out/memory (3)"
 Cohesion: 0.40
 Nodes (4): Q: Can the graph quality be improved?, Answer, Outcome, Source Nodes
 
-### Community 641 - "graphify-out/memory (4)"
+### Community 639 - "graphify-out/memory (4)"
 Cohesion: 0.40
 Nodes (4): Q: CORRECTION: were the 40% false calls edges real?, Answer, Outcome, Source Nodes
 
-### Community 642 - "graphify-out/memory (5)"
+### Community 640 - "graphify-out/memory (5)"
 Cohesion: 0.40
 Nodes (4): Q: Rebuild the graph as directed, Answer, Outcome, Source Nodes
 
-### Community 643 - "graphify-out/memory (6)"
+### Community 641 - "graphify-out/memory (6)"
 Cohesion: 0.40
 Nodes (4): Q: Fix the single remaining false backend edge, Answer, Outcome, Source Nodes
 
-### Community 644 - "graphify-out/memory (7)"
+### Community 642 - "graphify-out/memory (7)"
 Cohesion: 0.40
 Nodes (4): Q: Resolve the pending hyperedges gap, Answer, Outcome, Source Nodes
 
-### Community 645 - "graphify-out/memory (8)"
+### Community 643 - "graphify-out/memory (8)"
 Cohesion: 0.40
 Nodes (4): Q: Re-extract the 8 doc files that produced no nodes, Answer, Outcome, Source Nodes
 
-### Community 646 - "graphify-out/memory (9)"
+### Community 644 - "graphify-out/memory (9)"
 Cohesion: 0.40
 Nodes (4): Q: Make the graph good as a base-repo reference: extract remaining in-scope docs and clean noise, Answer, Outcome, Source Nodes
 
-### Community 647 - "graphify-out/memory - Q: Is the graph ready?"
+### Community 645 - "graphify-out/memory - Q: Is the graph ready?"
 Cohesion: 0.40
 Nodes (4): Q: Is the graph ready?, Answer, Outcome, Source Nodes
 
-### Community 648 - "graphify-out/memory (10)"
+### Community 646 - "graphify-out/memory (10)"
 Cohesion: 0.40
 Nodes (4): Q: Close out: measure TypeScript recall and finish the graph, Answer, Outcome, Source Nodes
 
-### Community 649 - "graphify-out/memory (11)"
+### Community 647 - "graphify-out/memory (11)"
 Cohesion: 0.40
 Nodes (4): Q: Is the graph good for the base-repo objective?, Answer, Outcome, Source Nodes
 
-### Community 650 - "graphify-out/memory (12)"
+### Community 648 - "graphify-out/memory (12)"
 Cohesion: 0.40
 Nodes (4): Q: Remove .trae and close the Ruby recall gap, Answer, Outcome, Source Nodes
 
-### Community 403 - "blog_vsl.md"
+### Community 393 - "blog_vsl.md"
 Cohesion: 0.18
 Nodes (10): Specification: Blog de Posts (Vídeos de Conteúdo), Visão geral da feature, Decisões arquiteturais, Model separado: `Post`, ChatFlow único para blog, Corpo do post em ActionText, Dependências entre tarefas, Riscos e decisões de design (+2 more)
 
-### Community 458 - "blog_vsl.md (2)"
+### Community 452 - "blog_vsl.md (2)"
 Cohesion: 0.22
 Nodes (9): Sprint 1 — Core da Publicação (Backend), Tarefa 1.6: Painel admin de Posts, Contexto, Onde começa, Onde termina, O que precisa ser feito, No Backend, No Frontend (+1 more)
 
-### Community 546 - "blog_vsl.md (9)"
+### Community 541 - "blog_vsl.md (9)"
 Cohesion: 0.29
 Nodes (7): Tarefa 1.1: Model `Post` e migration, Contexto, Onde começa, Onde termina, O que precisa ser feito, No Backend, Critérios de aceite
 
-### Community 505 - "blog_vsl.md (3)"
+### Community 497 - "blog_vsl.md (3)"
 Cohesion: 0.25
 Nodes (8): Tarefa 1.2: Pipeline de transcrição assíncrona, Contexto, Onde começa, Onde termina, O que precisa ser feito, No Backend, Observações importantes, Critérios de aceite
 
-### Community 506 - "blog_vsl.md (4)"
+### Community 498 - "blog_vsl.md (4)"
 Cohesion: 0.25
 Nodes (8): Tarefa 1.3: Geração do corpo do post via IA (ActionText), Contexto, Onde começa, Onde termina, O que precisa ser feito, No Backend, Observações importantes, Critérios de aceite
 
-### Community 547 - "blog_vsl.md (10)"
+### Community 542 - "blog_vsl.md (10)"
 Cohesion: 0.29
 Nodes (7): Tarefa 1.4: Endpoints públicos de posts, Contexto, Onde começa, Onde termina, O que precisa ser feito, No Backend, Critérios de aceite
 
-### Community 507 - "blog_vsl.md (5)"
+### Community 499 - "blog_vsl.md (5)"
 Cohesion: 0.25
 Nodes (8): Tarefa 1.5: Chatbot do blog — ChatFlow único + endpoint, Contexto, Onde começa, Onde termina, O que precisa ser feito, No Backend, Observações importantes, Critérios de aceite
 
-### Community 509 - "blog_vsl.md (6)"
+### Community 501 - "blog_vsl.md (6)"
 Cohesion: 0.25
 Nodes (8): Sprint 2 — Experiência do Blog (Frontend), Tarefa 2.4: Navegação entre posts e listagem `/posts`, Contexto, Onde começa, Onde termina, O que precisa ser feito, No Frontend, Critérios de aceite
 
-### Community 508 - "blog_vsl.md (7)"
+### Community 500 - "blog_vsl.md (7)"
 Cohesion: 0.25
 Nodes (8): Tarefa 2.1: Página de detalhe do post (`/posts/:id`), Contexto, Onde começa, Onde termina, O que precisa ser feito, No Frontend, Observações importantes, Critérios de aceite
 
-### Community 548 - "blog_vsl.md (11)"
+### Community 543 - "blog_vsl.md (11)"
 Cohesion: 0.29
 Nodes (7): Tarefa 2.2: Seção de comentários públicos, Contexto, Onde começa, Onde termina, O que precisa ser feito, No Frontend, Critérios de aceite
 
-### Community 549 - "blog_vsl.md (12)"
+### Community 544 - "blog_vsl.md (12)"
 Cohesion: 0.29
 Nodes (7): Tarefa 2.3: Chatbot contextualizado no post, Contexto, Onde começa, Onde termina, O que precisa ser feito, No Frontend, Critérios de aceite
 
-### Community 510 - "blog_vsl.md (8)"
+### Community 502 - "blog_vsl.md (8)"
 Cohesion: 0.25
 Nodes (8): Sprint 3 — Integração com a Home e SEO, Tarefa 3.2: SEO — Meta tags e Open Graph, Contexto, Onde começa, Onde termina, O que precisa ser feito, No Frontend, Critérios de aceite
 
-### Community 550 - "blog_vsl.md (13)"
+### Community 545 - "blog_vsl.md (13)"
 Cohesion: 0.29
 Nodes (7): Tarefa 3.1: VSL da home apontando para o post featured, Contexto, Onde começa, Onde termina, O que precisa ser feito, No Frontend, Critérios de aceite
 
-### Community 305 - "n8n_lma_refactor.md"
+### Community 303 - "n8n_lma_refactor.md"
 Cohesion: 0.14
 Nodes (13): Refactor N8N: GOAT LMA Architecture, Contexto, Onde começa, Onde termina, O que precisa ser feito, 1. Conectar Persistência, Flow, 2. Node `response` (Code) (+5 more)
 
-### Community 371 - "specs_fix_plan.md"
+### Community 363 - "specs_fix_plan.md"
 Cohesion: 0.17
 Nodes (11): Plano de Correção — 31 Specs Falhando, Grupo 1 — Migração de URL da API do Instagram `[10 falhas]`, Grupo 2 — `InstagramCommentAutomationService` refatorado `[6 falhas]`, Grupo 3 — Validação do model `InstagramCommentReplySent` `[1 falha]`, Grupo 4 — `PublicChatService` `[2 falhas]`, Grupo 5 — Public Chat API requests `[3 falhas]`, Grupo 6 — Auth Checkout `[3 falhas]`, Grupo 7 — Partner Dashboard `[3 falhas]` (+3 more)
 
-### Community 290 - ".rubocop.yml"
+### Community 287 - ".rubocop.yml"
 Cohesion: 0.20
 Nodes (14): RuboCop Config (AllCops), RuboCop Todo Baseline (auto-gen 2026-04-29), Metrics Cop Debt (AbcSize, MethodLength, ClassLength), API V1 Partner Dashboard Spec (3 failures), undefined method `page' on Purchase relation (Kaminari missing), GitHub Actions CI/CD Pipeline, Backend Quality Gates (RuboCop, Brakeman, Bundle Audit, RSpec 90%), Security Scanning (Trivy + Dependabot) (+6 more)
 
-### Community 204 - "Backend Config / cable.yml - ActionCable Redis Adapter"
+### Community 197 - "Backend Config / cable.yml - ActionCable Redis Adapter"
 Cohesion: 0.12
 Nodes (18): ActionCable Redis Adapter, Backend Environment Contract (backend/.env), Frontend Environment Contract (frontend/.env), Root Scripts Environment Contract (.env), bin/switch_env Environment Switcher, Secret Isolation via .env.secrets, Configured Integrations (Asaas, Evolution, Action Cable), bin/prod Production Orchestrator (+10 more)
 
-### Community 71 - "build_log.txt"
+### Community 77 - "build_log.txt"
 Cohesion: 0.08
 Nodes (31): Frontend TypeScript Build Failure (tsc && vite build), lib/api/client.ts: undefined name refreshToken, lib/api/endpoints.ts: duplicate object property (TS1117), EventType union drift (terminal_interaction, lead_created rejected), Frontend Quality Gates (ESLint, type-check, Vitest, bundle size), Nginx Gzip Compression Settings, AI9 Advanced Tracking Script, Rails API Endpoints Called by the Router (leads, operations/validate, executions, messages/bulk) (+23 more)
 
-### Community 627 - "Backend Docs"
+### Community 623 - "Backend Docs"
 Cohesion: 0.50
 Nodes (5): GA4 Measurement Protocol (Server-Side), GA4_MEASUREMENT_ID (G-XXXXXXXXXX), GA4_API_SECRET (Measurement Protocol API secret), GA4 Web Data Stream, GA4 Realtime Report Validation
 
-### Community 150 - "Base Repo Conventions"
+### Community 149 - "Base Repo Conventions"
 Cohesion: 0.12
 Nodes (21): Rails 8 API + React TypeScript Base Stack, JWT Authentication (HS256, 15min access, 7d refresh), Client Application Lifetime Token, Magic Login Flow (pre-register / verify-code / complete-registration), Admin User Seed Convention (db/seeds.rb), Swagger Doc and Stoplight Docs Endpoints, Canonical Project Directory Layout, setup.sh Automated Provisioning Script (+13 more)
 
-### Community 580 - "MEDIA_GUIDE.md"
+### Community 576 - "MEDIA_GUIDE.md"
 Cohesion: 0.40
 Nodes (6): Media Identifier Placement System, demo Identifier (Hero / MediaShowcase), what_is_it Identifier (WhatIsIt section), Take a Closer Look Bento Grid (fallback bucket), feature_section_1..5 Identifiers, take_a_closer_look_hidden Identifier
 
-### Community 819 - "README_TRACKING.md"
+### Community 818 - "README_TRACKING.md"
 Cohesion: 0.50
 Nodes (4): ?lead_id= URL Tracking Parameter, Manychat lead_id Link Integration, ActiveCampaign SUBSCRIBERID Integration, Homem dos Dados Chatbot on /tracking-guide
 
-### Community 356 - "docker-compose.yml"
+### Community 349 - "docker-compose.yml"
 Cohesion: 0.30
 Nodes (12): Local Compose Service Topology, postgres service (postgres:14, 5432), redis service (redis:7, 6379), backend service (Rails, port 3000, target backend-dev), frontend service (Vite, port 5173, target frontend-dev), sidekiq worker service (bundle exec sidekiq), Development Environment Variable Contract, Named Volumes (postgres_data, redis_data, bundle_cache, node_modules) (+4 more)
 
-### Community 107 - "goat-robot.json"
+### Community 106 - "goat-robot.json"
 Cohesion: 0.12
 Nodes (26): goat/v1/router n8n Workflow, Channel Activation Matrix (IG comment/DM, WABA, EvoAPI, test chat, ai9 site chat), Instagram Channel Branch (comment, DM, reply), Facebook Channel Branch (comment, message, reply), WhatsApp Business API (WABA) Channel Branch, Unofficial WhatsApp Channel via Evolution API, ManyChat Bridge Workaround Pending Meta Permission Approval, goat-api Webhook Branch for the Website Public Chat (+18 more)
 
-### Community 491 - "Frontend i18n / en - English i18n Catalogue"
+### Community 484 - "Frontend i18n / en - English i18n Catalogue"
 Cohesion: 0.46
 Nodes (8): English i18n Catalogue, Brazilian Portuguese i18n Catalogue, Landing-Page Namespaces (hero, what_is_it, features_section, showroom, creators, letter), Commerce Namespaces (plans, checkout), seo Namespace (localized page metadata), Product Namespaces (reactor, media_showcase, insta_mocks, why_not_slack, topbar, footer), Full Locale Parity (277 keys, 25 namespaces, zero asymmetry), i18n Stack: i18next + react-i18next + Language Detector
 
@@ -8741,13 +8736,13 @@ _Questions this graph is uniquely positioned to answer:_
   _Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low._
 - **What is the exact relationship between `Lead Type Missing lead and instagram Properties` and `Rails API Endpoints Called by the Router (leads, operations/validate, executions, messages/bulk)`?**
   _Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low._
-- **Why does `User` connect `Backend Models - User` to `Backend Services / auth - MagicLoginService`, `Backend Services - Project`, `Backend Services / authorization - PermissionResolver`, `backend/app/lib/sfg - variant_url`, `API Controllers / api`?**
+- **Why does `User` connect `Backend Models - User` to `Backend Services / auth - MagicLoginService`, `backend/app - Project`, `backend/app/lib/sfg - variant_url`, `API Controllers / api`, `Backend Services / authorization - PermissionResolver`?**
   _High betweenness centrality (0.000) - this node is a cross-community bridge._
-- **Why does `DefaultMemberJob` connect `Backend Services - Project` to `Backend Services / availability`, `Background Jobs - ApplicationJob`?**
+- **Why does `RiskControl` connect `Backend Models - Company` to `Backend Models`, `Backend Services / risk - static_pair_service.rb`?**
+  _High betweenness centrality (0.000) - this node is a cross-community bridge._
+- **Why does `CatalogHelpers` connect `API Controllers / api (3)` to `API Controllers / api - ControllerHelpers`?**
   _High betweenness centrality (0.000) - this node is a cross-community bridge._
 - **What connects `⚠ Por que `scripts/status.py` diz 127 abertos e não 63`, `O que provou os 67`, `Cinco defeitos, e quatro param a virada` to the rest of the system?**
   _7167 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `Client Pages & Auth Routing` be split into smaller, more focused modules?**
-  _Cohesion score 0.02824646919135108 - nodes in this community are weakly interconnected._
-- **Should `Frontend Pages / pages - CatalogScreen` be split into smaller, more focused modules?**
-  _Cohesion score 0.03571428571428571 - nodes in this community are weakly interconnected._
+- **Should `.migration-ai9/parity (4)` be split into smaller, more focused modules?**
+  _Cohesion score 0.09090909090909091 - nodes in this community are weakly interconnected._

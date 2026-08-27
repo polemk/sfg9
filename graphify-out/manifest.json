@@ -3240,8 +3240,8 @@
     "semantic_hash": ""
   },
   ".migration-ai9/parity-ledger.md": {
-    "mtime": 1787857376.6037383,
-    "ast_hash": "dca99aabe460b4db27c777bce3355959",
+    "mtime": 1787857862.9287868,
+    "ast_hash": "6aa033884b3517823b413177780418ba",
     "semantic_hash": ""
   },
   ".migration-ai9/project-options.md": {
@@ -9010,8 +9010,8 @@
     "semantic_hash": ""
   },
   ".migration-ai9/parity/dump-based.md": {
-    "mtime": 1787801544.7317626,
-    "ast_hash": "5173fd763900d3766ba6678fe209861c",
+    "mtime": 1787857949.5757718,
+    "ast_hash": "f522d4fe8ada50e946b4174094a95330",
     "semantic_hash": ""
   },
   "backend/app/lib/sfg/etl/converters/project_guarantees.rb": {
@@ -9222,6 +9222,11 @@
   "backend/db/migrate/20260827160000_o_rastreio_de_acesso_do_legado_tem_onde_cair.rb": {
     "mtime": 1787856314.8307443,
     "ast_hash": "a1e1f2d890ac35249fb2257930577dc5",
+    "semantic_hash": ""
+  },
+  "backend/spec/models/project_derivations_spec.rb": {
+    "mtime": 1787857585.758494,
+    "ast_hash": "4d2d61cd5d034b926743b4d21acf7cab",
     "semantic_hash": ""
   }
 }
