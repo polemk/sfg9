@@ -2200,8 +2200,8 @@
     "semantic_hash": ""
   },
   "install.sh": {
-    "mtime": 1787863258.462607,
-    "ast_hash": "b42b72c02784d4c61248a31fb47e8abf",
+    "mtime": 1787864185.6600344,
+    "ast_hash": "51d622159c5290b6b215ee183d04d867",
     "semantic_hash": ""
   },
   "patch_sidebar.js": {
@@ -9265,8 +9265,13 @@
     "semantic_hash": ""
   },
   "install_dev.sh": {
-    "mtime": 1787863914.84549,
-    "ast_hash": "7ce17ccbccebf15c45aacb74355bef16",
+    "mtime": 1787864230.2250128,
+    "ast_hash": "114c5a33c03666e6a64da1b9125db04b",
+    "semantic_hash": ""
+  },
+  "tools/varre_crase_heredoc.py": {
+    "mtime": 1787864270.810627,
+    "ast_hash": "2fb98fa73a0fc939bb8a0d8c141ec01f",
     "semantic_hash": ""
   }
 }
