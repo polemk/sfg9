@@ -24,7 +24,7 @@ import { useIsReadonly } from '@/hooks/useMyPermissions'
 import { mensagemDoServidor } from '@/lib/api/catalogs'
 import { formatAmount } from '@/lib/utils/number'
 import { projectsApi, type Project } from '@/lib/api/projects'
-import { ProjectForm, type ProjectFormValues, valoresIniciais, doProjeto } from './ProjectForm'
+import { useProjectActions } from './ProjectActions'
 
 /**
  * **Projetos** (FE-080..FE-084) — a lista do tenant.
@@ -58,11 +58,9 @@ export function ProjectsPage() {
 
   const busca = useDebouncedSearch()
   const paginacao = usePagination()
-  const [drawerAberto, setDrawerAberto] = useState(false)
-  const [editando, setEditando] = useState<Project | null>(null)
-  const [valores, setValores] = useState<ProjectFormValues>(valoresIniciais())
-  const [confirmando, setConfirmando] = useState<Project | null>(null)
   const [acoesDe, setAcoesDe] = useState<string | null>(null)
+  // FE-094 — as acoes moram no `useProjectActions`, compartilhado com o detalhe.
+  const acoes = useProjectActions()
 
   const filtros = useMemo(
     () => ({ page: paginacao.page, perPage: paginacao.perPage, q: busca.consulta || undefined }),
@@ -91,48 +89,6 @@ export function ProjectsPage() {
     invalidateKeys: [['projects']],
   })
 
-  const invalidar = () => queryClient.invalidateQueries({ queryKey: ['projects'] })
-
-  const salvar = useMutation({
-    mutationFn: (dados: Record<string, unknown>) =>
-      editando ? projectsApi.update(editando.id, dados) : projectsApi.create(dados),
-    onSuccess: () => {
-      // FE-090 — "cadastrado" e "atualizado" são eventos diferentes, e o
-      // legado dizia a mesma frase para os dois.
-      notify.success(editando ? 'Projeto atualizado.' : 'Projeto cadastrado.')
-      setDrawerAberto(false)
-      setEditando(null)
-      invalidar()
-    },
-    onError: (erro) => notify.error(mensagemDoServidor(erro, 'Não foi possível salvar o projeto.')),
-  })
-
-  const excluir = useMutation({
-    mutationFn: (projeto: Project) => projectsApi.remove(projeto.id),
-    onSuccess: (_dado, projeto) => {
-      notify.success(`Projeto «${projeto.name}» removido.`)
-      setConfirmando(null)
-      invalidar()
-    },
-    onError: (erro) => {
-      // FE-084 — o erro do servidor APARECE, e a lista não muda.
-      notify.error(mensagemDoServidor(erro, 'Não foi possível remover o projeto.'))
-      setConfirmando(null)
-    },
-  })
-
-  function abrirCriacao() {
-    setEditando(null)
-    setValores(valoresIniciais())
-    setDrawerAberto(true)
-  }
-
-  function abrirEdicao(projeto: Project) {
-    setEditando(projeto)
-    setValores(doProjeto(projeto))
-    setDrawerAberto(true)
-  }
-
   const meta = consulta.data?.meta
   const buscando = busca.consulta.length > 0
 
@@ -148,7 +104,7 @@ export function ProjectsPage() {
         key: 'editar',
         label: 'Editar',
         icon: <Pencil aria-hidden="true" className="h-4 w-4" />,
-        onSelect: () => abrirEdicao(projeto),
+        onSelect: () => acoes.abrirEdicao(projeto),
       },
       {
         key: 'excluir',
@@ -159,7 +115,7 @@ export function ProjectsPage() {
         disabledReason: projeto.is_sandbox
           ? 'Projeto de treinamento: os dados são limpos, o projeto não é removido.'
           : undefined,
-        onSelect: () => setConfirmando(projeto),
+        onSelect: () => acoes.confirmarRemocao(projeto),
       },
     ]
   }
@@ -188,7 +144,7 @@ export function ProjectsPage() {
         }
         rightSlot={
           podeEscrever ? (
-            <Button onClick={abrirCriacao}>
+            <Button onClick={acoes.abrirCriacao}>
               <Plus aria-hidden="true" className="h-4 w-4" />
               Novo projeto
             </Button>
@@ -278,7 +234,7 @@ export function ProjectsPage() {
                             variant="ghost"
                             size="icon"
                             aria-label={`Editar ${p.name}`}
-                            onClick={() => abrirEdicao(p)}
+                            onClick={() => acoes.abrirEdicao(p)}
                           >
                             <Pencil aria-hidden="true" className="h-4 w-4" />
                           </Button>
@@ -288,7 +244,7 @@ export function ProjectsPage() {
                             aria-label={
                               p.is_sandbox ? `Limpar dados de ${p.name}` : `Remover ${p.name}`
                             }
-                            onClick={() => setConfirmando(p)}
+                            onClick={() => acoes.confirmarRemocao(p)}
                           >
                             <Trash2 aria-hidden="true" className="h-4 w-4" />
                           </Button>
@@ -332,57 +288,7 @@ export function ProjectsPage() {
         />
       )}
 
-      <SideDrawer
-        open={drawerAberto}
-        onClose={() => setDrawerAberto(false)}
-        title={editando ? 'Editar projeto' : 'Novo projeto'}
-        footer={
-          <div className="flex justify-end gap-2">
-            <Button variant="secondary" onClick={() => setDrawerAberto(false)}>
-              Cancelar
-            </Button>
-            {/* FE-089 / DC-23 — **uma** requisição por clique em "Salvar".
-                O legado registrava salvamento a cada `keyup` do formulário. */}
-            <Button disabled={salvar.isPending} onClick={() => salvar.mutate(paraPayload(valores, editando))}>
-              Salvar
-            </Button>
-          </div>
-        }
-      >
-        <ProjectForm values={valores} onChange={setValores} editing={editando} />
-      </SideDrawer>
-
-      <SideDrawer
-        open={confirmando !== null}
-        onClose={() => setConfirmando(null)}
-        title={confirmando?.is_sandbox ? 'Limpar projeto de treinamento' : 'Remover projeto'}
-        footer={
-          <div className="flex justify-end gap-2">
-            <Button variant="secondary" onClick={() => setConfirmando(null)}>
-              Cancelar
-            </Button>
-            <Button
-              variant="destructive"
-              disabled={excluir.isPending || confirmando?.is_sandbox}
-              onClick={() => confirmando && excluir.mutate(confirmando)}
-            >
-              Remover
-            </Button>
-          </div>
-        }
-      >
-        {confirmando?.is_sandbox ? (
-          <p className="text-sm text-muted-foreground">
-            «{confirmando.name}» é o projeto de treinamento. Ele nunca é removido — os dados são limpos e o
-            projeto volta ao estado inicial. A limpeza é feita por rotina de operação, com pré-visualização.
-          </p>
-        ) : (
-          <p className="text-sm text-muted-foreground">
-            Remover «{confirmando?.name}»? Se houver empresa, limite, recebível ou renegociação vinculados, o
-            servidor recusa e o projeto permanece — a mensagem dirá qual vínculo segura.
-          </p>
-        )}
-      </SideDrawer>
+      {acoes.superficies}
     </div>
   )
 }
@@ -447,35 +353,3 @@ function ProgressoDoProjeto({
 }
 
 /** Do estado do formulário para o corpo da requisição. */
-function paraPayload(v: ProjectFormValues, editando: Project | null): Record<string, unknown> {
-  const base: Record<string, unknown> = {
-    name: v.name,
-    is_active: v.is_active,
-    segment_id: v.segment_id ?? undefined,
-    sub_segment_id: v.sub_segment_id ?? undefined,
-    address_type: v.address_type,
-    address: v.address,
-    address_number: v.address_number,
-    address_complement: v.address_complement,
-    neighborhood: v.neighborhood,
-    cep: v.cep,
-    address_state: v.address_state ?? undefined,
-    address_city: v.address_city,
-    closing_date: v.closing_date || undefined,
-    availability_note: v.availability_note,
-  }
-
-  if (editando) {
-    // `slug` e `integration_key` não vão: são congelados na criação (DC-17).
-    if (v.responsible_user_id !== undefined) base.responsible_user_id = v.responsible_user_id ?? ''
-    return base
-  }
-
-  base.responsible_mode = v.responsible_mode
-  if (v.responsible_mode === 'existing') base.responsible_user_id = v.responsible_user_id ?? ''
-  if (v.responsible_mode === 'new') {
-    base.responsible_name = v.responsible_name
-    base.responsible_email = v.responsible_email
-  }
-  return base
-}

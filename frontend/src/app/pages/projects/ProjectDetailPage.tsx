@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useNavigate, useParams } from 'react-router-dom'
-import { ArrowLeft, Landmark, Trash2, UserPlus, Users2 } from 'lucide-react'
+import { ArrowLeft, Landmark, Pencil, Trash2, UserPlus, Users2 } from 'lucide-react'
 import { notify } from '@/lib/notify'
 import { PageHeader } from '@/components/PageHeader'
 import { Button } from '@/components/ui/Button'
+import { useProjectActions } from './ProjectActions'
 import { Badge } from '@/components/ui/Badge'
 import { Card } from '@/components/ui/Card'
 import { DetailList } from '@/components/ui/DetailList'
@@ -58,6 +59,13 @@ export function ProjectDetailPage() {
     enabled: Boolean(id),
   })
 
+  // **FE-094 — as acoes rapidas do detalhe.** Editar e remover existiam so na
+  // LISTA: quem abrisse o projeto para conferir tinha de voltar para agir, e a
+  // lista (com filtro e paginacao) podia nem estar mostrando aquele projeto.
+  // Mesma gaveta e mesma confirmacao da lista — inclusive a regra do projeto de
+  // treinamento, que nunca e removido.
+  const acoes = useProjectActions({ onRemovido: () => navigate('/projects') })
+
   return (
     <div className="pb-10">
       <Button variant="ghost" size="sm" className="mb-2" onClick={() => navigate('/projects')}>
@@ -83,9 +91,21 @@ export function ProjectDetailPage() {
                 <div className="flex flex-wrap items-center gap-1.5">
                   {p.is_active ? <Badge variant="success">Ativo</Badge> : <Badge variant="secondary">Inativo</Badge>}
                   {p.is_sandbox && <Badge variant="warning">Treinamento</Badge>}
+                  <Button variant="secondary" size="sm" onClick={() => acoes.abrirEdicao(p)}>
+                    <Pencil aria-hidden="true" className="h-4 w-4" />
+                    Editar
+                  </Button>
+                  {/* O de treinamento e LIMPO, nao removido — o rotulo diz o que
+                      acontece, e a propria confirmacao explica a diferenca. */}
+                  <Button variant="ghost" size="sm" onClick={() => acoes.confirmarRemocao(p)}>
+                    <Trash2 aria-hidden="true" className="h-4 w-4" />
+                    {p.is_sandbox ? 'Limpar dados' : 'Remover'}
+                  </Button>
                 </div>
               }
             />
+
+            {acoes.superficies}
 
             <Tabs defaultValue="resumo">
               <TabsList>

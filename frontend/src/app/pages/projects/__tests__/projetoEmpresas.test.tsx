@@ -138,7 +138,16 @@ describe('S4 — nenhum payload de tela carrega dado de OUTRO projeto (7.5.1)', 
 })
 
 describe('S4 — o formulário salva com UMA requisição (FE-089 / DC-23)', () => {
-  const fonte = semComentarios('src/app/pages/projects/ProjectsPage.tsx')
+  // **O alvo é `ProjectActions`, e não mais `ProjectsPage`** (FE-094): a gaveta
+  // e as mutações saíram da lista para um módulo compartilhado com o detalhe,
+  // porque o detalhe também precisava editar e remover — e duplicar a regra do
+  // projeto de treinamento em duas telas era o que se queria evitar.
+  //
+  // O guarda continua o mesmo e continua textual: quem mora aqui é o único
+  // disparo do salvamento, então é aqui que se conta.
+  const fonte = semComentarios('src/app/pages/projects/ProjectActions.tsx')
+  const lista = semComentarios('src/app/pages/projects/ProjectsPage.tsx')
+  const detalhe = semComentarios('src/app/pages/projects/ProjectDetailPage.tsx')
 
   it('não há autosave: nenhum `onKeyUp`/`onBlur` dispara mutação', () => {
     // No legado o formulário de projeto registrava salvamento a cada `keyup`.
@@ -147,6 +156,15 @@ describe('S4 — o formulário salva com UMA requisição (FE-089 / DC-23)', () 
     // O único disparo é o botão.
     const disparos = fonte.match(/salvar\.mutate\(/g) ?? []
     expect(disparos.length).toBe(1)
+  })
+
+  it('nem a lista nem o detalhe têm uma SEGUNDA cópia do salvamento', () => {
+    // A extração só vale se ela de fato removeu a duplicata: uma cópia
+    // esquecida numa das telas divergiria na primeira mudança de regra.
+    for (const [nome, texto] of [['lista', lista], ['detalhe', detalhe]] as const) {
+      expect(texto, `${nome} ainda dispara o salvamento por conta própria`).not.toMatch(/salvar\.mutate\(/)
+      expect(texto, `${nome} ainda monta o formulário por conta própria`).not.toMatch(/<ProjectForm/)
+    }
   })
 })
 
