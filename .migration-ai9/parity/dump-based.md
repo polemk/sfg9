@@ -401,3 +401,32 @@ documento. Agora a conferência é contra **o esquema real da origem**, lido pel
   identificável, não.
 - **O dump é de 31/05/2025.** Ele prova que as fórmulas batem e que o pipeline funciona.
   A conferência de virada acontece **no servidor** (DEC-124), com o dado de lá.
+
+### D-PAR-06 — a unicidade de `integration_key` é acréscimo do ai9, e torna o laço do slug inalcançável
+
+Apareceu escrevendo o spec de BE-095 (27/08), não por leitura: dois projetos de
+nomes **diferentes** que transliteram para o mesmo slug (`Açúcar` e `Acucar`) são
+recusados — mas em `integration_key`, não em `slug`.
+
+| | legado (`app/models/project.rb:128`) | ai9 (`app/models/project.rb:90`) |
+|---|---|---|
+| `formal` / `name` | `uniqueness: true` | único |
+| `integration_key` | **derivado, sem validação** | `uniqueness: { case_sensitive: false }` |
+
+Consequência prática, e é ela que importa: o **laço de desambiguação do `slug`**
+(`acucar` → `acucar-2`) só roda quando a chave de integração é informada à mão.
+Pelo caminho comum da tela ele nunca é alcançado, porque `integration_key` barra
+primeiro — e essa **não tem laço nenhum**: o segundo projeto é recusado com "já
+está em uso" em vez de ganhar sufixo.
+
+**Impacto medido: nenhum na base atual** — 12 projetos, `GROUP BY
+integration_key HAVING count(*) > 1` devolve vazio. Não medi a origem legada
+(o `psql` do dump não estava de pé nesta passada), então o que afirmo vale para
+o que já está carregado. É, de todo modo, uma divergência de **tela**: ela morde
+no cadastro novo, não na carga.
+
+**Sem decisão registrada.** Não é DEC-30 aplicado e revisado: é uma restrição que
+entrou junto com o model. As duas saídas são pequenas e opostas — dar ao
+`integration_key` o mesmo laço que o `slug` tem (e aí os dois funcionam), ou
+soltar a unicidade como no legado (e aí o laço do slug volta a ser alcançável).
+Fica **em aberto para o Vinícius**, fora do caminho da demo.
