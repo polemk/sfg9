@@ -236,10 +236,45 @@ echo "database.yml gerado."
 # ----------------------------------------------------
 # 3. CONFIGURAR BANCO DE DADOS NATIVO (CRIAÇÃO/MIGRAÇÃO)
 # ----------------------------------------------------
-RUBY="/usr/local/rvm/rubies/ruby-3.2.3/bin/ruby"
-export GEM_HOME="/usr/local/rvm/gems/ruby-3.2.3"
-export GEM_PATH="/usr/local/rvm/gems/ruby-3.2.3:/usr/local/rvm/gems/ruby-3.2.3@global"
-export PATH="/usr/local/rvm/gems/ruby-3.2.3/bin:/usr/local/rvm/gems/ruby-3.2.3@global/bin:/usr/local/rvm/rubies/ruby-3.2.3/bin:${PATH}"
+# ----------------------------------------------------
+# A versão do Ruby vem do PRÓPRIO APP, nunca escrita aqui.
+#
+# Este bloco fixava `ruby-3.2.3` em quatro linhas — herança da base ai9, onde
+# essa era a versão. O Safegold pede **3.4.9** (`backend/.ruby-version` e
+# `Gemfile:6`), e o resultado no servidor foi:
+#
+#     Your Ruby version is 3.2.3, but your Gemfile specified 3.4.9
+#
+# O que torna isso pior do que um número errado: como o bloco EXPORTA o `PATH`,
+# rodar `rvm use 3.4.9` antes do script não adiantava nada — o script
+# sobrescrevia a escolha do operador e falhava dizendo o contrário do que ele
+# tinha acabado de pedir.
+#
+# Lendo de `.ruby-version`, instalar noutra versão passa a ser trocar um arquivo
+# do app, e o script deixa de ter opinião sobre isso.
+RUBY_VERSION_APP="$(tr -d '[:space:]' < "$(dirname "$0")/backend/.ruby-version")"
+
+if [ -z "${RUBY_VERSION_APP}" ]; then
+  echo "❌ Não consegui ler backend/.ruby-version. Sem isso não dá para saber qual Ruby usar."
+  exit 1
+fi
+
+RVM_RUBY_DIR="/usr/local/rvm/rubies/ruby-${RUBY_VERSION_APP}"
+
+# Falha AQUI, com o comando da correção, e não trinta linhas adiante num erro do
+# Bundler que não diz o que fazer.
+if [ ! -x "${RVM_RUBY_DIR}/bin/ruby" ]; then
+  echo "❌ O app pede Ruby ${RUBY_VERSION_APP} e ele não está instalado no RVM."
+  echo "   Instale com:  rvm install ${RUBY_VERSION_APP}"
+  exit 1
+fi
+
+echo "💎 Ruby ${RUBY_VERSION_APP} (de backend/.ruby-version)"
+
+RUBY="${RVM_RUBY_DIR}/bin/ruby"
+export GEM_HOME="/usr/local/rvm/gems/ruby-${RUBY_VERSION_APP}"
+export GEM_PATH="/usr/local/rvm/gems/ruby-${RUBY_VERSION_APP}:/usr/local/rvm/gems/ruby-${RUBY_VERSION_APP}@global"
+export PATH="${GEM_HOME}/bin:/usr/local/rvm/gems/ruby-${RUBY_VERSION_APP}@global/bin:${RVM_RUBY_DIR}/bin:${PATH}"
 
 echo -e "\n🗄️ Criando banco '${DB_NAME}' e usuário '${DB_USER}' via Postgres Nativamente..."
 
