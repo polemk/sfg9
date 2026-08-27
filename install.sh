@@ -629,19 +629,27 @@ NGINX_FINAL
     # falha, e o script imprimia "DEPLOY CONCLUIDO COM SUCESSO" logo abaixo —
     # com o nginx fora do ar. Deploy que falha e diz que deu certo e pior do que
     # deploy que falha: ninguem vai olhar.
-    echo "Conferindo a configuracao do Nginx..."
-    if sudo nginx -t; then
-      if sudo systemctl reload nginx; then
-        NGINX_OK=1
-      else
-        NGINX_OK=0
-        echo "⚠️ O teste do Nginx passou mas o reload falhou. Veja:  systemctl status nginx"
-      fi
+    # **`reload` com configuracao invalida NAO derruba o Nginx** — ele valida
+    # antes de aplicar e, reprovando, mantem o processo antigo servindo. Por isso
+    # o reload e sempre TENTADO, mesmo com `nginx -t` vermelho.
+    #
+    # E o `nginx -t` e do Nginx INTEIRO, nao so deste app. Num servidor com
+    # varios sistemas ele reprova por defeito de qualquer um — e por defeito do
+    # `nginx.conf` global. Aconteceu aqui em 27/08/2026:
+    #
+    #     unknown directive "passenger_root" in /etc/nginx/nginx.conf:12
+    #
+    # Nada a ver com este app. Travar o deploy nisso e parar por algo que ja
+    # estava quebrado antes e que nao e nosso para consertar.
+    echo "Conferindo a configuracao do Nginx (informativo)..."
+    sudo nginx -t || echo "   (o erro acima pode ser de outro sistema deste servidor)"
+
+    if sudo systemctl reload nginx; then
+      NGINX_OK=1
     else
       NGINX_OK=0
-      echo "⚠️ A configuracao do Nginx NAO passou no teste. O reload NAO foi feito"
-      echo "   — de proposito: recarregar com configuracao invalida derruba os"
-      echo "   outros aplicativos deste servidor."
+      echo "⚠️ O reload do Nginx falhou. O Nginx SEGUE no ar com a configuracao"
+      echo "   anterior — o proxy deste app e que nao entrou em vigor."
     fi
 fi
 

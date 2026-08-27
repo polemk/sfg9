@@ -1,7 +1,7 @@
 # Graph Report - .  (2026-08-27)
 
 ## Corpus Check
-- 1736 files · ~3,025,529 words
+- 1736 files · ~3,025,805 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,12 +10,12 @@
 - Token cost: 0 input · 0 output
 
 ## Community Hubs (Navigation)
+- renew_cert.sh - renew_cert.sh
 - Database & Seeds / seeds/demo - Controls
 - Database & Seeds / seeds/demo - Companies
 - Database & Seeds / seeds/demo - Projects
 - prod - prod
 - install.sh - install.sh
-- renew_cert.sh - renew_cert.sh
 - varre_crase_heredoc.py - varre_crase_heredoc.py
 - Backend Services / seeds - UserType
 - User Model & Code Validation
@@ -2003,6 +2003,10 @@
 
 ## Communities (2069 total, 329 thin omitted)
 
+### Community 622 - "renew_cert.sh - renew_cert.sh"
+Cohesion: 0.70
+Nodes (4): renew_cert.sh script, ok(), aviso(), morre()
+
 ### Community 164 - "Database & Seeds / seeds/demo - Controls"
 Cohesion: 0.13
 Nodes (7): Demo, Writers, CarrierConnections, Demo, Ledger, Controls, Control
@@ -2022,10 +2026,6 @@ Nodes (30): prod script, HOME, GEM_HOME, GEM_PATH, PATH, NVM_DIR, log(), err() (
 ### Community 610 - "install.sh - install.sh"
 Cohesion: 0.40
 Nodes (4): install.sh script, GEM_HOME, GEM_PATH, PATH
-
-### Community 622 - "renew_cert.sh - renew_cert.sh"
-Cohesion: 0.70
-Nodes (4): renew_cert.sh script, ok(), aviso(), morre()
 
 ### Community 65 - "Backend Services / seeds - UserType"
 Cohesion: 0.08

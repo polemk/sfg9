@@ -130,18 +130,53 @@ fi
 if command -v nginx >/dev/null 2>&1; then
   echo ""
   echo "  Conferindo a configuração do Nginx…"
-  if nginx -t; then
-    # `reload` num Nginx PARADO falha. Com o certificado agora no lugar, o que
-    # este caso pede é `start` — é o passo que fecha o conserto.
-    if [ "${NGINX_ATIVO}" = "1" ]; then
-      systemctl reload nginx && ok "nginx recarregado" \
-        || morre "O teste passou mas o reload falhou. Veja:  systemctl status nginx"
-    else
-      systemctl start nginx && ok "nginx SUBIU (estava parado)" \
-        || morre "O teste passou mas o nginx não subiu. Veja:  systemctl status nginx"
-    fi
+
+  SAIDA_TESTE="$(nginx -t 2>&1)" && TESTE_OK=1 || TESTE_OK=0
+  [ "${TESTE_OK}" = "1" ] || echo "${SAIDA_TESTE}"
+
+  if [ "${TESTE_OK}" = "1" ]; then
+    ok "configuração válida"
   else
-    morre "A configuração do Nginx NÃO passou no teste. Não mexi no serviço, de propósito — subir ou recarregar com configuração inválida derruba os outros aplicativos deste servidor. Rode  nginx -t  para ver a linha exata."
+    # **O teste é do Nginx INTEIRO, não só do arquivo deste app.**
+    #
+    # Num servidor com vários sistemas, `nginx -t` reprova por defeito de
+    # qualquer um deles — e por defeito do `nginx.conf` global, que não é nosso.
+    # Aconteceu aqui em 27/08/2026:
+    #
+    #     unknown directive "passenger_root" in /etc/nginx/nginx.conf:12
+    #
+    # Nada a ver com este app: é o Passenger declarado sem o módulo carregado.
+    # Travar o script nisso é parar por algo que já estava quebrado antes e que
+    # não é nosso para consertar.
+    echo ""
+    if echo "${SAIDA_TESTE}" | grep -q "${APP_CONF:-/etc/nginx/sites-}"; then
+      aviso "o erro parece estar num arquivo de SITE — pode ser deste app"
+    else
+      aviso "o erro NÃO está num arquivo de site — é do Nginx global, anterior a este script"
+    fi
+  fi
+
+  # **`reload` com configuração inválida NÃO derruba o Nginx.**
+  #
+  # Ele valida antes de aplicar e, reprovando, mantém o processo antigo servindo.
+  # O risco real é no `start` de um Nginx parado: aí a configuração inválida
+  # impede de subir, e o servidor fica sem proxy nenhum.
+  #
+  # Por isso o gate é assimétrico: reload sempre se tenta; start só com teste
+  # verde.
+  if [ "${NGINX_ATIVO}" = "1" ]; then
+    if systemctl reload nginx; then
+      ok "nginx recarregado — o certificado novo está em uso"
+    else
+      aviso "o reload falhou; o Nginx SEGUE NO AR com a configuração anterior"
+      aviso "o certificado foi emitido e só passa a valer quando o reload funcionar"
+    fi
+  elif [ "${TESTE_OK}" = "1" ]; then
+    systemctl start nginx && ok "nginx SUBIU (estava parado)" \
+      || morre "O teste passou mas o nginx não subiu. Veja:  systemctl status nginx"
+  else
+    aviso "nginx parado E configuração inválida — NÃO tentei subir"
+    aviso "subir assim falharia e deixaria o servidor sem proxy. Conserte o erro acima primeiro."
   fi
 fi
 
