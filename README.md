@@ -37,36 +37,70 @@ Sistema completo com backend Rails 8 API e frontend React TypeScript, incluindo 
 
 ## 🔧 Instalação
 
-### Opção 1: Setup Automatizado
+### Na sua máquina (desenvolvimento)
 
 ```bash
-# Clone o repositório
 git clone <url-do-repositorio>
-cd ai9
+cd sfg9
 
-# Execute o script de setup
-chmod +x setup.sh
-./setup.sh
+./install_dev.sh
 ```
 
-### Opção 2: Setup Manual
+Ele confere o que falta instalar (tudo de uma vez), cria os bancos `sfg9_dev` e
+`sfg9_test`, escreve o `backend/config/database.yml` e os dois `.env`, instala as
+dependências, migra e semeia. Dá para rodar de novo sem medo: nada é sobrescrito
+sem perguntar.
 
-#### Backend
+Depois:
 
 ```bash
-cd backend
-bundle install
-rails db:create db:migrate
-rails server
+./bin/dev
 ```
 
-#### Frontend
+que sobe backend, **Sidekiq** e frontend juntos — o Sidekiq não é opcional, sem
+ele desativar um padrão de disponibilidade responde 202 e a tela fica esperando.
+
+| | |
+|---|---|
+| frontend | http://localhost:5185 |
+| backend | http://localhost:3026 |
+
+**O código de acesso do login aparece no LOG do backend**, não no e-mail: em
+desenvolvimento não há SMTP configurado.
+
+### No servidor (produção)
+
+`./install.sh` — pergunta domínio, portas, SMTP e integrações, e configura nginx e
+systemd. Não use na sua máquina.
+
+### Sobre o `setup.sh` e o `create_dev_db.sh`
+
+São da base **ai9**, genéricos, e **não funcionam num clone novo deste
+repositório**. Não foram removidos porque não são nossos para remover, mas não é
+por eles que se começa aqui:
+
+- o `setup.sh` copia `.env.example` para `.env`, e o `.env.example` daqui é um
+  **contrato** — descreve os nomes das variáveis, sem valores. A aplicação não
+  sobe assim: `config/initializers/required_env.rb` reprova o boot e nomeia as
+  que faltam;
+- o `create_dev_db.sh` **lê** `backend/config/database.yml` para saber qual banco
+  criar, e esse arquivo é git-ignored por decisão do tech lead. Depois de um
+  clone ele não existe, e o script para em `❌ Arquivo de configuração não
+  encontrado` — é ovo e galinha.
+
+O `install_dev.sh` resolve os dois na ordem certa: **escreve** o `database.yml` a
+partir das respostas, e **gera** os `.env` com valores que funcionam.
+
+### Manual, se preferir
 
 ```bash
-cd frontend
-npm install
-npm run dev
+cd backend  && bundle install && bundle exec rails db:migrate
+cd frontend && npm install --legacy-peer-deps
 ```
+
+Faltam ainda o `database.yml`, os dois `.env` e os seeds
+(`bundle exec rake reference:seed` e `demo:seed`) — que é exatamente o que o
+`install_dev.sh` faz.
 
 ### Opção 3: Docker
 
