@@ -3240,8 +3240,8 @@
     "semantic_hash": ""
   },
   ".migration-ai9/parity-ledger.md": {
-    "mtime": 1787859627.1613982,
-    "ast_hash": "5a0813f1be668d9a8ca9c7ef9fccaeac",
+    "mtime": 1787859890.608843,
+    "ast_hash": "198b71220fb574d0fe1c43adc19f0ce3",
     "semantic_hash": ""
   },
   ".migration-ai9/project-options.md": {
@@ -6380,8 +6380,8 @@
     "semantic_hash": ""
   },
   "frontend/src/app/pages/projects/ProjectForm.tsx": {
-    "mtime": 1787856963.815127,
-    "ast_hash": "4bddd6709b5782a9687f99ab31841fa7",
+    "mtime": 1787859863.6326704,
+    "ast_hash": "afbcd1d831719d0cdcf7a344f6136c46",
     "semantic_hash": ""
   },
   "frontend/src/app/pages/projects/ProjectGuaranteesPage.tsx": {
@@ -9237,6 +9237,11 @@
   "frontend/src/lib/utils/__tests__/coercao-golden.test.ts": {
     "mtime": 1787858449.0052555,
     "ast_hash": "4fa34c2b507e99567b6e8c6d138fe701",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/pages/projects/__tests__/responsavelNaEdicao.test.tsx": {
+    "mtime": 1787859848.8495362,
+    "ast_hash": "245ec570ad92d1ce00738daa438fb33f",
     "semantic_hash": ""
   }
 }
