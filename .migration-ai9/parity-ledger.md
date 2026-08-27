@@ -11,10 +11,10 @@ evidência (o consolidador recusa `verified` de célula vazia; recusou 0).
 
 | medida | valor |
 | --- | ---: |
-| `verified` na coluna de estado | **1.192** |
+| `verified` na coluna de estado | **1.196** |
 | `dropped` | 215 |
 | `removed` / `kept` (ai9-only) | 27 / 6 |
-| **`blocked` — o que continua ABERTO** | **32** |
+| **`blocked` — o que continua ABERTO** | **28** |
 | `migrated` / `pending` na coluna de estado | **0** |
 
 ### ⚠ Por que `scripts/status.py` diz 127 abertos e não 63
@@ -24,7 +24,7 @@ o texto abaixo desta seção é **histórico** — foi escrito durante a migraç
 contagens de `migrated`/`pending` que já não valem. Nenhuma dessas menções é coluna de
 estado: as colunas estão zeradas nos dois.
 
-Contado pela coluna de estado: **1.472 itens, 1.440 fechados, 32 abertos — 97,8%**. O
+Contado pela coluna de estado: **1.472 itens, 1.444 fechados, 28 abertos — 98,1%**. O
 script imprime menos, e a diferença é inteiramente prosa histórica.
 
 ⚠ **Esta própria seção agrava o problema**: ela cita `migrated`, `pending` e `blocked` em
@@ -1358,7 +1358,7 @@ outra fatia (contrato C4). Fica registrado para quem puder decidir com as duas f
 | FE-174 | Conversão de moeda no submit | verified | frontend/src/features/receivables/pages/ReceivableFormPage.tsx | render 24x + roteiro do formulário (20 passos) | S6 (26/08/2026) |
 | FE-175 | Tarifas: adicionar linha | verified | frontend/src/features/receivables/pages/ReceivableFormPage.tsx | render 24x + roteiro do formulário (20 passos) | S6 (26/08/2026) |
 | FE-176 | Tarifas: remover linha (nova vs. existente) | verified | frontend/src/features/receivables/pages/ReceivableFormPage.tsx | render 24x + roteiro do formulário (20 passos) | S6 (26/08/2026) |
-| FE-177 | Datepickers de data de operação e data de crédito | blocked | frontend/src/features/receivables/pages/ReceivableFormPage.tsx | render 24x + roteiro do formulário (20 passos) | S6 (26/08/2026) |
+| FE-177 | Datepickers de data de operação e data de crédito | verified | frontend/src/features/receivables/pages/ReceivableFormPage.tsx | datePickerLimites.test.tsx (5 ex.) | Phase 4: a trava mutua das datas existe no legado (_body.js.erb:74-106) e nao tinha sido portada. commit 81c90ed |
 | FE-178 | Retorno do salvamento do recebível | verified | frontend/src/features/receivables/pages/ReceivableFormPage.tsx | render 24x + roteiro do formulário (20 passos) | S6 (26/08/2026) |
 | FE-179 | Console → Cobranças: lista | verified | frontend/src/features/receivables/pages/ChargesPage.tsx | render 24x | S6 (26/08/2026) |
 | FE-180 | Filtros de cobrança (situação, mês, ano) | verified | frontend/src/features/receivables/pages/ChargesPage.tsx | render 24x | S6 (26/08/2026) |
@@ -1516,7 +1516,7 @@ outra fatia (contrato C4). Fica registrado para quem puder decidir com as duas f
 | FE-332 | Botão "ACEITAR" na toolbar da página de contrato | verified | frontend/src/components/contracts/TermsBanner.tsx | frontend/src/components/contracts/__tests__/termsBanner.test.tsx | O botao ACEITAR volta a existir — no legado estava comentado, com handler orfao. |
 | FE-333 | Botão "ACEITAR" no rodapé do card do contrato | verified | frontend/src/app/pages/public/ContractPage.tsx (rodape) | renderizado | Aceite no rodape com progresso de leitura (react-intersection-observer + Progress). |
 | FE-334 | Fluxo de retorno pós-aceite / pós-leitura | verified | frontend/src/app/pages/public/ContractPage.tsx | backend/spec/requests/api/v1/public/contracts_spec.rb | Destino hostil recusado e anunciado na tela; a allowlist e do servidor. |
-| FE-335 | Links de contrato no rodapé do menu do console | blocked | backend/config/initializers/public_host.rb | backend/spec/requests/api/v1/public/contracts_spec.rb | URL montada com SLUG e `url_encode`. Q-B34: a string literal do legado continua sendo aceita. |
+| FE-335 | Links de contrato no rodapé do menu do console | verified | frontend/src/components/Sidebar.tsx | tsc + suite 532 ex. | Phase 4: os links de contrato nao existiam no console; rodape com os dois. commit 81c90ed |
 | FE-336 | Checkbox de aceite em Minha Conta | verified | frontend/src/components/contracts/MyTermsSection.tsx | renderizado | Caixa DESMARCADA que habilita o botao de verdade + historico distinguindo explicit/implicit_legacy (DEC-66). |
 | FE-337 | Checkbox de aceite no cadastro (sign-up) | verified | frontend/src/components/contracts/TermsBanner.tsx | frontend/src/components/contracts/__tests__/termsBanner.test.tsx | DEC-65: o consentimento e acao pos-entrada, com banner. O convite nao trava por falta de contrato. |
 | FE-338 | Console › Contratos — lista | verified | frontend/src/app/pages/admin/ContractsPage.tsx | renderizado | PASSA A TER item de menu (consoleNavigation) e campo de busca de verdade. A tela do legado era orfa. **Phase 4 (26/08, QA recebiveis) — verified por EXECUCAO:** tela renderizada com login de verdade em 1440x900, escuro e 390x844 — **0 erro de console, 0 resposta 5xx**. O dump e de 31/05/2025: prova a formula, nao e conferencia de virada. |
@@ -1535,8 +1535,8 @@ outra fatia (contrato C4). Fica registrado para quem puder decidir com as duas f
 | FE-392 | Topbar (nav.toolbar.context_toolbar) — ícone de menu (mobile), logo (símbolo no mobile / texto no desktop, vindos do app_the… | verified | `frontend/src/components/{Layout,ConsoleTopbar}.tsx` | — | S2. Casca + topbar (marca, busca global, seletor de projeto, chip do usuário). A topbar é `bg-card`, **não `.glass-panel`** — `backdrop-filter` cria contexto de empilhamento e prenderia todo popover de dentro |
 | FE-393 | Seletor de projeto na topbar — <select> com current_user.projects.order(formal: :asc), visível se show_projects_select? (pro… | verified | `frontend/src/components/ProjectSelector.tsx` | `backend/spec/requests/api/v1/current_project_spec.rb` | S2. Painel em `FloatingPanel` (portal no `document.body`). Conferido ABERTO nos dois modos |
 | FE-394 | Busca global da topbar (#toolbar_generic_search) — input "Buscar usuários" com autocomplete em dropdown | verified | `frontend/src/components/ConsoleTopbar.tsx` | — | S2. Busca global = busca de ÁREA, sobre as mesmas entradas que o usuário enxerga. Busca de conteúdo é de cada tela |
-| FE-395 | Sidebar / menu do console — grupos acordeão com ícones zmdi, itens internos, rodapé com descrição do produto e links de "ter… | blocked | `frontend/src/components/Sidebar.tsx` | `frontend/src/components/__tests__/logout.test.tsx` | S2. Sidebar em grupos acordeão, `NavLink` marcando o ativo (no legado o item selecionado era derivado da URL à mão). Recolhida, cada grupo abre um flyout em PORTAL — o `<nav>` é `overflow-y-auto` e recortaria um `absolute` |
-| FE-396 | Resume do usuário no topo da sidebar — avatar (ou iniciais com cor aleatória), nome encurtado e botão "Verificação: {nível}"… | blocked | `frontend/src/components/ui/UserAvatar.tsx` (`avatarTone`), usado na `Sidebar` | — | S2 / **IMP-A23**. Cor determinística das iniciais: o `random_color` do legado (`observer.rb:32-36`) gerava cor nova A CADA RENDER |
+| FE-395 | Sidebar / menu do console — grupos acordeão com ícones zmdi, itens internos, rodapé com descrição do produto e links de "ter… | verified | frontend/src/components/Sidebar.tsx | tsc + suite 532 ex. | Phase 4: faltava o rodape (descricao + contratos). commit 81c90ed |
+| FE-396 | Resume do usuário no topo da sidebar — avatar (ou iniciais com cor aleatória), nome encurtado e botão "Verificação: {nível}"… | verified | frontend/src/components/Sidebar.tsx | tsc + suite 532 ex. | Phase 4: o selo de verificacao so existia em /profile e no detalhe. commit 81c90ed |
 | FE-397 | Área de conteúdo (dashContainer) — o container central que recebe cada seção; identifier console_content_wrapper, containerS… | verified | `frontend/src/components/Sidebar.tsx` | `frontend/src/components/__tests__/logout.test.tsx` | S2. Sidebar em grupos acordeão, `NavLink` marcando o ativo (no legado o item selecionado era derivado da URL à mão). Recolhida, cada grupo abre um flyout em PORTAL — o `<nav>` é `overflow-y-auto` e recortaria um `absolute` |
 | FE-398 | Estado de navegação (dashHolder) — objeto global que guarda resourceId, resourceTitle, resourceTopic, resourceSection, silen… | dropped | — | — | S2 `dropped`. `dashHolder`: objeto global em memória que era a ÚNICA fonte de verdade do roteamento do console. Não tem equivalente e **não deve ter** — o estado é do roteador + React Query |
 | FE-399 | Drawer direito "helper" (dashHelperHolder) — painel deslizante para formulários de criação/edição; contém o botão flutuante… | verified | `frontend/src/components/SideDrawer.tsx` (base ai9, reusado em `/messages`) | — | S2. Drawer de formulários reusado como está. A FE-400 saiu do `pending` na tarefa 4.7 (26/08/2026) — ver a linha FE-400 |

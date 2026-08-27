@@ -356,6 +356,8 @@ export function ProfilePage() {
   // menos impedia de salvar o endereço, a biografia e o nome. Agora cada campo
   // reprova sozinho e diz por quê no lugar dele.
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({})
+  // FE-029 — conferindo o documento no servidor enquanto a pessoa digita.
+  const [conferindoCpf, setConferindoCpf] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
   const [showActions, setShowActions] = useState(false)
   const fileInputRef = useRef<HTMLInputElement | null>(null)
@@ -462,6 +464,47 @@ export function ProfilePage() {
     // Digitar no campo limpa o erro DELE, não os outros. Limpar tudo faria a
     // pessoa perder de vista o segundo problema enquanto conserta o primeiro.
     setFieldErrors((e) => (e[campo] ? { ...e, [campo]: '' } : e))
+  }
+
+  /**
+   * **FE-029 — a validação de CPF em tempo real.**
+   *
+   * `usersApi.validateCpf` existia em `endpoints.ts:271` e `grep -rn
+   * 'validateCpf' src` não achava um consumidor: o endpoint estava pronto e a
+   * tela nunca o chamava.
+   *
+   * A validação LOCAL (`cpfValido`) já rodava no envio, e ela confere os
+   * dígitos — mas há uma coisa que só o servidor sabe: **se o documento já
+   * está em outra conta** (409, BE-035). Sem esta chamada, a pessoa preenche o
+   * formulário inteiro, salva, e só então descobre.
+   *
+   * Roda no `blur`, não a cada tecla: um CPF meio digitado é sempre inválido, e
+   * uma requisição por dígito daria onze respostas erradas antes da certa. Não
+   * é polling — quem dispara é o usuário saindo do campo.
+   */
+  const conferirCpfNoServidor = async (valor: string) => {
+    const digitos = valor.replace(/\D/g, '')
+    // Vazio é permitido (o campo não é obrigatório), e CNPJ não passa por aqui:
+    // o endpoint é de CPF.
+    if (digitos.length !== 11) return
+    // Não gasta requisição com dígito verificador errado — a conta é local.
+    if (!cpfValido(digitos)) return
+    // Não incomoda o servidor com o documento que a própria conta já tem.
+    if (digitos === (original?.cpf_cnpj || '').replace(/\D/g, '')) return
+
+    setConferindoCpf(true)
+    try {
+      const resposta = await usersApi.validateCpf(digitos, original?.id)
+      if (!resposta.valid) {
+        setFieldErrors((e) => ({ ...e, cpf_cnpj: 'Este CPF já está em outra conta.' }))
+      }
+    } catch {
+      // Falha de rede NÃO vira erro de campo: dizer "CPF inválido" porque a
+      // requisição caiu seria acusar o dado do usuário de um problema nosso. A
+      // validação do envio continua valendo como rede de segurança.
+    } finally {
+      setConferindoCpf(false)
+    }
   }
 
   const cancelEdit = () => {
@@ -681,6 +724,10 @@ export function ProfilePage() {
                 // FE-030 — a máscara formata; ela NÃO trava o formulário. O
                 // documento inválido reprova o documento, e o resto salva.
                 onChange={(v) => trocar('cpf_cnpj', mascararDocumento(v))}
+                // FE-029 — ao sair do campo, o servidor diz o que a conta local
+                // não sabe: se este CPF já está em OUTRA conta.
+                onBlur={conferirCpfNoServidor}
+                carregando={conferindoCpf}
               />
 
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
@@ -799,13 +846,18 @@ export function ProfilePage() {
  * e não diz onde clicar. `role="alert"` + `aria-invalid` fecham o par para o leitor
  * de tela.
  */
-function Field({ label, value, onChange, placeholder, erro, inputMode }: {
+function Field({ label, value, onChange, placeholder, erro, inputMode, onBlur, carregando }: {
   label: string
   value: string
   onChange: (v: string) => void
   placeholder?: string
   erro?: string
   inputMode?: 'text' | 'numeric' | 'tel' | 'email'
+  /** FE-029 — conferência no servidor ao sair do campo. */
+  onBlur?: (v: string) => void
+  /** Enquanto a conferência roda. Aparece como texto, não como spinner: o campo
+      continua utilizável e a pessoa não fica esperando para digitar o resto. */
+  carregando?: boolean
 }) {
   return (
     <div className="space-y-1.5">
@@ -813,11 +865,14 @@ function Field({ label, value, onChange, placeholder, erro, inputMode }: {
       <Input
         value={value ?? ''}
         onChange={(e) => onChange(e.target.value)}
+        onBlur={onBlur ? (e) => onBlur(e.target.value) : undefined}
         placeholder={placeholder}
         inputMode={inputMode}
         aria-invalid={!!erro}
+        aria-busy={carregando || undefined}
       />
       {erro && <p role="alert" className="text-xs text-destructive">{erro}</p>}
+      {!erro && carregando && <p className="text-xs text-muted-foreground">Conferindo…</p>}
     </div>
   )
 }

@@ -262,6 +262,15 @@ export function MessagesPage() {
                           <span className={cn('truncate text-sm', m.is_read ? 'text-foreground' : 'font-semibold text-foreground')}>
                             {m.sender_name}
                           </span>
+                          {/* **FE-406 — o e-mail do remetente.** O widget do
+                              legado mostrava nome E e-mail; aqui o
+                              `sender_email` só era usado como semente de cor do
+                              avatar. Numa caixa de mensagens de formulário
+                              público o e-mail é o único jeito de responder, e a
+                              lista existe justamente para triar o que responder
+                              — sem ele, é preciso abrir uma a uma para saber de
+                              quem é. */}
+                          <span className="truncate text-xs text-muted-foreground">{m.sender_email}</span>
                           <Badge variant={VARIANTE_DE_CONTEXTO[m.context]}>{m.context_label}</Badge>
                           <Badge variant={VARIANTE_DE_SITUACAO[m.state]}>{m.state_label}</Badge>
                         </div>
