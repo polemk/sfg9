@@ -430,3 +430,45 @@ entrou junto com o model. As duas saídas são pequenas e opostas — dar ao
 `integration_key` o mesmo laço que o `slug` tem (e aí os dois funcionam), ou
 soltar a unicidade como no legado (e aí o laço do slug volta a ser alcançável).
 Fica **em aberto para o Vinícius**, fora do caminho da demo.
+
+
+### D-PAR-07 — `legacy_id` tem DOIS significados, e o que venceu não é o que a DEC-12 pediu
+
+Apareceu ao tentar fechar DB-157 em 27/08. O bloqueio antigo (**D-PAR-02**, os 32
+borderôs com `NaN`) já não vale — a última reconciliação dá
+`receivable_entries` **28131 = 28131, 0 divergências**. O que restou é outra
+coisa, e é semântica.
+
+**A origem tem as duas colunas.** O `introspect` lista, em
+`receivable_entries`: `id bigint` (PK) e `legacy_id integer`, esta com índice
+único próprio. A `legacy_id` da origem é a proveniência do ETL Django→Rails de
+2021 — 17.610 linhas preenchidas em produção.
+
+**O destino usa o nome para outra coisa.** Todos os conversores gravam
+`legacy_id: row['id']`, e não é descuido: `converters/base.rb:212` define
+`natural_key(row) = { legacy_id: row[legacy_pk] }`. É por essa coluna que a
+carga é idempotente e retomável. Trocar o significado quebraria o `resume` de
+todas as 32 tabelas.
+
+**Consequência: a `legacy_id` do Django não é migrada.** O conversor só a LÊ, e
+só para o relatório de anomalia da Q-B19 (`receivable_entries.rb:479`); nunca a
+grava. Depois da carga, a coluna do destino contém 28.131 ids do Rails legado,
+não os 17.610 ids do Django.
+
+**Isso contraria o que está escrito.** O comentário da migration diz
+textualmente: *proveniência do ETL Django→Rails de 2021 (…17.610 linhas
+preenchidas em produção). O ETL não é portado; a coluna sim (DB-157)*. A coluna
+foi criada; o dado que ela deveria carregar, não.
+
+**Não decidi sozinho, e por quê.** A DEC-12 pediu a proveniência do Django; a
+convenção do motor pede o id do sfg. As duas são razoáveis e não cabem na mesma
+coluna. As saídas:
+
+| | o que custa |
+|---|---|
+| **a)** aceitar a convenção e descartar a proveniência Django | uma linha em `removed-features.md`; perde-se o rastro de 17.610 borderôs até o sistema de 2021 |
+| **b)** coluna separada (`django_legacy_id`) | migration + conversor + recarga daquela tabela; nada quebra |
+
+**Nada disso afeta a demonstração** — a coluna não aparece em tela nenhuma. Fica
+para o Vinícius. O comentário da migration foi corrigido para parar de afirmar o
+que não acontece.

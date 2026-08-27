@@ -245,6 +245,7 @@ const RenegotiationDetailPage = lazy(() => import('@/app/pages/renegotiations/Re
 // menu já nasce sem `locked` — ele acende no commit em que a S6 entregar a tela.
 const AvailabilityPage = lazy(() => import('@/app/pages/availability/AvailabilityPage').then(m => ({ default: m.AvailabilityPage })))
 const ProjectAvailabilitiesPage = lazy(() => import('@/app/pages/availability/ProjectAvailabilitiesPage').then(m => ({ default: m.ProjectAvailabilitiesPage })))
+const AvailabilityTemplateDetailPage = lazy(() => import('@/app/pages/availability/AvailabilityTemplateDetailPage').then(m => ({ default: m.AvailabilityTemplateDetailPage })))
 const AvailabilityTemplatesPage = lazy(() => import('@/app/pages/availability/AvailabilityTemplatesPage').then(m => ({ default: m.AvailabilityTemplatesPage })))
 
 // --- S5 — LIMITES DE RISCO e o motor de exposição ----------------------------
@@ -499,7 +500,17 @@ export const CONSOLE_NAV_GROUPS: NavGroup[] = [
           { path: ':id/edit', element: IndicatorsPage },
         ],
       },
-      { id: 'availability_templates', path: '/availability-templates', label: 'Padrões de Disponibilidade', icon: CalendarRange, resource: 'availability_templates', roles: ['og', 'admin', 'gerente'], element: AvailabilityTemplatesPage, slice: 'S11' },
+      {
+        // FE-140 — o detalhe entra como `children` da área, e não como item de
+        // menu: ele tem dono na navegação, e o botão Voltar continua dentro do
+        // console. É o mesmo desenho do detalhe do portador (DC-08 / D-22).
+        id: 'availability_templates', path: '/availability-templates',
+        label: 'Padrões de Disponibilidade', icon: CalendarRange, resource: 'availability_templates',
+        roles: ['og', 'admin', 'gerente'], element: AvailabilityTemplatesPage, slice: 'S11',
+        children: [
+          { path: ':id', element: AvailabilityTemplateDetailPage },
+        ],
+      },
       // DEC-18.2: permissões são de OG e Admin — o Gerente NÃO alcança, embora
       // veja o resto do grupo. É a mesma linha da matriz do servidor.
       { id: 'permissions', path: '/permissions', label: 'Permissões', icon: BadgeCheck, resource: 'permissions', roles: ['og', 'admin'], element: PermissionsPage, slice: 'S1' },

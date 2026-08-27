@@ -131,4 +131,50 @@ RSpec.describe 'Api::V1 — pais válidos e detalhe do padrão', type: :request 
       expect(response).to have_http_status(:not_found)
     end
   end
+
+  # ==========================================================================
+  # FE-140 — os dois campos que o cartão "Dados do template" pedia
+  # ==========================================================================
+  #
+  # `author_name` e `project_name` não saíam da API. As duas associações já
+  # existiam no model desde sempre; faltava a exposição.
+  #
+  # O painel "Projetos" do legado (`detail/_body.html.erb:76-91`) chamava
+  # `@availability_template.projects` — **associação que não existe** em nenhum
+  # dos três models (BE-133): abrir o detalhe de um padrão de projeto levantava
+  # `NoMethodError`, e aquele painel nunca renderizou. O dado que ele queria
+  # dizer é o `belongs_to :project`, no singular.
+  describe 'detalhe — autor e projeto (FE-140)' do
+    it 'o padrão global traz o autor e NÃO traz projeto' do
+      autora = create(:user, :og, name: 'Fulana de Tal')
+      padrao = create(:global_availability_template, author: autora)
+
+      get "/api/v1/availability_templates/#{padrao.id}", headers: headers
+
+      expect(response).to have_http_status(200)
+      corpo = JSON.parse(response.body)
+      expect(corpo['author_name']).to eq('Fulana de Tal')
+      expect(corpo['project_name']).to be_nil
+    end
+
+    it 'o padrão de PROJETO traz o nome do projeto' do
+      meu = create(:project_availability_template, project: projeto, title: 'Do projeto')
+
+      get "/api/v1/availability_templates/#{meu.id}", headers: headers
+
+      expect(response).to have_http_status(200)
+      expect(JSON.parse(response.body)['project_name']).to eq(projeto.name)
+    end
+
+    it 'sem autor, o campo vem NULO — e o detalhe continua abrindo' do
+      padrao = create(:global_availability_template)
+      padrao.update_columns(user_id: nil)
+
+      get "/api/v1/availability_templates/#{padrao.id}", headers: headers
+
+      expect(response).to have_http_status(200)
+      expect(JSON.parse(response.body)['author_name']).to be_nil
+    end
+  end
+
 end

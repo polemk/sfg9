@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { CalendarRange, Lock, TrendingDown, TrendingUp } from 'lucide-react'
 import { CatalogScreen } from '@/app/pages/catalogs/CatalogScreen'
@@ -42,6 +43,8 @@ import {
  * `default_position` e **nenhuma view o renderiza** (FE-138).
  */
 export function AvailabilityTemplatesPage() {
+  const navigate = useNavigate()
+
   return (
     <CatalogScreen<AvailabilityTemplate>
       queryKey="availability-templates"
@@ -50,6 +53,10 @@ export function AvailabilityTemplatesPage() {
       // listá-lo por data de criação embaralharia pais e filhos. A chave
       // pública `position` aponta para `sort_key` no servidor.
       defaultSort={{ key: 'position', direction: 'asc' }}
+      // FE-140 — a linha leva ao detalhe, como nas outras telas de catálogo
+      // (portador, fornecedor, empresa). Antes não havia para onde ir: o
+      // cartão "Dados do template" do legado não tinha equivalente nenhum.
+      onRowClick={(t) => navigate(`/availability-templates/${t.id}`)}
       texts={{
         title: 'Tipos de disponibilidade',
         subtitle:

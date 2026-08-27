@@ -59,6 +59,16 @@ export interface AvailabilityTemplate {
   scope_label: string | null
   has_children: boolean
   deletable: boolean | null
+  /** FE-140 — quem cadastrou. O `author` existia no model e nao saia da API. */
+  author_name: string | null
+  /**
+   * FE-140 — o projeto do padrao de projeto. Nulo no catalogo global.
+   *
+   * O legado tinha um painel "Projetos", no PLURAL, chamando uma associacao que
+   * nao existe em nenhum dos models (BE-133): abrir aquele detalhe levantava
+   * `NoMethodError`. Um padrao de projeto pertence a UM projeto.
+   */
+  project_name: string | null
   created_at: string
   updated_at: string
 }

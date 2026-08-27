@@ -77,6 +77,25 @@ module Api
         t.respond_to?(:deletable?) ? t.deletable? : nil
       end
 
+      # **FE-140 — o cartão "Dados do template" do legado.**
+      #
+      # Ele mostrava "CRIADO POR <nome> em <data>" (`detail/_body.html.erb:66`).
+      # O `author` já existia no model e não saía por lugar nenhum.
+      expose :author_name do |t|
+        t.author&.name
+      end
+
+      # O legado tinha um painel "Projetos" para o padrão de projeto, e ele
+      # chamava `@availability_template.projects` — associação que **não existe**
+      # em nenhum dos três models (BE-133): abrir aquele detalhe levantava
+      # `NoMethodError`. O painel nunca renderizou.
+      #
+      # O que existe, e é o que a informação queria dizer, é `belongs_to
+      # :project`: um padrão de projeto pertence a UM projeto.
+      expose :project_name do |t|
+        t.project&.name
+      end
+
       expose :created_at
       expose :updated_at
     end

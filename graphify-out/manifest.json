@@ -3240,8 +3240,8 @@
     "semantic_hash": ""
   },
   ".migration-ai9/parity-ledger.md": {
-    "mtime": 1787859890.608843,
-    "ast_hash": "198b71220fb574d0fe1c43adc19f0ce3",
+    "mtime": 1787860068.234456,
+    "ast_hash": "0c0a67d340b464db0e26be9e6fd3c983",
     "semantic_hash": ""
   },
   ".migration-ai9/project-options.md": {
@@ -9242,6 +9242,11 @@
   "frontend/src/app/pages/projects/__tests__/responsavelNaEdicao.test.tsx": {
     "mtime": 1787859848.8495362,
     "ast_hash": "245ec570ad92d1ce00738daa438fb33f",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/pages/users/__tests__/UserDetailPage.test.tsx": {
+    "mtime": 1787860042.0784323,
+    "ast_hash": "f2bf03fe3332f7b93c4ca5487ceac470",
     "semantic_hash": ""
   }
 }
