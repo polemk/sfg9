@@ -118,7 +118,7 @@ const PersonaFormSheet = ({
                                 <div className="h-16 w-16 rounded-md bg-background border border-border flex items-center justify-center overflow-hidden">
                                     {persona.name || persona.avatar ? (
                                         <img
-                                            src={persona.avatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${persona.name}`}
+                                            src={persona.avatar || '/images/brand/safegold-icon-192.png'}
                                             alt="Preview"
                                             className="w-full h-full object-cover"
                                         />

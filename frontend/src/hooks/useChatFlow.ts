@@ -42,7 +42,21 @@ function readSession<T>(key: string, fallback: T): T {
     } catch { return fallback }
 }
 
-export function useChatFlow(initialSessionId?: string | null, initialFlowId?: string | null) {
+/**
+ * `extraContext` (DEC-13.2) são os fatos do ambiente que acompanham cada
+ * mensagem — tela atual, projeto selecionado, menu do papel. Quem monta o widget
+ * é quem decide o que contar; aqui eles só viajam.
+ *
+ * **Vai por `ref`, não pelas dependências dos callbacks.** O conteúdo muda a cada
+ * navegação; se entrasse na lista de dependências, o efeito de início de sessão
+ * mudaria de identidade a cada troca de tela e **abriria uma sessão nova no meio
+ * da conversa** — o histórico do turno anterior morre com ela.
+ */
+export function useChatFlow(
+    initialSessionId?: string | null,
+    initialFlowId?: string | null,
+    extraContext?: Record<string, string>,
+) {
     // Restore session state from sessionStorage
     const storedSessionId = readSession<string | null>(STORAGE_KEY_SESSION, null)
 
@@ -61,6 +75,11 @@ export function useChatFlow(initialSessionId?: string | null, initialFlowId?: st
     const [currentFlowId, setCurrentFlowId] = useState<string | null>(initialFlowId || null)
     const [persona, setPersona] = useState<{ name: string, description?: string, avatar: string } | null>(restoredPersona)
     const initCounterRef = useRef(0)
+    // Sempre o valor da última renderização, lido de dentro dos callbacks. Ver a
+    // nota da assinatura: entrar nas dependências reabriria a sessão a cada
+    // navegação.
+    const extraContextRef = useRef(extraContext)
+    extraContextRef.current = extraContext
 
     const addLog = useCallback((type: ExecutionLog['type'], message: string, data?: any) => {
         const newLog: ExecutionLog = {
@@ -239,7 +258,8 @@ export function useChatFlow(initialSessionId?: string | null, initialFlowId?: st
                 current_page: window.location.pathname,
                 referrer: document.referrer,
                 smart_id: localStorage.getItem('smart_id'),
-                user_name: localStorage.getItem('user_name') || undefined
+                user_name: localStorage.getItem('user_name') || undefined,
+                ...(extraContextRef.current || {})
             }
 
             const res = await chatFlowApi.getSession(currentFlowId || undefined, metadata)
@@ -349,7 +369,12 @@ export function useChatFlow(initialSessionId?: string | null, initialFlowId?: st
             // Context metadata for AI Agent
             const context = {
                 current_page: window.location.pathname,
-                user_name: localStorage.getItem('user_name') || undefined
+                user_name: localStorage.getItem('user_name') || undefined,
+                // Reenviado a CADA turno, e não só na abertura: o contexto da
+                // sessão é gravado uma vez, e quem abre o chat no painel e
+                // caminha até os limites continuaria descrito como se estivesse
+                // no painel.
+                ...(extraContextRef.current || {})
             }
 
             const res = await chatFlowApi.sendInput(sessionId, content, originNodeId, context)
@@ -390,7 +415,12 @@ export function useChatFlow(initialSessionId?: string | null, initialFlowId?: st
             // Context metadata for AI Agent
             const context = {
                 current_page: window.location.pathname,
-                user_name: localStorage.getItem('user_name') || undefined
+                user_name: localStorage.getItem('user_name') || undefined,
+                // Reenviado a CADA turno, e não só na abertura: o contexto da
+                // sessão é gravado uma vez, e quem abre o chat no painel e
+                // caminha até os limites continuaria descrito como se estivesse
+                // no painel.
+                ...(extraContextRef.current || {})
             }
 
             const res = await chatFlowApi.sendImageInput(sessionId, file, caption, context)

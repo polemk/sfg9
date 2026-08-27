@@ -345,8 +345,8 @@
     "semantic_hash": ""
   },
   "backend/app/services/ai/agent_service.rb": {
-    "mtime": 1787689634.9442663,
-    "ast_hash": "c62f1a3df3499364357c7d7940577aa7",
+    "mtime": 1787871174.69093,
+    "ast_hash": "e09218a9588380a4a21d1117fdcfbd36",
     "semantic_hash": ""
   },
   "backend/app/services/ai/flow_engine.rb": {
@@ -420,13 +420,13 @@
     "semantic_hash": ""
   },
   "backend/app/services/ai/tools/tool_executor.rb": {
-    "mtime": 1787629166.2573655,
-    "ast_hash": "0b2070c94dd02b3dd501f8915ace213c",
+    "mtime": 1787871149.5115407,
+    "ast_hash": "8946152f263d77dbdce72ef6cbb2968a",
     "semantic_hash": ""
   },
   "backend/app/services/ai/tools/tool_registry.rb": {
-    "mtime": 1787629166.2653656,
-    "ast_hash": "2dcea7f6d76e781b800701017af8650d",
+    "mtime": 1787871126.8340971,
+    "ast_hash": "11fa8df7279332e65bb2d35742926963",
     "semantic_hash": ""
   },
   "backend/app/services/auth/code_validation_service.rb": {
@@ -1505,8 +1505,8 @@
     "semantic_hash": ""
   },
   "frontend/src/components/chat/AIChatWidget.tsx": {
-    "mtime": 1787672241.322239,
-    "ast_hash": "76000d7fc179dc117c4bf3db83817455",
+    "mtime": 1787871136.555135,
+    "ast_hash": "6e5763e8165f05ea30e83f419e3e080c",
     "semantic_hash": ""
   },
   "frontend/src/components/chat/ChatCTA.tsx": {
@@ -1770,8 +1770,8 @@
     "semantic_hash": ""
   },
   "frontend/src/features/chat-builder/MobileFlowListPage.tsx": {
-    "mtime": 1787850511.494668,
-    "ast_hash": "12948dec2c462a85ee3e9838d70a3c13",
+    "mtime": 1787871103.6547403,
+    "ast_hash": "a2ba402f24acdbb538081ed0abca1860",
     "semantic_hash": ""
   },
   "frontend/src/features/chat-builder/api/builder.ts": {
@@ -2387,56 +2387,6 @@
   "frontend/public/gui_temp.png": {
     "mtime": 1787240481.5450501,
     "ast_hash": "fc5a6b52540588da7c304c40ff1120be",
-    "semantic_hash": ""
-  },
-  "frontend/public/images/avatars/anna.png": {
-    "mtime": 1787240481.5610502,
-    "ast_hash": "8adc4fa907e022a2f7b4d66053cf73a3",
-    "semantic_hash": ""
-  },
-  "frontend/public/images/avatars/maju.png": {
-    "mtime": 1787240481.5810502,
-    "ast_hash": "66a49e57bd764c9c33907ecabc0a7022",
-    "semantic_hash": ""
-  },
-  "frontend/public/images/avatars/martha.png": {
-    "mtime": 1787240481.58905,
-    "ast_hash": "4dc58f478d418cbebd4c59fc24e2804d",
-    "semantic_hash": ""
-  },
-  "frontend/public/images/team/graciele.webp": {
-    "mtime": 1787240481.7930498,
-    "ast_hash": "d415917e9556de74dc6fa28766456108",
-    "semantic_hash": ""
-  },
-  "frontend/public/images/team/gui.webp": {
-    "mtime": 1787240481.79705,
-    "ast_hash": "9322ea8705aa2265c168b97d3d0f2f67",
-    "semantic_hash": ""
-  },
-  "frontend/public/images/team/leonidas.webp": {
-    "mtime": 1787240481.80505,
-    "ast_hash": "0fae53799cfddf515bc06e81112a1fa3",
-    "semantic_hash": ""
-  },
-  "frontend/public/images/team/lucas.webp": {
-    "mtime": 1787240481.80505,
-    "ast_hash": "14aba1cdfcea600513ef52a282a5889c",
-    "semantic_hash": ""
-  },
-  "frontend/public/images/team/marco.webp": {
-    "mtime": 1787240481.8130498,
-    "ast_hash": "95736772fb0d1d487639f85a13660659",
-    "semantic_hash": ""
-  },
-  "frontend/public/images/team/silas.webp": {
-    "mtime": 1787240481.81705,
-    "ast_hash": "8c8e9179ba74b6c36d00a7af0cdadf9d",
-    "semantic_hash": ""
-  },
-  "frontend/public/images/team/vini.webp": {
-    "mtime": 1787240481.82105,
-    "ast_hash": "9a2750e47ff168a9d08baed231b5db38",
     "semantic_hash": ""
   },
   "frontend/public/laura-avatar.svg": {
@@ -3505,8 +3455,8 @@
     "semantic_hash": ""
   },
   "backend/db/seeds/assistente_console_agent.rb": {
-    "mtime": 1787629166.3893654,
-    "ast_hash": "13e8a45658fc6728a1794f866ecb50b4",
+    "mtime": 1787871189.025351,
+    "ast_hash": "9b1b32447e2ac999fb0e34d258dcde12",
     "semantic_hash": ""
   },
   "backend/spec/services/ai/conversation_memory_spec.rb": {
@@ -9277,6 +9227,21 @@
   "backend/spec/requests/rack_attack_baldes_spec.rb": {
     "mtime": 1787869148.825583,
     "ast_hash": "eeb4a4ba0fa099995de2dea497824599",
+    "semantic_hash": ""
+  },
+  "backend/app/services/ai/tools/console_scope.rb": {
+    "mtime": 1787870913.642808,
+    "ast_hash": "f39cc0e9141f97d881eafd233ede3c7d",
+    "semantic_hash": ""
+  },
+  "backend/app/services/ai/tools/handlers/console_data.rb": {
+    "mtime": 1787871077.886365,
+    "ast_hash": "7947ac21f00c2335b33e6fb224054c08",
+    "semantic_hash": ""
+  },
+  "backend/app/services/ai/tools/handlers/console_help.rb": {
+    "mtime": 1787870959.357958,
+    "ast_hash": "71536309fd382e6f83f7f7c9fccd968e",
     "semantic_hash": ""
   }
 }

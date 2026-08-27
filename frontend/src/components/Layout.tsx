@@ -9,6 +9,11 @@ import { MouseTracker } from '@/components/MouseTracker'
 import { MobileTopBar } from '@/components/mobile/MobileTopBar'
 import { MobileBottomBar } from '@/components/mobile/MobileBottomBar'
 import { RouteErrorBoundary } from '@/components/RouteErrorBoundary'
+// DEC-13.2 — o que o assistente do console sabe sem perguntar: a tela em que a
+// pessoa está, o projeto selecionado e o menu que o papel dela alcança. Mora
+// AQUI porque é a moldura do console: o widget também é montado na tela pública
+// e no builder, e nenhum dos dois tem menu nem projeto para descrever.
+import { useAssistantContext } from '@/hooks/useAssistantContext'
 // S12 / DEC-65 — o banner de aceite pendente. Fica AQUI, e não em cada tela,
 // porque "persistente até aceitar" quer dizer em todo o console: um banner que
 // só aparece em algumas telas é um banner que a pessoa aprende a evitar. É a
@@ -28,6 +33,7 @@ export function Layout() {
   const isBuilderPage = location.pathname.startsWith('/admin/chat/builder')
 
   const { isOpen, closeChat, toggleChat, sessionId, openChat, currentAgentId, pendingIntent, clearPendingIntent } = useChat()
+  const assistantContext = useAssistantContext()
   const [initialMsg, setInitialMsg] = useState<string | undefined>(undefined)
   
   // Determinamos uma chave única para o widget para forçar o reset ao trocar de agente
@@ -116,6 +122,7 @@ export function Layout() {
         flowId={currentAgentId || undefined}
         initialMessage={initialMsg}
         pendingIntent={pendingIntent || undefined}
+        extraContext={assistantContext}
         mode="flow"
       />
     </div>

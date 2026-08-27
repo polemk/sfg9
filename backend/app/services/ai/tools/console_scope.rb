@@ -57,18 +57,34 @@ module Ai
         @user = @session.respond_to?(:user) ? @session.user : nil
       end
 
-      # O projeto corrente, revalidado. `nil` cobre os três casos de uma vez —
-      # sem usuário, sem preferência gravada, e preferência apontando para
-      # projeto de onde a pessoa saiu — porque para o assistente os três levam à
-      # mesma frase: escolha um projeto.
+      # O projeto corrente, revalidado — **a mesma resolução do
+      # `resolve_current_project`**, e ela é copiada de propósito em vez de
+      # aproximada:
+      #
+      #  - preferência gravada, sempre conferida contra `memberships`;
+      #  - sem preferência, participação em exatamente UM projeto é esse projeto.
+      #
+      # O segundo ramo parece detalhe e não é. Sem ele, quem participa de um
+      # projeto só e nunca tocou no seletor vê os números na tela — porque o
+      # endpoint aplica o fallback — e ouve "escolha um projeto" do assistente
+      # que roda dentro daquela mesma tela. Discordar da tela é pior que não
+      # responder.
+      #
+      # **Não há como ler o `X-Project-Id` daqui** (a ferramenta roda fora do
+      # ciclo do controller). Na prática nada diverge: o cliente não manda esse
+      # cabeçalho — trocar de projeto é um `PUT` que grava a coluna, e é a coluna
+      # que os dois lados leem.
       def project
         return @project if defined?(@project)
 
         @project =
-          if user.nil? || user.current_project_id.blank?
+          if user.nil?
             nil
-          else
+          elsif user.current_project_id.present?
             ::Project.visible_to(user).find_by(id: user.current_project_id)
+          else
+            visiveis = ::Project.visible_to(user)
+            visiveis.count == 1 ? visiveis.first : nil
           end
       end
 

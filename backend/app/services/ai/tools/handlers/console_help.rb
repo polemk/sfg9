@@ -102,7 +102,8 @@ module Ai
 
           escopo = args['scope'].to_s.strip
           unless ::Help::FieldHelp::SCOPES.include?(escopo)
-            return scope.failure("Formulário desconhecido. Os que têm ajuda de campo são: #{::Help::FieldHelp::SCOPES.join(', ')}.")
+            disponiveis = ::Help::FieldHelp::SCOPES.join(', ')
+            return scope.failure("Formulário desconhecido. Os que têm ajuda de campo são: #{disponiveis}.")
           end
 
           campo = args['field'].to_s.strip
@@ -111,7 +112,8 @@ module Ai
             texto = ::Help::FieldHelp.text_for(escopo, campo)
             # Chave ausente não quebra nada (regra 1 do `FieldHelp`) e não vira
             # invenção: o agente recebe "não há texto" e diz isso.
-            return { success: true, message: { scope: escopo, field: campo, text: texto, found: texto.present? }.to_json }
+            corpo = { scope: escopo, field: campo, text: texto, found: texto.present? }
+            return { success: true, message: corpo.to_json }
           end
 
           textos = ::Help::FieldHelp.for_scope(escopo)

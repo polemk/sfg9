@@ -628,3 +628,36 @@ export const MOUNTED_AREAS: NavItem[] = CONSOLE_NAV_ITEMS.filter(i => i.element 
 
 /** A área do "Início": o `DashboardPage` da base, montado fora dos grupos. */
 export const HOME_AREA = { path: '/dashboard', element: DashboardPage }
+
+/** O rótulo do "Início", que não é item de grupo e por isso não sai da lista. */
+const HOME_LABEL = 'Início (painel do projeto)'
+
+/**
+ * O NOME DA TELA em que a pessoa está, a partir do caminho do navegador.
+ *
+ * Existe para o assistente do console (DEC-13.2): sem isto ele recebia só o
+ * `pathname` e tinha de **perguntar em que tela o usuário está** — pergunta que
+ * o sistema já sabe responder, e que faz a conversa começar com uma ida e volta
+ * inútil.
+ *
+ * **A fonte é esta lista, não uma tabela nova.** Mapear rota → nome de tela num
+ * segundo lugar (no servidor, por exemplo) criaria duas versões do menu, e a que
+ * envelhecesse seria justamente a que o assistente lê — ele passaria a nomear
+ * telas que mudaram de nome ou que deixaram de existir. É a mesma razão pela
+ * qual `App.tsx` monta as rotas daqui (D-118).
+ *
+ * O caminho mais longo vence: `/help/items` não pode ser respondido por `/help`.
+ */
+export function screenLabelForPath(pathname: string): string | null {
+  const caminho = (pathname || '').split('?')[0].replace(/\/+$/, '') || '/'
+  if (caminho === '/' || caminho === HOME_AREA.path || caminho.startsWith(`${HOME_AREA.path}/`)) {
+    return HOME_LABEL
+  }
+
+  const candidatos = CONSOLE_NAV_ITEMS.filter(
+    (item) => caminho === item.path || caminho.startsWith(`${item.path}/`),
+  )
+  if (candidatos.length === 0) return null
+
+  return candidatos.reduce((a, b) => (b.path.length > a.path.length ? b : a)).label
+}

@@ -162,4 +162,46 @@ RSpec.describe 'Api::V1::Chat', type: :request do
       expect(set_cookie).not_to include('cable_token=')
     end
   end
+
+  # ---------------------------------------------------------------------------
+  # O CONTEXTO DE AMBIENTE CHEGA AO AGENTE (DEC-13.2).
+  #
+  # É por este fio que o assistente sabe em que tela a pessoa está e qual projeto
+  # ela selecionou — e é por ele que a conversa deixa de começar com "em que tela
+  # você está?". O `context` do corpo **não é parâmetro declarado** no endpoint;
+  # se um dia a configuração do Grape passar a descartar o que não foi declarado,
+  # nada quebra visivelmente: o agente volta a perguntar, e ninguém liga uma
+  # coisa à outra. Por isso o fio tem spec próprio.
+  # ---------------------------------------------------------------------------
+  describe 'contexto de ambiente no POST /chat/input' do
+    let!(:agente) do
+      create(:chat_flow,
+             name: 'assistente-de-teste',
+             kind: :ai_agent,
+             agent_config: { 'model' => 'claude-opus-5', 'system_prompt' => 'Você ajuda.' })
+    end
+    let!(:sessao) { ChatSession.create!(chat_flow: agente, user: user) }
+
+    it 'repassa tela, projeto e menu para o AgentService' do
+      recebido = nil
+      allow(Ai::AgentService).to receive(:respond) do |_sessao, _entrada, **kwargs|
+        recebido = kwargs[:context]
+        [{ id: SecureRandom.uuid, type: 'text', content: 'ok' }]
+      end
+
+      post '/chat/input',
+           params: {
+             session_id: sessao.id,
+             input: 'o que é este campo?',
+             context: { current_page: '/risk-controls', tela_atual: 'Limites', projeto_selecionado: 'Carteira A' }
+           },
+           headers: headers
+
+      # 201: é o default do Grape para POST, e o widget não distingue.
+      expect(response).to have_http_status(:created)
+      expect(recebido).to be_present
+      expect(recebido['tela_atual']).to eq('Limites')
+      expect(recebido['projeto_selecionado']).to eq('Carteira A')
+    end
+  end
 end

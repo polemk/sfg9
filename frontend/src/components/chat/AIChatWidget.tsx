@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import {
   X,
   Minus,
+  Plus,
   Image as ImageIcon,
   Smile,
   RefreshCcw,
@@ -224,6 +225,12 @@ interface AIChatWidgetProps {
   fullscreen?: boolean;
   /** Live preview overrides for the builder page */
   previewPersona?: { name?: string; avatar?: string; description?: string };
+  /**
+   * DEC-13.2 — fatos do ambiente que vão junto com cada mensagem (tela atual,
+   * projeto selecionado, menu do papel). Quem monta o widget é quem sabe o que
+   * pode contar: o `Layout` do console preenche, a tela pública e o builder não.
+   */
+  extraContext?: Record<string, string>;
 }
 
 export function AIChatWidget({
@@ -237,6 +244,7 @@ export function AIChatWidget({
   defaultMinimized = false,
   anchored = false,
   fullscreen = false,
+  extraContext,
   ...props
 }: AIChatWidgetProps) {
   /* Sanitize sessionId to ensure it's a string or null */
@@ -300,7 +308,7 @@ export function AIChatWidget({
     logs: flowLogs,
     persona: flowPersona,
     currentNode,
-  } = useChatFlow(sessionId, activeFlowId);
+  } = useChatFlow(sessionId, activeFlowId, extraContext);
 
   const [prevSanitizedInitialFlowId, setPrevSanitizedInitialFlowId] = useState<string | null>(sanitizedInitialFlowId);
 
@@ -998,7 +1006,7 @@ export function AIChatWidget({
                              ? "bg-primary text-primary-foreground rounded-lg rounded-tr-md"
                              : "bg-muted text-foreground rounded-lg rounded-tl-md border border-border/50"
                          }
-                         ${nextIsSame ? (isUser ? "mb-1" : "mb-1") : "mb-4"} 
+                         ${nextIsSame ? (isUser ? "mb-1" : "mb-1") : "mb-4"}
                        `}
                   >
                     {renderMessageContent(msg, {
@@ -1927,23 +1935,37 @@ export function AIChatWidget({
         onClick={onClose}
       />
 
-      {/* 
-          Messenger Style Chat Window 
+      {/*
+          Messenger Style Chat Window
           Mobile: Side Drawer (Right)
           Desktop: Floating Card (Bottom aligned to layout)
       */}
       <div
-        className={`pointer-events-auto absolute 
-          top-0 right-0 h-full w-[85vw] max-w-[400px] 
+        className={`pointer-events-auto absolute
+          top-0 right-0 h-full w-[85vw] max-w-[400px]
           rounded-l-2xl border-l border-border/50 shadow-e3
           bg-card/95 backdrop-blur-md animate-in slide-in-from-right duration-300
-          
+
           lg:fixed lg:top-auto lg:bottom-0 lg:right-6
-          lg:w-[380px] lg:h-[600px] lg:max-h-[85vh]
+          lg:w-[380px] lg:max-h-[85vh]
           lg:rounded-t-2xl lg:rounded-b-none lg:border lg:border-b-0
           lg:animate-in lg:slide-in-from-bottom-10 lg:fade-in duration-300
-          
+
           flex flex-col overflow-hidden font-sans
+
+          ${/* **O botao de minimizar nao fazia nada, e o motivo era este.**
+
+               `handleMinimize` trocava `isMinimized` desde sempre — mas a
+               variavel NAO era lida em lugar nenhum deste ramo do widget. Havia
+               dois layouts no mesmo arquivo, e so o outro implementava o
+               encolhimento. O React re-renderizava e a tela ficava igual.
+
+               Agora a altura depende do estado: encolhido, o painel fica so com
+               o cabecalho; aberto, volta ao tamanho de antes. A transicao e
+               explicita para o clique ter resposta visivel — sem ela, encolher
+               parece um corte seco e a pessoa clica de novo achando que falhou. */ ""}
+          transition-[height] duration-300 ease-out
+          ${isMinimized ? "h-[68px] lg:h-[68px]" : "h-full lg:h-[600px]"}
           ${isDragging ? "ring-2 ring-primary/50 ring-inset" : ""}
         `}
         onDragOver={handleDragOver}
@@ -1995,14 +2017,17 @@ export function AIChatWidget({
                 <RefreshCcw className="h-4 w-4" />
               </Button>
             )}
+            {/* O rotulo acompanha o estado: com o painel encolhido, "Minimizar"
+                descreve o que ja aconteceu, e nao o que o clique faz. Quem usa
+                leitor de tela ouviria a acao errada. */}
             <Button
               variant="ghost"
               size="icon"
               onClick={handleMinimize}
               className="h-8 w-8 rounded-full"
-              aria-label="Minimizar conversa"
+              aria-label={isMinimized ? "Expandir conversa" : "Minimizar conversa"}
             >
-              <Minus className="h-5 w-5" />
+              {isMinimized ? <Plus className="h-5 w-5" /> : <Minus className="h-5 w-5" />}
             </Button>
             <Button
               variant="ghost"
@@ -2016,8 +2041,13 @@ export function AIChatWidget({
           </div>
         </div>
 
-        {/* Messages Area */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-2 bg-background/50 scrollbar-thin scrollbar-thumb-border">
+        {/* Messages Area — `hidden` quando encolhido: sem isto o conteudo
+            continua no fluxo e o painel nao chega na altura do cabecalho. */}
+        <div
+          className={`flex-1 overflow-y-auto p-4 space-y-2 bg-background/50 scrollbar-thin scrollbar-thumb-border ${
+            isMinimized ? "hidden" : ""
+          }`}
+        >
           {displayMessages.length === 0 && (
             <div className="flex flex-col items-center justify-center h-full text-center p-6 opacity-60">
               <div className="h-24 w-24 rounded-full overflow-hidden mb-4 border-4 border-background shadow-e2">
@@ -2074,7 +2104,7 @@ export function AIChatWidget({
                            ? "bg-primary text-primary-foreground rounded-lg rounded-tr-md" // User bubble
                            : "bg-secondary text-secondary-foreground rounded-lg rounded-tl-md border border-border/50" // Agent bubble
                        }
-                       ${nextIsSame ? (isUser ? "mb-1" : "mb-1") : "mb-2"} 
+                       ${nextIsSame ? (isUser ? "mb-1" : "mb-1") : "mb-2"}
                      `}
                   >
                     {renderMessageContent(msg, {
