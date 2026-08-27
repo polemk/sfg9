@@ -109,10 +109,13 @@ export function ProjectForm({
   values,
   onChange,
   editing,
+  onLogoPendente,
 }: {
   values: ProjectFormValues
   onChange: (v: ProjectFormValues) => void
   editing: Project | null
+  /** DEC-136 — na criação o arquivo fica pendente até o projeto existir. */
+  onLogoPendente?: (file: File | null) => void
 }) {
   const [termoResponsavel, setTermoResponsavel] = useState('')
 
@@ -233,23 +236,28 @@ export function ProjectForm({
         </div>
       </fieldset>
 
-      {editing && (
-        <div className="space-y-1.5">
-          <Label htmlFor="avatar">Logo do projeto</Label>
-          {/* FE-087 — a escolha SOBREVIVE a erro de validação em outro campo: o
-              upload é requisição própria e já persistiu. No legado o
-              `ajax:error` de qualquer campo resetava o input de arquivo. */}
-          <ScopedLogoField
-            record={editing}
-            api={projectsApi}
-            currentUrl={editing.avatar_url}
-            urlOf={(p) => p.avatar_url}
-            limiteMb={5}
-            queryKeys={['projects', 'project']}
-            placeholder="Enviar logo do projeto"
-          />
-        </div>
-      )}
+      {/* **FE-087 / DEC-136 — o campo existe também na CRIAÇÃO.**
+
+          Estava sob `{editing && …}` porque o upload precisa de um id, e o
+          legado aceitava a imagem já no cadastro. Agora, sem registro, o
+          `ScopedLogoField` guarda o arquivo e mostra a prévia local; quem salva
+          o envia depois que o POST devolve o id (`enviarLogoPendente`). */}
+      <div className="space-y-1.5">
+        <Label htmlFor="avatar">Logo do projeto</Label>
+        {/* FE-087 — na EDIÇÃO a escolha sobrevive a erro de validação em outro
+            campo: o upload é requisição própria e já persistiu. No legado o
+            `ajax:error` de qualquer campo resetava o input de arquivo. */}
+        <ScopedLogoField
+          record={editing}
+          api={projectsApi}
+          currentUrl={editing?.avatar_url ?? null}
+          urlOf={(p) => p.avatar_url}
+          limiteMb={5}
+          queryKeys={['projects', 'project']}
+          placeholder="Enviar logo do projeto"
+          onPending={onLogoPendente}
+        />
+      </div>
 
       <Campo id="closing_date" label="Data de baixa" hint="Informativa. Formato dd/mm/aaaa.">
         <DatePicker

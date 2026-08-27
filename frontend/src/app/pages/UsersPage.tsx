@@ -34,6 +34,8 @@ import type { SafegoldRole, UserStats } from '@/lib/api/types'
 
 export function UsersPage() {
   const [users, setUsers] = useState<User[]>([])
+  // DEC-136 — o avatar escolhido na criação, à espera do id.
+  const [avatarPendente, setAvatarPendente] = useState<File | null>(null)
   const [total, setTotal] = useState(0)
   const [totalPages, setTotalPages] = useState(1)
   const [page, setPage] = useState(1)
@@ -376,7 +378,25 @@ export function UsersPage() {
         }
         notify.success('Conta atualizada')
       } else {
-        await usersApi.create(payload)
+        const criada = await usersApi.create(payload)
+        // **DEC-136 — o segundo passo do avatar.**
+        //
+        // Falhar aqui NÃO desfaz o cadastro, e a mensagem é `warning`: o que
+        // aconteceu foi um sucesso parcial. Dizer "erro" faria a pessoa achar
+        // que precisa cadastrar de novo — que é o que produziria a conta
+        // duplicada, com um convite a mais enviado.
+        if (avatarPendente && criada?.id) {
+          try {
+            const form = new FormData()
+            form.append('file', avatarPendente)
+            await apiClient.post(`/api/v1/users/${criada.id}/avatar`, form, {
+              headers: { 'Content-Type': 'multipart/form-data' },
+            })
+          } catch {
+            notify.warning('A conta foi criada, mas a foto não subiu. Envie pela edição.')
+          }
+        }
+        setAvatarPendente(null)
         // D-38 — o convite é a única porta de entrada, e ele NÃO carrega senha.
         notify.success('Conta criada. O convite com o link de primeiro acesso foi enviado.')
       }
@@ -410,10 +430,27 @@ export function UsersPage() {
     const file = e.target.files?.[0]
     e.target.value = ''
     if (!file) return
+
+    // **DEC-136 — na CRIAÇÃO o arquivo fica pendente.**
+    //
+    // Antes recusava com "salve o usuário antes de enviar a foto": o anexo
+    // pertence ao registro e precisa de um id. O legado aceitava já no
+    // cadastro, e a decisão mandou voltar a aceitar.
+    //
+    // A prévia é local (`URL.createObjectURL`) e nada vai à rede — não há a
+    // quem anexar. O envio acontece depois que o POST devolve o id, e falhar lá
+    // NÃO desfaz o cadastro.
+    //
+    // Isto **não** é o caminho antigo do legado, e a diferença importa: lá o
+    // arquivo era gravado solto em `public/uploads` e a URL viajava como string
+    // no payload — por isso ficava órfão quando a criação falhava. Aqui ele só
+    // sai da máquina quando existe registro para recebê-lo.
     if (!editingUser?.id) {
-      notify.error('Salve o usuário antes de enviar a foto.')
+      setAvatarPendente(file)
+      setEditingUser({ ...(editingUser || {}), avatar_url: URL.createObjectURL(file) })
       return
     }
+
     setUploading(true)
     try {
       const form = new FormData()

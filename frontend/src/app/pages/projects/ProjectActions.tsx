@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/Button'
 import { mensagemDoServidor } from '@/lib/api/catalogs'
 import { projectsApi, type Project } from '@/lib/api/projects'
 import { ProjectForm, type ProjectFormValues, valoresIniciais, doProjeto } from './ProjectForm'
+import { enviarLogoPendente } from './ScopedLogoField'
 
 /**
  * **Editar e remover um projeto — a gaveta e a confirmação, num lugar só.**
@@ -31,6 +32,8 @@ export function useProjectActions({ onRemovido }: { onRemovido?: () => void } = 
   const [editando, setEditando] = useState<Project | null>(null)
   const [valores, setValores] = useState<ProjectFormValues>(valoresIniciais())
   const [confirmando, setConfirmando] = useState<Project | null>(null)
+  // DEC-136 — o logo escolhido na criação, à espera do id.
+  const [logoPendente, setLogoPendente] = useState<File | null>(null)
 
   // Invalida a lista E o detalhe: as duas telas abrem estas ações, e a que não
   // fosse invalidada mostraria o valor velho até um recarregamento.
@@ -40,14 +43,22 @@ export function useProjectActions({ onRemovido }: { onRemovido?: () => void } = 
   }
 
   const salvar = useMutation({
-    mutationFn: (dados: Record<string, unknown>) =>
-      editando ? projectsApi.update(editando.id, dados) : projectsApi.create(dados),
+    mutationFn: async (dados: Record<string, unknown>) => {
+      if (editando) return projectsApi.update(editando.id, dados)
+
+      const criado = await projectsApi.create(dados)
+      // **O segundo passo (DEC-136).** Falhar aqui NÃO desfaz o cadastro: o
+      // projeto fica criado e a mensagem diz que só a imagem não subiu.
+      await enviarLogoPendente(projectsApi, criado.id, logoPendente)
+      return criado
+    },
     onSuccess: () => {
       // FE-090 — "cadastrado" e "atualizado" são eventos diferentes, e o
       // legado dizia a mesma frase para os dois.
       notify.success(editando ? 'Projeto atualizado.' : 'Projeto cadastrado.')
       setDrawerAberto(false)
       setEditando(null)
+      setLogoPendente(null)
       invalidar()
     },
     onError: (erro) => notify.error(mensagemDoServidor(erro, 'Não foi possível salvar o projeto.')),
@@ -74,6 +85,7 @@ export function useProjectActions({ onRemovido }: { onRemovido?: () => void } = 
     abrirCriacao() {
       setEditando(null)
       setValores(valoresIniciais())
+      setLogoPendente(null)
       setDrawerAberto(true)
     },
     abrirEdicao(projeto: Project) {
@@ -103,7 +115,8 @@ export function useProjectActions({ onRemovido }: { onRemovido?: () => void } = 
             </div>
           }
         >
-          <ProjectForm values={valores} onChange={setValores} editing={editando} />
+          <ProjectForm values={valores} onChange={setValores} editing={editando}
+                       onLogoPendente={setLogoPendente} />
         </SideDrawer>
 
         <SideDrawer

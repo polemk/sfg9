@@ -129,6 +129,12 @@ export interface CatalogScreenProps<T extends ScreenRow> {
   extraQuery?: Record<string, unknown>
   onRowClick?: (row: T) => void
   /**
+   * DEC-136 — roda depois do POST de criacao, com o registro ja criado.
+   * Existe para o segundo passo do anexo: o logo precisa de um id para se
+   * pendurar. Falhar aqui nao desfaz o cadastro.
+   */
+  afterCreate?: (criado: T) => Promise<void>
+  /**
    * O que a **versão estreita** mostra de cada registro (FE-063): rótulo curto e
    * valor. A tabela larga tem 5 ou 6 colunas; num telefone elas viram rolagem
    * horizontal, que é o jeito mais rápido de o usuário não ler nenhuma. Por
@@ -162,6 +168,7 @@ export function CatalogScreen<T extends ScreenRow>({
   extraQuery,
   onRowClick,
   mobileFields,
+  afterCreate,
 }: CatalogScreenProps<T>) {
   const queryClient = useQueryClient()
   const estreito = useMobile()
@@ -216,8 +223,17 @@ export function CatalogScreen<T extends ScreenRow>({
   const invalidar = () => queryClient.invalidateQueries({ queryKey: [queryKey] })
 
   const salvar = useMutation({
-    mutationFn: (dados: Record<string, unknown>) =>
-      editando ? api.update(editando.id, dados) : api.create(dados),
+    mutationFn: async (dados: Record<string, unknown>) => {
+      if (editando) return api.update(editando.id, dados)
+
+      const criado = await api.create(dados)
+      // **DEC-136 — o segundo passo da criação.** Hoje o único uso é o logo
+      // (fornecedor e portador), que precisa de um id para se pendurar. Falhar
+      // aqui NÃO desfaz o cadastro: quem implementa o gancho avisa o que não
+      // subiu, e o registro fica.
+      await afterCreate?.(criado)
+      return criado
+    },
     onSuccess: () => {
       notify.success(editando ? `${maiuscula(texts.singular)} atualizado.` : `${maiuscula(texts.singular)} criado.`)
       fecharDrawer()

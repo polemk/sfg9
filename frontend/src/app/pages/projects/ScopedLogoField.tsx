@@ -22,6 +22,18 @@ import { mensagemDoServidor } from '@/lib/api/catalogs'
  * é uma requisição própria e já persistiu quando o formulário é salvo. No
  * legado o `ajax:error` de QUALQUER campo resetava o input de arquivo, e o
  * usuário reescolhia a imagem a cada erro de digitação.
+ *
+ * ## Sem `record`: a CRIAÇÃO (DEC-136)
+ *
+ * O legado aceitava a imagem já no cadastro; a migração só a oferecia na
+ * edição, porque o upload precisa de um id. Com `record` nulo o campo guarda o
+ * arquivo (`onPending`) e mostra a prévia local — quem chama envia depois que o
+ * POST devolve o id, com `enviarLogoPendente`.
+ *
+ * **A falha do segundo passo NÃO desfaz o cadastro.** O registro fica criado e
+ * a tela diz que a imagem não subiu, com o caminho para tentar de novo. Perder
+ * o cadastro inteiro porque a foto falhou seria trocar um incômodo por uma
+ * perda.
  */
 const TIPOS_ACEITOS = ['image/png', 'image/jpeg', 'image/webp', 'image/gif']
 
@@ -38,8 +50,10 @@ export function ScopedLogoField<T extends { id: string }>({
   limiteMb,
   queryKeys,
   placeholder,
+  onPending,
 }: {
-  record: T
+  /** `null` na CRIAÇÃO: o arquivo fica pendente até o registro existir. */
+  record: T | null
   api: ScopedLogoApi<T>
   currentUrl: string | null
   urlOf: (atualizado: T) => string | null
@@ -48,6 +62,8 @@ export function ScopedLogoField<T extends { id: string }>({
   /** Caches a invalidar depois de trocar o arquivo. */
   queryKeys: string[]
   placeholder: string
+  /** Chamado na criação, com o arquivo escolhido (ou `null` ao limpar). */
+  onPending?: (file: File | null) => void
 }) {
   const queryClient = useQueryClient()
   const limiteBytes = limiteMb * 1024 * 1024
@@ -64,6 +80,13 @@ export function ScopedLogoField<T extends { id: string }>({
       throw new Error('acima do limite')
     }
 
+    // Sem registro ainda: guarda o arquivo e devolve uma prévia LOCAL. Nada
+    // vai à rede — não há a quem anexar.
+    if (record === null) {
+      onPending?.(file)
+      return URL.createObjectURL(file)
+    }
+
     try {
       const atualizado = await api.uploadLogo(record.id, file)
       notify.success('Logo atualizado.')
@@ -76,6 +99,11 @@ export function ScopedLogoField<T extends { id: string }>({
   }
 
   async function remover() {
+    if (record === null) {
+      onPending?.(null)
+      return
+    }
+
     try {
       await api.removeLogo(record.id)
       notify.success('Logo removido.')
@@ -102,4 +130,36 @@ export function ScopedLogoField<T extends { id: string }>({
       )}
     </div>
   )
+}
+
+/**
+ * **O segundo passo da criação (DEC-136): sobe o logo depois que o id existe.**
+ *
+ * Devolve `true` quando não havia nada a enviar ou o envio deu certo.
+ *
+ * **A falha aqui NÃO desfaz o cadastro**, e é decisão registrada: o registro
+ * fica criado e a mensagem diz exatamente isso — que o cadastro está salvo e só
+ * a imagem não subiu, com o caminho para tentar de novo pela edição. Desfazer o
+ * cadastro porque a foto falhou trocaria um incômodo por uma perda.
+ *
+ * A mensagem é `warning`, não `error`: o que aconteceu foi um sucesso parcial, e
+ * dizer "erro" faria o usuário achar que precisa cadastrar de novo — que é
+ * justamente o que produziria o registro duplicado.
+ */
+export async function enviarLogoPendente<T extends { id: string }>(
+  api: ScopedLogoApi<T>,
+  id: string,
+  file: File | null,
+): Promise<boolean> {
+  if (!file) return true
+
+  try {
+    await api.uploadLogo(id, file)
+    return true
+  } catch (erro) {
+    notify.warning(
+      mensagemDoServidor(erro, 'O cadastro foi salvo, mas a imagem não subiu. Envie pela edição.'),
+    )
+    return false
+  }
 }

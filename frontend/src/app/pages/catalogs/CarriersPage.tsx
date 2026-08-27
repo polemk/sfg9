@@ -1,9 +1,9 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
 import { CatalogScreen } from './CatalogScreen'
 import { CampoAtivo, CampoTexto, Campo } from './CatalogFields'
-import { CarrierLogoField } from './CarrierLogoField'
+import { ScopedLogoField, enviarLogoPendente } from '@/app/pages/projects/ScopedLogoField'
 import { Select } from '@/components/ui/Select'
 import { Label } from '@/components/ui/Label'
 import { Textarea } from '@/components/ui/textarea'
@@ -39,6 +39,8 @@ import {
  */
 export function CarriersPage() {
   const navigate = useNavigate()
+  // DEC-136 — o logo escolhido na criacao, a espera do id.
+  const [logoPendente, setLogoPendente] = useState<File | null>(null)
 
   // Listas pequenas e estáveis: `Select` da base resolve. O
   // `AsyncSearchableSelect` só é necessário onde a lista é grande (S4).
@@ -75,6 +77,11 @@ export function CarriersPage() {
       queryKey="carriers"
       api={carriersApi}
       onRowClick={(c) => navigate(`/carriers/${c.id}`)}
+      afterCreate={async (criado) => {
+        // DEC-136 — o segundo passo. Falhar aqui nao desfaz o cadastro.
+        await enviarLogoPendente(carriersApi, criado.id, logoPendente)
+        setLogoPendente(null)
+      }}
       texts={{
         title: 'Portadores',
         subtitle: 'Contrapartes financiadoras — FIDC, securitizadora, factoring ou o próprio cliente.',
@@ -286,11 +293,31 @@ export function CarriersPage() {
                   hint="Derivada da razão social na criação e mantida depois."
                 />
 
-                <Campo id="logo" label="Logo">
-                  <CarrierLogoField carrier={editing} />
-                </Campo>
               </>
             )}
+
+            {/* **FE-067 / DEC-136 — o logo existe também na CRIAÇÃO**, e sai de
+                dentro do bloco `{editing && …}`: ele estava lá porque o anexo
+                precisa de um id, e agora o campo guarda o arquivo até o id
+                existir.
+
+                Passou a usar o `ScopedLogoField` COMPARTILHADO. O
+                `CarrierLogoField` era a cópia que ele foi escrito para
+                substituir — o cabeçalho do compartilhado diz isso desde a S3 —
+                e as duas conviviam com limites diferentes (2 MB e 1 MB) e
+                mensagens próprias. */}
+            <Campo id="logo" label="Logo">
+              <ScopedLogoField
+                record={editing}
+                api={carriersApi}
+                currentUrl={editing?.logo_url ?? null}
+                urlOf={(c) => c.logo_url}
+                limiteMb={2}
+                queryKeys={['carriers', 'carrier']}
+                placeholder="Enviar logo do portador"
+                onPending={setLogoPendente}
+              />
+            </Campo>
 
             <CampoAtivo
               value={values.is_active}

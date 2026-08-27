@@ -6,7 +6,7 @@ import { notify } from '@/lib/notify'
 import { CatalogScreen } from '@/app/pages/catalogs/CatalogScreen'
 import { CampoAtivo, CampoTexto } from '@/app/pages/catalogs/CatalogFields'
 import { ProviderDocumentField } from './ProviderDocumentField'
-import { ScopedLogoField } from './ScopedLogoField'
+import { ScopedLogoField, enviarLogoPendente } from './ScopedLogoField'
 import { ALL_ROLES } from '@/app/consoleNavigation'
 import { Button } from '@/components/ui/Button'
 import { UserAvatar } from '@/components/ui/UserAvatar'
@@ -58,6 +58,8 @@ interface CnpjLookup {
  */
 export function ProvidersPage() {
   const navigate = useNavigate()
+  // DEC-136 — o logo escolhido na criacao, a espera do id.
+  const [logoPendente, setLogoPendente] = useState<File | null>(null)
 
   return (
     <CatalogScreen<Provider>
@@ -135,8 +137,14 @@ export function ProvidersPage() {
         document_type: p.document_type,
         document: p.document ?? '',
       })}
+      afterCreate={async (criado) => {
+        // DEC-136 — o segundo passo. Falhar aqui não desfaz o cadastro.
+        await enviarLogoPendente(providersApi, criado.id, logoPendente)
+        setLogoPendente(null)
+      }}
       form={({ values, setValue, editing }) => (
-        <FormularioFornecedor values={values} setValue={setValue} editing={editing} />
+        <FormularioFornecedor values={values} setValue={setValue} editing={editing}
+                              onLogoPendente={setLogoPendente} />
       )}
     />
   )
@@ -146,10 +154,13 @@ function FormularioFornecedor({
   values,
   setValue,
   editing,
+  onLogoPendente,
 }: {
   values: Record<string, any>
   setValue: (campo: string, valor: unknown) => void
   editing: Provider | null
+  /** DEC-136 — o logo escolhido na criação, à espera do id. */
+  onLogoPendente?: (file: File | null) => void
 }) {
   const [restante, setRestante] = useState<number | null>(null)
 
@@ -246,28 +257,29 @@ function FormularioFornecedor({
         />
       )}
 
-      {/* O anexo precisa de um registro para pendurar, então o campo aparece na
-          EDIÇÃO. Na criação o formulário diz onde encontrá-lo, em vez de
-          oferecer um input que descartaria o arquivo ao salvar — que é o que o
-          legado fazia (o `ajax:error` resetava o input em qualquer erro). */}
-      {editing ? (
-        <div className="space-y-1.5">
-          <Label htmlFor="logo">Logo</Label>
-          <ScopedLogoField
-            record={editing}
-            api={providersApi}
-            currentUrl={editing.logo_url}
-            urlOf={(p) => p.logo_url}
-            limiteMb={1}
-            queryKeys={['providers', 'provider']}
-            placeholder="Enviar logo do fornecedor"
-          />
-        </div>
-      ) : (
-        <p className="text-xs text-muted-foreground">
-          O logo é enviado depois de salvar, na edição deste fornecedor.
-        </p>
-      )}
+      {/* **FE-074 / DEC-136 — o campo existe também na CRIAÇÃO.**
+
+          Estava escondido porque o anexo precisa de um registro para se
+          pendurar, e o formulário dizia "envie depois, na edição". O legado
+          aceitava já no cadastro, e a DEC-136 mandou voltar a aceitar.
+
+          Sem registro, o `ScopedLogoField` guarda o arquivo e mostra a prévia
+          local; o `afterCreate` do `CatalogScreen` o envia quando o id existe.
+          Isto NÃO é o input que o legado tinha — lá o `ajax:error` de qualquer
+          campo descartava o arquivo escolhido; aqui ele sobrevive. */}
+      <div className="space-y-1.5">
+        <Label htmlFor="logo">Logo</Label>
+        <ScopedLogoField
+          record={editing}
+          api={providersApi}
+          currentUrl={editing?.logo_url ?? null}
+          urlOf={(p) => p.logo_url}
+          limiteMb={1}
+          queryKeys={['providers', 'provider']}
+          placeholder="Enviar logo do fornecedor"
+          onPending={onLogoPendente}
+        />
+      </div>
 
       <CampoAtivo
         value={values.is_active}

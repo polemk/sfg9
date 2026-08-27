@@ -301,7 +301,7 @@ describe('as cinco telas não repetem texto herdado de outro domínio (3.14)', (
   })
 
   it('nenhuma tela escreve cor literal — a marca vem de token (§5.4.2)', () => {
-    ;[...telas, 'CatalogScreen', 'CatalogFields', 'CarrierDetailPage', 'CarrierLogoField'].forEach((arquivo) => {
+    ;[...telas, 'CatalogScreen', 'CatalogFields', 'CarrierDetailPage'].forEach((arquivo) => {
       const fonte = readFileSync(resolve(__dirname, `../${arquivo}.tsx`), 'utf-8')
       expect(fonte, `${arquivo} tem cor literal`).not.toMatch(/#[0-9a-fA-F]{3,6}\b|rgba?\(|\bz-\[/)
       expect(fonte, `${arquivo} usa paleta literal do Tailwind`).not.toMatch(
