@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import React from 'react'
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen, waitFor, fireEvent } from '@testing-library/react'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
@@ -178,4 +178,60 @@ describe('UsersPage — dado real, nunca mock (FE-011)', () => {
     const source = readFileSync(resolve(__dirname, '../UsersPage.tsx'), 'utf-8')
     expect(source).not.toMatch(/type="password"/)
   })
+
+  /**
+   * **FE-019 — "Membro padrão".**
+   *
+   * A marca põe a pessoa em TODOS os projetos: nos que existem hoje e nos que
+   * forem criados depois. No legado o campo estava no formulário e só era
+   * desenhado para OG e Admin (`users/helper/_body.html.erb:17`).
+   *
+   * Na migração ele tinha sobrado apenas como SELO na listagem: dava para ver a
+   * marca, não para pô-la. O endpoint sequer aceitava o parâmetro, embora o
+   * model já disparasse o `DefaultMemberJob` — o efeito estava pronto e sem
+   * como ser acionado.
+   */
+  describe('Membro padrão (FE-019)', () => {
+    it('o interruptor existe no drawer, e a explicação diz o que a marca faz', async () => {
+      montar('/users/new')
+
+      expect(await screen.findByText('Criar conta')).toBeTruthy()
+      expect(screen.getByLabelText('Membro padrão')).toBeTruthy()
+      // A frase precisa das DUAS metades: só "todos os projetos" faz pensar na
+      // lista de agora, e a marca também alcança os projetos futuros.
+      expect(screen.getByText(/os atuais e os que forem criados depois/i)).toBeTruthy()
+    })
+
+    async function preencherEsalvar(nome: string, email: string, marcar: boolean) {
+      montar('/users/new')
+      expect(await screen.findByText('Criar conta')).toBeTruthy()
+
+      fireEvent.change(screen.getByLabelText(/nome completo/i), { target: { value: nome } })
+      fireEvent.change(screen.getByLabelText(/e-?mail/i), { target: { value: email } })
+      if (marcar) fireEvent.click(screen.getByLabelText('Membro padrão'))
+      fireEvent.click(screen.getByRole('button', { name: /salvar|criar/i }))
+
+      await waitFor(() => expect(usersApiMock.create).toHaveBeenCalled())
+      return usersApiMock.create.mock.calls[0][0]
+    }
+
+    it('marcar e salvar manda `is_default_member` no payload', async () => {
+      usersApiMock.create.mockResolvedValue({ id: 'novo-1' })
+
+      const payload = await preencherEsalvar('Fulana', 'fulana@exemplo.com', true)
+
+      expect(payload).toMatchObject({ is_default_member: true })
+    })
+
+    it('sem marcar, vai `false` — e não ausente', async () => {
+      usersApiMock.create.mockResolvedValue({ id: 'novo-2' })
+
+      const payload = await preencherEsalvar('Beltrana', 'beltrana@exemplo.com', false)
+
+      // `undefined` deixaria o servidor decidir sozinho; `false` diz o que a
+      // tela mostrou. Desmarcar tem de ser uma ordem, não um silêncio.
+      expect(payload.is_default_member).toBe(false)
+    })
+  })
+
 })

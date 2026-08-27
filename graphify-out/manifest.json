@@ -3240,8 +3240,8 @@
     "semantic_hash": ""
   },
   ".migration-ai9/parity-ledger.md": {
-    "mtime": 1787858380.699921,
-    "ast_hash": "3a9ac72f5452e6d26edbabf2ae95e20a",
+    "mtime": 1787858465.896709,
+    "ast_hash": "72726972acb1e6fdb9077a8392b8a074",
     "semantic_hash": ""
   },
   ".migration-ai9/project-options.md": {
@@ -4477,11 +4477,6 @@
   "frontend/public/analytics-ga4.js": {
     "mtime": 1787686433.4994445,
     "ast_hash": "3cfe35e677e0bd455605a09a16599a9f",
-    "semantic_hash": ""
-  },
-  "frontend/scripts/check-coercion-golden.mjs": {
-    "mtime": 1787687114.985715,
-    "ast_hash": "6388df38716aa456a0fe80f8563ba5dc",
     "semantic_hash": ""
   },
   "frontend/scripts/csp-console-sweep.mjs": {
@@ -9237,6 +9232,11 @@
   "frontend/src/lib/utils/__tests__/sentinelas-de-data.test.ts": {
     "mtime": 1787858271.8860652,
     "ast_hash": "d69547af1c51dc7a70b7f02404281c04",
+    "semantic_hash": ""
+  },
+  "frontend/src/lib/utils/__tests__/coercao-golden.test.ts": {
+    "mtime": 1787858449.0052555,
+    "ast_hash": "4fa34c2b507e99567b6e8c6d138fe701",
     "semantic_hash": ""
   }
 }

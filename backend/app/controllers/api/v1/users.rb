@@ -99,6 +99,12 @@ module Api
           optional :user_type_id, type: Integer, desc: 'Tipo de usuário (UserType ID)'
           optional :user_type, type: String, desc: 'Tipo de usuário (Nome/Slug)'
           optional :user_type_slug, type: String, desc: 'Slug do tipo de usuário'
+          # **FE-019 — o “Membro padrão” do legado.** Só OG e Admin podem mexer
+          # (`users/helper/_body.html.erb:17` desenhava o campo só para eles). O
+          # serviço IGNORA o parâmetro para os demais em vez de recusar a
+          # requisição inteira: recusar transformaria em erro um payload que o
+          # legado simplesmente não oferecia.
+          optional :is_default_member, type: Boolean, desc: 'Participa de TODOS os projetos (somente OG/Admin)'
         end
 
         post '', http_codes: [
@@ -247,6 +253,12 @@ module Api
           optional :user_type_slug, type: String, desc: 'Slug do tipo de usuário'
           optional :biography, type: String, desc: 'Biografia (ActionText)'
           optional :custom_variables, type: Hash, desc: 'Variáveis customizadas do usuário (JSON)'
+          # **FE-019 — o “Membro padrão” do legado.** Só OG e Admin podem mexer
+          # (`users/helper/_body.html.erb:17` desenhava o campo só para eles). O
+          # serviço IGNORA o parâmetro para os demais em vez de recusar a
+          # requisição inteira: recusar transformaria em erro um payload que o
+          # legado simplesmente não oferecia.
+          optional :is_default_member, type: Boolean, desc: 'Participa de TODOS os projetos (somente OG/Admin)'
         end
 
         put '', http_codes: [
@@ -258,7 +270,7 @@ module Api
           [500, 'Internal Server Error']
         ] do
           authorize!('users', :update)
-          process_service_response(UsersService.update(params))
+          process_service_response(UsersService.update(params, actor: acting_user))
         end
 
         patch '', http_codes: [
@@ -270,7 +282,7 @@ module Api
           [500, 'Internal Server Error']
         ] do
           authorize!('users', :update)
-          process_service_response(UsersService.update(params))
+          process_service_response(UsersService.update(params, actor: acting_user))
         end
 
         # ===============================================

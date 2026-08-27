@@ -10,6 +10,7 @@ import { Input } from '@/components/ui/Input'
 import { Select } from '@/components/ui/Select'
 import { UserAvatar } from '@/components/ui/UserAvatar'
 import { PhoneInputGroup } from '@/components/PhoneInputGroup'
+import { Switch } from '@/components/ui/switch'
 import { useAuthStore } from '@/store/authStore'
 import { notify } from '@/lib/notify'
 import { SideDrawer } from '@/components/SideDrawer'
@@ -368,6 +369,11 @@ export function UsersPage() {
       user_type_slug: editingUser.user_type,
     }
 
+    // FE-019 — só vai no payload quem pode mudá-lo. Para os demais o servidor
+    // ignora o campo de qualquer jeito, mas mandar assim mesmo faria o diff da
+    // requisição mentir sobre o que a tela tentou fazer.
+    if (canWrite) payload.is_default_member = !!editingUser.is_default_member
+
     const editedId = editingUser.id
     try {
       if (editingUser.id) {
@@ -677,6 +683,40 @@ export function UsersPage() {
               />
             </Campo>
 
+            {/* **FE-019 — "Membro padrão", que tinha ficado para trás.**
+
+                No legado o campo existia no formulário
+                (`users/helper/_body.html.erb:17-27`) e só era desenhado para OG
+                e Admin. Aqui ele havia sobrado apenas como SELO na listagem: dava
+                para ver a marca e não para pô-la. O endpoint sequer aceitava o
+                parâmetro, embora o model já disparasse o `DefaultMemberJob` — ou
+                seja, o efeito estava pronto e não havia como acioná-lo.
+
+                `canWrite` é exatamente `og || admin`, a mesma régua do legado. */}
+            {canWrite && (
+              <div className="flex items-start justify-between gap-4 rounded-lg border border-border p-3">
+                <div className="space-y-0.5">
+                  <label htmlFor="is_default_member" className="text-sm font-medium text-foreground">
+                    Membro padrão
+                  </label>
+                  {/* A frase diz as DUAS metades porque só a primeira engana: a
+                      marca vale para os projetos que existem hoje e para os que
+                      forem criados depois. Quem lê "todos os projetos" pensa na
+                      lista de agora. */}
+                  <p className="text-xs text-muted-foreground">
+                    Participa de todos os projetos — os atuais e os que forem criados depois.
+                  </p>
+                </div>
+                <Switch
+                  id="is_default_member"
+                  checked={!!editingUser?.is_default_member}
+                  onCheckedChange={(v) =>
+                    setEditingUser({ ...(editingUser || {}), is_default_member: v })
+                  }
+                />
+              </div>
+            )}
+
             <Campo label="Nome completo" erro={fieldErrors.name}>
               <Input
                 className="rounded-lg"
@@ -766,11 +806,30 @@ export function UsersPage() {
  * não diz onde clicar. `role="alert"` para que o leitor de tela anuncie sem esperar
  * o foco chegar ali, e o `aria-invalid` de cada `<Input>` fecha o par.
  */
+/**
+ * Rótulo + controle + erro.
+ *
+ * **O `<label>` envolve o controle, e isso não é estilo.** Antes ele era irmão
+ * do campo, sem `for` e sem `aria-labelledby`: visualmente idêntico, e sem
+ * nenhuma associação. Na prática os campos deste drawer não tinham nome
+ * acessível nenhum — quem usa leitor de tela ouvia "caixa de edição" e mais
+ * nada, e `getByLabelText('Nome completo')` não achava o input.
+ *
+ * Foi assim que apareceu: escrevendo o teste do FE-019, o *testing-library*
+ * disse a frase exata — "found a label with the text of, however no form
+ * control was found associated to that label". O teste não estava errado; o
+ * formulário estava.
+ *
+ * Envolver dá associação implícita e dispensa gerar id, que é o que menos
+ * quebra num componente já usado por todo o drawer.
+ */
 function Campo({ label, erro, children }: { label: string; erro?: string; children: React.ReactNode }) {
   return (
     <div className="space-y-1.5">
-      <label className="text-sm font-medium text-foreground">{label}</label>
-      {children}
+      <label className="block space-y-1.5">
+        <span className="block text-sm font-medium text-foreground">{label}</span>
+        {children}
+      </label>
       {erro && (
         <p role="alert" className="text-xs text-destructive">
           {erro}

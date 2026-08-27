@@ -22,7 +22,7 @@ class UsersService
     end
 
     # Atualização padrão por ID (sem integração com WhatsApp)
-    def update(params)
+    def update(params, actor: nil)
       id = params.delete(:id)
       user = User.find_by(id: id)
       return not_found_response('Usuário') unless user
@@ -30,6 +30,7 @@ class UsersService
       begin
         update_params = params.slice(:email, :phone, :name, :avatar_url, :user_type_id,
                                      :cpf_cnpj, :cep, :street, :number, :complement, :district, :city, :state, :custom_variables).to_h.symbolize_keys.compact
+        update_params[:is_default_member] = params[:is_default_member] if pode_marcar_membro_padrao?(actor, params)
         if update_params[:user_type_id].blank? && (params[:user_type].present? || params[:user_type_slug].present?)
           type_str = (params[:user_type_slug] || params[:user_type]).to_s.downcase
           type = UserType.where('LOWER(name) = ?', type_str).first
@@ -116,9 +117,33 @@ class UsersService
     #     permissões, só que por outra rota.
     #  3. **Sem senha.** Não há campo de senha para preencher — o produto não tem senha
     #     (DEC-14). A conta nasce e recebe convite com magic link de primeiro acesso.
+    # **FE-019 — quem pode marcar "Membro padrão".**
+    #
+    # A marca põe a pessoa em TODOS os projetos, os que existem (pelo
+    # `DefaultMemberJob`) e os que vierem (pelo `LinkDefaultMembersJob`). É a
+    # permissão mais larga que o cadastro concede, e no legado o campo só era
+    # DESENHADO para OG e Admin (`users/helper/_body.html.erb:17`).
+    #
+    # **Pela API isto é redundante, e de propósito.** `Authorization::Matrix`
+    # já dá `users` como `CRUD CRUD R -`, então Gerente e Colaborador levam 403
+    # antes de chegar aqui. Este portão existe para os outros chamadores —
+    # console, seed, job —, onde não há matriz nenhuma.
+    #
+    # E ele **ignora** o parâmetro em vez de recusar: recusar transformaria em
+    # erro um payload que no legado nem existia, já que lá o campo simplesmente
+    # não era desenhado para quem não podia. O efeito visível é o mesmo.
+    #
+    # `key?` e não `present?`: `false` é um valor, e desmarcar tem de funcionar.
+    def pode_marcar_membro_padrao?(actor, params)
+      return false unless params.key?(:is_default_member)
+
+      actor.present? && (actor.og? || actor.admin?)
+    end
+
     def create(params, actor: nil)
       attrs = params.slice(:email, :phone, :name, :avatar_url, :user_type_id, :username,
                            :cpf_cnpj, :cep, :street, :number, :complement, :district, :city, :state).to_h.symbolize_keys.compact
+      attrs[:is_default_member] = params[:is_default_member] if pode_marcar_membro_padrao?(actor, params)
       return validation_error_response('Informe email ou telefone') if attrs[:email].blank? && attrs[:phone].blank?
 
       type = resolve_user_type(params, attrs)

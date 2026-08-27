@@ -134,4 +134,93 @@ RSpec.describe 'API V1 Users', type: :request do
       end
     end
   end
+
+  # ==========================================================================
+  # FE-019 — "Membro padrão"
+  # ==========================================================================
+  #
+  # A marca põe a pessoa em TODOS os projetos: nos que existem, pelo
+  # `DefaultMemberJob`; nos que vierem, pelo `LinkDefaultMembersJob`. É a
+  # permissão mais larga que o cadastro concede.
+  #
+  # Ela chegou à migração pela metade: o model já disparava o job e a listagem
+  # já mostrava o selo, mas **o endpoint não aceitava o parâmetro** — o efeito
+  # estava pronto e não havia como acioná-lo. No legado o campo existia no
+  # formulário e era desenhado só para OG e Admin
+  # (`users/helper/_body.html.erb:17`).
+  describe 'is_default_member (FE-019)' do
+    let!(:alvo) { create(:user, :colaborador, email: 'alvo-membro@exemplo.com') }
+
+    # O matcher de ActiveJob exige o adaptador `:test`, e a suíte roda no
+    # adaptador de verdade. Trocado só aqui, e devolvido depois.
+    around do |exemplo|
+      anterior = ActiveJob::Base.queue_adapter
+      ActiveJob::Base.queue_adapter = :test
+      exemplo.run
+      ActiveJob::Base.queue_adapter = anterior
+    end
+
+    it 'OG marca, e o job de vinculação é enfileirado' do
+      expect do
+        put "/api/v1/users/#{alvo.id}",
+            params: { is_default_member: true },
+            headers: { 'Authorization' => "Bearer #{og_token}" }
+      end.to have_enqueued_job(DefaultMemberJob).with(alvo.id)
+
+      expect(response).to have_http_status(200)
+      expect(alvo.reload.is_default_member).to be(true)
+    end
+
+    it 'OG desmarca — `false` é um valor, não ausência' do
+      alvo.update!(is_default_member: true)
+
+      put "/api/v1/users/#{alvo.id}",
+          params: { is_default_member: false },
+          headers: { 'Authorization' => "Bearer #{og_token}" }
+
+      expect(response).to have_http_status(200)
+      expect(alvo.reload.is_default_member).to be(false)
+    end
+
+    # **Pela API, o portão de OG/Admin já é da matriz** — `users` é `CRUD CRUD R -`
+    # (`authorization/matrix.rb:74`), então Gerente e Colaborador levam 403 antes
+    # de o serviço ser chamado. Escrevi este exemplo com um Colaborador e ele
+    # falhou por 403, não por ignorar o campo: o caminho não existe.
+    #
+    # O portão no serviço continua valendo a pena porque `UsersService` também é
+    # chamado de console e de seed, onde não há matriz nenhuma. É lá que ele se
+    # prova — e ele IGNORA o campo em vez de recusar, porque recusar viraria erro
+    # um payload que no legado nem chegava a existir (o campo não era desenhado
+    # para quem não podia).
+    it 'fora da API, ator sem poder tem o campo ignorado — o resto passa' do
+      gerente = create(:user, :gerente)
+
+      resposta = UsersService.update(
+        { id: alvo.id, name: 'Nome Novo', is_default_member: true }, actor: gerente
+      )
+
+      expect(resposta[:status]).to eq(200)
+      expect(alvo.reload.is_default_member).to be(false)
+      expect(alvo.name).to eq('Nome Novo')
+    end
+
+    it 'fora da API, um Admin muda' do
+      admin = create(:user, :admin)
+
+      UsersService.update({ id: alvo.id, is_default_member: true }, actor: admin)
+
+      expect(alvo.reload.is_default_member).to be(true)
+    end
+
+    it 'na CRIAÇÃO também, e só para quem pode' do
+      post '/api/v1/users',
+           params: { email: 'nasce-marcado@exemplo.com', name: 'Nasce Marcado',
+                     user_type: 'colaborador', is_default_member: true },
+           headers: { 'Authorization' => "Bearer #{og_token}" }
+
+      expect(response).to have_http_status(201)
+      expect(User.find_by(email: 'nasce-marcado@exemplo.com').is_default_member).to be(true)
+    end
+  end
+
 end
