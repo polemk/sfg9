@@ -4044,3 +4044,100 @@ tiraria da comparacao 24 linhas certas para esconder 1 espaco em branco — troc
 detector de defeito por arrumacao, que e o erro que causou este proprio achado. O conserto
 certo e a secao separar "normalizacao conhecida" de "divergencia inexplicada", como o
 `counts_section` passou a fazer na DEC-134. **Fica para o Phase 5.**
+
+---
+
+# DEC-136 — O anexo volta a existir na CRIACAO
+
+**27/08/2026. Resposta do usuario: "deixar igual ao legado".**
+
+Em quatro telas o upload de imagem so aparecia DEPOIS de salvar — conta (FE-021),
+portador (FE-067), fornecedor (FE-074) e projeto (FE-087). Era deliberado e
+estava comentado no codigo (o arquivo precisa de um id), mas sem decisao
+registrada, e o legado aceitava o envio ja no cadastro.
+
+**Efeito:** o arquivo escolhido no formulario fica em memoria e sobe logo depois
+que o POST devolve o id. A falha do segundo passo NAO desfaz o cadastro: o
+registro fica criado e a tela diz que a imagem nao subiu, com o caminho para
+tentar de novo. Perder o cadastro inteiro porque a foto falhou seria trocar um
+incomodo por uma perda.
+
+---
+
+# DEC-137 — Os cinco pontos divergentes voltam ao legado
+
+**27/08/2026. Resposta do usuario: "o filtro e para a dashboard, o restante tem
+que ser igual ao legado" e, depois da medicao, "replicar o legado nos cinco".**
+
+| ID | O que o ai9 fazia | O que volta a valer |
+| --- | --- | --- |
+| BE-131 | autor do lancamento OPCIONAL | obrigatorio, como no legado |
+| BE-148 | consolidacao itera PADROES e limita sempre ao mes | itera lancamentos; com `date` preenchida devolve o historico |
+| BE-183 | `where` acrescenta `is_static: true` | sem o filtro — a operacao nao estatica volta a poder receber a liberacao |
+| BE-194 | `order_mode=dash` descarta `state`/`kind` | aplica os dois tambem no dash |
+| BE-275 | transferencia pre/par recusa com 422 | grava o movimento de saida; so a CONTRAPARTIDA depende de `is_pre?` |
+
+## A medicao que decidiu, e que corrigiu a minha suposicao
+
+O usuario respondeu "o filtro e para a dashboard" — e havia DOIS filtros na
+lista. Em vez de escolher pelo nome (`dash` sugere dashboard), fui medir:
+
+  * a dashboard do ai9 tem endpoint proprio (`/api/v1/dashboard/summary` e
+    `/volume_by_carrier`) e consome `Dashboard::SummaryService` e
+    `Risk::AggregateService` DIRETO. Nao passa por nenhum dos dois;
+  * `order_mode=dash` nao tem **um** chamador no frontend — `grep -rn
+    'orderMode:' src/app src/features` volta vazio. E superficie de API herdada
+    do legado, orfa;
+  * `is_static` nao aparece em ponto nenhum do dashboard: e a marca do par
+    pre/antecipacao (B-08), e no `where` do BE-183 ela faz o **bordero ser
+    recusado com 422** onde o legado gravava.
+
+Nenhum dos dois era excecao da dashboard. Com isso, a regra do usuario ("o
+restante tem que ser igual ao legado") passou a valer para os cinco.
+
+**Licao:** o nome sugeria a resposta (`dash` = dashboard) e a resposta estava
+errada. A dashboard do ai9 foi construida nova, com endpoint dedicado, e o modo
+`dash` do legado ficou orfao junto.
+
+---
+
+# DEC-138 — `client_applications` e DESCARTADA, coerente com a trilha
+
+**27/08/2026. Resposta do usuario: "descartar, coerente com a trilha".**
+
+`livetat_auth_client_applications` tem 3 linhas em producao e nao tinha conversor
+nem entrada em `do_not_migrate`. Antes de perguntar, medi:
+
+  * as 3 sao **exatamente o seed do engine** (`auth19/db/seeds.rb:179-181`) —
+    iOS, Android e Joker, criadas no mesmo segundo em 27/02/2022 e nunca
+    atualizadas. Nao ha app iOS nem Android; nao e integracao de cliente;
+  * elas autenticam por token+agente, e o **unico** consumidor no legado inteiro
+    e o `Api::V1::TrackingsController`. Nenhum outro controller herda de
+    `ApiApplicationController`;
+  * essa trilha **ja foi descartada** nesta migracao: BE-430, BE-431, BE-433 e
+    BE-434 estao `dropped` no razao. So o BE-432 (a listagem) ficou `verified`.
+
+Ou seja, a tabela ficou orfa quando a trilha saiu. Nao e "migrar tokens ou
+rotacionar": e reconhecer o orfao e registra-lo.
+
+**Efeito:** DB-009, DB-504 e DB-543 viram `dropped`; a tabela entra em
+`do_not_migrate` com a contagem medida (3 linhas, todas de seed).
+
+---
+
+# DEC-139 — O rastreio de acesso do Devise MIGRA, com coluna nova
+
+**27/08/2026. Resposta do usuario: "criar as colunas e migrar".**
+
+O legado guarda 86 usuarios com data de ultimo login e 6.134 acessos somados. As
+colunas `sign_in_count` e `last_sign_in_at` **nao existem** na tabela `users` do
+ai9 — nao era mapeamento faltando, era coluna inexistente, e por isso o item
+estava travado e nao "esquecido".
+
+**Efeito:** migration nova em `users`, conversor le as duas colunas da origem, e
+o historico atravessa.
+
+⚠ **O contador passa a misturar dois mecanismos.** O legado contava login por
+senha; o ai9 entra por link magico e por codigo. O numero herdado e historico do
+mecanismo ANTIGO, e o que crescer daqui para frente e do novo. Fica escrito na
+migration para ninguem somar as duas coisas achando que sao a mesma.
