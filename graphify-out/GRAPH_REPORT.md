@@ -1,7 +1,7 @@
 # Graph Report - .  (2026-08-27)
 
 ## Corpus Check
-- 1736 files · ~3,026,697 words
+- 1736 files · ~3,026,759 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,9 +10,13 @@
 - Token cost: 0 input · 0 output
 
 ## Community Hubs (Navigation)
+- README.md
+- dev - dev
+- frontend - csp.config.ts
+- install.sh - install.sh
+- install_dev.sh - install_dev.sh
 - prod - prod
 - renew_cert.sh - renew_cert.sh
-- install.sh - install.sh
 - Database & Seeds / seeds/demo - Controls
 - Database & Seeds / seeds/demo - Companies
 - Database & Seeds / seeds/demo - Projects
@@ -20,15 +24,12 @@
 - Backend Services - UserType
 - .migration-ai9/tools - browser.js
 - Frontend Pages / pages - catalogs.ts
-- dev - dev
 - switch_env - switch_env
 - create_dev_db.sh - create_dev_db.sh
-- install_dev.sh - install_dev.sh
 - install_pgvector.sh - install_pgvector.sh
 - setup.sh - setup.sh
 - tools/graphify - install-hook.sh
 - tools/graphify - rebuild.sh
-- README.md
 - .migration-ai9/parity (3)
 - .migration-ai9/tools - cdp.js
 - .migration-ai9/wip-auth-backup - defaults.rb
@@ -391,7 +392,6 @@
 - Backend Specs / lib/sfg - values_precision_spec.rb
 - Backend Specs / requests/api
 - Backend Specs / requests/api - meta_spec.rb
-- frontend - csp.config.ts
 - package.json - scripts
 - Frontend NPM Dependencies
 - Frontend Components / ui - cn
@@ -2003,6 +2003,26 @@
 
 ## Communities (2068 total, 339 thin omitted)
 
+### Community 87 - "README.md"
+Cohesion: 0.06
+Nodes (30): Rails 8 API + React TypeScript, 🚀 Tecnologias, Backend (Rails 8 API), Frontend (React + TypeScript), 📋 Pré-requisitos, 🔧 Instalação, Na sua máquina (desenvolvimento), No servidor (produção) (+22 more)
+
+### Community 318 - "dev - dev"
+Cohesion: 0.38
+Nodes (11): dev script, log(), err(), cleanup(), check_cmd(), preflight(), start_backend(), start_sidekiq() (+3 more)
+
+### Community 486 - "frontend - csp.config.ts"
+Cohesion: 0.43
+Nodes (5): CspOptions, toOrigin(), buildCsp(), BACKEND_WS, securityHeadersPlugin()
+
+### Community 602 - "install.sh - install.sh"
+Cohesion: 0.40
+Nodes (4): install.sh script, GEM_HOME, GEM_PATH, PATH
+
+### Community 428 - "install_dev.sh - install_dev.sh"
+Cohesion: 0.50
+Nodes (8): install_dev.sh script, titulo(), ok(), aviso(), morre(), resolver_psql_admin(), psql_admin(), escrever_arquivo()
+
 ### Community 73 - "prod - prod"
 Cohesion: 0.10
 Nodes (31): prod script, HOME, GEM_HOME, GEM_PATH, PATH, NVM_DIR, log(), err() (+23 more)
@@ -2010,10 +2030,6 @@ Nodes (31): prod script, HOME, GEM_HOME, GEM_PATH, PATH, NVM_DIR, log(), err() (
 ### Community 614 - "renew_cert.sh - renew_cert.sh"
 Cohesion: 0.70
 Nodes (4): renew_cert.sh script, ok(), aviso(), morre()
-
-### Community 602 - "install.sh - install.sh"
-Cohesion: 0.40
-Nodes (4): install.sh script, GEM_HOME, GEM_PATH, PATH
 
 ### Community 168 - "Database & Seeds / seeds/demo - Controls"
 Cohesion: 0.13
@@ -2039,17 +2055,9 @@ Nodes (8): path, fs, { execFileSync }, { chromium }, CHROME, CONTAS, codigoDe(),
 Cohesion: 0.02
 Nodes (141): flag(), AvailabilityTemplatesPage(), CarrierGroupsPage(), CarriersPage(), Campo(), CampoTexto(), CampoAtivo(), CatalogApi (+133 more)
 
-### Community 318 - "dev - dev"
-Cohesion: 0.38
-Nodes (11): dev script, log(), err(), cleanup(), check_cmd(), preflight(), start_backend(), start_sidekiq() (+3 more)
-
 ### Community 471 - "switch_env - switch_env"
 Cohesion: 0.46
 Nodes (7): switch_env script, write_frontend_local(), write_backend_local(), write_frontend_ngrok(), write_backend_ngrok(), write_frontend_prod(), write_backend_prod()
-
-### Community 428 - "install_dev.sh - install_dev.sh"
-Cohesion: 0.50
-Nodes (8): install_dev.sh script, titulo(), ok(), aviso(), morre(), resolver_psql_admin(), psql_admin(), escrever_arquivo()
 
 ### Community 344 - "setup.sh - setup.sh"
 Cohesion: 0.44
@@ -2058,10 +2066,6 @@ Nodes (11): setup.sh script, normalize_scripts(), log_info(), log_warn(), log_er
 ### Community 732 - "tools/graphify - rebuild.sh"
 Cohesion: 0.50
 Nodes (3): rebuild.sh script, PYTHONHASHSEED, PYTHONUTF8
-
-### Community 87 - "README.md"
-Cohesion: 0.06
-Nodes (30): Rails 8 API + React TypeScript, 🚀 Tecnologias, Backend (Rails 8 API), Frontend (React + TypeScript), 📋 Pré-requisitos, 🔧 Instalação, Na sua máquina (desenvolvimento), No servidor (produção) (+22 more)
 
 ### Community 139 - ".migration-ai9/parity (3)"
 Cohesion: 0.09
@@ -3138,10 +3142,6 @@ Nodes (4): cast_sql(), cast_do_banco(), cast_float_do_banco(), sobrevive_ao_tran
 ### Community 417 - "Backend Specs / requests/api"
 Cohesion: 0.22
 Nodes (4): headers(), headers_a(), headers_a(), AuthRequestHelpers
-
-### Community 486 - "frontend - csp.config.ts"
-Cohesion: 0.43
-Nodes (5): CspOptions, toOrigin(), buildCsp(), BACKEND_WS, securityHeadersPlugin()
 
 ### Community 279 - "package.json - scripts"
 Cohesion: 0.14
@@ -8506,7 +8506,7 @@ Nodes (8): English i18n Catalogue, Brazilian Portuguese i18n Catalogue, Landing-
   tsc_errors.txt · relation: conceptually_related_to
 
 ## Knowledge Gaps
-- **7137 isolated node(s):** `install.sh script`, `GEM_HOME`, `GEM_PATH`, `PATH`, `Demo` (+7132 more)
+- **7137 isolated node(s):** `Backend (Rails 8 API)`, `Frontend (React + TypeScript)`, `📋 Pré-requisitos`, `Na sua máquina (desenvolvimento)`, `No servidor (produção)` (+7132 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **339 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -8517,13 +8517,13 @@ _Questions this graph is uniquely positioned to answer:_
   _Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low._
 - **What is the exact relationship between `Lead Type Missing lead and instagram Properties` and `Rails API Endpoints Called by the Router (leads, operations/validate, executions, messages/bulk)`?**
   _Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low._
-- **Why does `UserType` connect `Backend Services - UserType` to `Backend Services / authorization - set_user_permission`, `Backend Models - User`, `User Model & Code Validation`?**
-  _High betweenness centrality (0.000) - this node is a cross-community bridge._
 - **Why does `Contracts Specification` connect `openspec/specs/contracts - Contracts Specification` to `openspec/specs/contracts - Requirements`?**
   _High betweenness centrality (0.000) - this node is a cross-community bridge._
 - **Why does `Requirements` connect `openspec/specs/contracts - Requirements` to `openspec/specs/contracts`, `openspec/specs/contracts (11)`, `openspec/specs/contracts (12)`, `openspec/specs/contracts (13)`, `openspec/specs/contracts (14)`, `openspec/specs/contracts (15)`, `openspec/specs/contracts (16)`, `openspec/specs/contracts (17)`, `openspec/specs/contracts (18)`, `openspec/specs/contracts (19)`, `openspec/specs/contracts (25)`, `openspec/specs/contracts (20)`, `openspec/specs/contracts (21)`, `openspec/specs/contracts (22)`, `openspec/specs/contracts (23)`, `openspec/specs/contracts (24)`, `openspec/specs/contracts (26)`, `openspec/specs/contracts (2)`, `openspec/specs/contracts (3)`, `openspec/specs/contracts (4)`, `openspec/specs/contracts (5)`, `openspec/specs/contracts (6)`, `openspec/specs/contracts (10)`, `openspec/specs/contracts (7)`, `openspec/specs/contracts (8)`, `openspec/specs/contracts (9)`, `openspec/specs/contracts (27)`?**
   _High betweenness centrality (0.000) - this node is a cross-community bridge._
-- **What connects `install.sh script`, `GEM_HOME`, `GEM_PATH` to the rest of the system?**
+- **Why does `User` connect `Backend Models - User` to `Backend Services - Project`, `Backend Services / auth - ApiResponseHandler`, `backend/app/lib/sfg - attachments.rb`, `Backend Services / authorization - PermissionResolver`?**
+  _High betweenness centrality (0.000) - this node is a cross-community bridge._
+- **What connects `Backend (Rails 8 API)`, `Frontend (React + TypeScript)`, `📋 Pré-requisitos` to the rest of the system?**
   _7163 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `prod - prod` be split into smaller, more focused modules?**
-  _Cohesion score 0.10037878787878787 - nodes in this community are weakly interconnected._
+- **Should `README.md` be split into smaller, more focused modules?**
+  _Cohesion score 0.06451612903225806 - nodes in this community are weakly interconnected._

@@ -38,7 +38,7 @@
 #
 # CRUD, prorrogação, renovação, encerramento, recálculo da cadeia de movimentos,
 # integração com recebível e recibo, e as telas. Nada disso está aqui.
-class OperacoesDeRisco < ActiveRecord::Migration[8.0]
+class CreateRiskOperations < ActiveRecord::Migration[8.0]
   def change
     create_table :risk_operations, id: :uuid, default: -> { 'gen_random_uuid()' },
                                    comment: 'Operação de risco. Tabela criada em S5 por dependência de FK; o COMPORTAMENTO (DB-235, CRUD, renovação, recálculo) é da S7.' do |t|

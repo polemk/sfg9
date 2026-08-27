@@ -27,7 +27,7 @@
 #    aplicação (`Risk::OperationTypeService`), não de esquema: mudá-la depois
 #    deixaria o tipo com o número errado de subtipos e trocaria, em silêncio, o
 #    bucket de limite de toda operação já gravada.
-class TiposDeLimiteDeRisco < ActiveRecord::Migration[8.0]
+class CreateRiskOperationTypes < ActiveRecord::Migration[8.0]
   def change
     create_table :risk_operation_types, id: :uuid, default: -> { 'gen_random_uuid()' },
                                         comment: 'Tipo de limite de risco (Fomento, Comissária, …). Catálogo GLOBAL — sem escopo de projeto.' do |t|

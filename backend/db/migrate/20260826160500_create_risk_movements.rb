@@ -22,7 +22,7 @@
 # copiadas da operação no `before_validation` — é o que o legado faz e é o que os
 # relatórios já leem. Não são a fonte de verdade do escopo (a operação é), e por
 # isso não há índice composto de tenant aqui.
-class MovimentosDeRisco < ActiveRecord::Migration[8.0]
+class CreateRiskMovements < ActiveRecord::Migration[8.0]
   def change
     create_table :risk_movements, id: :uuid, default: -> { 'gen_random_uuid()' },
                                   comment: 'Movimento de uma operação de risco. Esquema da S5 (DB-236); o comportamento é da S7.' do |t|

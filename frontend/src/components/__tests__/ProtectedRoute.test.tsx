@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import { MemoryRouter, Routes, Route } from 'react-router-dom'
 import { ProtectedRoute } from '@/components/ProtectedRoute'
 import { useAuthStore } from '@/store/authStore'
@@ -118,4 +118,65 @@ describe('ProtectedRoute — bootstrap e sobrevivência da sessão', () => {
     expect(refresh).not.toHaveBeenCalled()
     expect(getAccessToken()).toBe('access-valido')
   })
+
+  /**
+   * **429 no bootstrap NAO pode custar a sessao.**
+   *
+   * Aconteceu em producao em 27/08/2026: depois de um F5 nao ha access token em
+   * memoria — ele nunca e persistido —, entao o bootstrap sempre passa pelo
+   * refresh. Com o teto de 60/min estourado por uso normal (uma chamada por
+   * navegacao, e TODAS as consultas refeitas ao trocar de projeto), a renovacao
+   * levava 429, o `catch` devolvia `false` e a pessoa era mandada para o login.
+   *
+   * 401 e 403 sao veredito do servidor sobre a credencial. 429 e "tente daqui a
+   * pouco" — o cookie de refresh continua valido.
+   */
+  it('429 na renovação é TENTADO DE NOVO, e a sessão sobrevive', async () => {
+    const err429 = Object.assign(new Error('Too Many Requests'), {
+      response: { status: 429 },
+    })
+
+    const refresh = vi
+      .spyOn(authService, 'refreshAccessToken')
+      .mockRejectedValueOnce(err429)
+      // O `apiClient` grava o token no fluxo real; o mock precisa fazer o
+      // mesmo, senão o guarda cai no ramo `!getAccessToken()` e navega para
+      // o login por outro motivo que não o que este exemplo investiga.
+      .mockImplementationOnce(async () => {
+        setAccessToken('access-apos-429')
+        return { access_token: 'access-apos-429', user: USER }
+      })
+
+    vi.spyOn(authService, 'checkSessionStatus')
+      .mockResolvedValue({ authenticated: true, valid: true, user: USER } as never)
+
+    renderGuarded()
+
+    // A segunda tentativa acontece depois de uma espera — o exemplo aguarda por
+    // ela em vez de fingir que e sincrona.
+    await waitFor(() => expect(refresh).toHaveBeenCalledTimes(2), { timeout: 5000 })
+    await waitFor(() => expect(screen.queryByText(/Verificando sessão/)).toBeNull())
+
+    // O que importa: NAO foi para o login.
+    expect(screen.queryByTestId('tela-login')).toBeNull()
+  }, 10000)
+
+  /**
+   * O contrario tambem tem de valer: 401 e veredito, e ai a sessao acaba mesmo.
+   * Sem este exemplo, alguem poderia "consertar" o de cima tornando o bootstrap
+   * indestrutivel — e sessao revogada continuaria abrindo a tela.
+   */
+  it('401 na renovação encerra a sessão — isso é veredito, não espera', async () => {
+    const err401 = Object.assign(new Error('Unauthorized'), {
+      response: { status: 401 },
+    })
+    const refresh = vi.spyOn(authService, 'refreshAccessToken').mockRejectedValue(err401)
+
+    renderGuarded()
+
+    await waitFor(() => expect(screen.getByTestId('tela-login')).toBeTruthy())
+    // Uma vez só: não fica insistindo contra um "não".
+    expect(refresh).toHaveBeenCalledTimes(1)
+  })
+
 })

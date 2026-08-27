@@ -36,7 +36,7 @@
 # nenhum `if` de regra. As leituras são a exibição do próprio interruptor e uma
 # cópia interna em `risk_control.rb:184`. O consumidor real é externo (BI /
 # planilha do cliente), e é exatamente ele que quer o valor **histórico**.
-class CarimboDeGestaoNasTabelasFilhas < ActiveRecord::Migration[7.1]
+class AddSafegoldManagementToChildTables < ActiveRecord::Migration[7.1]
   COMENTARIO = 'DB-090/DEC-112 — CARIMBO da marca do projeto, recopiado em todo save. ' \
                'Ressincronizado em massa APENAS em `companies` (D-30, replicado).'
 

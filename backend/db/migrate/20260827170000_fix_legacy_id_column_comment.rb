@@ -25,7 +25,7 @@
 # **A escolha entre as duas semânticas continua em aberto** (D-PAR-07, DB-157) e
 # é do Vinícius: aceitar a convenção e descartar a proveniência do Django, ou
 # criar coluna separada para ela.
-class OComentarioDaLegacyIdAfirmavaOContrarioDoQueAcontece < ActiveRecord::Migration[8.0]
+class FixLegacyIdColumnComment < ActiveRecord::Migration[8.0]
   TEXTO = 'Id que a linha tinha no sfg legado — a convenção do motor de carga, que a usa como ' \
           'chave natural do `resume` (`etl/converters/base.rb:212`). ⚠ NÃO é a `legacy_id` da ' \
           'ORIGEM, que guardava a proveniência do ETL Django→Rails de 2021 (17.610 linhas): essa ' \

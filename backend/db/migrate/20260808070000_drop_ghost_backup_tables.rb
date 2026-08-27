@@ -15,7 +15,7 @@
 # Um dump completo foi tirado antes (pg_dump das duas tabelas, 2,7 MB) —
 # `down` recria a estrutura, mas o CONTEÚDO só volta por esse arquivo. Por isso
 # o irreversível está dito aqui em vez de fingir que não é.
-class RemoveTabelasGhostDeMaio < ActiveRecord::Migration[8.0]
+class DropGhostBackupTables < ActiveRecord::Migration[8.0]
   def up
     drop_table :chat_sessions_ghost_bkp_20260531, if_exists: true
     drop_table :flow_executions_ghost_bkp_20260531, if_exists: true

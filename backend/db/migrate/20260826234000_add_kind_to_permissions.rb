@@ -44,7 +44,7 @@
 # `Auth::InviteService`, e a tabela não guardava quem o emitiu. Coluna nula,
 # índice parcial, preenchida só pelo caminho de convite — nenhum outro emissor
 # de `LoginCode` muda de comportamento.
-class AsSeteAbilitiesComEfeitoRealVoltam < ActiveRecord::Migration[8.0]
+class AddKindToPermissions < ActiveRecord::Migration[8.0]
   def change
     add_column :permissions, :kind, :string, null: false, default: 'conditional',
                comment: '`conditional` (booleano) ou `limit` (teto numérico). O legado já distinguia os dois ' \

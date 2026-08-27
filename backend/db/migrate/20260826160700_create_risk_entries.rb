@@ -31,7 +31,7 @@
 #
 # Integridade que o legado não tinha: único (`date`, `risk_control_id`,
 # `company_id`) — era só `validates_uniqueness_of` — e FKs reais.
-class PosicoesDiariasDeRisco < ActiveRecord::Migration[8.0]
+class CreateRiskEntries < ActiveRecord::Migration[8.0]
   def change
     create_table :risk_entries, id: :uuid, default: -> { 'gen_random_uuid()' },
                                 comment: 'Posição diária de risco. DEC-57 — dado preservado, SEM endpoint e SEM tela.' do |t|

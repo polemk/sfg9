@@ -72,7 +72,7 @@
 # `receivable_entries` do dump não tem as duas colunas. Por **DEC-103b** elas
 # vêm assim mesmo, espelhando o código de 2022, e todo golden que dependa delas
 # leva a marca `NUNCA EXECUTADO EM PRODUÇÃO`.
-class BorderoDeRecebiveis < ActiveRecord::Migration[8.0]
+class CreateReceivableEntries < ActiveRecord::Migration[8.0]
   def change
     create_table :receivable_entries, id: :uuid, default: -> { 'gen_random_uuid()' },
                                       comment: 'Borderô — o lançamento de recebível. Onde o dinheiro entra no sistema. Escopado por projeto (C1). 28.131 linhas em produção, de 27/02/2022 a 30/05/2025.' do |t|

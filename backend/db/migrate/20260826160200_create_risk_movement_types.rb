@@ -24,7 +24,7 @@
 #    resolvia por **título literal** (`where(title: "Liberação do Recurso")`),
 #    de modo que renomear pela tela quebrava a criação de movimentos sem
 #    nenhum erro visível até alguém tentar lançar.
-class TiposDeMovimentacaoDeRisco < ActiveRecord::Migration[8.0]
+class CreateRiskMovementTypes < ActiveRecord::Migration[8.0]
   def change
     create_table :risk_movement_types, id: :uuid, default: -> { 'gen_random_uuid()' },
                                        comment: 'Tipo de movimentação de risco. O credit_type é o SINAL do movimento no recálculo do saldo.' do |t|

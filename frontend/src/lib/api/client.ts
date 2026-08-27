@@ -155,8 +155,29 @@ class ApiClient {
         } catch (e) {
           this.refreshQueue.forEach((cb) => cb(null))
           this.refreshQueue = []
-          // Refresh falhou: sessão inválida, limpar e redirecionar
-          this.endSession()
+
+          // **Nem toda falha de refresh é sessão inválida.**
+          //
+          // Isto derrubava gente logada em produção: o token de acesso expira
+          // (15 min), a próxima requisição leva 401, o interceptor tenta
+          // renovar — e se a RENOVAÇÃO leva 429, caía aqui e a sessão era
+          // encerrada. A pessoa via "rate limit" e voltava para o login sem ter
+          // feito nada de errado.
+          //
+          // 429 não é veredito de autenticação, é "tente daqui a pouco". A
+          // sessão continua válida, e o cookie de refresh também. O mesmo vale
+          // para erro de rede (`status === 0`): perder o Wi-Fi por um segundo
+          // não pode custar a sessão.
+          //
+          // Só encerra quando o servidor DISSE que a credencial não vale: 401 ou
+          // 403. Nos demais casos o erro sobe, a tela mostra a falha daquela
+          // requisição, e a próxima tentativa renova normalmente.
+          const statusRefresh = (e as AxiosError)?.response?.status ?? 0
+          const credencialRecusada = statusRefresh === 401 || statusRefresh === 403
+
+          if (credencialRecusada) {
+            this.endSession()
+          }
           return Promise.reject(error)
         } finally {
           this.isRefreshing = false

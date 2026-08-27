@@ -13,7 +13,7 @@
 # 2. **Check `new_due_date > original_due_date`.** Prorrogar para uma data igual
 #    ou anterior não é prorrogação — é encurtar prazo por engano, e o
 #    `after_create` do legado aplicaria o valor à operação sem reclamar.
-class ProrrogacoesDeOperacaoDeRisco < ActiveRecord::Migration[8.0]
+class CreateRiskOperationExtensions < ActiveRecord::Migration[8.0]
   def change
     create_table :risk_operation_extensions, id: :uuid, default: -> { 'gen_random_uuid()' },
                                              comment: 'Prorrogação de vencimento de uma operação de risco. Esquema da S5 (DB-237); o comportamento é da S7.' do |t|

@@ -59,7 +59,7 @@
 # projeto`. São sempre DUAS mudanças. As validações correspondentes estão em
 # `provider.rb`, `renegotiation.rb`, `user.rb`, `carrier.rb` e
 # `availability_template.rb`, e cada uma cita esta migration.
-class UnicidadeParcialOndeOLegadoDizNaoSeAplica < ActiveRecord::Migration[8.0]
+class AddPartialUniqueIndexes < ActiveRecord::Migration[8.0]
   disable_ddl_transaction!
 
   # Os quatro "sem código bancário" do legado. São SENTINELAS, não bancos: não há

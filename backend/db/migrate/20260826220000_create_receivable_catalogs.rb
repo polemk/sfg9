@@ -47,7 +47,7 @@
 # na fórmula** (`receivable_entry.rb:54`). Recalcular um borderô de 2022 hoje
 # usaria a alíquota de hoje, em silêncio. Aqui a alíquota tem vigência e é
 # **resolvida pela data da operação**, fora do calculador, que continua puro.
-class CatalogosDeRecebivel < ActiveRecord::Migration[8.0]
+class CreateReceivableCatalogs < ActiveRecord::Migration[8.0]
   def change
     create_table :wallets, id: :uuid, default: -> { 'gen_random_uuid()' },
                            comment: 'Carteira do borderô (Antecipação, Desconto, Fomento…). Catálogo GLOBAL — sem escopo de projeto (C1, regra 4).' do |t|

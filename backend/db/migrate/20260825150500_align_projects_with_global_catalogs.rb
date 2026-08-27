@@ -33,7 +33,7 @@
 # carimba TODAS as versões como aplicadas — inclusive esta, cujo efeito o
 # `schema.rb` daquele momento pode não conter. Cada passo pergunta antes de
 # agir: reaplicar é barato, e descobrir a coluna faltando em plena S4 não é.
-class AlinhaProjectsAosCatalogosGlobais < ActiveRecord::Migration[8.0]
+class AlignProjectsWithGlobalCatalogs < ActiveRecord::Migration[8.0]
   def up
     # `bigint` que sobrou de antes da conversão para uuid: a coluna nunca
     # apontou para nada (a tabela `segments` não existia), então é recriada em

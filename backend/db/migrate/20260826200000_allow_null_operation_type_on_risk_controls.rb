@@ -38,7 +38,7 @@
 # comunica: o limite existe, está preservado, e só volta a contar depois de
 # convertido em linhas tipadas (`Sfg::Etl::Converters::RiskControls`, que faz a
 # expansão de 4 pares por linha).
-class LimiteLegadoNasceSemTipo < ActiveRecord::Migration[8.0]
+class AllowNullOperationTypeOnRiskControls < ActiveRecord::Migration[8.0]
   def up
     change_column_null :risk_controls, :risk_operation_type_id, true
     change_column_comment :risk_controls, :risk_operation_type_id,

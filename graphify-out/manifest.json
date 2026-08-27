@@ -2090,8 +2090,8 @@
     "semantic_hash": "c268d4b874fc483cd31925985f42f306"
   },
   "frontend/vite.config.ts": {
-    "mtime": 1787851930.5774972,
-    "ast_hash": "e90836fdafc9e9ef81ca704a9c0b5170",
+    "mtime": 1787867697.4535794,
+    "ast_hash": "c37edcc0709b527ddb64098a23e95aed",
     "semantic_hash": ""
   },
   "frontend/vitest.config.ts": {
@@ -2165,8 +2165,8 @@
     "semantic_hash": ""
   },
   "bin/dev": {
-    "mtime": 1787851930.5774972,
-    "ast_hash": "68d9e0577d10dbc5822778dca22d156f",
+    "mtime": 1787867697.4535794,
+    "ast_hash": "eee69a68fb87e7d899490540cb794ab6",
     "semantic_hash": ""
   },
   "bin/prod": {
@@ -2200,8 +2200,8 @@
     "semantic_hash": ""
   },
   "install.sh": {
-    "mtime": 1787866858.0237179,
-    "ast_hash": "a4f70e825bd1b7cc696a587dfcfcc9a5",
+    "mtime": 1787867697.4535794,
+    "ast_hash": "f3e7f35b4347b03b5d2067154a6dadea",
     "semantic_hash": ""
   },
   "patch_sidebar.js": {
@@ -2255,8 +2255,8 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1787864032.4885716,
-    "ast_hash": "1455d2b161bf98049342a8946b0c784e",
+    "mtime": 1787867697.4535794,
+    "ast_hash": "2af67b3b8ef5a5a83332577985d3c2ab",
     "semantic_hash": ""
   },
   "README_TRACKING.md": {
@@ -4470,8 +4470,8 @@
     "semantic_hash": ""
   },
   "frontend/csp.config.ts": {
-    "mtime": 1787851930.5774972,
-    "ast_hash": "fd218143289cd6ee81b057cc0905cf10",
+    "mtime": 1787867697.4535794,
+    "ast_hash": "8133fe9b713eddb9e19de7ff3f584e30",
     "semantic_hash": ""
   },
   "frontend/public/analytics-ga4.js": {
@@ -9265,8 +9265,8 @@
     "semantic_hash": ""
   },
   "install_dev.sh": {
-    "mtime": 1787864230.2250128,
-    "ast_hash": "114c5a33c03666e6a64da1b9125db04b",
+    "mtime": 1787867697.4535794,
+    "ast_hash": "dd922731339b271009d41b92fb83101b",
     "semantic_hash": ""
   },
   "tools/varre_crase_heredoc.py": {

@@ -46,7 +46,7 @@
 # `"Faturado"`, `charge.rb:19-21`) comparado por igualdade de string. Aqui vira
 # enum estável (`editing`/`available`/`done`) com `check_constraint`, e o rótulo
 # pt-BR vive na apresentação — mesmo tratamento de `BE-445`.
-class CobrancaERecibo < ActiveRecord::Migration[8.0]
+class CreateChargesAndReceipts < ActiveRecord::Migration[8.0]
   def change
     create_table :charges, id: :uuid, default: -> { 'gen_random_uuid()' },
                            comment: 'Pacote de cobrança: um conjunto de recibos faturados juntos. Escopado por projeto (C1). NUNCA EXECUTADO EM PRODUÇÃO — DEC-103b, espelho de `20220707164909_create_charges.rb`.' do |t|

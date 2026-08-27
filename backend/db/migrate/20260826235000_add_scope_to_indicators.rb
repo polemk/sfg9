@@ -22,7 +22,7 @@
 # O CHECK abaixo é o ponto do DB-092: as duas representações **não podem
 # divergir**. Global tem `project_id` nulo; de projeto, preenchido. Não é
 # denormalização opcional — é a restrição que torna a coluna confiável.
-class IndicatorsScopeExplicito < ActiveRecord::Migration[7.1]
+class AddScopeToIndicators < ActiveRecord::Migration[7.1]
   def up
     add_column :indicators, :scope, :string,
                comment: 'DB-092 — escopo EXPLÍCITO: `global` ou `project`. Coerente com `project_id` por CHECK.'

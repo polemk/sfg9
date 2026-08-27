@@ -60,7 +60,7 @@
 # a tabela e a coluna fora de `20260826220000_catalogos_de_recebivel.rb`.
 # **Não há tabela a remover**: ela nunca foi criada no ai9. Fica escrito aqui
 # para que ninguém a crie por engano depois.
-class OperacoesEstruturadasERemuneracao < ActiveRecord::Migration[8.0]
+class CreateStructuredOperations < ActiveRecord::Migration[8.0]
   def change
     # ------------------------------------------------------------------
     # DB-283 / DB-580 — tipos de operação estruturada. Catálogo GLOBAL.

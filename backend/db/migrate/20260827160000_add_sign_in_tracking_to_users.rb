@@ -23,7 +23,7 @@
 # `last_sign_in_at` não sofre desse problema: "quando entrou pela última vez" é
 # a mesma pergunta nos dois mecanismos, e é o que a tela de detalhe já mostra
 # como «Último acesso» — hoje lendo outra fonte.
-class ORastreioDeAcessoDoLegadoTemOndeCair < ActiveRecord::Migration[8.0]
+class AddSignInTrackingToUsers < ActiveRecord::Migration[8.0]
   def change
     add_column :users, :sign_in_count, :integer, null: false, default: 0,
                comment: 'Devise trackable do legado. **Conta login por SENHA**, mecanismo que o ai9 ' \

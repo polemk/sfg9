@@ -45,7 +45,7 @@
 # `before_validation` e re-carimbava com `update_all` — histórico inconsistente
 # por design (D-30/DC-01). O valor lido é o mesmo; o que não existe é a segunda
 # fonte de verdade.
-class LimitesDeRiscoNascemComIntegridade < ActiveRecord::Migration[8.0]
+class CreateRiskControls < ActiveRecord::Migration[8.0]
   def change
     create_table :risk_controls, id: :uuid, default: -> { 'gen_random_uuid()' },
                                  comment: 'Limite de risco: o teto de (empresa × portador × tipo). Escopado por projeto — contrato C1.' do |t|

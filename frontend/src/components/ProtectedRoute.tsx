@@ -24,21 +24,49 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
      *          meio, caso em que o chamador não deve mexer em estado).
      */
     async function tryRefresh(): Promise<boolean> {
-      try {
-        const renewed = await authService.refreshAccessToken()
-        if (!mounted) return true
-        if (!renewed?.access_token) return false
+      // **Um 429 aqui NAO e sessao invalida.**
+      //
+      // Isto mandava gente logada de volta para o login em producao. Depois de um
+      // F5 nao ha access token em memoria — ele nunca e persistido —, entao o
+      // bootstrap SEMPRE passa por aqui. Se a renovacao levava 429, o `catch`
+      // devolvia `false` e o chamador dava `logout()`.
+      //
+      // E o 429 estava acontecendo em uso normal: teto de 60/min para uma tela
+      // que dispara uma chamada por navegacao e refaz TODAS as consultas quando
+      // se troca de projeto.
+      //
+      // A distincao e simples: 401 e 403 sao veredito do servidor sobre a
+      // credencial — ai a sessao acabou mesmo. Qualquer outra coisa (429, erro
+      // de rede, 5xx) e transitoria, e o cookie de refresh continua valido.
+      // Nesses casos vale esperar e tentar de novo, e nao destruir a sessao.
+      const ESPERAS_MS = [1500, 4000]
 
-        const retry = await authService.checkSessionStatus()
-        if (!mounted) return true
-        if (!((retry?.authenticated || retry?.valid) && retry.user)) return false
+      for (let tentativa = 0; ; tentativa += 1) {
+        try {
+          const renewed = await authService.refreshAccessToken()
+          if (!mounted) return true
+          if (!renewed?.access_token) return false
 
-        restoreSession(retry.user as any)
-        if (retry.csrf_token) setCsrfToken(retry.csrf_token)
-        setSessionValid(true)
-        return true
-      } catch {
-        return false
+          const retry = await authService.checkSessionStatus()
+          if (!mounted) return true
+          if (!((retry?.authenticated || retry?.valid) && retry.user)) return false
+
+          restoreSession(retry.user as any)
+          if (retry.csrf_token) setCsrfToken(retry.csrf_token)
+          setSessionValid(true)
+          return true
+        } catch (e) {
+          if (!mounted) return true
+
+          const status = (e as { response?: { status?: number } })?.response?.status ?? 0
+          const credencialRecusada = status === 401 || status === 403
+
+          // Sem mais tentativas, ou o servidor recusou a credencial: desiste.
+          if (credencialRecusada || tentativa >= ESPERAS_MS.length) return false
+
+          await new Promise((resolve) => setTimeout(resolve, ESPERAS_MS[tentativa]))
+          if (!mounted) return true
+        }
       }
     }
 

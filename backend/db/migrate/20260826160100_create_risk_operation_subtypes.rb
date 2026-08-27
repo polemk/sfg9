@@ -30,7 +30,7 @@
 # nesta família com outro significado (linha semeada pelo sistema, que bloqueia
 # a exclusão) e é copiada do pai para os DOIS subtipos — não serviria para
 # distinguir um deles.
-class SubtiposDeLimiteDeRisco < ActiveRecord::Migration[8.0]
+class CreateRiskOperationSubtypes < ActiveRecord::Migration[8.0]
   def change
     create_table :risk_operation_subtypes, id: :uuid, default: -> { 'gen_random_uuid()' },
                                            comment: 'Subtipo de limite. Decide o bucket (liquidável × pré-faturamento) da operação no painel de exposição.' do |t|

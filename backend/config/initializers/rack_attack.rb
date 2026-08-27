@@ -28,9 +28,59 @@ module Rack
       ['127.0.0.1', '::1'].include?(req.ip)
     end
 
-    ### ❗ Throttle geral (AGORA seguro)
-    throttle('req/ip', limit: 60, period: 1.minute) do |req|
-      req.ip unless req.options?
+    # **Requisicao autenticada e requisicao anonima nao sao a mesma coisa.**
+    #
+    # O teto generico existe para o que chega SEM identidade: raspador, forca
+    # bruta, varredura. Quem esta logado e conhecido, auditado e revogavel — e o
+    # abuso dele se trata cortando a sessao, nao contando pacote.
+    #
+    # `Bearer` no cabecalho basta como criterio: token invalido nao passa do gate
+    # de autenticacao adiante, entao nada se ganha em recusa-lo aqui, e o custo de
+    # decodificar JWT em TODA requisicao seria pago por todas.
+    def self.autenticada?(req)
+      req.get_header('HTTP_AUTHORIZATION').to_s.start_with?('Bearer ')
+    end
+
+    # Balde POR TOKEN, para o trafego autenticado.
+    #
+    # Nao e para conter gente: e teto contra automacao desgovernada — um `useEffect`
+    # em laco, um script com o token de alguem. 1200/min sao 20 por SEGUNDO,
+    # sustentados por um minuto inteiro. Nenhuma pessoa clicando chega la; um laco
+    # chega em segundos.
+    def self.chave_do_token(req)
+      Digest::SHA256.hexdigest(req.get_header('HTTP_AUTHORIZATION').to_s)[0, 32]
+    end
+
+    ### ❗ Teto do trafego ANONIMO, por IP
+    #
+    # **Este teto valia para todo mundo, em 60/min, e punia o uso normal.**
+    #
+    # Em producao a pessoa logada perdia a tela: trocar de projeto refaz TODAS as
+    # consultas de uma vez (`invalidateQueries()` sem filtro), cada navegacao
+    # dispara `/flows/contextual`, e o orcamento acabava. Depois vinha o pior — o
+    # token expira em 15 min, a proxima chamada leva 401, o cliente tenta RENOVAR,
+    # a renovacao leva 429, e a sessao era destruida. F5 mandava para o login.
+    #
+    # **Subir o numero nao resolveria**, so adiaria: num sistema corporativo a
+    # pessoa fica MAIS RAPIDA conforme domina a ferramenta, e um teto generico
+    # acabaria punindo exatamente quem usa melhor. Produtividade nao pode custar a
+    # sessao.
+    #
+    # Por isso o recorte mudou de LIMITE para CRITERIO: este balde passa a valer so
+    # para quem chega sem identidade. Quem esta logado tem o balde proprio logo
+    # abaixo, alto o bastante para nunca alcancar clicando.
+    #
+    # ⚠ Atras do proxy, `req.ip` so e o IP real se o `X-Forwarded-For` chegar (o
+    # nginx do `install.sh` envia). Sem ele, TODOS os anonimos caem no mesmo balde.
+    throttle('req/ip', limit: 300, period: 1.minute) do |req|
+      req.ip unless req.options? || autenticada?(req)
+    end
+
+    ### Teto do trafego AUTENTICADO, por token
+    #
+    # Ver `chave_do_token`: teto contra automacao desgovernada, nao contra gente.
+    throttle('req/token', limit: 1_200, period: 1.minute) do |req|
+      chave_do_token(req) if autenticada?(req) && !req.options?
     end
 
     ### Login por IP

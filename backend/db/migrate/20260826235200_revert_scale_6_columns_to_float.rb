@@ -49,7 +49,7 @@
 # (`Sfg::Etl::Converters::ReceivableEntries::NAN_SENSITIVE`) e o `InputGuard` do
 # `Receivables::Calculator` — e o exemplo que trava isso NÃO foi afrouxado junto
 # com o tipo (`values_precision_spec.rb`).
-class SeisColunasDeEscala6VoltamAFloat < ActiveRecord::Migration[8.0]
+class RevertScale6ColumnsToFloat < ActiveRecord::Migration[8.0]
   # As 6, e só elas. `comment` é reaplicado porque `change_column` reescreve a
   # coluna inteira e o comentário se perderia em silêncio.
   COLUNAS = {

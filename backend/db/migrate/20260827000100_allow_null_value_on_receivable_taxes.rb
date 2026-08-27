@@ -21,7 +21,7 @@
 # (`requires :value` no Grape) e onde uma tarifa sem valor é erro de
 # preenchimento, não informação desconhecida. Só o ETL grava `nil`, e o faz
 # **explicitamente**.
-class TarifaComValorDesconhecidoEntraComoNulo < ActiveRecord::Migration[8.0]
+class AllowNullValueOnReceivableTaxes < ActiveRecord::Migration[8.0]
   def up
     change_column_null :receivable_taxes, :value, true
     change_column_comment(
