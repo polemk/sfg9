@@ -22,9 +22,19 @@ module Demo
             carrier = carrier_for(Ledger::Cast.carrier(key))
             next if carrier.nil?
 
+            # **Sem `is_active`, e não por esquecimento.**
+            #
+            # O conversor do ETL já registra a razão, e ela vale igual aqui:
+            # "não há `user_id` nem `is_active`, nem na origem nem no destino. A
+            # conexão é um fato binário — existe ou não existe. Desligá-la é
+            # apagá-la, e é assim nos dois lados"
+            # (`etl/converters/project_to_carrier_connections.rb:54`).
+            #
+            # A ponte é o próprio registro, então o `upsert` não tem atributo
+            # nenhum a gravar além da chave.
             upsert!(::ProjectToCarrierConnection,
                     find_by: { project_id: project.id, carrier_id: carrier.id },
-                    attributes: { is_active: true })
+                    attributes: {})
           end
         end
       end

@@ -7,14 +7,54 @@ set -Eeuo pipefail
 export HOME="/root"
 
 # --- RVM (Ruby + Gems) ---
-RUBY="/usr/local/rvm/rubies/ruby-3.2.3/bin/ruby"
-GEM="/usr/local/rvm/rubies/ruby-3.2.3/bin/gem"
+#
+# **A versão vem do Gemfile do app, nunca escrita aqui.**
+#
+# Estas seis linhas fixavam `ruby-3.2.3` — herança da base ai9, onde essa é a
+# versão. O Safegold pede 3.4.9, e o efeito no servidor foi um laço de reinício
+# do systemd, a cada 8 segundos:
+#
+#     [prod] Ruby OK: ruby 3.2.3
+#     [backend] Your Ruby version is 3.2.3, but your Gemfile specified 3.4.9
+#     sfg9.service: Failed with result 'exit-code'
+#     sfg9.service: Scheduled restart job, restart counter is at 5
+#
+# Repare no "Ruby OK": a checagem passava porque conferia se HÁ Ruby, não se é o
+# certo. O serviço se declarava saudável e morria dois segundos depois.
+#
+# O `Gemfile` é a autoridade — é ele que o Bundler lê para recusar. Lendo dali,
+# trocar de versão passa a ser trocar um arquivo do app.
+RAIZ_APP="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
-export GEM_HOME="/usr/local/rvm/gems/ruby-3.2.3"
-export GEM_PATH="/usr/local/rvm/gems/ruby-3.2.3:/usr/local/rvm/gems/ruby-3.2.3@global"
+if [ -f "${RAIZ_APP}/backend/.ruby-version" ]; then
+  RUBY_VERSION_APP="$(tr -d '[:space:]' < "${RAIZ_APP}/backend/.ruby-version")"
+else
+  RUBY_VERSION_APP="$(grep -oE "^ruby ['\"][0-9]+\.[0-9]+\.[0-9]+" "${RAIZ_APP}/backend/Gemfile" | grep -oE "[0-9]+\.[0-9]+\.[0-9]+")"
+fi
+
+if [ -z "${RUBY_VERSION_APP}" ]; then
+  echo "[prod] Nao achei a versao do Ruby em backend/Gemfile nem em backend/.ruby-version" >&2
+  exit 1
+fi
+
+RVM_RUBY_DIR="/usr/local/rvm/rubies/ruby-${RUBY_VERSION_APP}"
+
+# Falha AQUI, dizendo o que fazer — e não trinta linhas adiante, num erro do
+# Bundler dentro de um laço de reinício do systemd.
+if [ ! -x "${RVM_RUBY_DIR}/bin/ruby" ]; then
+  echo "[prod] O app pede Ruby ${RUBY_VERSION_APP} e ele nao esta instalado no RVM." >&2
+  echo "[prod] Instale com:  rvm install ${RUBY_VERSION_APP}" >&2
+  exit 1
+fi
+
+RUBY="${RVM_RUBY_DIR}/bin/ruby"
+GEM="${RVM_RUBY_DIR}/bin/gem"
+
+export GEM_HOME="/usr/local/rvm/gems/ruby-${RUBY_VERSION_APP}"
+export GEM_PATH="${GEM_HOME}:/usr/local/rvm/gems/ruby-${RUBY_VERSION_APP}@global"
 
 # Garante que binários de gems (ex: bundle, sidekiq) estejam no PATH
-export PATH="/usr/local/rvm/gems/ruby-3.2.3/bin:/usr/local/rvm/gems/ruby-3.2.3@global/bin:/usr/local/rvm/rubies/ruby-3.2.3/bin:${PATH}"
+export PATH="${GEM_HOME}/bin:/usr/local/rvm/gems/ruby-${RUBY_VERSION_APP}@global/bin:${RVM_RUBY_DIR}/bin:${PATH}"
 
 # --- NVM (Node) ---
 export NVM_DIR="/root/.nvm"
@@ -102,7 +142,7 @@ setup_ruby() {
   # bundler deve existir (você já confirmou que existe). Aqui só validamos.
   "$RUBY" -S bundle -v >/dev/null 2>&1 || {
     err "Bundler não encontrado no systemd mesmo com GEM_PATH setado."
-    err "Cheque se existe: /usr/local/rvm/gems/ruby-3.2.3@global/bin/bundle"
+    err "Cheque se existe: /usr/local/rvm/gems/ruby-${RUBY_VERSION_APP}@global/bin/bundle"
     exit 1
   }
 

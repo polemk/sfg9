@@ -507,7 +507,35 @@ NGINX_TEMP
     sudo systemctl reload nginx || { echo "⚠️ Aviso: O reload do Nginx falhou, verifique o arquivo de log ou as configurações do servidor."; }
 
     echo -e "\n🔒 Solicitando certificados Let's Encrypt via Webroot..."
-    sudo certbot certonly --webroot -w /var/www/html -d "${PRIMARY_DOMAIN}" -d "${API_DOMAIN}" || { echo "⚠️ Aviso: Certbot falhou (provável erro de DNS). O proxy reverso não terá SSL válido."; }
+
+    # Cadeado orfao do certbot.
+    #
+    # "Another instance of Certbot is already running" quase nunca e outra
+    # instancia: e o cadeado que sobrou de uma execucao interrompida. Sem esta
+    # checagem, o certbot falha, o SSL nao sai, e o deploy segue como se nada
+    # fosse — que foi o que aconteceu em 27/08/2026.
+    if [ -f /var/lib/letsencrypt/.certbot.lock ] && ! pgrep -x certbot >/dev/null 2>&1; then
+      echo "   Cadeado do certbot sem processo dono — removendo."
+      sudo rm -f /var/lib/letsencrypt/.certbot.lock
+    fi
+
+    SSL_OK=0
+    if sudo certbot certonly --webroot -w /var/www/html -d "${PRIMARY_DOMAIN}" -d "${API_DOMAIN}"; then
+      SSL_OK=1
+    else
+      echo "⚠️ Certbot falhou. Causas comuns: DNS ainda nao aponta para este servidor,"
+      echo "   porta 80 fechada, ou outra instancia do certbot rodando de verdade."
+    fi
+
+    # **O certificado tem de EXISTIR, nao basta o certbot ter saido com zero.**
+    #
+    # A configuracao final do nginx aponta para estes arquivos. Recarregar o
+    # nginx apontando para certificado inexistente derruba o servidor inteiro —
+    # inclusive os outros aplicativos que moram nele.
+    if [ ! -f "/etc/letsencrypt/live/${PRIMARY_DOMAIN}/fullchain.pem" ]; then
+      SSL_OK=0
+      echo "⚠️ Nao encontrei /etc/letsencrypt/live/${PRIMARY_DOMAIN}/fullchain.pem."
+    fi
 
     # ----------------------------------------------------
     # 6. CONFIGURAR NGINX DEFINITIVO (PATHS & HTTPS)
@@ -595,15 +623,51 @@ server {
 }
 NGINX_FINAL
 
-    echo "Reloading Nginx with HTTPS configuration..."
-    sudo systemctl reload nginx || true
+    # `nginx -t` ANTES do reload, e o resultado importa.
+    #
+    # Aqui havia `sudo systemctl reload nginx || true`. O `|| true` engolia a
+    # falha, e o script imprimia "DEPLOY CONCLUIDO COM SUCESSO" logo abaixo —
+    # com o nginx fora do ar. Deploy que falha e diz que deu certo e pior do que
+    # deploy que falha: ninguem vai olhar.
+    echo "Conferindo a configuracao do Nginx..."
+    if sudo nginx -t; then
+      if sudo systemctl reload nginx; then
+        NGINX_OK=1
+      else
+        NGINX_OK=0
+        echo "⚠️ O teste do Nginx passou mas o reload falhou. Veja:  systemctl status nginx"
+      fi
+    else
+      NGINX_OK=0
+      echo "⚠️ A configuracao do Nginx NAO passou no teste. O reload NAO foi feito"
+      echo "   — de proposito: recarregar com configuracao invalida derruba os"
+      echo "   outros aplicativos deste servidor."
+    fi
 fi
 
+# O aviso final diz o que ACONTECEU, e nao o que se esperava que acontecesse.
+NGINX_OK="${NGINX_OK:-1}"
+SSL_OK="${SSL_OK:-0}"
+
 echo "=========================================================="
-echo " ✅ DEPLOY CONCLUÍDO COM SUCESSO! (Zero Downtime)"
-echo " O projeto deve estar rodando em:"
-echo " 🌐 Frontend: https://${PRIMARY_DOMAIN}"
-echo " 🔌 API: https://${API_DOMAIN}"
+if [ "${NGINX_OK}" = "1" ] && [ "${SSL_OK}" = "1" ]; then
+  echo " ✅ DEPLOY CONCLUÍDO. (Zero Downtime)"
+  echo " O projeto deve estar rodando em:"
+  echo " 🌐 Frontend: https://${PRIMARY_DOMAIN}"
+  echo " 🔌 API: https://${API_DOMAIN}"
+else
+  echo " ⚠️ DEPLOY INCOMPLETO — a aplicação subiu, o proxy NÃO está pronto."
+  echo ""
+  [ "${SSL_OK}" != "1" ]   && echo "   • sem certificado SSL válido"
+  [ "${NGINX_OK}" != "1" ] && echo "   • o Nginx não recarregou"
+  echo ""
+  echo " Para resolver, nesta ordem:"
+  echo "     sudo ./renew_cert.sh ${PRIMARY_DOMAIN} ${API_DOMAIN}"
+  echo "     sudo nginx -t && sudo systemctl reload nginx"
+  echo ""
+  echo " Enquanto isso, a aplicação responde direto nas portas:"
+  echo "     http://<ip-do-servidor>:${RAILS_PORT}   (API)"
+fi
 echo "=========================================================="
 echo " Status do serviço sistema:"
 echo " sudo systemctl status ${APP_NAME}.service"

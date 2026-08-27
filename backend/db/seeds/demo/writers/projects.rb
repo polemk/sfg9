@@ -29,9 +29,13 @@ module Demo
         end
 
         ledger.clients.each do |client|
+          # `formal:` SAIU. Ele não é coluna que a S4 ainda vai entregar — é o
+          # nome que a coluna tinha no LEGADO. O ai9 a chama de `name`, que já
+          # está logo acima. Enquanto ficou aqui, todo `rake demo:seed` avisava
+          # "coluna ainda inexistente: Project#formal", sugerindo pendência de
+          # uma fatia que não vinha, porque não havia o que vir.
           upsert!(::Project, find_by: { slug: client.slug }, attributes: {
                     name: client.name,
-                    formal: client.formal,
                     user_id: owner.id,
                     is_active: true,
                     color: COLORS[(client.index - 1) % COLORS.length],

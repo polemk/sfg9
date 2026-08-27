@@ -4325,8 +4325,8 @@
     "semantic_hash": ""
   },
   "backend/app/services/seeds/reference/user_types.rb": {
-    "mtime": 1787686124.2669725,
-    "ast_hash": "7559b76543cfaff16d27094457e5fba3",
+    "mtime": 1787865085.7064576,
+    "ast_hash": "554141aca79d1a5a22252ba388fec39e",
     "semantic_hash": ""
   },
   "backend/config/initializers/required_env.rb": {
@@ -4460,8 +4460,8 @@
     "semantic_hash": ""
   },
   "backend/spec/services/seeds/reference_seeds_spec.rb": {
-    "mtime": 1787760400.3499422,
-    "ast_hash": "b4278be7008aa55a7cf83bd34028bc2e",
+    "mtime": 1787865067.7578452,
+    "ast_hash": "91aad5aa9be97c7739c84bccc020c381",
     "semantic_hash": ""
   },
   "backend/spec/support/auth_request_helpers.rb": {
