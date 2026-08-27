@@ -620,8 +620,8 @@
     "semantic_hash": "53bd363e465b16bb71e71a1b7555e33d"
   },
   "backend/config/initializers/rack_attack.rb": {
-    "mtime": 1787629166.3253653,
-    "ast_hash": "462cfedd29600949d90afc487101a1de",
+    "mtime": 1787869058.8336902,
+    "ast_hash": "935c9da3f7762ba1d906a0229ea52a6b",
     "semantic_hash": ""
   },
   "backend/config/initializers/sidekiq.rb": {
@@ -817,11 +817,6 @@
   "backend/db/migrate/20260601000002_create_agent_runs.rb": {
     "mtime": 1787629166.3653653,
     "ast_hash": "f2b19f7f8210b4dfc87764c9b080ede2",
-    "semantic_hash": ""
-  },
-  "backend/db/migrate/20260808070000_remove_tabelas_ghost_de_maio.rb": {
-    "mtime": 1787598508.430346,
-    "ast_hash": "3b73ddd8e2d630fb0ee26212997fd763",
     "semantic_hash": ""
   },
   "backend/db/seeds.rb": {
@@ -1435,8 +1430,8 @@
     "semantic_hash": ""
   },
   "frontend/src/components/ProtectedRoute.tsx": {
-    "mtime": 1787598508.442346,
-    "ast_hash": "b4a4470834e3eceb8c1c59400b66e118",
+    "mtime": 1787868981.3309653,
+    "ast_hash": "56ab53d67cf786d876fe1861c6b75db4",
     "semantic_hash": ""
   },
   "frontend/src/components/RichTextEditor.tsx": {
@@ -1480,8 +1475,8 @@
     "semantic_hash": ""
   },
   "frontend/src/components/__tests__/ProtectedRoute.test.tsx": {
-    "mtime": 1787598508.446346,
-    "ast_hash": "2eb0e98015c556088a846932df5b0a1b",
+    "mtime": 1787868966.1861272,
+    "ast_hash": "9edaee41ec6fded2e3862abd42de9360",
     "semantic_hash": ""
   },
   "frontend/src/components/__tests__/logout.test.tsx": {
@@ -1975,8 +1970,8 @@
     "semantic_hash": ""
   },
   "frontend/src/lib/api/client.ts": {
-    "mtime": 1787691379.8907146,
-    "ast_hash": "912e77508223d2c0c3d04d4839938407",
+    "mtime": 1787868682.6087134,
+    "ast_hash": "7e47af9d9269d5bb73f5191e49b0c618",
     "semantic_hash": ""
   },
   "frontend/src/lib/api/credentials.ts": {
@@ -5589,11 +5584,6 @@
     "ast_hash": "66f871f0e024bbb878ef2c681906b6ef",
     "semantic_hash": ""
   },
-  "backend/db/migrate/20260825150500_alinha_projects_aos_catalogos_globais.rb": {
-    "mtime": 1787706664.0500433,
-    "ast_hash": "bf8a65052c8dc20e518284b0f0b54bd8",
-    "semantic_hash": ""
-  },
   "backend/db/migrate/20260825214500_allow_mixed_primary_keys_on_attachments.rb": {
     "mtime": 1787706055.905242,
     "ast_hash": "dd04e1b86a09ce9dfca7195ca03d62ce",
@@ -6974,46 +6964,6 @@
     "ast_hash": "c153f78aa1d461885f3cb23fe86dcc61",
     "semantic_hash": ""
   },
-  "backend/db/migrate/20260826160000_tipos_de_limite_de_risco.rb": {
-    "mtime": 1787714093.708526,
-    "ast_hash": "41f6b511f1d316434254c992716c0425",
-    "semantic_hash": ""
-  },
-  "backend/db/migrate/20260826160100_subtipos_de_limite_de_risco.rb": {
-    "mtime": 1787714119.804115,
-    "ast_hash": "9dabca95b416c6c1b6157532371a9e7d",
-    "semantic_hash": ""
-  },
-  "backend/db/migrate/20260826160200_tipos_de_movimentacao_de_risco.rb": {
-    "mtime": 1787714139.0913038,
-    "ast_hash": "ce937c2fef257728b75dfca937add892",
-    "semantic_hash": ""
-  },
-  "backend/db/migrate/20260826160300_limites_de_risco_nascem_com_integridade.rb": {
-    "mtime": 1787714172.4639115,
-    "ast_hash": "547c512573b5a1777b16feedc5787dc4",
-    "semantic_hash": ""
-  },
-  "backend/db/migrate/20260826160400_operacoes_de_risco.rb": {
-    "mtime": 1787714219.0851126,
-    "ast_hash": "71f1bc32f0ee7e1b636f3910d6e8ba16",
-    "semantic_hash": ""
-  },
-  "backend/db/migrate/20260826160500_movimentos_de_risco.rb": {
-    "mtime": 1787714241.281378,
-    "ast_hash": "41c7ee3c89d07071df6eab9a45e1c30c",
-    "semantic_hash": ""
-  },
-  "backend/db/migrate/20260826160600_prorrogacoes_de_operacao_de_risco.rb": {
-    "mtime": 1787714253.8094373,
-    "ast_hash": "6a840ac4bd50e3ac85b56907ab75e799",
-    "semantic_hash": ""
-  },
-  "backend/db/migrate/20260826160700_posicoes_diarias_de_risco.rb": {
-    "mtime": 1787714296.7154016,
-    "ast_hash": "391b12ffcdd8d689886a30e54491c922",
-    "semantic_hash": ""
-  },
   "backend/db/migrate/20260826170000_create_availability_templates.rb": {
     "mtime": 1787714067.4230995,
     "ast_hash": "ae62416c37d23456d9a47397010c472b",
@@ -7252,11 +7202,6 @@
   "backend/db/migrate/20260826180000_add_legacy_id_to_availability_tables.rb": {
     "mtime": 1787715862.8868203,
     "ast_hash": "a683ba3baff68b3bad32abf081f473bd",
-    "semantic_hash": ""
-  },
-  "backend/db/migrate/20260826200000_limite_legado_nasce_sem_tipo.rb": {
-    "mtime": 1787717095.4821525,
-    "ast_hash": "9711af20f08090e73325f1955e60ac6b",
     "semantic_hash": ""
   },
   "backend/db/seeds/demo/writers/providers.rb": {
@@ -7879,21 +7824,6 @@
     "ast_hash": "a80dc74a44fa7d2c8d8723bf4b24105d",
     "semantic_hash": ""
   },
-  "backend/db/migrate/20260826220000_catalogos_de_recebivel.rb": {
-    "mtime": 1787726585.227756,
-    "ast_hash": "14ee59915053c554274aed1d3a12f559",
-    "semantic_hash": ""
-  },
-  "backend/db/migrate/20260826220100_bordero_de_recebiveis.rb": {
-    "mtime": 1787860859.185453,
-    "ast_hash": "cac5ea09fc352103bd1e10d8ba62e6c1",
-    "semantic_hash": ""
-  },
-  "backend/db/migrate/20260826220200_cobranca_e_recibo.rb": {
-    "mtime": 1787726773.4825842,
-    "ast_hash": "66d5345f7cc7b3c9407cbcd7fea4da11",
-    "semantic_hash": ""
-  },
   "backend/spec/channels/connection_spec.rb": {
     "mtime": 1787728033.3641202,
     "ast_hash": "1a13cbf62c26508c5977def981b2dd0e",
@@ -8374,16 +8304,6 @@
     "ast_hash": "35d2911b3fb2ca21c914595b9b152c6e",
     "semantic_hash": ""
   },
-  "backend/db/migrate/20260826230000_operacoes_estruturadas_e_remuneracao.rb": {
-    "mtime": 1787752569.6855388,
-    "ast_hash": "61bb5da78a34d4216700aa3446984e5a",
-    "semantic_hash": ""
-  },
-  "backend/db/migrate/20260826234000_as_sete_abilities_com_efeito_real_voltam.rb": {
-    "mtime": 1787759535.763586,
-    "ast_hash": "81b98244aa4e3f25bd874263155d7a92",
-    "semantic_hash": ""
-  },
   "backend/app/services/seeds/reference/structured_operation_types.rb": {
     "mtime": 1787759976.06513,
     "ast_hash": "89f134430fa76c9c000d5e036f3de641",
@@ -8549,11 +8469,6 @@
     "ast_hash": "5e81a09d536890607ab768db68a7f79d",
     "semantic_hash": ""
   },
-  "backend/db/migrate/20260826235000_indicators_scope_explicito.rb": {
-    "mtime": 1787761577.7680125,
-    "ast_hash": "82aba378ece63690dfc7e0a54dc62797",
-    "semantic_hash": ""
-  },
   "frontend/src/features/receivables/pages/ChargeReceiptsPage.tsx": {
     "mtime": 1787850627.7552962,
     "ast_hash": "126ea2ae010579acda76d850efc74151",
@@ -8587,11 +8502,6 @@
   ".migration-ai9/tools/README.md": {
     "mtime": 1787765242.2294986,
     "ast_hash": "6377c2e1d9f6603e3e8bd005508ddc52",
-    "semantic_hash": ""
-  },
-  "backend/db/migrate/20260826235100_carimbo_de_gestao_nas_tabelas_filhas.rb": {
-    "mtime": 1787762292.0270772,
-    "ast_hash": "c2e0472b45379ac60fd290c2e9c2c9b1",
     "semantic_hash": ""
   },
   "backend/spec/requests/api/v1/indicator_connections_spec.rb": {
@@ -8804,11 +8714,6 @@
     "ast_hash": "45930f1c4c1cae20886f44827823d0e6",
     "semantic_hash": ""
   },
-  "backend/db/migrate/20260826235200_seis_colunas_de_escala_6_voltam_a_float.rb": {
-    "mtime": 1787777544.3678467,
-    "ast_hash": "e7fb73f39abc48caca9fba050c610e17",
-    "semantic_hash": ""
-  },
   "frontend/src/app/pages/admin/__tests__/auditTrailPage.test.tsx": {
     "mtime": 1787775318.8813343,
     "ast_hash": "c42ec87e88a8b3c490709e19a5c14a7a",
@@ -8969,11 +8874,6 @@
     "ast_hash": "d228497b408e40dd09e273482ed018a4",
     "semantic_hash": ""
   },
-  "backend/db/migrate/20260827000100_tarifa_com_valor_desconhecido_entra_como_nulo.rb": {
-    "mtime": 1787798975.2206874,
-    "ast_hash": "d305064d220c15ea6f36af682dd9d49c",
-    "semantic_hash": ""
-  },
   "backend/spec/lib/sfg/etl/help_converters_spec.rb": {
     "mtime": 1787799319.7791605,
     "ast_hash": "415573b0d36e99637bbf37b94254381b",
@@ -9067,11 +8967,6 @@
   "frontend/src/app/pages/renegotiations/__tests__/fornecedorEmUso.test.tsx": {
     "mtime": 1787805075.7702332,
     "ast_hash": "c50ca31d4d635b970b158210b5453c1e",
-    "semantic_hash": ""
-  },
-  "backend/db/migrate/20260827020000_unicidade_parcial_onde_o_legado_diz_nao_se_aplica.rb": {
-    "mtime": 1787808690.400428,
-    "ast_hash": "cc3451815606722560f217e349ab71f5",
     "semantic_hash": ""
   },
   "backend/spec/lib/sfg/etl/engine_rejections_spec.rb": {
@@ -9214,11 +9109,6 @@
     "ast_hash": "019ea7b9b6998519713d7e387af9ddfc",
     "semantic_hash": ""
   },
-  "backend/db/migrate/20260827160000_o_rastreio_de_acesso_do_legado_tem_onde_cair.rb": {
-    "mtime": 1787856314.8307443,
-    "ast_hash": "a1e1f2d890ac35249fb2257930577dc5",
-    "semantic_hash": ""
-  },
   "backend/spec/models/project_derivations_spec.rb": {
     "mtime": 1787857585.758494,
     "ast_hash": "4d2d61cd5d034b926743b4d21acf7cab",
@@ -9249,11 +9139,6 @@
     "ast_hash": "f2bf03fe3332f7b93c4ca5487ceac470",
     "semantic_hash": ""
   },
-  "backend/db/migrate/20260827170000_o_comentario_da_legacy_id_afirmava_o_contrario_do_que_acontece.rb": {
-    "mtime": 1787860859.185453,
-    "ast_hash": "a81420efa75ccb29710136c3250624fa",
-    "semantic_hash": ""
-  },
   "frontend/src/app/pages/availability/AvailabilityTemplateDetailPage.tsx": {
     "mtime": 1787860275.4322035,
     "ast_hash": "9f2a166bb7feb9e0eb1740d6bf259315",
@@ -9277,6 +9162,126 @@
   "renew_cert.sh": {
     "mtime": 1787867018.8955028,
     "ast_hash": "66d0e3aba3055b964dadc28e6222f4ea",
+    "semantic_hash": ""
+  },
+  "backend/db/migrate/20260808070000_drop_ghost_backup_tables.rb": {
+    "mtime": 1787868280.8802412,
+    "ast_hash": "364d2c50d0b8635ddd91c0712d5af2d6",
+    "semantic_hash": ""
+  },
+  "backend/db/migrate/20260825150500_align_projects_with_global_catalogs.rb": {
+    "mtime": 1787868280.8802412,
+    "ast_hash": "fac8726d9ac007ec026087396a8e72cc",
+    "semantic_hash": ""
+  },
+  "backend/db/migrate/20260826160000_create_risk_operation_types.rb": {
+    "mtime": 1787868280.8842413,
+    "ast_hash": "5c18508976f3a04b850386f2948cae87",
+    "semantic_hash": ""
+  },
+  "backend/db/migrate/20260826160100_create_risk_operation_subtypes.rb": {
+    "mtime": 1787868280.8842413,
+    "ast_hash": "3d215455af0c48aa976ba173ccf51520",
+    "semantic_hash": ""
+  },
+  "backend/db/migrate/20260826160200_create_risk_movement_types.rb": {
+    "mtime": 1787868280.8882413,
+    "ast_hash": "f6feacfaa4c3a6e1708058b1385525f9",
+    "semantic_hash": ""
+  },
+  "backend/db/migrate/20260826160300_create_risk_controls.rb": {
+    "mtime": 1787868280.8882413,
+    "ast_hash": "43ebe7601682f0f65952ca54f6f43c73",
+    "semantic_hash": ""
+  },
+  "backend/db/migrate/20260826160400_create_risk_operations.rb": {
+    "mtime": 1787868280.8922412,
+    "ast_hash": "6725aba33483652ab82036db6a1363e1",
+    "semantic_hash": ""
+  },
+  "backend/db/migrate/20260826160500_create_risk_movements.rb": {
+    "mtime": 1787868280.8922412,
+    "ast_hash": "1c93ba5bc3b856d153ece4d8117baa4d",
+    "semantic_hash": ""
+  },
+  "backend/db/migrate/20260826160600_create_risk_operation_extensions.rb": {
+    "mtime": 1787868280.8962412,
+    "ast_hash": "29b2fde751da0e4f4d846fb836973679",
+    "semantic_hash": ""
+  },
+  "backend/db/migrate/20260826160700_create_risk_entries.rb": {
+    "mtime": 1787868280.8962412,
+    "ast_hash": "c1da43c5246861900a8505e68541f570",
+    "semantic_hash": ""
+  },
+  "backend/db/migrate/20260826200000_allow_null_operation_type_on_risk_controls.rb": {
+    "mtime": 1787868280.9002411,
+    "ast_hash": "48fe5a7733a37be6156e0a6871ee0895",
+    "semantic_hash": ""
+  },
+  "backend/db/migrate/20260826220000_create_receivable_catalogs.rb": {
+    "mtime": 1787868280.9002411,
+    "ast_hash": "3ca19f4051c222b8e820398f4e7b22ed",
+    "semantic_hash": ""
+  },
+  "backend/db/migrate/20260826220100_create_receivable_entries.rb": {
+    "mtime": 1787868280.9042413,
+    "ast_hash": "9f4793f13b1602a61aaa2d8d53a2a0ed",
+    "semantic_hash": ""
+  },
+  "backend/db/migrate/20260826220200_create_charges_and_receipts.rb": {
+    "mtime": 1787868280.9042413,
+    "ast_hash": "d9ed1269a5d2f74fa7edcfcdb7d3d7af",
+    "semantic_hash": ""
+  },
+  "backend/db/migrate/20260826230000_create_structured_operations.rb": {
+    "mtime": 1787868280.9082413,
+    "ast_hash": "2de9f226d4ee81a00301ba8ede725cad",
+    "semantic_hash": ""
+  },
+  "backend/db/migrate/20260826234000_add_kind_to_permissions.rb": {
+    "mtime": 1787868280.9082413,
+    "ast_hash": "a40ae6a65ce5173a49f9e5ee3b47a017",
+    "semantic_hash": ""
+  },
+  "backend/db/migrate/20260826235000_add_scope_to_indicators.rb": {
+    "mtime": 1787868280.9122412,
+    "ast_hash": "78e520827aace6d526670e2f6736a732",
+    "semantic_hash": ""
+  },
+  "backend/db/migrate/20260826235100_add_safegold_management_to_child_tables.rb": {
+    "mtime": 1787868280.9122412,
+    "ast_hash": "5eae17a02e3c0688842713d002f011eb",
+    "semantic_hash": ""
+  },
+  "backend/db/migrate/20260826235200_revert_scale_6_columns_to_float.rb": {
+    "mtime": 1787868280.9162412,
+    "ast_hash": "85a4cb3c7a161002ea031a5c7730d29f",
+    "semantic_hash": ""
+  },
+  "backend/db/migrate/20260827000100_allow_null_value_on_receivable_taxes.rb": {
+    "mtime": 1787868280.9162412,
+    "ast_hash": "5fb5693fe81696a0e8476570d0fc17c1",
+    "semantic_hash": ""
+  },
+  "backend/db/migrate/20260827020000_add_partial_unique_indexes.rb": {
+    "mtime": 1787868280.920241,
+    "ast_hash": "3a8b05025811a3634e602ff6b106b72a",
+    "semantic_hash": ""
+  },
+  "backend/db/migrate/20260827160000_add_sign_in_tracking_to_users.rb": {
+    "mtime": 1787868280.920241,
+    "ast_hash": "da53ed3828c4c8c23966089e77e56803",
+    "semantic_hash": ""
+  },
+  "backend/db/migrate/20260827170000_fix_legacy_id_column_comment.rb": {
+    "mtime": 1787868280.9242413,
+    "ast_hash": "cca7b157be8d8f18f04968d808365f9f",
+    "semantic_hash": ""
+  },
+  "backend/spec/requests/rack_attack_baldes_spec.rb": {
+    "mtime": 1787869148.825583,
+    "ast_hash": "eeb4a4ba0fa099995de2dea497824599",
     "semantic_hash": ""
   }
 }

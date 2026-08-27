@@ -208,3 +208,51 @@ pelo spec do backend e pelo cross-check do front.
 
 Quem precisar extrair mais valores golden roda o initializer do legado isoladamente
 (ele não depende da versão do Rails), não sobe o legado inteiro.
+
+## Phase 5 — entrega contínua sem derrubar o app · **A FAZER**
+
+**Decidido em 27/08/2026 pelo Vinícius.** O `.github/workflows/ci.yml` que veio na
+cópia do ai9 estava **vazio (0 bytes)** e falhava em todos os 22 commits do dia.
+Foi removido: X vermelho por padrão faz ninguém olhar, e o dia em que a falha for
+de verdade ela passa igual.
+
+O que entra no lugar, depois da apresentação: um fluxo que **atualiza a aplicação
+no servidor a cada commit, sem derrubá-la**.
+
+### O que já está pronto para isso
+
+- `bin/prod` supervisiona Puma, Sidekiq e o servidor estático, e agora **recusa
+  subir em porta ocupada** dizendo quem é o dono;
+- `install.sh` gera as 11 variáveis que produção exige e não mente mais sobre o
+  resultado;
+- `renew_cert.sh` é escopado ao certificado deste app;
+- `tools/varre_crase_heredoc.py` pega a classe de defeito que custou a tarde de
+  27/08.
+
+### As perguntas que precisam de resposta antes de escrever
+
+**1. "Sem derrubar" significa o quê, exatamente?** Hoje o `systemctl restart`
+mata os três processos e sobe de novo — há uma janela de indisponibilidade de
+alguns segundos. As saídas conhecidas:
+
+  - **`puma phased-restart`** — troca os workers um a um, sem fechar o socket.
+    Resolve o backend; o Sidekiq e o servidor estático precisam de tratamento
+    próprio.
+  - **Duas instâncias e chave no nginx** — sobe a nova em outra porta, confere
+    que responde, e só então aponta o proxy. Mais robusto, e custa o dobro de
+    memória enquanto troca.
+
+**2. Migração de banco no meio do caminho.** Deploy sem downtime com migração que
+renomeia ou remove coluna derruba a versão antiga enquanto a nova sobe. Ou as
+migrações passam a ser sempre compatíveis com as duas versões, ou o deploy aceita
+uma janela quando houver migração.
+
+**3. O que barra o deploy.** Sem portão, um commit quebrado vai para produção
+sozinho. O mínimo é rodar as suítes antes — e aí volta a pergunta do custo de
+minutos no GitHub, que é o que fez o CI ficar para depois.
+
+**4. Quem tem a chave.** O runner precisa de acesso SSH ao servidor. Chave de
+deploy com escopo limitado, não a chave pessoal de ninguém.
+
+> ⚠ **Não escrever isto na véspera de apresentação.** O primeiro deploy
+> automático que der errado dá errado sozinho, sem ninguém olhando.
