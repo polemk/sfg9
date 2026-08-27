@@ -3240,8 +3240,8 @@
     "semantic_hash": ""
   },
   ".migration-ai9/parity-ledger.md": {
-    "mtime": 1787857862.9287868,
-    "ast_hash": "6aa033884b3517823b413177780418ba",
+    "mtime": 1787858059.8091536,
+    "ast_hash": "cc65ff02bb5519f45afed1accbef7d7a",
     "semantic_hash": ""
   },
   ".migration-ai9/project-options.md": {
@@ -3395,8 +3395,8 @@
     "semantic_hash": ""
   },
   "openspec/specs/projects/spec.md": {
-    "mtime": 1787629166.9453647,
-    "ast_hash": "1aa6ca1bf71a2808d2e46b06f931ccdd",
+    "mtime": 1787858070.824536,
+    "ast_hash": "4e0aaa6f650f59fcd77bf082523808dd",
     "semantic_hash": ""
   },
   "openspec/specs/receivables/spec.md": {

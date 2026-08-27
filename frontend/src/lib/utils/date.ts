@@ -1,4 +1,4 @@
-import { format, isValid, parse, startOfDay, endOfDay, addYears, formatDistanceToNow } from 'date-fns'
+import { format, isValid, parse, startOfDay, endOfDay, addYears, addHours, addMinutes, formatDistanceToNow } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 
 /**
@@ -105,15 +105,23 @@ export function todayStart(base: Date = new Date()): Date {
 }
 
 /**
- * Último instante de hoje.
+ * Último instante de hoje: `midnight + 23h59min`, **como no legado**.
  *
- * **Muda em relação ao legado, de propósito (D-119).** Lá era
- * `midnight + 23h59min`, o que excluía silenciosamente tudo que acontecesse
- * entre 23:59:00 e 23:59:59 — registro criado às 23:59:30 sumia do filtro "até
- * hoje". Aqui é o fim real do dia. Registrado no `improvements-log.md`.
+ * Sim, isso exclui o que acontecer entre 23:59:00 e 23:59:59 — um registro
+ * gravado às 23:59:30 fica de fora do filtro "até hoje". É uma falha real do
+ * legado, e mesmo assim ela é **replicada de propósito**: corrigir muda quais
+ * linhas aparecem num relatório de fechamento.
+ *
+ * ⚠ **Isto aqui era `endOfDay` até 27/08.** Divergia do backend, que replica o
+ * legado em `Sfg::DateBounds.today_end` — duas portas da MESMA sentinela, com
+ * respostas opostas, e nenhuma das duas com consumidor que denunciasse. A
+ * justificativa citava "D-119", mas D-119 é outro defeito (chaves de config
+ * mortas em `legacy-defects.md`), e o `improvements-log.md` nunca registrou a
+ * mudança. O que ele registra é o contrário: **PLAT-07** diz "comportamento
+ * idêntico, incluindo o `today_end` de 23h59 (não 23h59m59s)".
  */
 export function todayEnd(base: Date = new Date()): Date {
-  return endOfDay(base)
+  return addMinutes(addHours(startOfDay(base), 23), 59)
 }
 
 /** Limite inferior "infinito" (`DateTime.dinosaurs`): hoje − 2000 anos. */
