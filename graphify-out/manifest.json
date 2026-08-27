@@ -2214,11 +2214,6 @@
     "ast_hash": "9eb870bb64ae5afad43d4e2c4c544359",
     "semantic_hash": ""
   },
-  ".github/workflows/ci.yml": {
-    "mtime": 1787574686.9646697,
-    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
-    "semantic_hash": ""
-  },
   "AI9-29.md": {
     "mtime": 1787598508.4183462,
     "ast_hash": "b5f0ed09636eb785d6295809bbad96d7",
@@ -4635,8 +4630,8 @@
     "semantic_hash": ""
   },
   ".migration-ai9/platform-runbook.md": {
-    "mtime": 1787787445.430225,
-    "ast_hash": "75fe21613dbb1d689db03a3c7a2896eb",
+    "mtime": 1787870348.226934,
+    "ast_hash": "26364580c83bdaa4548a3dcf8bf76120",
     "semantic_hash": ""
   },
   "backend/config/schedule.yml": {

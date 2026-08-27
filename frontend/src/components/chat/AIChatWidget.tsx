@@ -185,7 +185,18 @@ const renderMessageContent = (
 // Assistente Safegold.
 const DEFAULT_PERSONA = {
   name: "Assistente Safegold",
-  avatar: "/images/team/vini.webp",
+  // **A marca, e NAO a foto de uma pessoa.**
+  //
+  // Isto apontava para `/images/team/vini.webp` — uma das fotos do time do ai9
+  // que vieram na base (`public/images/team/`, seis pessoas reais). O widget a
+  // exibia como "Assistente Safegold" sempre que a persona do fluxo ainda nao
+  // tivesse chegado, o que num produto que vai a cliente e pior do que um
+  // defeito de tela: apresenta a foto de alguem como se fosse o assistente
+  // deste sistema.
+  //
+  // A pasta `team/` foi removida junto — era conteudo do ai9 viajando no bundle
+  // do cliente, com uma unica referencia em todo o codigo: esta linha.
+  avatar: "/images/brand/safegold-icon-192.png",
   role: "Guia do Safegold",
 };
 
@@ -472,11 +483,25 @@ export function AIChatWidget({
     }
     if (mode === "flow" && flowPersona) {
       return {
-        name: flowPersona.name,
-        avatar: flowPersona.avatar,
+        // `avatar` do fluxo pode vir vazio — e vem, no `assistente-console`
+        // semeado. Sem este `||`, a persona certa aparecia SEM imagem nenhuma.
+        name: flowPersona.name || DEFAULT_PERSONA.name,
+        avatar: flowPersona.avatar || DEFAULT_PERSONA.avatar,
         role: flowPersona.description || "Assistente Virtual",
       };
     }
+
+    // **Enquanto a persona do fluxo nao chegou, o fallback e a MARCA.**
+    //
+    // Ele aparece mais do que parece: a persona vem de uma chamada, e qualquer
+    // demora ou falha (o 429 de 27/08 fazia isso o tempo todo) deixa o widget
+    // aqui. Foi o que produziu "abre um agente que nao tem nada a ver, e so o
+    // reload conserta" — o reload nao consertava nada, so dava tempo da busca
+    // terminar.
+    //
+    // Com a marca no lugar da foto, o estado intermediario deixa de afirmar uma
+    // identidade falsa: mostra o assistente do sistema, generico, ate saber
+    // qual persona e.
     return DEFAULT_PERSONA;
   }, [mode, flowPersona, props.previewPersona]);
 
@@ -882,7 +907,7 @@ export function AIChatWidget({
                   <img
                     src={
                       matchingAgent.persona_avatar ||
-                      "/images/avatars/default.png"
+                      "/images/brand/safegold-icon-192.png"
                     }
                     alt={matchingAgent.persona_name}
                     className="h-full w-full object-cover"
@@ -1538,7 +1563,7 @@ export function AIChatWidget({
                 <img
                   src={
                     matchingAgent.persona_avatar ||
-                    "/images/avatars/default.png"
+                    "/images/brand/safegold-icon-192.png"
                   }
                   alt={matchingAgent.persona_name}
                   className="h-full w-full object-cover"

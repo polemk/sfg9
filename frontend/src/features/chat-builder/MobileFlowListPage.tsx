@@ -201,13 +201,21 @@ export function MobileFlowListPage({
     const activePersonas = useMemo(() => {
         const personasMap = new Map()
 
-        const defaultPersonas = [
-            { name: 'Marta Atendimento', role: 'Vendas e Suporte', avatar: '/images/avatars/martha.png', count: 0 },
-            { name: 'Anna Assistente', role: 'Gestão de Leads', avatar: '/images/avatars/anna.png', count: 0 },
-            { name: 'Maju AI', role: 'Atendimento Geral', avatar: '/images/avatars/maju.png', count: 0 }
-        ]
-
-        defaultPersonas.forEach(p => personasMap.set(p.name, p))
+        // **As tres personas inventadas SAIRAM daqui.**
+        //
+        // Eram 'Marta Atendimento / Vendas e Suporte', 'Anna Assistente / Gestao
+        // de Leads' e 'Maju AI', com fotos em `/images/avatars/`. Nao eram
+        // reserva: entravam no mapa ANTES dos fluxos reais, entao apareciam
+        // sempre — independentemente do que a API respondesse.
+        //
+        // Dois problemas de uma vez. Sao dado FALSO na tela, que e o defeito que
+        // o FE-011 fechou na tela de contas ("nunca renderiza dado falso"). E os
+        // papeis sao de um produto que esta migracao REMOVEU: 'Gestao de Leads'
+        // e 'Vendas e Suporte' vem do CRM do ai9 (AI9-006, `removed`), que nao
+        // existe no Safegold.
+        //
+        // A lista agora mostra o que existe. Vazia, mostra vazio — que e a
+        // verdade quando nao ha persona cadastrada.
 
         flowsArray.forEach(flow => {
             if (flow.persona_name) {
@@ -215,13 +223,15 @@ export function MobileFlowListPage({
                 if (existing) {
                     existing.count += 1
                 } else {
-                    const matchedDefault = defaultPersonas.find(dp =>
-                        flow.persona_name?.toLocaleLowerCase().includes(dp.name.split(' ')[0].toLocaleLowerCase())
-                    )
                     personasMap.set(flow.persona_name, {
                         name: flow.persona_name,
                         role: 'Persona Customizada',
-                        avatar: flow.persona_avatar || matchedDefault?.avatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${flow.persona_name}`,
+                        // **Sem `dicebear`.** Aquilo mandava o NOME da persona
+                        // para um servico de terceiro a cada render, de dentro
+                        // do console de um cliente de credito — e o CSP
+                        // (`csp.config.ts`) bloqueia o dominio, entao a imagem
+                        // nem carregava: era vazamento sem contrapartida.
+                        avatar: flow.persona_avatar || '/images/brand/safegold-icon-192.png',
                         count: 1
                     })
                 }
