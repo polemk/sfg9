@@ -1045,8 +1045,8 @@
     "semantic_hash": ""
   },
   "backend/spec/requests/api/v1/chat_spec.rb": {
-    "mtime": 1787629166.4493651,
-    "ast_hash": "039d63f7208e3331666b87688c11e371",
+    "mtime": 1787871769.6273265,
+    "ast_hash": "3cb81c7b0c3d941853a5f5790a2841c1",
     "semantic_hash": ""
   },
   "backend/spec/requests/api/v1/controller_helpers_spec.rb": {
@@ -1175,13 +1175,13 @@
     "semantic_hash": "213d3ec97305ff94dc3f624ca3d768f2"
   },
   "backend/spec/services/ai/tools/tool_executor_spec.rb": {
-    "mtime": 1787629166.5013652,
-    "ast_hash": "e8146115337f0ffd475d009ea8a222eb",
+    "mtime": 1787871555.1081033,
+    "ast_hash": "34e34db0a7d153476518d63ae0d80344",
     "semantic_hash": ""
   },
   "backend/spec/services/ai/tools/tool_registry_spec.rb": {
-    "mtime": 1787629166.5053651,
-    "ast_hash": "b14fa73c6595c8e747d9a4ad5635dbd0",
+    "mtime": 1787871323.1002953,
+    "ast_hash": "66f7f95b617a22e3fad4bdfdbd4f1bbc",
     "semantic_hash": ""
   },
   "backend/spec/services/auth/code_validation_service_spec.rb": {
@@ -1390,8 +1390,8 @@
     "semantic_hash": ""
   },
   "frontend/src/components/Layout.tsx": {
-    "mtime": 1787802713.9280488,
-    "ast_hash": "1f380bbd170cfc13e2fea7160372ae25",
+    "mtime": 1787871437.24851,
+    "ast_hash": "94fc054746e54490af40dc32d962b55c",
     "semantic_hash": ""
   },
   "frontend/src/components/LightGlassEffect.tsx": {
@@ -1505,8 +1505,8 @@
     "semantic_hash": ""
   },
   "frontend/src/components/chat/AIChatWidget.tsx": {
-    "mtime": 1787871136.555135,
-    "ast_hash": "6e5763e8165f05ea30e83f419e3e080c",
+    "mtime": 1787871807.672739,
+    "ast_hash": "a902bf3277143504fda1fbe98b534ec5",
     "semantic_hash": ""
   },
   "frontend/src/components/chat/ChatCTA.tsx": {
@@ -1770,8 +1770,8 @@
     "semantic_hash": ""
   },
   "frontend/src/features/chat-builder/MobileFlowListPage.tsx": {
-    "mtime": 1787871103.6547403,
-    "ast_hash": "a2ba402f24acdbb538081ed0abca1860",
+    "mtime": 1787871799.1410627,
+    "ast_hash": "2b97d92939a57a0c23a76a4a2ee1749d",
     "semantic_hash": ""
   },
   "frontend/src/features/chat-builder/api/builder.ts": {
@@ -1910,8 +1910,8 @@
     "semantic_hash": "a47f9f2e486466d92802d9c5c68ce267"
   },
   "frontend/src/hooks/useChatFlow.ts": {
-    "mtime": 1787629166.709365,
-    "ast_hash": "369ac4f0c6b01324a01c858212ff27b5",
+    "mtime": 1787871490.6996045,
+    "ast_hash": "4c1829ae7d5e51c26466a548cff13280",
     "semantic_hash": ""
   },
   "frontend/src/hooks/useCountUp.ts": {
@@ -3455,8 +3455,8 @@
     "semantic_hash": ""
   },
   "backend/db/seeds/assistente_console_agent.rb": {
-    "mtime": 1787871189.025351,
-    "ast_hash": "9b1b32447e2ac999fb0e34d258dcde12",
+    "mtime": 1787871633.4606216,
+    "ast_hash": "afb39b514b0101c365b348851631cc55",
     "semantic_hash": ""
   },
   "backend/spec/services/ai/conversation_memory_spec.rb": {
@@ -4995,8 +4995,8 @@
     "semantic_hash": ""
   },
   "frontend/src/app/consoleNavigation.tsx": {
-    "mtime": 1787860313.4218578,
-    "ast_hash": "378b9805cc0275a339241ff9e2555b98",
+    "mtime": 1787871402.225235,
+    "ast_hash": "8f0405de941b003dc8060bfd8007212d",
     "semantic_hash": ""
   },
   "frontend/src/app/pages/ErrorPages.tsx": {
@@ -9230,8 +9230,8 @@
     "semantic_hash": ""
   },
   "backend/app/services/ai/tools/console_scope.rb": {
-    "mtime": 1787870913.642808,
-    "ast_hash": "f39cc0e9141f97d881eafd233ede3c7d",
+    "mtime": 1787871837.3470826,
+    "ast_hash": "b22a7a80acaae217b60f5817ffeedb4e",
     "semantic_hash": ""
   },
   "backend/app/services/ai/tools/handlers/console_data.rb": {
@@ -9240,8 +9240,28 @@
     "semantic_hash": ""
   },
   "backend/app/services/ai/tools/handlers/console_help.rb": {
-    "mtime": 1787870959.357958,
-    "ast_hash": "71536309fd382e6f83f7f7c9fccd968e",
+    "mtime": 1787871629.646032,
+    "ast_hash": "356debed2ad1ae784a385acae573655d",
+    "semantic_hash": ""
+  },
+  "backend/spec/services/ai/tools/console_scope_spec.rb": {
+    "mtime": 1787871847.1708932,
+    "ast_hash": "29f831eb2a1d18c733e483d98c042de1",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/__tests__/screenLabelForPath.test.ts": {
+    "mtime": 1787871689.969253,
+    "ast_hash": "3b5bc8c3277fe5547716f10fd18a6f5f",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/chat/__tests__/AIChatWidget.regressoes.test.tsx": {
+    "mtime": 1787871799.1410627,
+    "ast_hash": "d8e6da0a901adbe092cf70a6f8c46adc",
+    "semantic_hash": ""
+  },
+  "frontend/src/hooks/useAssistantContext.ts": {
+    "mtime": 1787871419.126324,
+    "ast_hash": "0e008de176aba5e4c960dc712894fe7e",
     "semantic_hash": ""
   }
 }
