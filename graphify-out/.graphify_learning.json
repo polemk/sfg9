@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-27T19:14:57.377696+00:00",
+  "generated_at": "2026-08-27T19:20:10.273689+00:00",
   "nodes": {
     "backend_app_channels_permissions_channel_permissionschannel": {
       "code_fingerprint": "9e05dcb309504fc80ee1d96dce68aca8ce5638e084ef4b4b60e5063edcb11eb1",
@@ -18,7 +18,7 @@
           "q": "Cross-language edge audit: how many graphify edges survive verification against source, and is the graph trustworthy for architecture questions?"
         }
       ],
-      "score": -0.000219483,
+      "score": -0.000219464,
       "source_file": "backend/app/channels/permissions_channel.rb",
       "status": "contested",
       "uses": 1,
@@ -41,7 +41,7 @@
           "q": "Cross-language edge audit: how many graphify edges survive verification against source, and is the graph trustworthy for architecture questions?"
         }
       ],
-      "score": -0.000219483,
+      "score": -0.000219464,
       "source_file": "backend/app/controllers/api/entities/auth_session.rb",
       "status": "contested",
       "uses": 1,
@@ -58,7 +58,7 @@
           "q": "Can the graph quality be improved?"
         }
       ],
-      "score": 0.878694413,
+      "score": 0.878620892,
       "source_file": "backend/app/services/ai/agent_service.rb",
       "status": "tentative",
       "uses": 1
@@ -94,7 +94,7 @@
           "q": "Can the graph quality be improved?"
         }
       ],
-      "score": 4.397615902,
+      "score": 4.397247951,
       "source_file": "backend/app/services/auth/token_service.rb",
       "status": "preferred",
       "uses": 5
@@ -110,7 +110,7 @@
           "q": "Rebuild the graph as directed"
         }
       ],
-      "score": 0.878887958,
+      "score": 0.878814421,
       "source_file": "backend/app/services/concerns/api_response_handler.rb",
       "status": "tentative",
       "uses": 1
@@ -126,7 +126,7 @@
           "q": "Rebuild the graph as directed"
         }
       ],
-      "score": 0.878887958,
+      "score": 0.878814421,
       "source_file": "frontend/src/lib/api/endpoints.ts",
       "status": "tentative",
       "uses": 1
@@ -142,7 +142,7 @@
           "q": "Rebuild the graph as directed"
         }
       ],
-      "score": 0.878887958,
+      "score": 0.878814421,
       "source_file": "frontend/src/lib/utils.ts",
       "status": "tentative",
       "uses": 1
@@ -158,7 +158,7 @@
           "q": "Rebuild the graph as directed"
         }
       ],
-      "score": 0.878887958,
+      "score": 0.878814421,
       "source_file": "frontend/src/store/authStore.ts",
       "status": "tentative",
       "uses": 1
@@ -174,7 +174,7 @@
           "q": "Is the graph good for the base-repo objective?"
         }
       ],
-      "score": 0.879739217,
+      "score": 0.879665609,
       "source_file": "README.md",
       "status": "tentative",
       "uses": 1
@@ -190,7 +190,7 @@
           "q": "Make the graph good as a base-repo reference: extract remaining in-scope docs and clean noise"
         }
       ],
-      "score": 0.87955513,
+      "score": 0.879481537,
       "source_file": "specs_fix_plan.md",
       "status": "tentative",
       "uses": 1

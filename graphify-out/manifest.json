@@ -3240,8 +3240,8 @@
     "semantic_hash": ""
   },
   ".migration-ai9/parity-ledger.md": {
-    "mtime": 1787858059.8091536,
-    "ast_hash": "cc65ff02bb5519f45afed1accbef7d7a",
+    "mtime": 1787858380.699921,
+    "ast_hash": "3a9ac72f5452e6d26edbabf2ae95e20a",
     "semantic_hash": ""
   },
   ".migration-ai9/project-options.md": {
@@ -4630,8 +4630,8 @@
     "semantic_hash": ""
   },
   "frontend/src/lib/utils/date.ts": {
-    "mtime": 1787690564.0825324,
-    "ast_hash": "bcad587fc458f06882ca9d886ab4d859",
+    "mtime": 1787858263.429893,
+    "ast_hash": "efad8f45119d1c1f0ac057647f8afac8",
     "semantic_hash": ""
   },
   "frontend/src/lib/utils/number.ts": {
@@ -9227,6 +9227,16 @@
   "backend/spec/models/project_derivations_spec.rb": {
     "mtime": 1787857585.758494,
     "ast_hash": "4d2d61cd5d034b926743b4d21acf7cab",
+    "semantic_hash": ""
+  },
+  "backend/spec/lib/sfg/date_bounds_spec.rb": {
+    "mtime": 1787858339.6387188,
+    "ast_hash": "6c0c193222b7267af69d16b9dfbf3deb",
+    "semantic_hash": ""
+  },
+  "frontend/src/lib/utils/__tests__/sentinelas-de-data.test.ts": {
+    "mtime": 1787858271.8860652,
+    "ast_hash": "d69547af1c51dc7a70b7f02404281c04",
     "semantic_hash": ""
   }
 }
