@@ -8,7 +8,7 @@ import { buildCsp } from './csp.config'
 // distintos sem disputar a :3000. Estava fixo, e um backend noutra porta
 // recebia zero evento: a pagina carregava, o /api caia no vazio e o rastreio
 // parecia quebrado quando o quebrado era o proxy.
-const BACKEND = process.env.VITE_BACKEND_URL || 'http://localhost:3000'
+const BACKEND = process.env.VITE_BACKEND_URL || 'http://localhost:3026'
 const BACKEND_WS = BACKEND.replace(/^http/, 'ws')
 
 /**
@@ -63,7 +63,7 @@ export default defineConfig(({ mode }) => ({
     },
   },
   server: {
-    port: 5173,
+    port: 5185,
     // Hosts aceitos pelo dev server. So os CURINGAS de tunel — o subdominio
     // que o ngrok sorteia muda a cada execucao, entao dominio escrito na mao
     // aqui nasce vencido (havia dois, ambos ja mortos). `.ngrok-free.app`

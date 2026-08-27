@@ -17,7 +17,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
     configured = ENV.fetch(
       "CORS_ORIGINS",
-      "http://localhost:5173,http://localhost:3000"
+      "http://localhost:5185,http://localhost:3026"
     ).split(",").map(&:strip).reject(&:empty?)
 
     origins(*configured, *(Rails.env.development? ? [DEV_TUNNEL_ORIGINS] : []))

@@ -2,8 +2,8 @@
 set -Eeuo pipefail
 
 # Configurações padrão (personalizáveis via env)
-RAILS_PORT="${RAILS_PORT:-3000}"
-VITE_PORT="${VITE_PORT:-5173}"
+RAILS_PORT="${RAILS_PORT:-3026}"
+VITE_PORT="${VITE_PORT:-5185}"
 SKIP_INSTALL="${SKIP_INSTALL:-0}"  # defina 1 para pular installs
 
 pids=()
