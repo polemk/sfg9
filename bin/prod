@@ -198,9 +198,60 @@ build() {
 }
 
 # ==========================================================
+# A porta esta livre?
+# ==========================================================
+#
+# **Isto custou uma tarde em 27/08/2026.**
+#
+# O `serve` do frontend foi iniciado numa porta que outro sistema deste servidor
+# ja ocupava (`/var/www/apps/tru/frontend`, desde as 06:40). Ele falhou com
+# `EADDRINUSE` — e o log so mostrava:
+#
+#     [prod] Servindo frontend estatico em :5185…
+#
+# ...seguido de silencio. O supervisor anunciou a INTENCAO e nao conferiu o
+# RESULTADO, entao o servico ficou "ativo" com um pedaco morto. Pior: o nginx
+# proxiava para aquela porta e servia a aplicacao do OUTRO sistema no nosso
+# dominio.
+#
+# E o mesmo padrao do "Ruby OK" (que so conferia se HA Ruby, nao se e o certo) e
+# do "DEPLOY CONCLUIDO COM SUCESSO" impresso com o nginx fora do ar.
+#
+# `ss` e o unico que diz QUEM ocupa. Sem o dono, a mensagem viraria "porta em
+# uso" e a pessoa perderia a mesma tarde procurando.
+porta_ocupada_por() {
+  local porta="$1"
+  command -v ss >/dev/null 2>&1 || return 1
+  ss -lntp 2>/dev/null | grep -q ":${porta} " || return 1
+
+  local dono
+  dono="$(ss -lntp 2>/dev/null | grep ":${porta} " | grep -oE 'users:\(\(.*' | head -1)"
+  echo "${dono:-processo desconhecido}"
+  return 0
+}
+
+exige_porta_livre() {
+  local porta="$1" servico="$2" dono
+  if dono="$(porta_ocupada_por "${porta}")"; then
+    err "A porta ${porta} (${servico}) JA ESTA EM USO."
+    err "   Quem ocupa: ${dono}"
+    err ""
+    err "   Nao vou subir por cima: o processo antigo continuaria respondendo e o"
+    err "   proxy serviria a aplicacao errada neste dominio — foi o que aconteceu"
+    err "   em 27/08/2026, com a 5185 do app 'tru'."
+    err ""
+    err "   Ou libere a porta, ou escolha outra em backend/.env (PORT) e no"
+    err "   VITE_PORT deste script."
+    return 1
+  fi
+  return 0
+}
+
+# ==========================================================
 # Rails / Puma
 # ==========================================================
 start_backend() {
+  exige_porta_livre "${RAILS_PORT}" "backend/Puma" || exit 1
   log "Iniciando Rails (Puma) em :${RAILS_PORT} [${RAILS_ENV}]…"
   (
     cd backend
@@ -229,6 +280,7 @@ start_sidekiq() {
 # Frontend serve
 # ==========================================================
 start_frontend() {
+  exige_porta_livre "${VITE_PORT}" "frontend estatico" || exit 1
   log "Servindo frontend estático em :${VITE_PORT}…"
   (
     cd frontend

@@ -1,7 +1,7 @@
 # Graph Report - .  (2026-08-27)
 
 ## Corpus Check
-- 1736 files · ~3,026,121 words
+- 1736 files · ~3,026,384 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,8 +10,8 @@
 - Token cost: 0 input · 0 output
 
 ## Community Hubs (Navigation)
-- install.sh - install.sh
 - renew_cert.sh - renew_cert.sh
+- install.sh - install.sh
 - Database & Seeds / seeds/demo - Controls
 - Database & Seeds / seeds/demo - Companies
 - Database & Seeds / seeds/demo - Projects
@@ -2003,13 +2003,13 @@
 
 ## Communities (2069 total, 329 thin omitted)
 
-### Community 610 - "install.sh - install.sh"
-Cohesion: 0.40
-Nodes (4): install.sh script, GEM_HOME, GEM_PATH, PATH
-
 ### Community 622 - "renew_cert.sh - renew_cert.sh"
 Cohesion: 0.70
 Nodes (4): renew_cert.sh script, ok(), aviso(), morre()
+
+### Community 610 - "install.sh - install.sh"
+Cohesion: 0.40
+Nodes (4): install.sh script, GEM_HOME, GEM_PATH, PATH
 
 ### Community 164 - "Database & Seeds / seeds/demo - Controls"
 Cohesion: 0.13
